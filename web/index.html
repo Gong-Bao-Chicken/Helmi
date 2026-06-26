@@ -1,0 +1,2633 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helmet Compare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script>
+      (function () {
+        const stored = localStorage.getItem("helmet-compare-theme");
+        const theme =
+          stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
+    <script>
+      tailwind.config = { darkMode: ["class", "[data-theme='dark']"] };
+    </script>
+    <style>
+      :root,
+      [data-theme="light"] {
+        color-scheme: light;
+        --bg: #f4f6f9;
+        --surface: #ffffff;
+        --surface-elevated: #ffffff;
+        --border: #d8dee9;
+        --border-subtle: #e8ecf2;
+        --text: #0f172a;
+        --text-secondary: #334155;
+        --text-muted: #64748b;
+        --accent: #047857;
+        --accent-hover: #065f46;
+        --accent-soft: #d1fae5;
+        --ring-pareto: #b45309;
+        --ring-pin: #0e7490;
+        --faded: #94a3b8;
+        --chart-bg: rgba(255, 255, 255, 0.92);
+        --chart-grid: #e2e8f0;
+        --chart-tick: #475569;
+        --chart-title: #334155;
+        --chart-font: #1e293b;
+        --marker-stroke: #ffffff;
+        --input-bg: #ffffff;
+        --shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+      }
+
+      [data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #0a0f1a;
+        --surface: #111827;
+        --surface-elevated: #1a2332;
+        --border: #2a3548;
+        --border-subtle: #1e293b;
+        --text: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --accent: #34d399;
+        --accent-hover: #6ee7b7;
+        --accent-soft: #064e3b;
+        --ring-pareto: #fbbf24;
+        --ring-pin: #22d3ee;
+        --faded: #64748b;
+        --chart-bg: rgba(17, 24, 39, 0.85);
+        --chart-grid: #2a3548;
+        --chart-tick: #94a3b8;
+        --chart-title: #cbd5e1;
+        --chart-font: #e2e8f0;
+        --marker-stroke: #0a0f1a;
+        --input-bg: #0a0f1a;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+      }
+
+      body {
+        font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .field-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        margin-bottom: 0.35rem;
+      }
+
+      .field-input {
+        width: 100%;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border);
+        background: var(--input-bg);
+        color: var(--text);
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+
+      .field-input:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 1px;
+        border-color: var(--accent);
+      }
+
+      .btn {
+        border-radius: 0.5rem;
+        border: 1px solid var(--border);
+        background: var(--surface-elevated);
+        color: var(--text-secondary);
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        transition: border-color 0.15s, color 0.15s, background 0.15s;
+      }
+
+      .btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .stat-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem 1.125rem;
+        box-shadow: var(--shadow);
+      }
+
+      .stat-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .stat-value {
+        margin-top: 0.25rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.2;
+      }
+
+      .chart-box {
+        min-height: 420px;
+      }
+
+      .chart-box-mini {
+        min-height: 200px;
+        height: 220px;
+      }
+
+      input[type="range"],
+      input[type="checkbox"] {
+        accent-color: var(--accent);
+      }
+
+      .pin-btn {
+        cursor: pointer;
+        border-radius: 0.375rem;
+        padding: 0.125rem 0.375rem;
+        font-size: 0.75rem;
+        line-height: 1;
+        border: 1px solid var(--border);
+        background: var(--input-bg);
+        color: var(--text-muted);
+      }
+
+      .pin-btn:hover {
+        border-color: var(--ring-pin);
+        color: var(--text);
+      }
+
+      .pin-btn.is-pinned {
+        border-color: var(--ring-pin);
+        background: var(--accent-soft);
+        color: var(--ring-pin);
+      }
+
+      .pinned-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        border-radius: 9999px;
+        border: 1px solid var(--ring-pin);
+        background: var(--accent-soft);
+        padding: 0.25rem 0.625rem;
+        color: var(--ring-pin);
+        font-size: 0.8125rem;
+      }
+
+      .filter-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+      }
+
+      .details-summary {
+        cursor: pointer;
+        user-select: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      .details-summary:hover {
+        color: var(--text);
+      }
+
+      .table-head {
+        background: var(--surface-elevated);
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .table-row:hover {
+        background: color-mix(in srgb, var(--accent) 6%, transparent);
+      }
+
+      .table-divider {
+        border-color: var(--border-subtle);
+      }
+
+      .price-source {
+        color: var(--accent);
+        font-size: 0.75rem;
+      }
+
+      .source-legend-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        border-radius: 9999px;
+        border: 1px solid var(--border);
+        background: var(--surface-elevated);
+        padding: 0.2rem 0.5rem;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .filter-chip-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border);
+        background: var(--surface-elevated);
+        padding: 0.35rem 0.65rem;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+      }
+
+      .tr-pinned {
+        background: color-mix(in srgb, var(--ring-pin) 10%, transparent);
+      }
+
+      .text-accent {
+        color: var(--accent);
+      }
+
+      .text-muted {
+        color: var(--text-muted);
+      }
+
+      .pareto-badge {
+        border-radius: 0.25rem;
+        border: 1px solid var(--ring-pareto);
+        padding: 0.125rem 0.375rem;
+      }
+
+      .tr-selected {
+        background: color-mix(in srgb, var(--accent) 12%, transparent);
+        outline: 1px solid var(--accent);
+        outline-offset: -1px;
+      }
+
+      .helmet-link {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .helmet-link:hover {
+        color: var(--accent);
+        text-decoration: underline;
+      }
+
+      .table-row {
+        cursor: pointer;
+      }
+
+      #themeToggle {
+        min-width: 2.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+      <header class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h1 class="text-2xl font-semibold tracking-tight sm:text-3xl" style="color: var(--text)">Helmet Compare</h1>
+          <p class="mt-1.5 max-w-xl text-sm" style="color: var(--text-muted)">
+            Safety scores vs price for EU-market helmets. Pin points on the chart to compare.
+          </p>
+        </div>
+        <div class="flex items-center gap-3 sm:flex-col sm:items-end">
+          <button type="button" id="themeToggle" class="btn" title="Toggle light/dark mode" aria-label="Toggle theme">◐</button>
+          <div class="text-right text-xs" style="color: var(--text-muted)" id="meta"></div>
+        </div>
+      </header>
+
+      <section class="card mb-5 p-4 sm:p-5">
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <label>
+            <span class="field-label">Search</span>
+            <input id="searchFilter" type="search" placeholder="Brand or model" class="field-input" />
+          </label>
+          <label>
+            <span class="field-label">Brand</span>
+            <select id="brandFilter" class="field-input"></select>
+          </label>
+          <label>
+            <span class="field-label">Score source</span>
+            <select id="presentationMode" class="field-input"></select>
+          </label>
+          <label>
+            <span class="field-label">Market</span>
+            <select id="marketFilter" class="field-input"></select>
+          </label>
+        </div>
+
+        <details class="mt-4 border-t pt-4" style="border-color: var(--border-subtle)">
+          <summary class="details-summary">More filters &amp; weights</summary>
+          <div class="mt-4 space-y-4">
+            <div class="grid gap-3 sm:grid-cols-2">
+              <div>
+                <span class="field-label">VT stars</span>
+                <div class="flex items-center gap-2">
+                  <select id="starsMinFilter" class="field-input min-w-0 flex-1"></select>
+                  <span style="color: var(--text-muted)">–</span>
+                  <select id="starsMaxFilter" class="field-input min-w-0 flex-1"></select>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-end gap-2">
+                <span class="field-label w-full">Presets</span>
+                <button type="button" data-preset="lab" class="preset-btn btn">Lab</button>
+                <button type="button" data-preset="value" class="preset-btn btn">Value</button>
+                <button type="button" data-preset="pareto" class="preset-btn btn">Pareto</button>
+                <button type="button" data-preset="reset" class="preset-btn btn">Reset</button>
+              </div>
+            </div>
+
+            <div id="fusionSourcePanel">
+              <p class="field-label">Fused sources <span style="font-weight:400">(max 2)</span></p>
+              <div id="fusionSourceFilters" class="flex flex-wrap gap-3"></div>
+            </div>
+
+            <div>
+              <p class="field-label">Style</p>
+              <div id="styleFilters" class="flex flex-wrap gap-3"></div>
+            </div>
+
+            <div>
+              <p class="field-label">Rotational protection</p>
+              <div id="protectionFilters" class="flex flex-wrap gap-3"></div>
+            </div>
+
+            <div class="flex flex-wrap gap-x-5 gap-y-2">
+              <label class="filter-chip">
+                <input id="euMarketFilter" type="checkbox" checked />
+                European market only
+              </label>
+              <label class="filter-chip">
+                <input id="paretoOnlyFilter" type="checkbox" />
+                Pareto-optimal only
+              </label>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <label>
+                <span class="field-label">Weight: safety <span id="weightSafetyLabel" class="font-normal">55%</span></span>
+                <input id="weightSafety" type="range" min="0" max="100" value="55" class="mt-1 w-full" />
+              </label>
+              <label>
+                <span class="field-label">Weight: price <span id="weightPriceLabel" class="font-normal">45%</span></span>
+                <input id="weightPrice" type="range" min="0" max="100" value="45" class="mt-1 w-full" />
+              </label>
+              <label id="weightReviewPanel" class="shop-col hidden">
+                <span class="field-label">Weight: shop reviews <span id="weightReviewLabel" class="font-normal">0%</span></span>
+                <input id="weightReview" type="range" min="0" max="100" value="0" class="mt-1 w-full" />
+              </label>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="mb-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="stat-card">
+          <p class="stat-label">Visible</p>
+          <p class="stat-value" id="visibleCount">–</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Sweet spots</p>
+          <p class="stat-value" id="paretoCount">–</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label" id="bestScoreLabel">Best safety</p>
+          <p class="stat-value" id="bestScore">–</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Best value</p>
+          <p class="mt-1 text-sm font-semibold leading-snug" style="color: var(--text)" id="topComposite">–</p>
+        </div>
+      </section>
+
+      <section class="card mb-6 p-3 sm:p-4">
+        <div class="mb-3 flex flex-wrap items-end justify-between gap-3 px-1">
+          <div>
+            <h2 class="text-sm font-semibold" style="color: var(--text-secondary)">Price vs safety</h2>
+            <p class="mt-0.5 text-xs" style="color: var(--text-muted)" id="chartHelpText">
+              Color by value score (within style). Shaded band = expected safety for price. Green outline = sweet spot. Click chart or table row to link.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 text-xs" style="color: var(--text-muted)">
+            <label class="flex items-center gap-1.5">
+              Color
+              <select id="chartColorMode" class="field-input !w-auto !py-1 !text-xs">
+                <option value="value">Value score</option>
+                <option value="composite">Composite</option>
+                <option value="style">Style</option>
+                <option value="brand">Brand</option>
+                <option value="stars">VT stars</option>
+              </select>
+            </label>
+            <label class="filter-chip">
+              <input id="showFairValueBand" type="checkbox" checked />
+              Fair-value band
+            </label>
+            <label class="filter-chip">
+              <input id="showStyleMean" type="checkbox" />
+              Style mean
+            </label>
+            <label class="filter-chip">
+              <input id="showStyleMedian" type="checkbox" />
+              Style median
+            </label>
+            <label class="filter-chip">
+              <input id="labelTop5" type="checkbox" checked />
+              Label top 5
+            </label>
+            <button type="button" id="clearPinned" class="btn">Clear pins</button>
+          </div>
+        </div>
+        <div id="pinnedPanel" class="mb-2 hidden flex-wrap gap-2 px-1"></div>
+        <div id="valueChart" class="chart-box"></div>
+        <div class="mt-3 grid gap-3 border-t pt-3 sm:grid-cols-2" style="border-color: var(--border-subtle)">
+          <div>
+            <p class="mb-1 text-xs font-medium" style="color: var(--text-muted)">Composite score</p>
+            <div id="compositeChart" class="chart-box-mini"></div>
+          </div>
+          <div>
+            <p class="mb-1 text-xs font-medium" style="color: var(--text-muted)">Safety by lab source</p>
+            <div id="sourceColorLegend" class="mb-2 flex flex-wrap gap-1.5"></div>
+            <div id="multiSourceChart" class="chart-box-mini"></div>
+          </div>
+        </div>
+      </section>
+
+      <details class="card overflow-hidden" open>
+        <summary class="details-summary border-b px-4 py-3" style="border-color: var(--border-subtle); background: var(--surface-elevated)">
+          All helmets
+        </summary>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-left text-sm">
+            <thead class="table-head">
+              <tr>
+                <th class="w-10 px-2 py-3" title="Pin on chart"></th>
+                <th class="px-4 py-3">Helmet</th>
+                <th class="px-4 py-3" id="safetyColHeader">Safety</th>
+                <th class="px-4 py-3">VT ★</th>
+                <th class="px-4 py-3">Value</th>
+                <th class="px-4 py-3">vs peers</th>
+                <th class="px-4 py-3">Price</th>
+                <th class="px-4 py-3 shop-col hidden">Shop</th>
+                <th class="px-4 py-3 shop-col hidden">Reviews</th>
+                <th class="px-4 py-3">Composite</th>
+                <th class="px-4 py-3">Protection</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y table-divider"></tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="card mt-4 overflow-hidden">
+        <summary class="details-summary border-b px-4 py-3" style="border-color: var(--border-subtle); background: var(--surface-elevated)">
+          Top 20 by value
+        </summary>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-left text-sm">
+            <thead class="table-head">
+              <tr>
+                <th class="w-10 px-2 py-3"></th>
+                <th class="px-4 py-3">#</th>
+                <th class="px-4 py-3">Helmet</th>
+                <th class="px-4 py-3">Value</th>
+                <th class="px-4 py-3" id="safetyColHeaderTop">Safety</th>
+                <th class="px-4 py-3">VT ★</th>
+                <th class="px-4 py-3">Price</th>
+                <th class="px-4 py-3 shop-col hidden">Shop</th>
+                <th class="px-4 py-3 shop-col hidden">Rating</th>
+                <th class="px-4 py-3">Protection</th>
+              </tr>
+            </thead>
+            <tbody id="topPicksBody" class="divide-y table-divider"></tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+
+    <script>
+      const MAX_FUSED_SOURCES = 2;
+      const DEFAULT_PRESENTATION_MODE = "virginia_tech_raw";
+      const TOP_LABEL_COUNT = 5;
+      const THEME_KEY = "helmet-compare-theme";
+      const STYLE_COLORS = {
+        Aero: "#f472b6",
+        Road: "#38bdf8",
+        Mountain: "#f97316",
+        Urban: "#a78bfa",
+        "Full-Face": "#f43f5e",
+        "Multi-sport": "#facc15",
+      };
+      const STYLE_FALLBACK_COLORS = ["#2dd4bf", "#fb7185", "#c084fc", "#4ade80", "#fdba74"];
+      const STAR_COLORS = {
+        5: "#22c55e",
+        4: "#84cc16",
+        3: "#eab308",
+        2: "#f97316",
+        1: "#ef4444",
+        0: "#64748b",
+      };
+      const SOURCE_COLORS = {
+        virginia_tech: "#34d399",
+        certimoov: "#c084fc",
+        folksam: "#fb923c",
+        nsw_helmet_star: "#38bdf8",
+        fused: "#fbbf24",
+        hiper: "#f472b6",
+      };
+      const SOURCE_ORDER = ["virginia_tech", "fused", "certimoov", "folksam", "nsw_helmet_star", "hiper"];
+
+      const CHART_IDS = ["valueChart", "compositeChart", "multiSourceChart"];
+      const EPS_SAFETY_NORM = 0.03;
+      const EPS_PRICE_USD = 10;
+      const EPS_PRICE_FRAC = 0.05;
+      const REVIEW_SHRINK_K = 30;
+      const REVIEW_MIN_COUNT = 10;
+
+      let dataset = null;
+      let paretoIds = new Set();
+      let kneeIds = new Set();
+      let pinnedHelmetIds = new Set();
+      let selectedHelmetId = null;
+      let pendingFocusId = null;
+      let chartsLinked = false;
+      let suppressHoverSync = false;
+      let helmetPlotIndex = {};
+      let activeSafetyMeta = { yTitle: "STAR score (↑ safer at top)", higherIsSafer: false, shortLabel: "STAR" };
+
+      function chartTheme() {
+        const root = getComputedStyle(document.documentElement);
+        return {
+          faded: root.getPropertyValue("--faded").trim(),
+          paretoRing: root.getPropertyValue("--ring-pareto").trim(),
+          pinRing: root.getPropertyValue("--ring-pin").trim(),
+          markerStroke: root.getPropertyValue("--marker-stroke").trim(),
+          chartBg: root.getPropertyValue("--chart-bg").trim(),
+          grid: root.getPropertyValue("--chart-grid").trim(),
+          tick: root.getPropertyValue("--chart-tick").trim(),
+          title: root.getPropertyValue("--chart-title").trim(),
+          font: root.getPropertyValue("--chart-font").trim(),
+          accent: root.getPropertyValue("--accent").trim(),
+          annotation: root.getPropertyValue("--text-muted").trim(),
+          labelFont: root.getPropertyValue("--text-secondary").trim(),
+          calloutBg: root.getPropertyValue("--surface-elevated").trim(),
+          calloutBorder: root.getPropertyValue("--border").trim(),
+        };
+      }
+
+      function initTheme() {
+        const stored = localStorage.getItem(THEME_KEY);
+        const theme =
+          stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        applyTheme(theme);
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.dataset.theme = theme;
+        localStorage.setItem(THEME_KEY, theme);
+        const btn = document.getElementById("themeToggle");
+        if (btn) {
+          btn.textContent = theme === "dark" ? "☀" : "◐";
+          btn.title = theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        applyTheme(next);
+        render();
+      }
+
+      function buildJitterMap(items, getX, getY, getId = (item) => item.id) {
+        const buckets = new Map();
+        for (const item of items) {
+          const x = getX(item);
+          const y = getY(item);
+          if (x == null || y == null || Number.isNaN(x) || Number.isNaN(y)) continue;
+          const key = `${(Math.round(x * 10) / 10).toFixed(1)}|${(Math.round(y * 100) / 100).toFixed(2)}`;
+          if (!buckets.has(key)) buckets.set(key, []);
+          buckets.get(key).push(item);
+        }
+        const result = new Map();
+        for (const group of buckets.values()) {
+          if (group.length === 1) {
+            const item = group[0];
+            result.set(getId(item), { x: getX(item), y: getY(item) });
+            continue;
+          }
+          const x0 = getX(group[0]);
+          const y0 = getY(group[0]);
+          const xSpan = Math.max(x0 * 0.015, 4);
+          const ySpan = Math.max(Math.abs(y0) * 0.025, 0.35);
+          group.forEach((item, i) => {
+            const angle = (2 * Math.PI * i) / group.length;
+            const ring = 1 + Math.floor(i / 8) * 0.5;
+            result.set(getId(item), {
+              x: x0 + Math.cos(angle) * xSpan * ring,
+              y: y0 + Math.sin(angle) * ySpan * ring,
+            });
+          });
+        }
+        return result;
+      }
+
+      function jitteredPoint(id, jitterMap, x, y) {
+        const j = jitterMap.get(id);
+        return j ? [j.x, j.y] : [x, y];
+      }
+
+      function getPresentationMode() {
+        const el = document.getElementById("presentationMode");
+        return el?.value || DEFAULT_PRESENTATION_MODE;
+      }
+
+      function getRatingSources() {
+        return dataset?.filters?.rating_sources || [];
+      }
+
+      function sourceMeta(key) {
+        return getRatingSources().find((s) => s.key === key);
+      }
+
+      function getFusedSourceKeys() {
+        return [...document.querySelectorAll("[data-fusion-source]:checked")]
+          .map((el) => el.dataset.fusionSource)
+          .slice(0, MAX_FUSED_SOURCES);
+      }
+
+      function helmetHasSource(helmet, sourceKey) {
+        const block = helmet.ratings?.[sourceKey];
+        if (!block) return false;
+        if (sourceKey === "virginia_tech") return block.score != null;
+        return block.rank_pct != null;
+      }
+
+      function countPoolWithSource(helmets, sourceKey) {
+        return helmets.filter((h) => helmetHasSource(h, sourceKey)).length;
+      }
+
+      function computeFusedRankPct(helmet, sourceKeys) {
+        const ratings = helmet.ratings || {};
+        const eligible = [];
+        for (const key of sourceKeys.slice(0, MAX_FUSED_SOURCES)) {
+          const block = ratings[key];
+          if (!block || block.rank_pct == null) continue;
+          const meta = sourceMeta(key);
+          eligible.push({ rank: block.rank_pct, weight: meta?.confidence ?? 1 });
+        }
+        if (!eligible.length) return null;
+        const total = eligible.reduce((sum, entry) => sum + entry.weight, 0);
+        return eligible.reduce((sum, entry) => sum + entry.rank * entry.weight, 0) / total;
+      }
+
+      function computeSafetyMetric(helmet, mode, fusedKeys, rawMin, rawMax) {
+        const ratings = helmet.ratings || {};
+        const vt = ratings.virginia_tech || {};
+
+        if (mode === "virginia_tech_raw") {
+          const value = vt.score ?? helmet.score;
+          const available = value != null;
+          const norm = !available || rawMin === rawMax ? 1 : (rawMax - value) / (rawMax - rawMin);
+          return {
+            value,
+            display: available ? value.toFixed(1) : "–",
+            higherIsSafer: false,
+            norm: available ? norm : null,
+            available,
+            yTitle: "STAR score (↑ safer at top)",
+            shortLabel: "STAR",
+          };
+        }
+
+        if (mode === "virginia_tech_pct") {
+          const value = vt.rank_pct;
+          const available = value != null;
+          return {
+            value,
+            display: available ? `${(value * 100).toFixed(0)}%` : "–",
+            higherIsSafer: true,
+            norm: value,
+            available,
+            yTitle: "VT safety percentile (↑ safer at top)",
+            shortLabel: "VT %",
+          };
+        }
+
+        if (mode === "fused") {
+          const value = fusedKeys.length
+            ? computeFusedRankPct(helmet, fusedKeys)
+            : ratings.fused?.rank_pct ?? null;
+          const available = value != null;
+          return {
+            value,
+            display: available ? `${(value * 100).toFixed(0)}%` : "–",
+            higherIsSafer: true,
+            norm: value,
+            available,
+            yTitle: "Fused safety percentile (↑ safer at top)",
+            shortLabel: "Fused",
+          };
+        }
+
+        const block = ratings[mode];
+        const value = block?.rank_pct;
+        const available = value != null;
+        const meta = sourceMeta(mode);
+        const label = meta?.short || mode;
+        return {
+          value,
+          display: available ? `${(value * 100).toFixed(0)}%` : "–",
+          higherIsSafer: true,
+          norm: value,
+          available,
+          yTitle: `${label} safety percentile (↑ safer at top)`,
+          shortLabel: label,
+        };
+      }
+
+      function attachSafetyMetrics(helmets, mode) {
+        const fusedKeys = mode === "fused" ? getFusedSourceKeys() : [];
+        let rawMin = Infinity;
+        let rawMax = -Infinity;
+        if (mode === "virginia_tech_raw") {
+          for (const helmet of helmets) {
+            const value = helmet.ratings?.virginia_tech?.score ?? helmet.score;
+            if (value != null) {
+              rawMin = Math.min(rawMin, value);
+              rawMax = Math.max(rawMax, value);
+            }
+          }
+          if (!Number.isFinite(rawMin)) {
+            rawMin = 8;
+            rawMax = 30;
+          }
+        }
+        return helmets.map((helmet) => ({
+          ...helmet,
+          safety: computeSafetyMetric(helmet, mode, fusedKeys, rawMin, rawMax),
+        }));
+      }
+
+      function isSaferOrEqual(a, b, higherIsSafer) {
+        if (!a.safety?.available || !b.safety?.available) return false;
+        return higherIsSafer ? b.safety.value >= a.safety.value : b.safety.value <= a.safety.value;
+      }
+
+      function isStrictlySafer(a, b, higherIsSafer) {
+        if (!a.safety?.available || !b.safety?.available) return false;
+        return higherIsSafer ? b.safety.value > a.safety.value : b.safety.value < a.safety.value;
+      }
+
+      function getMarket() {
+        return document.getElementById("marketFilter").value || "de";
+      }
+
+      function getListing(helmet) {
+        return helmet.listings?.[getMarket()] || {};
+      }
+
+      function hasShopListingData() {
+        if (!dataset) return false;
+        return dataset.helmets.some((helmet) =>
+          Object.values(helmet.listings || {}).some(
+            (listing) => listing.rating != null || listing.price != null
+          )
+        );
+      }
+
+      function updateShopColumnsVisibility() {
+        const show = hasShopListingData();
+        document.querySelectorAll(".shop-col").forEach((el) => {
+          el.classList.toggle("hidden", !show);
+        });
+      }
+
+      function hasShopReviewData() {
+        if (!dataset) return false;
+        return dataset.helmets.some((helmet) =>
+          Object.values(helmet.listings || {}).some(
+            (listing) =>
+              listing.rating != null && (listing.review_count ?? 0) >= REVIEW_MIN_COUNT
+          )
+        );
+      }
+
+      function updateReviewWeightVisibility() {
+        const show = hasShopReviewData();
+        const panel = document.getElementById("weightReviewPanel");
+        if (panel) panel.classList.toggle("hidden", !show);
+      }
+
+      function fillSelect(select, values, allLabel) {
+        select.innerHTML = "";
+        const allOption = document.createElement("option");
+        allOption.value = "";
+        allOption.textContent = allLabel;
+        select.appendChild(allOption);
+        for (const value of values) {
+          const option = document.createElement("option");
+          option.value = String(value);
+          option.textContent = String(value);
+          select.appendChild(option);
+        }
+      }
+
+      function fillStarsRangeSelects() {
+        const stars = dataset.filters.stars.filter((s) => s > 0).sort((a, b) => a - b);
+        fillSelect(document.getElementById("starsMinFilter"), stars, "Any min");
+        fillSelect(document.getElementById("starsMaxFilter"), stars, "Any max");
+      }
+
+      function getStarsRange() {
+        const minVal = document.getElementById("starsMinFilter").value;
+        const maxVal = document.getElementById("starsMaxFilter").value;
+        const rawMin = minVal === "" ? 0 : Number(minVal);
+        const rawMax = maxVal === "" ? 5 : Number(maxVal);
+        return {
+          minStars: Math.min(rawMin, rawMax),
+          maxStars: Math.max(rawMin, rawMax),
+        };
+      }
+
+      function getActiveStyleKeys() {
+        return [...document.querySelectorAll("[data-style-key]:checked")].map((el) => el.dataset.styleKey);
+      }
+
+      function helmetMatchesStyle(helmet, keys) {
+        if (!keys.length) return true;
+        return keys.includes(helmet.style);
+      }
+
+      function getSearchTerms() {
+        return document.getElementById("searchFilter").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      }
+
+      function helmetMatchesSearch(helmet, terms) {
+        if (!terms.length) return true;
+        const haystack = helmet.search_text || `${helmet.brand} ${helmet.model}`.toLowerCase();
+        return terms.every((term) => haystack.includes(term));
+      }
+
+      function hasRotationalTech(helmet) {
+        const f = helmet.features || {};
+        return !!(f.mips_standard || f.mips_spherical || f.mips || f.wavecel || f.spin || f.sweet_2vi);
+      }
+
+      function helmetMatchesProtection(helmet, keys) {
+        if (!keys.length) return true;
+        const f = helmet.features || {};
+        return keys.some((key) => {
+          if (key === "none") return !hasRotationalTech(helmet);
+          if (key === "mips_standard") return f.mips_standard || (f.mips && !f.mips_spherical);
+          if (key === "mips_spherical") return f.mips_spherical || f.spherical;
+          return !!f[key];
+        });
+      }
+
+      function getActiveProtectionKeys() {
+        return [...document.querySelectorAll("[data-protection-key]:checked")].map((el) => el.dataset.protectionKey);
+      }
+
+      function getWeights() {
+        return {
+          safety: Number(document.getElementById("weightSafety").value),
+          price: Number(document.getElementById("weightPrice").value),
+          review: Number(document.getElementById("weightReview")?.value || 0),
+        };
+      }
+
+      function updateWeightLabels() {
+        const w = getWeights();
+        const total = w.safety + w.price + w.review || 1;
+        document.getElementById("weightSafetyLabel").textContent = `${Math.round((w.safety / total) * 100)}%`;
+        document.getElementById("weightPriceLabel").textContent = `${Math.round((w.price / total) * 100)}%`;
+        const reviewLabel = document.getElementById("weightReviewLabel");
+        if (reviewLabel) {
+          reviewLabel.textContent = `${Math.round((w.review / total) * 100)}%`;
+        }
+      }
+
+      function computeParetoIds(helmets) {
+        const ids = new Set();
+        const comparable = helmets.filter((h) => h.safety?.available && getComparisonPriceUsd(h) != null);
+        if (!comparable.length) return ids;
+
+        for (const a of comparable) {
+          let dominated = false;
+          for (const b of comparable) {
+            if (a.id === b.id) continue;
+            const priceA = getComparisonPriceUsd(a);
+            const priceB = getComparisonPriceUsd(b);
+            const epsP = priceEpsilon(priceA);
+            const normA = a.safety.norm;
+            const normB = b.safety.norm;
+            if (normA == null || normB == null) continue;
+            const saferOrEqual = normB >= normA - EPS_SAFETY_NORM;
+            const cheaperOrEqual = priceB <= priceA + epsP;
+            const strictlyBetter =
+              normB >= normA + EPS_SAFETY_NORM || priceB <= priceA - epsP;
+            if (saferOrEqual && cheaperOrEqual && strictlyBetter) {
+              dominated = true;
+              break;
+            }
+          }
+          if (!dominated) ids.add(a.id);
+        }
+        return ids;
+      }
+
+      function withCompositeScores(helmets) {
+        if (!helmets.length) return [];
+        const w = getWeights();
+        const prices = helmets.map((h) => getComparisonPriceUsd(h)).filter((p) => p != null);
+        const minP = prices.length ? Math.min(...prices) : 0;
+        const maxP = prices.length ? Math.max(...prices) : 0;
+
+        return helmets.map((helmet) => {
+          const safetyNorm = helmet.safety?.norm;
+          const hasPrice = getComparisonPriceUsd(helmet) != null;
+          const priceNorm = !hasPrice
+            ? null
+            : maxP === minP
+              ? 1
+              : (maxP - getComparisonPriceUsd(helmet)) / (maxP - minP);
+
+          let composite = 0;
+          const active = [];
+          if (w.safety > 0 && safetyNorm != null) active.push(["safety", w.safety, safetyNorm]);
+          if (w.price > 0 && priceNorm != null) active.push(["price", w.price, priceNorm]);
+          if (w.review > 0 && helmet.review_pct != null) {
+            active.push(["review", w.review, helmet.review_pct]);
+          }
+          if (!active.length) {
+            composite = safetyNorm ?? priceNorm ?? helmet.review_pct ?? 0;
+          } else {
+            const total = active.reduce((sum, [, weight]) => sum + weight, 0);
+            composite = active.reduce((sum, [, weight, norm]) => sum + weight * norm, 0) / total;
+          }
+
+          return { ...helmet, composite_score: composite };
+        });
+      }
+
+      function helmetBrandKey(helmet) {
+        return (helmet.brand_key || helmet.brand || "").toLowerCase();
+      }
+
+      function helmetUrl(id) {
+        const url = new URL(location.href);
+        url.searchParams.set("helmet", id);
+        return url.toString();
+      }
+
+      function getHelmetIdFromUrl() {
+        const params = new URLSearchParams(location.search);
+        if (params.get("helmet")) return params.get("helmet");
+        if (location.hash.startsWith("#helmet=")) return decodeURIComponent(location.hash.slice(8));
+        return null;
+      }
+
+      function setHelmetUrl(id) {
+        const url = new URL(location.href);
+        if (id) url.searchParams.set("helmet", id);
+        else url.searchParams.delete("helmet");
+        history.replaceState(null, "", url);
+      }
+
+      function priceEpsilon(price) {
+        return Math.max(EPS_PRICE_USD, price * EPS_PRICE_FRAC);
+      }
+
+      function percentileRank(values, value) {
+        const sorted = values.filter((v) => v != null && !Number.isNaN(v)).sort((a, b) => a - b);
+        if (!sorted.length || value == null || Number.isNaN(value)) return null;
+        let below = 0;
+        let equal = 0;
+        for (const v of sorted) {
+          if (v < value) below += 1;
+          else if (v === value) equal += 1;
+        }
+        return (below + equal * 0.5) / sorted.length;
+      }
+
+      function computeBayesianReviewPrior(helmets) {
+        const ratings = helmets
+          .map((h) => getListing(h))
+          .filter((l) => l.rating != null && (l.review_count ?? 0) >= REVIEW_MIN_COUNT);
+        if (!ratings.length) return { mean: 4.0 };
+        const total = ratings.reduce((sum, l) => sum + l.rating * l.review_count, 0);
+        const n = ratings.reduce((sum, l) => sum + l.review_count, 0);
+        return { mean: total / n };
+      }
+
+      function bayesianReviewScore(listing, prior) {
+        if (listing.rating == null) return null;
+        const n = listing.review_count ?? 0;
+        if (n < REVIEW_MIN_COUNT) return null;
+        return (REVIEW_SHRINK_K * prior.mean + n * listing.rating) / (REVIEW_SHRINK_K + n);
+      }
+
+      function buildPriceBins(items, getX, getY, binCount) {
+        const sorted = [...items].sort((a, b) => getX(a) - getX(b));
+        const size = Math.max(1, Math.ceil(sorted.length / binCount));
+        const bins = [];
+        for (let i = 0; i < sorted.length; i += size) {
+          const slice = sorted.slice(i, i + size);
+          const xs = slice.map(getX);
+          const ys = slice.map(getY).sort((a, b) => a - b);
+          const mid = (Math.min(...xs) + Math.max(...xs)) / 2;
+          const q = (p) => ys[Math.min(ys.length - 1, Math.floor(p * (ys.length - 1)))];
+          bins.push({ x: mid, median: q(0.5), q25: q(0.25), q75: q(0.75) });
+        }
+        return bins;
+      }
+
+      function interpolateBinMedian(bins, x) {
+        if (!bins.length) return null;
+        const sorted = [...bins].sort((a, b) => a.x - b.x);
+        if (x <= sorted[0].x) return sorted[0].median;
+        if (x >= sorted[sorted.length - 1].x) return sorted[sorted.length - 1].median;
+        for (let i = 1; i < sorted.length; i += 1) {
+          const left = sorted[i - 1];
+          const right = sorted[i];
+          if (x >= left.x && x <= right.x) {
+            const t = (x - left.x) / (right.x - left.x || 1);
+            return left.median + t * (right.median - left.median);
+          }
+        }
+        return sorted[sorted.length - 1].median;
+      }
+
+      function attachDerivedMetrics(helmets) {
+        if (!helmets.length) return helmets;
+        const reviewPrior = computeBayesianReviewPrior(helmets);
+        const reviewScores = helmets
+          .map((h) => bayesianReviewScore(getListing(h), reviewPrior))
+          .filter((s) => s != null);
+        const byStyle = new Map();
+        for (const helmet of helmets) {
+          const style = helmet.style || "Other";
+          if (!byStyle.has(style)) byStyle.set(style, []);
+          byStyle.get(style).push(helmet);
+        }
+
+        for (const group of byStyle.values()) {
+          const prices = group.map((h) => getComparisonPriceUsd(h)).filter((p) => p != null);
+          const priced = group.filter(
+            (h) => h.safety?.norm != null && getComparisonPriceUsd(h) != null
+          );
+          const bins =
+            priced.length >= 4
+              ? buildPriceBins(
+                  priced,
+                  (h) => getComparisonPriceUsd(h),
+                  (h) => h.safety.norm,
+                  Math.min(8, Math.max(3, Math.floor(priced.length / 6)))
+                )
+              : [];
+
+          for (const helmet of group) {
+            const price = getComparisonPriceUsd(helmet);
+            const safetyPct = helmet.safety?.norm ?? null;
+            const rawPricePct = price == null ? null : percentileRank(prices, price);
+            const pricePct = rawPricePct == null ? null : 1 - rawPricePct;
+            const valueIndex =
+              safetyPct != null && pricePct != null ? safetyPct - pricePct : safetyPct ?? pricePct ?? null;
+            const reviewRaw = bayesianReviewScore(getListing(helmet), reviewPrior);
+            const reviewPct =
+              reviewRaw == null ? null : percentileRank(reviewScores, reviewRaw);
+            const expected =
+              price != null && helmet.safety?.norm != null ? interpolateBinMedian(bins, price) : null;
+
+            helmet.style_value_index = valueIndex;
+            helmet.value_score = valueIndex == null ? null : Math.round((valueIndex + 1) * 50);
+            helmet.price_pct = pricePct;
+            helmet.review_pct = reviewPct;
+            helmet.review_smoothed = reviewRaw;
+            helmet.fair_value_residual =
+              expected != null && helmet.safety?.norm != null ? helmet.safety.norm - expected : null;
+          }
+        }
+        return helmets;
+      }
+
+      function buildFairValueBandTraces(chartable) {
+        const priced = chartable.filter((h) => h.safety?.available && getComparisonPriceUsd(h) != null);
+        if (priced.length < 4) return [];
+
+        const styles = [...new Set(priced.map((h) => h.style || "Other"))];
+        const theme = chartTheme();
+        const isDark = document.documentElement.dataset.theme === "dark";
+        const fill = isDark ? "rgba(52, 211, 153, 0.14)" : "rgba(4, 120, 87, 0.14)";
+        const traces = [];
+
+        for (const style of styles) {
+          const group = priced.filter((h) => (h.style || "Other") === style);
+          if (group.length < 4) continue;
+          const bins = buildPriceBins(
+            group,
+            (h) => getComparisonPriceUsd(h),
+            (h) => h.safety.value,
+            Math.min(6, Math.max(3, Math.floor(group.length / 5)))
+          );
+          const xs = bins.map((b) => b.x);
+          traces.push(
+            {
+              type: "scatter",
+              mode: "lines",
+              x: xs,
+              y: bins.map((b) => b.q75),
+              line: { color: "rgba(0,0,0,0)", width: 0 },
+              hoverinfo: "skip",
+              showlegend: false,
+            },
+            {
+              type: "scatter",
+              mode: "lines",
+              name: `Fair band · ${style}`,
+              x: xs,
+              y: bins.map((b) => b.q25),
+              fill: "tonexty",
+              fillcolor: fill,
+              line: { color: "rgba(0,0,0,0)", width: 0 },
+              hoverinfo: "skip",
+            },
+            {
+              type: "scatter",
+              mode: "lines",
+              name: `Expected · ${style}`,
+              x: xs,
+              y: bins.map((b) => b.median),
+              line: { color: theme.accent, width: 1.25, dash: "dot" },
+              hoverinfo: "skip",
+            }
+          );
+        }
+        return traces;
+      }
+
+      function formatPlotStatValue(value) {
+        if (value == null || Number.isNaN(value)) return "–";
+        if (value >= 0 && value <= 1) return `${(value * 100).toFixed(0)}%`;
+        return value.toFixed(1);
+      }
+
+      function medianOf(values) {
+        if (!values.length) return null;
+        const sorted = values.slice().sort((a, b) => a - b);
+        const mid = Math.floor(sorted.length / 2);
+        return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+      }
+
+      function buildStyleStatTraces(chartable, { showMean, showMedian }) {
+        if (!showMean && !showMedian) return [];
+
+        const styles = [...new Set(chartable.map((h) => h.style || "Other"))];
+        const styleOrder = dataset?.filters?.styles || styles;
+        const orderedStyles = [
+          ...styleOrder.filter((style) => styles.includes(style)),
+          ...styles.filter((style) => !styleOrder.includes(style)),
+        ];
+        const traces = [];
+
+        for (const style of orderedStyles) {
+          const group = chartable.filter((h) => (h.style || "Other") === style);
+          const values = group.map((h) => h.safety.value).filter((v) => v != null && !Number.isNaN(v));
+          const prices = group.map((h) => getComparisonPriceUsd(h)).filter((p) => p != null);
+          if (!values.length || !prices.length) continue;
+
+          const xMin = Math.min(...prices);
+          const xMax = Math.max(...prices);
+          const color = styleColor(style);
+
+          if (showMean) {
+            const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+            traces.push({
+              type: "scatter",
+              mode: "lines",
+              name: `${style} · mean ${formatPlotStatValue(mean)}`,
+              x: [xMin, xMax],
+              y: [mean, mean],
+              line: { color, width: 1.5, dash: "dash" },
+              hovertemplate: `${style} mean: ${formatPlotStatValue(mean)}<extra></extra>`,
+            });
+          }
+          if (showMedian) {
+            const median = medianOf(values);
+            traces.push({
+              type: "scatter",
+              mode: "lines",
+              name: `${style} · median ${formatPlotStatValue(median)}`,
+              x: [xMin, xMax],
+              y: [median, median],
+              line: { color, width: 1.5, dash: "dot" },
+              hovertemplate: `${style} median: ${formatPlotStatValue(median)}<extra></extra>`,
+            });
+          }
+        }
+        return traces;
+      }
+
+      function computeKneeIds(helmets, paretoSet) {
+        const ids = new Set();
+        const higherIsSafer = helmets.find((h) => h.safety?.available)?.safety?.higherIsSafer ?? true;
+        const frontier = helmets
+          .filter((h) => paretoSet.has(h.id) && h.safety?.available && getComparisonPriceUsd(h) != null)
+          .sort((a, b) => getComparisonPriceUsd(a) - getComparisonPriceUsd(b));
+        if (frontier.length < 3) {
+          frontier.forEach((h) => ids.add(h.id));
+          return ids;
+        }
+
+        let bestKnee = null;
+        let bestAngle = Infinity;
+        for (let i = 1; i < frontier.length - 1; i += 1) {
+          const prev = frontier[i - 1];
+          const curr = frontier[i];
+          const next = frontier[i + 1];
+          const dx1 = getComparisonPriceUsd(curr) - getComparisonPriceUsd(prev);
+          const dx2 = getComparisonPriceUsd(next) - getComparisonPriceUsd(curr);
+          const dy1 = higherIsSafer
+            ? curr.safety.value - prev.safety.value
+            : prev.safety.value - curr.safety.value;
+          const dy2 = higherIsSafer
+            ? next.safety.value - curr.safety.value
+            : curr.safety.value - next.safety.value;
+          if (dx1 <= 0 || dx2 <= 0 || dy1 <= 0 || dy2 <= 0) continue;
+          const angle = Math.abs(Math.atan2(dy2 / dx2, 1) - Math.atan2(dy1 / dx1, 1));
+          if (angle < bestAngle) {
+            bestAngle = angle;
+            bestKnee = curr;
+          }
+        }
+        if (bestKnee) ids.add(bestKnee.id);
+        [...frontier]
+          .sort((a, b) => (b.value_score ?? -1) - (a.value_score ?? -1))
+          .slice(0, 3)
+          .forEach((h) => ids.add(h.id));
+        return ids;
+      }
+
+      function focusHelmetOnCharts(helmetId, sourceChartId = null) {
+        selectedHelmetId = helmetId;
+        const locs = helmetPlotIndex[helmetId];
+        if (!locs) return;
+        suppressHoverSync = true;
+        for (const chartId of CHART_IDS) {
+          if (chartId === sourceChartId) continue;
+          const loc = locs[chartId];
+          if (!loc) continue;
+          const el = document.getElementById(chartId);
+          if (!el) continue;
+          Plotly.Fx.hover(el, [{ curveNumber: loc.curve, pointNumber: loc.point }]);
+        }
+        suppressHoverSync = false;
+        highlightTableRow(helmetId);
+        document.getElementById("valueChart")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      function highlightTableRow(helmetId) {
+        document.querySelectorAll("[data-helmet-id]").forEach((row) => {
+          row.classList.toggle("tr-selected", row.dataset.helmetId === helmetId);
+        });
+        document.querySelector(`[data-helmet-id="${helmetId}"]`)?.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+        });
+      }
+
+      function applyHelmetDeepLink(id) {
+        if (!id || !dataset) return;
+        const helmet = dataset.helmets.find((h) => h.id === id);
+        if (!helmet) return;
+        document.getElementById("searchFilter").value = `${helmet.brand} ${helmet.model}`.trim();
+        pendingFocusId = id;
+        selectedHelmetId = id;
+        pinnedHelmetIds.add(id);
+        render();
+      }
+
+      function bindTableRowClicks(root) {
+        root.querySelectorAll("[data-helmet-id]").forEach((row) => {
+          row.addEventListener("click", (event) => {
+            if (event.target.closest("[data-pin-id],[data-unpin-id],[data-helmet-link]")) return;
+            const id = row.dataset.helmetId;
+            selectedHelmetId = id;
+            setHelmetUrl(id);
+            pinnedHelmetIds.add(id);
+            pendingFocusId = id;
+            render();
+          });
+        });
+      }
+
+      function helmetLinkHtml(helmet) {
+        const label = helmetLabel(helmet);
+        return `<a href="${helmetUrl(helmet.id)}" data-helmet-link class="helmet-link" title="Link to this helmet">${label}</a>`;
+      }
+
+      function formatValueScore(helmet) {
+        return helmet.value_score == null ? "–" : String(helmet.value_score);
+      }
+
+      function formatFairResidual(helmet) {
+        if (helmet.fair_value_residual == null) return "–";
+        const pct = Math.round(helmet.fair_value_residual * 100);
+        return pct > 0 ? `+${pct}` : String(pct);
+      }
+
+      function formatReviewDerived(helmet) {
+        if (helmet.review_smoothed == null) return "–";
+        const stars = helmet.review_smoothed.toFixed(1);
+        const listing = getListing(helmet);
+        const n = listing.review_count != null ? ` (${listing.review_count})` : "";
+        return `${stars}★${n}`;
+      }
+
+      function passesBaseFilters(helmet, paretoSet) {
+        const brand = document.getElementById("brandFilter").value;
+        const { minStars, maxStars } = getStarsRange();
+        const europeanOnly = document.getElementById("euMarketFilter").checked;
+        const paretoOnly = document.getElementById("paretoOnlyFilter").checked;
+
+        if (europeanOnly && !helmet.european_market) return false;
+        if (paretoOnly && !paretoSet.has(helmet.id)) return false;
+        if (brand && helmetBrandKey(helmet) !== brand.toLowerCase()) return false;
+        if (!helmetMatchesStyle(helmet, getActiveStyleKeys())) return false;
+        if (helmet.stars < minStars || helmet.stars > maxStars) return false;
+        if (!helmetMatchesProtection(helmet, getActiveProtectionKeys())) return false;
+        if (helmet.catalog !== "extra_only" && helmet.price_at_test_usd == null) return false;
+        return true;
+      }
+
+      function getFilteredData() {
+        const mode = getPresentationMode();
+        const europeanOnly = document.getElementById("euMarketFilter").checked;
+        const pool = dataset.helmets.filter((h) => {
+          if (h.catalog === "extra_only") {
+            return !europeanOnly || h.european_market;
+          }
+          if (h.price_at_test_usd == null) return false;
+          return !europeanOnly || h.european_market;
+        });
+        const poolWithSafety = attachSafetyMetrics(pool, mode);
+        const poolPareto = computeParetoIds(poolWithSafety);
+        const base = poolWithSafety.filter((h) => passesBaseFilters(h, poolPareto));
+        const scored = attachDerivedMetrics(withCompositeScores(base));
+        const basePareto = computeParetoIds(scored);
+        kneeIds = computeKneeIds(scored, basePareto);
+
+        if (scored.length && scored[0].safety) {
+          activeSafetyMeta = {
+            yTitle: scored[0].safety.yTitle,
+            higherIsSafer: scored[0].safety.higherIsSafer,
+            shortLabel: scored[0].safety.shortLabel,
+          };
+        }
+
+        return { helmets: scored, paretoIds: basePareto, searchTerms: getSearchTerms(), mode };
+      }
+
+      function formatUsd(value) {
+        return value == null
+          ? "–"
+          : new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
+      }
+
+      function getComparisonPriceUsd(helmet) {
+        return helmet.price_comparison_usd ?? helmet.price_at_test_usd;
+      }
+
+      function formatComparisonPrice(helmet) {
+        const effective = getComparisonPriceUsd(helmet);
+        if (effective == null) return "–";
+        const base = formatUsd(effective);
+        const current = helmet.current_price;
+        if (helmet.price_comparison_usd != null && current?.sources?.length) {
+          const sources = current.sources.join(", ");
+          const window = current.price_window ? current.price_window.replace(/_/g, " ") : "";
+          const title = helmet.price_comparison_label
+            ? helmet.price_comparison_label
+            : window
+              ? `${window}; ${sources}`
+              : sources;
+          return `${base}<span class="ml-1 price-source" title="${title}">${sources}${window ? ` · ${window}` : ""}</span>`;
+        }
+        return base;
+      }
+
+      function formatShopPrice(listing) {
+        if (listing.price == null) return "–";
+        return new Intl.NumberFormat("de-DE", {
+          style: "currency",
+          currency: listing.currency || "EUR",
+          maximumFractionDigits: 0,
+        }).format(listing.price);
+      }
+
+      function formatShopRating(listing) {
+        if (listing.rating == null) return "–";
+        const count = listing.review_count != null ? ` (${listing.review_count})` : "";
+        return `${listing.rating.toFixed(1)} ★${count}`;
+      }
+
+      function formatRatio(helmet) {
+        const price = getComparisonPriceUsd(helmet);
+        if (price == null || !helmet.safety?.available) return "–";
+        const safetyPct = helmet.safety.norm;
+        if (safetyPct != null) return ((safetyPct / price) * 1000).toFixed(3);
+        if (helmet.value_ratio != null) return (helmet.value_ratio * 1000).toFixed(3);
+        return "–";
+      }
+
+      function helmetLabel(helmet) {
+        return `${helmet.brand} ${helmet.model}`;
+      }
+
+      function togglePinHelmet(id) {
+        if (pinnedHelmetIds.has(id)) {
+          pinnedHelmetIds.delete(id);
+          if (selectedHelmetId === id) {
+            selectedHelmetId = null;
+            setHelmetUrl(null);
+          }
+        } else {
+          pinnedHelmetIds.add(id);
+          selectedHelmetId = id;
+          setHelmetUrl(id);
+        }
+        render();
+      }
+
+      function clearPinnedHelmets() {
+        pinnedHelmetIds.clear();
+        selectedHelmetId = null;
+        setHelmetUrl(null);
+        render();
+      }
+
+      function compositeToColor(t) {
+        const clamped = Math.max(0, Math.min(1, t));
+        const hue = 155 + (1 - clamped) * 55;
+        const sat = 35 + clamped * 45;
+        const light = 28 + clamped * 22;
+        return `hsl(${hue}, ${sat}%, ${light}%)`;
+      }
+
+      function getChartColorMode() {
+        return document.getElementById("chartColorMode")?.value || "composite";
+      }
+
+      function styleColor(style) {
+        if (STYLE_COLORS[style]) return STYLE_COLORS[style];
+        const styles = dataset?.filters?.styles || [];
+        const index = styles.indexOf(style);
+        if (index >= 0) return STYLE_FALLBACK_COLORS[index % STYLE_FALLBACK_COLORS.length];
+        return "#94a3b8";
+      }
+
+      function brandColor(brand) {
+        let hash = 0;
+        for (let i = 0; i < brand.length; i += 1) {
+          hash = brand.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const hue = Math.abs(hash) % 360;
+        return `hsl(${hue}, 52%, 52%)`;
+      }
+
+      function starsColor(stars) {
+        return STAR_COLORS[stars] ?? STAR_COLORS[0];
+      }
+
+      function helmetFillColor(helmet, colorMode, searchTerms, minC, maxC) {
+        const hasSearch = searchTerms.length > 0;
+        if (hasSearch && !helmetMatchesSearch(helmet, searchTerms)) return chartTheme().faded;
+        if (colorMode === "style") return styleColor(helmet.style);
+        if (colorMode === "brand") return brandColor(helmet.brand);
+        if (colorMode === "stars") return starsColor(helmet.stars);
+        if (colorMode === "value") {
+          const t = helmet.value_score == null ? 0 : helmet.value_score / 100;
+          return compositeToColor(t);
+        }
+        const t = maxC === minC ? 0.5 : (helmet.composite_score - minC) / (maxC - minC);
+        return compositeToColor(t);
+      }
+
+      function sourceColor(sourceKey) {
+        return SOURCE_COLORS[sourceKey] || "#94a3b8";
+      }
+
+      function sourceLabel(sourceKey) {
+        if (sourceKey === "fused") return "Fused";
+        return sourceMeta(sourceKey)?.short || sourceKey;
+      }
+
+      function formatSourceScore(sourceKey, block) {
+        if (!block) return "–";
+        if (sourceKey === "virginia_tech" && block.score != null) return `${block.score.toFixed(1)} STAR`;
+        if (block.score != null) return `${block.score.toFixed(1)}`;
+        if (block.rank_pct != null) return `${(block.rank_pct * 100).toFixed(0)}%`;
+        if (block.stars != null) return `${block.stars} ★`;
+        if (block.overall_result_pct != null) return `${block.overall_result_pct}%`;
+        return "–";
+      }
+
+      function bestSourceRating(helmet) {
+        const ratings = helmet.ratings || {};
+        if (helmet.catalog === "extra_only" && helmet.primary_rating_source) {
+          const key = helmet.primary_rating_source;
+          const block = ratings[key];
+          if (block?.rank_pct != null) {
+            return {
+              source: key,
+              norm: block.rank_pct,
+              display: formatSourceScore(key, block),
+            };
+          }
+        }
+
+        const fused = ratings.fused;
+        if (fused?.rank_pct != null && (fused.sources?.length || 0) > 1) {
+          return {
+            source: "fused",
+            norm: fused.rank_pct,
+            display: `${(fused.rank_pct * 100).toFixed(0)}% fused`,
+          };
+        }
+
+        const rankedSources = getRatingSources()
+          .slice()
+          .sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0))
+          .map((entry) => entry.key);
+
+        for (const key of rankedSources) {
+          const block = ratings[key];
+          if (block?.rank_pct != null) {
+            return {
+              source: key,
+              norm: block.rank_pct,
+              display: formatSourceScore(key, block),
+            };
+          }
+        }
+
+        const vt = ratings.virginia_tech;
+        if (vt?.score != null && helmet.safety?.norm != null) {
+          return {
+            source: "virginia_tech",
+            norm: helmet.safety.norm,
+            display: formatSourceScore("virginia_tech", vt),
+          };
+        }
+
+        return null;
+      }
+
+      function helmetCustomData(helmet, paretoSet) {
+        return {
+          id: helmet.id,
+          ratio: formatRatio(helmet),
+          composite: (helmet.composite_score * 100).toFixed(0),
+          value: formatValueScore(helmet),
+          residual: formatFairResidual(helmet),
+          review: formatReviewDerived(helmet),
+          style: helmet.style || "–",
+          pareto: paretoSet.has(helmet.id) ? "Yes" : "No",
+          knee: kneeIds.has(helmet.id) ? "Yes" : "No",
+          safety: helmet.safety.display,
+          pinned: pinnedHelmetIds.has(helmet.id) ? "Yes" : "No",
+        };
+      }
+
+      const HELMET_HOVER =
+        "<b>%{text}</b><br>Style: %{customdata.style}<br>Safety: %{customdata.safety}<br>Price: $%{x}<br>Value score: %{customdata.value}<br>vs peers: %{customdata.residual}<br>Reviews: %{customdata.review}<br>Pareto: %{customdata.pareto} · Sweet spot: %{customdata.knee}<br><i>Click to select</i><extra></extra>";
+
+      function compositeRange(helmets) {
+        const composites = helmets.map((h) => h.composite_score);
+        return {
+          min: Math.min(...composites),
+          max: Math.max(...composites),
+        };
+      }
+
+      function markerSizeForHelmet(helmet, searchTerms, labelIds, minC, maxC) {
+        const hasSearch = searchTerms.length > 0;
+        const t = maxC === minC ? 0.5 : (helmet.composite_score - minC) / (maxC - minC);
+        let size = 4 + t * 8;
+        if (pinnedHelmetIds.has(helmet.id)) size += 3;
+        if (labelIds.has(helmet.id) && !pinnedHelmetIds.has(helmet.id)) size += 2;
+        if (hasSearch && !helmetMatchesSearch(helmet, searchTerms)) size = Math.max(3, size - 2);
+        return size;
+      }
+
+      function markerOpacityForHelmet(helmet, searchTerms, labelIds) {
+        const hasSearch = searchTerms.length > 0;
+        if (hasSearch && !helmetMatchesSearch(helmet, searchTerms)) return 0.1;
+        if (pinnedHelmetIds.has(helmet.id)) return 1;
+        if (labelIds.has(helmet.id)) return 0.92;
+        return 0.55;
+      }
+
+      function markerLineForHelmet(helmet, paretoSet) {
+        const theme = chartTheme();
+        if (pinnedHelmetIds.has(helmet.id)) {
+          return { color: theme.pinRing, width: 2.5 };
+        }
+        if (kneeIds.has(helmet.id)) {
+          return { color: theme.accent, width: 2.5 };
+        }
+        if (paretoSet.has(helmet.id)) {
+          return { color: theme.paretoRing, width: 2 };
+        }
+        return { color: theme.markerStroke, width: 0.75 };
+      }
+
+      function markerColorForHelmet(helmet, searchTerms, minC, maxC, colorMode) {
+        return helmetFillColor(helmet, colorMode, searchTerms, minC, maxC);
+      }
+
+      function buildHelmetTraces(chartable, searchTerms, paretoSet, labelIds, colorMode, jitterMap) {
+        const { min: minC, max: maxC } = compositeRange(chartable);
+        const markerFor = (subset) => ({
+          size: subset.map((h) => markerSizeForHelmet(h, searchTerms, labelIds, minC, maxC)),
+          color: subset.map((h) => markerColorForHelmet(h, searchTerms, minC, maxC, colorMode)),
+          opacity: subset.map((h) => markerOpacityForHelmet(h, searchTerms, labelIds)),
+          line: subset.map((h) => markerLineForHelmet(h, paretoSet)),
+        });
+        const coords = (h) => {
+          const [x, y] = jitteredPoint(h.id, jitterMap, getComparisonPriceUsd(h), h.safety.value);
+          return { x, y };
+        };
+
+        if (colorMode === "style") {
+          const styleOrder = dataset?.filters?.styles || [...new Set(chartable.map((h) => h.style))];
+          return styleOrder
+            .map((style) => chartable.filter((h) => h.style === style))
+            .filter((subset) => subset.length)
+            .map((subset) => ({
+              type: "scattergl",
+              mode: "markers",
+              name: subset[0].style,
+              x: subset.map((h) => coords(h).x),
+              y: subset.map((h) => coords(h).y),
+              text: subset.map((h) => helmetLabel(h)),
+              customdata: subset.map((h) => helmetCustomData(h, paretoSet)),
+              marker: markerFor(subset),
+              hovertemplate: HELMET_HOVER,
+            }));
+        }
+
+        return [
+          {
+            type: "scattergl",
+            mode: "markers",
+            name: "Helmets",
+            x: chartable.map((h) => coords(h).x),
+            y: chartable.map((h) => coords(h).y),
+            text: chartable.map((h) => helmetLabel(h)),
+            customdata: chartable.map((h) => helmetCustomData(h, paretoSet)),
+            marker: markerFor(chartable),
+            hovertemplate: HELMET_HOVER,
+          },
+        ];
+      }
+
+      function buildParetoFrontierPoints(helmets, paretoSet, higherIsSafer) {
+        const sorted = helmets
+          .filter((h) => paretoSet.has(h.id) && h.safety?.available)
+          .sort((a, b) => getComparisonPriceUsd(a) - getComparisonPriceUsd(b));
+        if (!sorted.length) return { x: [], y: [] };
+
+        const points = [];
+        let bestSafety = higherIsSafer ? -Infinity : Infinity;
+        for (const helmet of sorted) {
+          const y = helmet.safety.value;
+          const improves = higherIsSafer ? y > bestSafety : y < bestSafety;
+          if (!points.length || improves) {
+            points.push(helmet);
+            bestSafety = y;
+          }
+        }
+        return {
+          x: points.map((h) => getComparisonPriceUsd(h)),
+          y: points.map((h) => h.safety.value),
+        };
+      }
+
+      function getLabelHelmetIds(chartable) {
+        const ids = new Set(pinnedHelmetIds);
+        if (document.getElementById("labelTop5")?.checked) {
+          chartable
+            .slice()
+            .sort((a, b) => b.composite_score - a.composite_score)
+            .slice(0, TOP_LABEL_COUNT)
+            .forEach((h) => ids.add(h.id));
+        }
+        return ids;
+      }
+
+      function renderPinnedPanel(helmets) {
+        const panel = document.getElementById("pinnedPanel");
+        const pinned = helmets.filter((h) => pinnedHelmetIds.has(h.id));
+        if (!pinned.length) {
+          panel.classList.add("hidden");
+          panel.innerHTML = "";
+          return;
+        }
+        panel.classList.remove("hidden");
+        panel.innerHTML = pinned
+          .map(
+            (helmet) => `
+              <span class="pinned-chip">
+                <a href="${helmetUrl(helmet.id)}" data-helmet-link class="helmet-link">${helmetLabel(helmet)}</a>
+                <span style="opacity:0.75">· ${formatValueScore(helmet)} value</span>
+                <button type="button" data-unpin-id="${helmet.id}" style="opacity:0.8" title="Unpin">×</button>
+              </span>
+            `
+          )
+          .join("");
+        panel.querySelectorAll("[data-unpin-id]").forEach((btn) => {
+          btn.addEventListener("click", () => togglePinHelmet(btn.dataset.unpinId));
+        });
+      }
+
+      function pinButtonHtml(id) {
+        const pinned = pinnedHelmetIds.has(id);
+        return `<button type="button" data-pin-id="${id}" class="pin-btn ${pinned ? "is-pinned" : ""}" title="${pinned ? "Unpin from chart" : "Pin on chart"}">${pinned ? "●" : "○"}</button>`;
+      }
+
+      function bindPinButtons(root) {
+        root.querySelectorAll("[data-pin-id]").forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            event.stopPropagation();
+            togglePinHelmet(btn.dataset.pinId);
+          });
+        });
+      }
+
+      function directionAnnotations() {
+        const theme = chartTheme();
+        return [
+          {
+            xref: "paper",
+            yref: "paper",
+            x: 0.1,
+            y: 1.07,
+            text: "← Cheaper",
+            showarrow: false,
+            font: { size: 10, color: theme.annotation },
+          },
+          {
+            xref: "paper",
+            yref: "paper",
+            x: 0.9,
+            y: 1.07,
+            text: "Pricier →",
+            showarrow: false,
+            font: { size: 10, color: theme.annotation },
+          },
+          {
+            xref: "paper",
+            yref: "paper",
+            x: -0.08,
+            y: 0.92,
+            text: "↑ Safer",
+            showarrow: false,
+            font: { size: 10, color: theme.accent },
+            textangle: -90,
+          },
+          {
+            xref: "paper",
+            yref: "paper",
+            x: -0.08,
+            y: 0.12,
+            text: "↓ Less safe",
+            showarrow: false,
+            font: { size: 10, color: theme.annotation },
+            textangle: -90,
+          },
+        ];
+      }
+
+      function plotLayout(yValues, xTitle, yTitle, higherIsSafer = false) {
+        const theme = chartTheme();
+        const valid = yValues.filter((v) => v != null && !Number.isNaN(v));
+        let minY = 8;
+        let maxY = 30;
+        if (valid.length) {
+          minY = Math.min(...valid);
+          maxY = Math.max(...valid);
+        }
+        const span = maxY - minY;
+        const pad = higherIsSafer ? Math.max(span * 0.08, 0.02) : Math.max(span * 0.08, 0.5);
+        const range = higherIsSafer ? [minY - pad, maxY + pad] : [maxY + pad, minY - pad];
+        return {
+          paper_bgcolor: "rgba(0,0,0,0)",
+          plot_bgcolor: theme.chartBg,
+          margin: { l: 64, r: 24, t: 48, b: 56 },
+          xaxis: {
+            title: xTitle,
+            gridcolor: theme.grid,
+            tickfont: { color: theme.tick },
+            titlefont: { color: theme.title },
+          },
+          yaxis: {
+            title: yTitle,
+            autorange: false,
+            range,
+            gridcolor: theme.grid,
+            tickfont: { color: theme.tick },
+            titlefont: { color: theme.title },
+          },
+          font: { color: theme.font },
+          legend: { orientation: "h", y: 1.22, x: 0, font: { size: 10, color: theme.title } },
+          annotations: directionAnnotations(),
+        };
+      }
+
+      function resetHelmetPlotIndex() {
+        helmetPlotIndex = {};
+      }
+
+      function recordPlotPoint(chartId, helmetId, curveNumber, pointNumber) {
+        if (!helmetPlotIndex[helmetId]) helmetPlotIndex[helmetId] = {};
+        helmetPlotIndex[helmetId][chartId] = { curve: curveNumber, point: pointNumber };
+      }
+
+      function indexHelmetTraces(chartId, traces) {
+        traces.forEach((trace, curveNumber) => {
+          if (!Array.isArray(trace.customdata) || trace.mode === "lines" || trace.mode === "text") return;
+          trace.customdata.forEach((cd, pointNumber) => {
+            if (cd?.id) recordPlotPoint(chartId, cd.id, curveNumber, pointNumber);
+          });
+        });
+      }
+
+      function syncChartHover(helmetId, sourceChartId) {
+        const locs = helmetPlotIndex[helmetId];
+        if (!locs) return;
+        suppressHoverSync = true;
+        for (const chartId of CHART_IDS) {
+          if (chartId === sourceChartId) continue;
+          const loc = locs[chartId];
+          if (!loc) continue;
+          const gd = document.getElementById(chartId);
+          if (gd) Plotly.Fx.hover(gd, [{ curveNumber: loc.curve, pointNumber: loc.point }]);
+        }
+        suppressHoverSync = false;
+      }
+
+      function clearLinkedHover() {
+        suppressHoverSync = true;
+        for (const chartId of CHART_IDS) {
+          const gd = document.getElementById(chartId);
+          if (gd) Plotly.Fx.unhover(gd);
+        }
+        suppressHoverSync = false;
+      }
+
+      function bindLinkedCharts() {
+        if (chartsLinked) return;
+        for (const chartId of CHART_IDS) {
+          const el = document.getElementById(chartId);
+          if (!el) continue;
+          el.on("plotly_click", handleChartClick);
+          el.on("plotly_hover", (event) => {
+            if (suppressHoverSync) return;
+            const id = event.points?.[0]?.customdata?.id;
+            if (id) syncChartHover(id, chartId);
+          });
+          el.on("plotly_unhover", () => {
+            if (suppressHoverSync) return;
+            clearLinkedHover();
+          });
+        }
+        chartsLinked = true;
+      }
+
+      function handleChartClick(event) {
+        const point = event.points?.[0];
+        if (!point) return;
+        const id = point.customdata?.id;
+        if (id) togglePinHelmet(id);
+      }
+
+      function miniScatterLayout(xTitle, yTitle, yRange = [0, 100]) {
+        const theme = chartTheme();
+        return {
+          paper_bgcolor: "rgba(0,0,0,0)",
+          plot_bgcolor: theme.chartBg,
+          height: 220,
+          margin: { l: 44, r: 12, t: 24, b: 36 },
+          xaxis: {
+            title: { text: xTitle, font: { size: 10, color: theme.title } },
+            gridcolor: theme.grid,
+            tickfont: { size: 9, color: theme.tick },
+          },
+          yaxis: {
+            title: { text: yTitle, font: { size: 10, color: theme.title } },
+            range: yRange,
+            gridcolor: theme.grid,
+            tickfont: { size: 9, color: theme.tick },
+          },
+          font: { color: theme.font, size: 10 },
+          showlegend: false,
+        };
+      }
+
+      const COMPOSITE_HOVER =
+        "<b>%{text}</b><br>Composite: %{y:.0f}%<br>Price: $%{x}<br>Safety: %{customdata.safety}<br><i>Click to pin</i><extra></extra>";
+
+      const MULTI_SOURCE_HOVER =
+        "<b>%{text}</b><br>Safety (%{customdata.sourceLabel}): %{x:.0f}%<br>Score: %{customdata.sourceScore}<br>Composite: %{y:.0f}%<br>Catalog: %{customdata.catalog}<br><i>Click to pin</i><extra></extra>";
+
+      function updateSourceColorLegend(activeSources) {
+        const legend = document.getElementById("sourceColorLegend");
+        if (!legend) return;
+        const keys = SOURCE_ORDER.filter((key) => activeSources.has(key));
+        legend.innerHTML = keys
+          .map(
+            (key) =>
+              `<span class="source-legend-chip">
+                <span class="inline-block h-2.5 w-2.5 rounded-full" style="background:${sourceColor(key)}"></span>
+                ${sourceLabel(key)}
+              </span>`
+          )
+          .join("");
+      }
+
+      function multiSourceCustomData(helmet, rating, paretoSet) {
+        return {
+          id: helmet.id,
+          sourceLabel: sourceLabel(rating.source),
+          sourceScore: rating.display,
+          catalog: helmet.catalog === "extra_only" ? "Extra only" : "VT catalog",
+          safety: rating.display,
+          composite: (helmet.composite_score * 100).toFixed(0),
+          pareto: paretoSet.has(helmet.id) ? "Yes" : "No",
+          pinned: pinnedHelmetIds.has(helmet.id) ? "Yes" : "No",
+        };
+      }
+
+      function renderCharts(helmets, searchTerms, paretoSet) {
+        resetHelmetPlotIndex();
+        renderPinnedPanel(helmets);
+
+        const higherIsSafer = activeSafetyMeta.higherIsSafer;
+        const yTitle = activeSafetyMeta.yTitle;
+        const valueChartable = helmets.filter((h) => h.safety?.available && getComparisonPriceUsd(h) != null);
+        const compositeChartable = helmets.filter(
+          (h) => h.catalog !== "extra_only" && h.price_at_test_usd != null && h.composite_score != null
+        );
+        const multiEntries = helmets
+          .map((helmet) => ({ helmet, rating: bestSourceRating(helmet) }))
+          .filter((entry) => entry.rating?.norm != null);
+
+        const colorMode = getChartColorMode();
+        const { min: minC, max: maxC } = compositeRange(
+          valueChartable.length ? valueChartable : helmets
+        );
+        const labelIds = getLabelHelmetIds(valueChartable.length ? valueChartable : helmets);
+
+        if (!valueChartable.length) {
+          Plotly.react(
+            "valueChart",
+            [],
+            plotLayout([], "Price", yTitle, higherIsSafer),
+            { responsive: true, displayModeBar: false }
+          );
+        } else {
+          const theme = chartTheme();
+          const yValues = valueChartable.map((h) => h.safety.value);
+          const frontierPts = buildParetoFrontierPoints(valueChartable, paretoSet, higherIsSafer);
+          const labelHelmets = valueChartable.filter((h) => labelIds.has(h.id));
+          const valueJitter = buildJitterMap(
+            valueChartable,
+            (h) => getComparisonPriceUsd(h),
+            (h) => h.safety.value
+          );
+          const helmetTraces = buildHelmetTraces(
+            valueChartable,
+            searchTerms,
+            paretoSet,
+            labelIds,
+            colorMode,
+            valueJitter
+          );
+          indexHelmetTraces("valueChart", helmetTraces);
+
+          const showBand = document.getElementById("showFairValueBand")?.checked !== false;
+          const bandTraces = showBand ? buildFairValueBandTraces(valueChartable) : [];
+          const styleStatTraces = buildStyleStatTraces(valueChartable, {
+            showMean: document.getElementById("showStyleMean")?.checked === true,
+            showMedian: document.getElementById("showStyleMedian")?.checked === true,
+          });
+
+          const traces = [
+            ...bandTraces,
+            ...styleStatTraces,
+            ...helmetTraces,
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "Pareto frontier",
+              x: frontierPts.x,
+              y: frontierPts.y,
+              line: { color: theme.paretoRing, width: 2.5 },
+              hoverinfo: "skip",
+            },
+          ];
+
+          if (labelHelmets.length) {
+            traces.push({
+              type: "scatter",
+              mode: "text",
+              name: "Labels",
+              x: labelHelmets.map((h) =>
+                jitteredPoint(h.id, valueJitter, getComparisonPriceUsd(h), h.safety.value)[0]
+              ),
+              y: labelHelmets.map((h) =>
+                jitteredPoint(h.id, valueJitter, getComparisonPriceUsd(h), h.safety.value)[1]
+              ),
+              text: labelHelmets.map((h) => helmetLabel(h)),
+              textposition: "top center",
+              textfont: {
+                color: labelHelmets.map((h) =>
+                  pinnedHelmetIds.has(h.id) ? theme.pinRing : theme.labelFont
+                ),
+                size: 9,
+              },
+              hoverinfo: "skip",
+              showlegend: false,
+            });
+          }
+
+          Plotly.react(
+            "valueChart",
+            traces,
+            plotLayout(yValues, "Price (USD)", yTitle, higherIsSafer),
+            { responsive: true, displayModeBar: false }
+          );
+        }
+
+        const markerFor = (subset) => ({
+          size: subset.map((h) => markerSizeForHelmet(h, searchTerms, labelIds, minC, maxC)),
+          color: subset.map((h) => helmetFillColor(h, colorMode, searchTerms, minC, maxC)),
+          opacity: subset.map((h) => markerOpacityForHelmet(h, searchTerms, labelIds)),
+          line: subset.map((h) => markerLineForHelmet(h, paretoSet)),
+        });
+
+        const compositeJitter = buildJitterMap(
+          compositeChartable,
+          (h) => getComparisonPriceUsd(h),
+          (h) => h.composite_score * 100
+        );
+
+        if (!compositeChartable.length) {
+          Plotly.react(
+            "compositeChart",
+            [],
+            miniScatterLayout("Price (USD)", "Composite %"),
+            { responsive: true, displayModeBar: false }
+          );
+        } else {
+          let compositeTraces;
+          if (colorMode === "style") {
+            const styleOrder = dataset?.filters?.styles || [...new Set(compositeChartable.map((h) => h.style))];
+            compositeTraces = styleOrder
+              .map((style) => compositeChartable.filter((h) => h.style === style))
+              .filter((subset) => subset.length)
+              .map((subset) => ({
+                type: "scattergl",
+                mode: "markers",
+                name: subset[0].style,
+                x: subset.map((h) =>
+                  jitteredPoint(h.id, compositeJitter, getComparisonPriceUsd(h), h.composite_score * 100)[0]
+                ),
+                y: subset.map((h) =>
+                  jitteredPoint(h.id, compositeJitter, getComparisonPriceUsd(h), h.composite_score * 100)[1]
+                ),
+                text: subset.map((h) => helmetLabel(h)),
+                customdata: subset.map((h) => helmetCustomData(h, paretoSet)),
+                marker: markerFor(subset),
+                hovertemplate: COMPOSITE_HOVER,
+              }));
+          } else {
+            compositeTraces = [
+              {
+                type: "scattergl",
+                mode: "markers",
+                name: "Helmets",
+                x: compositeChartable.map((h) =>
+                  jitteredPoint(h.id, compositeJitter, getComparisonPriceUsd(h), h.composite_score * 100)[0]
+                ),
+                y: compositeChartable.map((h) =>
+                  jitteredPoint(h.id, compositeJitter, getComparisonPriceUsd(h), h.composite_score * 100)[1]
+                ),
+                text: compositeChartable.map((h) => helmetLabel(h)),
+                customdata: compositeChartable.map((h) => helmetCustomData(h, paretoSet)),
+                marker: markerFor(compositeChartable),
+                hovertemplate: COMPOSITE_HOVER,
+              },
+            ];
+          }
+          indexHelmetTraces("compositeChart", compositeTraces);
+          Plotly.react(
+            "compositeChart",
+            compositeTraces,
+            miniScatterLayout("Price (USD)", "Composite %"),
+            { responsive: true, displayModeBar: false }
+          );
+        }
+
+        const activeSources = new Set(multiEntries.map((entry) => entry.rating.source));
+        updateSourceColorLegend(activeSources);
+
+        if (!multiEntries.length) {
+          Plotly.react(
+            "multiSourceChart",
+            [],
+            miniScatterLayout("Safety %", "Composite %"),
+            { responsive: true, displayModeBar: false }
+          );
+        } else {
+          const multiJitter = buildJitterMap(
+            multiEntries,
+            (entry) => entry.rating.norm * 100,
+            (entry) => entry.helmet.composite_score * 100,
+            (entry) => entry.helmet.id
+          );
+          const multiTraces = SOURCE_ORDER.filter((sourceKey) => activeSources.has(sourceKey)).map(
+            (sourceKey) => {
+              const subset = multiEntries.filter((entry) => entry.rating.source === sourceKey);
+              return {
+                type: "scattergl",
+                mode: "markers",
+                name: sourceLabel(sourceKey),
+                x: subset.map((entry) =>
+                  jitteredPoint(
+                    entry.helmet.id,
+                    multiJitter,
+                    entry.rating.norm * 100,
+                    entry.helmet.composite_score * 100
+                  )[0]
+                ),
+                y: subset.map((entry) =>
+                  jitteredPoint(
+                    entry.helmet.id,
+                    multiJitter,
+                    entry.rating.norm * 100,
+                    entry.helmet.composite_score * 100
+                  )[1]
+                ),
+                text: subset.map((entry) => helmetLabel(entry.helmet)),
+                customdata: subset.map((entry) =>
+                  multiSourceCustomData(entry.helmet, entry.rating, paretoSet)
+                ),
+                marker: {
+                  color: sourceColor(sourceKey),
+                  size: subset.map((entry) =>
+                    markerSizeForHelmet(entry.helmet, searchTerms, labelIds, minC, maxC)
+                  ),
+                  opacity: subset.map((entry) =>
+                    markerOpacityForHelmet(entry.helmet, searchTerms, labelIds)
+                  ),
+                  line: subset.map((entry) => markerLineForHelmet(entry.helmet, paretoSet)),
+                  symbol: subset.map((entry) =>
+                    entry.helmet.catalog === "extra_only" ? "diamond" : "circle"
+                  ),
+                },
+                hovertemplate: MULTI_SOURCE_HOVER,
+              };
+            }
+          );
+          indexHelmetTraces("multiSourceChart", multiTraces);
+          Plotly.react(
+            "multiSourceChart",
+            multiTraces,
+            miniScatterLayout("Safety %", "Composite %"),
+            { responsive: true, displayModeBar: false }
+          );
+        }
+
+        bindLinkedCharts();
+
+        if (pendingFocusId) {
+          const id = pendingFocusId;
+          pendingFocusId = null;
+          requestAnimationFrame(() => focusHelmetOnCharts(id));
+        } else if (selectedHelmetId && helmetPlotIndex[selectedHelmetId]) {
+          requestAnimationFrame(() => focusHelmetOnCharts(selectedHelmetId));
+        }
+      }
+
+      function renderTopPicks(helmets, paretoSet) {
+        const tbody = document.getElementById("topPicksBody");
+        const showShop = hasShopListingData();
+        const top = helmets
+          .slice()
+          .sort((a, b) => (b.value_score ?? -1) - (a.value_score ?? -1))
+          .slice(0, 20);
+        tbody.innerHTML = top
+          .map((helmet, index) => {
+            const listing = getListing(helmet);
+            const sweet = kneeIds.has(helmet.id);
+            const pinned = pinnedHelmetIds.has(helmet.id);
+            const selected = selectedHelmetId === helmet.id;
+            return `
+              <tr class="table-row ${pinned ? "tr-pinned" : ""} ${selected ? "tr-selected" : ""}" data-helmet-id="${helmet.id}">
+                <td class="px-2 py-3">${pinButtonHtml(helmet.id)}</td>
+                <td class="px-4 py-3 text-muted">${index + 1}</td>
+                <td class="px-4 py-3">
+                  <span class="${sweet ? "pareto-badge" : ""}">
+                    ${helmetLinkHtml(helmet)}
+                  </span>
+                </td>
+                <td class="px-4 py-3 font-medium text-accent">${formatValueScore(helmet)}</td>
+                <td class="px-4 py-3">${helmet.safety?.display ?? "–"}</td>
+                <td class="px-4 py-3">${helmet.stars}</td>
+                <td class="px-4 py-3">${formatComparisonPrice(helmet)}</td>
+                ${showShop ? `<td class="shop-col px-4 py-3 text-muted">${formatShopPrice(listing)}</td>` : ""}
+                ${showShop ? `<td class="shop-col px-4 py-3 text-muted">${formatReviewDerived(helmet)}</td>` : ""}
+                <td class="px-4 py-3 text-muted">${(helmet.feature_labels || []).join(", ") || "–"}</td>
+              </tr>
+            `;
+          })
+          .join("");
+        bindPinButtons(tbody);
+        bindTableRowClicks(tbody);
+      }
+
+      function renderTable(helmets, searchTerms) {
+        const tbody = document.getElementById("tableBody");
+        const showShop = hasShopListingData();
+        tbody.innerHTML = helmets
+          .slice()
+          .sort((a, b) => {
+            const am = helmetMatchesSearch(a, searchTerms);
+            const bm = helmetMatchesSearch(b, searchTerms);
+            if (am !== bm) return am ? -1 : 1;
+            return (b.value_score ?? -1) - (a.value_score ?? -1);
+          })
+          .slice(0, 80)
+          .map((helmet) => {
+            const matched = helmetMatchesSearch(helmet, searchTerms);
+            const listing = getListing(helmet);
+            const pinned = pinnedHelmetIds.has(helmet.id);
+            const selected = selectedHelmetId === helmet.id;
+            return `
+              <tr class="table-row ${matched ? "" : "opacity-35"} ${pinned ? "tr-pinned" : ""} ${selected ? "tr-selected" : ""}" data-helmet-id="${helmet.id}">
+                <td class="px-2 py-3">${pinButtonHtml(helmet.id)}</td>
+                <td class="px-4 py-3 font-medium">
+                  ${helmetLinkHtml(helmet)}
+                  ${helmet.catalog === "extra_only" ? '<span class="ml-1 rounded border px-1 text-xs text-muted" style="border-color:var(--border)">extra</span>' : ""}
+                </td>
+                <td class="px-4 py-3">${helmet.safety?.display ?? "–"}</td>
+                <td class="px-4 py-3">${helmet.stars}</td>
+                <td class="px-4 py-3 font-medium text-accent">${formatValueScore(helmet)}</td>
+                <td class="px-4 py-3">${formatFairResidual(helmet)}</td>
+                <td class="px-4 py-3">${formatComparisonPrice(helmet)}</td>
+                ${showShop ? `<td class="shop-col px-4 py-3 text-muted">${formatShopPrice(listing)}</td>` : ""}
+                ${showShop ? `<td class="shop-col px-4 py-3 text-muted">${formatReviewDerived(helmet)}</td>` : ""}
+                <td class="px-4 py-3">${(helmet.composite_score * 100).toFixed(0)}</td>
+                <td class="px-4 py-3 text-muted">${(helmet.feature_labels || []).join(", ") || "–"}</td>
+              </tr>
+            `;
+          })
+          .join("");
+        bindPinButtons(tbody);
+        bindTableRowClicks(tbody);
+      }
+
+      function updateSummary(helmets, paretoSet) {
+        document.getElementById("visibleCount").textContent = helmets.length;
+        document.getElementById("paretoCount").textContent = kneeIds.size;
+        document.getElementById("bestScoreLabel").textContent = `Best ${activeSafetyMeta.shortLabel}`;
+        for (const id of ["safetyColHeader", "safetyColHeaderTop"]) {
+          const el = document.getElementById(id);
+          if (el) el.textContent = activeSafetyMeta.shortLabel;
+        }
+
+        if (!helmets.length) {
+          document.getElementById("bestScore").textContent = "–";
+          document.getElementById("topComposite").textContent = "–";
+          return;
+        }
+
+        const comparable = helmets.filter((h) => h.safety?.available);
+        const higherIsSafer = activeSafetyMeta.higherIsSafer;
+        const best = comparable.length
+          ? comparable.reduce((a, b) => {
+              if (higherIsSafer) return a.safety.value > b.safety.value ? a : b;
+              return a.safety.value < b.safety.value ? a : b;
+            })
+          : helmets[0];
+        const top = helmets
+          .slice()
+          .sort((a, b) => (b.value_score ?? -1) - (a.value_score ?? -1))[0];
+        document.getElementById("bestScore").textContent = best.safety?.display ?? "–";
+        document.getElementById("topComposite").textContent = `${top.brand} ${top.model} (${formatValueScore(top)})`;
+      }
+
+      function updateBrandOptions() {
+        const europeanOnly = document.getElementById("euMarketFilter").checked;
+        const brands = europeanOnly ? dataset.filters.brands_eu : dataset.filters.brands_all;
+        const byKey = new Map();
+        for (const brand of brands) {
+          const key = brand.toLowerCase();
+          if (!byKey.has(key)) byKey.set(key, brand);
+        }
+        const unique = [...byKey.entries()].sort((a, b) => a[1].localeCompare(b[1]));
+        const current = document.getElementById("brandFilter").value;
+        const select = document.getElementById("brandFilter");
+        select.innerHTML = "";
+        const allOption = document.createElement("option");
+        allOption.value = "";
+        allOption.textContent = "All brands";
+        select.appendChild(allOption);
+        for (const [key, label] of unique) {
+          const option = document.createElement("option");
+          option.value = key;
+          option.textContent = label;
+          select.appendChild(option);
+        }
+        if (current && byKey.has(current.toLowerCase())) select.value = current.toLowerCase();
+      }
+
+      function applyPreset(name) {
+        document.getElementById("paretoOnlyFilter").checked = false;
+        document.getElementById("starsMinFilter").value = "";
+        document.getElementById("starsMaxFilter").value = "";
+        document.querySelectorAll("[data-protection-key]").forEach((el) => (el.checked = false));
+        document.querySelectorAll("[data-style-key]").forEach((el) => (el.checked = false));
+
+        if (name === "reset") {
+          document.getElementById("searchFilter").value = "";
+          document.getElementById("brandFilter").value = "";
+          document.getElementById("weightSafety").value = 55;
+          document.getElementById("weightPrice").value = 45;
+          const reviewWeight = document.getElementById("weightReview");
+          if (reviewWeight) reviewWeight.value = 0;
+          pinnedHelmetIds.clear();
+          updateWeightLabels();
+          render();
+          return;
+        }
+
+        if (name === "lab") {
+          document.getElementById("starsMinFilter").value = "4";
+          document.getElementById("weightSafety").value = 75;
+          document.getElementById("weightPrice").value = 25;
+        } else if (name === "value") {
+          document.getElementById("weightSafety").value = 35;
+          document.getElementById("weightPrice").value = 65;
+        } else if (name === "pareto") {
+          document.getElementById("paretoOnlyFilter").checked = true;
+          document.getElementById("weightSafety").value = 50;
+          document.getElementById("weightPrice").value = 50;
+        }
+
+        updateWeightLabels();
+        render();
+      }
+
+      function render() {
+        updateWeightLabels();
+        updateFusionPanelVisibility();
+        updateShopColumnsVisibility();
+        updateReviewWeightVisibility();
+        const { helmets, paretoIds: paretoSet, searchTerms } = getFilteredData();
+        paretoIds = paretoSet;
+        updateSummary(helmets, paretoSet);
+        renderTopPicks(helmets, paretoSet);
+        renderCharts(helmets, searchTerms, paretoSet);
+        renderTable(helmets, searchTerms);
+      }
+
+      function renderProtectionFilters() {
+        const container = document.getElementById("protectionFilters");
+        container.innerHTML = dataset.filters.protection_types
+          .map(
+            (item) => `
+              <label class="filter-chip-btn">
+                <input type="checkbox" data-protection-key="${item.key}" />
+                ${item.label}
+              </label>
+            `
+          )
+          .join("");
+        container.querySelectorAll("input").forEach((el) => el.addEventListener("change", render));
+      }
+
+      function renderStyleFilters() {
+        const container = document.getElementById("styleFilters");
+        const previous = new Set(getActiveStyleKeys());
+        container.innerHTML = dataset.filters.styles
+          .map(
+            (style) => `
+              <label class="filter-chip-btn">
+                <input
+                  type="checkbox"
+                  data-style-key="${style}"
+                  ${previous.has(style) ? "checked" : ""}
+                />
+                ${style}
+              </label>
+            `
+          )
+          .join("");
+        container.querySelectorAll("input").forEach((el) => el.addEventListener("change", render));
+      }
+
+      function modeHasData(mode) {
+        if (mode === "virginia_tech_raw" || mode === "virginia_tech_pct" || mode === "fused") return true;
+        const pool = dataset.helmets.filter((h) => h.price_at_test_usd != null);
+        return countPoolWithSource(pool, mode) > 0;
+      }
+
+      function renderPresentationModeSelect() {
+        const select = document.getElementById("presentationMode");
+        const current = select.value || DEFAULT_PRESENTATION_MODE;
+        const modes = dataset.filters.presentation_modes || [];
+
+        select.innerHTML = modes
+          .map((mode) => {
+            const hasData = modeHasData(mode.key);
+            const suffix = hasData ? "" : " (no data)";
+            return `<option value="${mode.key}" ${hasData ? "" : "disabled"}>${mode.label}${suffix}</option>`;
+          })
+          .join("");
+
+        const stillValid = modes.some((m) => m.key === current && modeHasData(m.key));
+        select.value = stillValid ? current : DEFAULT_PRESENTATION_MODE;
+      }
+
+      function renderFusionSourceFilters() {
+        const container = document.getElementById("fusionSourceFilters");
+        const sources = getRatingSources();
+        const previous = new Set(getFusedSourceKeys());
+        const defaultChecked = new Set(["virginia_tech"]);
+
+        container.innerHTML = sources
+          .map((source) => {
+            const checked = previous.size ? previous.has(source.key) : defaultChecked.has(source.key);
+            const count = countPoolWithSource(dataset.helmets, source.key);
+            const note = count ? ` (${count})` : " (0)";
+            return `
+              <label class="filter-chip-btn ${count ? "" : "opacity-50"}">
+                <input
+                  type="checkbox"
+                  data-fusion-source="${source.key}"
+                  ${checked ? "checked" : ""}
+                />
+                ${source.short || source.label}${note}
+              </label>
+            `;
+          })
+          .join("");
+
+        container.querySelectorAll("input").forEach((el) => {
+          el.addEventListener("change", (event) => {
+            const checked = getFusedSourceKeys();
+            if (checked.length > MAX_FUSED_SOURCES) {
+              event.target.checked = false;
+            }
+            render();
+          });
+        });
+      }
+
+      function updateFusionPanelVisibility() {
+        const fused = getPresentationMode() === "fused";
+        document.getElementById("fusionSourcePanel").classList.toggle("hidden", !fused);
+      }
+
+      async function init() {
+        initTheme();
+
+        if (window.location.protocol === "file:") {
+          throw new Error(
+            "Open this app at http://localhost (not as a file). From the project folder run: ./serve.sh"
+          );
+        }
+
+        const response = await fetch("./data/helmets.json");
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error(
+              "data/helmets.json not found. Run ./update-data.sh --quick then reload. If the server was started from the wrong folder, use ./serve.sh from the project root."
+            );
+          }
+          throw new Error(`Failed to load helmet data (${response.status} ${response.statusText})`);
+        }
+        dataset = await response.json();
+        if (!dataset?.helmets?.length) {
+          throw new Error("helmets.json is empty. Run ./update-data.sh --quick");
+        }
+
+        document.getElementById("meta").innerHTML = `
+          <div>${dataset.meta.helmet_count_european_market} EU-market helmets</div>
+          <div>${dataset.meta.helmet_count_total} total in VT dataset</div>
+          <div>Updated ${new Date(dataset.meta.generated_at).toLocaleString()}</div>
+        `;
+
+        document.getElementById("marketFilter").innerHTML = dataset.filters.markets
+          .map((m) => `<option value="${m.key}">${m.label}</option>`)
+          .join("");
+        document.getElementById("marketFilter").value = "de";
+
+        fillStarsRangeSelects();
+        renderStyleFilters();
+
+        renderPresentationModeSelect();
+        renderFusionSourceFilters();
+        renderProtectionFilters();
+        updateBrandOptions();
+        updateWeightLabels();
+        updateFusionPanelVisibility();
+        updateShopColumnsVisibility();
+        updateReviewWeightVisibility();
+
+        document.getElementById("presentationMode").addEventListener("change", () => {
+          updateFusionPanelVisibility();
+          render();
+        });
+
+        document.getElementById("euMarketFilter").addEventListener("change", () => {
+          updateBrandOptions();
+          render();
+        });
+
+        ["paretoOnlyFilter", "marketFilter"].forEach((id) => {
+          document.getElementById(id).addEventListener("change", render);
+        });
+
+        ["searchFilter", "brandFilter", "starsMinFilter", "starsMaxFilter"].forEach((id) => {
+          const el = document.getElementById(id);
+          el.addEventListener("change", render);
+          el.addEventListener("input", render);
+        });
+
+        ["weightSafety", "weightPrice", "weightReview"].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.addEventListener("input", render);
+        });
+
+        document.querySelectorAll(".preset-btn").forEach((btn) => {
+          btn.addEventListener("click", () => applyPreset(btn.dataset.preset));
+        });
+
+        document.getElementById("clearPinned").addEventListener("click", clearPinnedHelmets);
+        document.getElementById("labelTop5").addEventListener("change", render);
+        document.getElementById("chartColorMode").addEventListener("change", render);
+        document.getElementById("showFairValueBand").addEventListener("change", render);
+        document.getElementById("showStyleMean").addEventListener("change", render);
+        document.getElementById("showStyleMedian").addEventListener("change", render);
+        document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+
+        const deepLink = getHelmetIdFromUrl();
+        if (deepLink) applyHelmetDeepLink(deepLink);
+        else render();
+      }
+
+      init().catch((error) => {
+        document.body.innerHTML = `<div class="mx-auto max-w-xl px-4 py-16 text-center" style="color:var(--text)">
+          <h1 class="text-2xl font-semibold">Could not load helmet data</h1>
+          <p class="mt-4" style="color:var(--text-muted)">${error.message}</p>
+          <div class="mt-6 space-y-2 text-sm" style="color:var(--text-muted)">
+            <p><code class="rounded px-2 py-1" style="background:var(--surface-elevated);border:1px solid var(--border)">./update-data.sh --quick</code> — fetch data</p>
+            <p><code class="rounded px-2 py-1" style="background:var(--surface-elevated);border:1px solid var(--border)">./serve.sh</code> — start site at http://localhost:8080</p>
+          </div>
+        </div>`;
+      });
+    </script>
+  </body>
+</html>

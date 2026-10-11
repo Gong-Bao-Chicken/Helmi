@@ -838,10 +838,13 @@
     "error": null
   },
   "lazer-jackal-mips": {
-    "fetched": false,
+    "fetched": true,
     "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "protection_tech": "none",
+    "error": "geizhals:429",
+    "sources_tried": [
+      "geizhals"
+    ]
   },
   "lazer-anverz-nta-mips": {
     "fetched": true,
@@ -893,10 +896,13 @@
     "error": null
   },
   "giro-tyrant-spherical": {
-    "fetched": false,
+    "fetched": true,
     "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "protection_tech": "none",
+    "error": "geizhals:429",
+    "sources_tried": [
+      "geizhals"
+    ]
   },
   "giro-eclipse-spherical": {
     "fetched": true,
@@ -1127,10 +1133,13 @@
     "error": null
   },
   "giant-rev-comp": {
-    "fetched": false,
+    "fetched": true,
     "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "protection_tech": "none",
+    "error": "geizhals:429",
+    "sources_tried": [
+      "geizhals"
+    ]
   },
   "bontrager-xxx-wavecel": {
     "fetched": true,
@@ -1242,10 +1251,17 @@
     "error": null
   },
   "bontrager-velocis-mips": {
-    "fetched": false,
-    "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "fetched": true,
+    "product_url": "https://geizhals.de/bontrager-velocis-mips-helm-v71227.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Bontrager Velocis MIPS Helm ab €&#xa0;179,99 (2026) | Preisvergleich Geizhals Deut",
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals"
+    ],
+    "error": null
   },
   "bern-macon-2-0-mips": {
     "fetched": true,
@@ -1715,10 +1731,17 @@
     "error": null
   },
   "lazer-chase-kineticore": {
-    "fetched": false,
+    "fetched": true,
+    "product_url": "https://geizhals.eu/lazer-chase-kineticore-fullface-helm-v156159.html",
     "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "mips_label": null,
+    "protection_tech": "none",
+    "snippet": null,
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals"
+    ],
+    "error": null
   },
   "nutcase-street-mips": {
     "fetched": true,
@@ -2030,10 +2053,18 @@
     "error": "no_product_urls"
   },
   "lazer-cameleon-mips": {
-    "fetched": false,
+    "fetched": true,
+    "product_url": "https://geizhals.de/lazer-cameleon-dlx-helm-v156153.html",
     "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "mips_label": null,
+    "protection_tech": "none",
+    "snippet": null,
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals",
+      "geizhals"
+    ],
+    "error": null
   },
   "bell-annex-mips": {
     "fetched": true,
@@ -2051,10 +2082,17 @@
     "error": null
   },
   "lazer-coyote-mips": {
-    "fetched": false,
-    "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "fetched": true,
+    "product_url": "https://geizhals.eu/lazer-coyote-mips-helm-v99017.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Lazer Coyote MIPS Helm | Preisvergleich Geizhals EU Zum Hauptinhalt Werbung W",
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals"
+    ],
+    "error": null
   },
   "lazer-codax-kineticore": {
     "fetched": true,
@@ -2507,10 +2545,19 @@
     "error": null
   },
   "lazer-blade": {
-    "fetched": false,
+    "fetched": true,
+    "product_url": "https://geizhals.de/lazer-blade-helm-v72317.html",
     "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "mips_label": null,
+    "protection_tech": "sweet_2vi",
+    "snippet": null,
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals",
+      "geizhals",
+      "geizhals"
+    ],
+    "error": null
   },
   "kali-interceptor": {
     "fetched": false,
@@ -2519,10 +2566,18 @@
     "error": "no_product_urls"
   },
   "kali-maya-2-0": {
-    "fetched": false,
-    "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "fetched": true,
+    "product_url": "https://geizhals.de/kali-maya-helm-verschiedene-farben-groessen-a1257034.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "sweet_2vi",
+    "snippet": "rodukte (Top-10 in Helme) UVEX I-Volute MIPS Helm white matt S41066602 18 Angebote ab € 91,95 Fox Racing",
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals",
+      "geizhals"
+    ],
+    "error": null
   },
   "troy-lee-designs-a1-drone": {
     "fetched": true,
@@ -2558,10 +2613,17 @@
     "error": null
   },
   "bontrager-solstice": {
-    "fetched": false,
+    "fetched": true,
+    "product_url": "https://geizhals.de/bontrager-solstice-helm-v17022.html",
     "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "mips_label": null,
+    "protection_tech": "none",
+    "snippet": null,
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals"
+    ],
+    "error": null
   },
   "kask-valegro": {
     "fetched": true,
@@ -2744,6 +2806,46 @@
       "idealo",
       "toppreise",
       "amazon_de"
+    ],
+    "error": null
+  },
+  "lazer-chiru-mips": {
+    "fetched": true,
+    "product_url": "https://geizhals.eu/lazer-chiru-mips-helm-v71107.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Lazer Chiru MIPS Helm ab €&#xa0;49,01 (2026) | Preisvergleich Geizhals EU Zu",
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals"
+    ],
+    "error": null
+  },
+  "lazer-compact-dlx-mips": {
+    "fetched": true,
+    "product_url": "https://geizhals.eu/lazer-compact-dlx-mips-helm-v71109.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Lazer Compact DLX MIPS Helm ab €&#xa0;51,69 (2026) | Preisvergleich Geizhals EU Zu",
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals",
+      "geizhals"
+    ],
+    "error": null
+  },
+  "bell-adrenaline": {
+    "fetched": true,
+    "product_url": "https://geizhals.eu/brooks-adrenaline-gts-25-spellbound-blazing-bell-pink-damen-120443-486-a3717572.html",
+    "mips_variant": null,
+    "mips_label": null,
+    "protection_tech": "none",
+    "snippet": null,
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals"
     ],
     "error": null
   }

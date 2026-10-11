@@ -35,13 +35,20 @@ AERO_MODEL_TOKENS = (
     "rivale",
 )
 
+KIDS_TOKENS = ("kid", "child", "youth", "junior", "teen")
+# Assigned when nothing in the name or manufacturer text names a style; kept apart from
+# Urban so the city category isn't padded with helmets of unknown type.
+UNCLASSIFIED = "Unclassified"
+
 STYLE_PATTERNS: list[tuple[str, tuple[str, ...]]] = [
+    # Kids first: a kids' MTB helmet is chosen as a kids' helmet.
+    ("Kids", KIDS_TOKENS),
     ("Full-Face", ("full-face", "full face", "fullface", "downhill", "bmx")),
     ("Mountain", ("mountain", "mtb", "trail", "enduro", "cross-country", " xc ", "rockrider")),
     ("Aero", AERO_MODEL_TOKENS),
     ("Road", ("road", "racer", "racing", "peloton")),
     ("Multi-sport", ("multi-sport", "multisport", "multi sport", "all-around", "all around")),
-    ("Urban", ("urban", "commuter", "city", "lifestyle", "skate", "kid", "child", "youth", "teen")),
+    ("Urban", ("urban", "commuter", "city", "lifestyle", "skate")),
 ]
 
 COMPATIBLE_STYLE_PAIRS = {
@@ -49,6 +56,7 @@ COMPATIBLE_STYLE_PAIRS = {
     frozenset({"Urban", "Multi-sport"}),
     frozenset({"Mountain", "Multi-sport"}),
     frozenset({"Mountain", "Full-Face"}),
+    frozenset({"Kids", "Urban"}),
 }
 
 
@@ -57,12 +65,17 @@ def is_aero_helmet(brand: str, model: str) -> bool:
     return any(token in text for token in AERO_MODEL_TOKENS)
 
 
-def infer_style(brand: str, model: str) -> str:
+def is_kids_helmet(brand: str, model: str) -> bool:
+    text = f"{brand} {model}".lower()
+    return any(token in text for token in KIDS_TOKENS)
+
+
+def infer_style(brand: str, model: str, *, default: str = UNCLASSIFIED) -> str:
     text = f"{brand} {model}".lower()
     for style, tokens in STYLE_PATTERNS:
         if any(token in text for token in tokens):
             return style
-    return "Urban"
+    return default
 
 
 def infer_style_from_text(text: str, *, brand: str = "", model: str = "") -> str | None:
@@ -77,7 +90,7 @@ def infer_style_from_text(text: str, *, brand: str = "", model: str = "") -> str
 
     if not matches:
         return None
-    priority = ["Full-Face", "Mountain", "Aero", "Road", "Multi-sport", "Urban"]
+    priority = ["Kids", "Full-Face", "Mountain", "Aero", "Road", "Multi-sport", "Urban"]
     for style in priority:
         if style in matches:
             return style
@@ -93,11 +106,18 @@ def styles_compatible(assigned: str, manufacturer: str | None) -> bool | None:
 
 
 def refine_helmet_styles(helmets: list[dict]) -> None:
-    """Reclassify road and misclassified urban helmets into Aero where appropriate."""
+    """Reclassify kids' helmets into Kids, and road and misclassified urban helmets into Aero."""
     for helmet in helmets:
         meta = helmet.setdefault("style_meta", {})
         meta.setdefault("assigned", helmet.get("style"))
         meta.setdefault("source", meta.get("source") or "unknown")
+
+        if helmet["style"] != "Kids" and is_kids_helmet(helmet["brand"], helmet["model"]):
+            meta["vt_style"] = meta.get("vt_style") or helmet["style"]
+            helmet["style"] = "Kids"
+            meta["assigned"] = "Kids"
+            meta["source"] = f"{meta['source']}_kids"
+            continue
 
         if helmet["style"] not in ("Road", "Urban"):
             continue

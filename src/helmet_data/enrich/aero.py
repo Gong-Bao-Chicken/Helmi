@@ -215,7 +215,8 @@ def standalone_from_aero_entry(entry: dict[str, Any], source_key: str) -> dict[s
     helmet_id = entry.get("id") or f"extra-aero-{slugify(brand, model)}"
     if not helmet_id.startswith("extra-"):
         helmet_id = f"extra-aero-{helmet_id}"
-    inferred_style = infer_style(brand, model)
+    # Wind-tunnel tests cover road helmets, so that is the fallback here.
+    inferred_style = infer_style(brand, model, default="Road")
     return {
         "id": helmet_id,
         "brand": brand,

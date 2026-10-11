@@ -5,7 +5,7 @@
 import { fairValueBand, frontier, kneeId, median, paretoIds, percentileRank, type Bin, type Point } from "./scoring";
 import type { Dataset, Helmet, MarketKey, RatingSourceKey } from "./types";
 
-export type RideKey = "road" | "race" | "gravel" | "trail" | "gravity" | "city" | "speed" | "any";
+export type RideKey = "road" | "race" | "gravel" | "trail" | "gravity" | "city" | "speed" | "kids" | "any";
 export type PriorityKey = "protection" | "value" | "aero" | "budget";
 export type MarketChoice = MarketKey | "us";
 export type SafetySource = "fused" | RatingSourceKey;
@@ -20,26 +20,34 @@ export interface Ride {
 }
 
 export const RIDES: Ride[] = [
-  { key: "road", label: "Road", blurb: "Training rides, sportives, club runs", styles: ["Road", "Aero", "Multi-sport"] },
+  { key: "road", label: "Road", blurb: "Training rides, club runs and sportives", styles: ["Road", "Aero", "Multi-sport"] },
   {
     key: "race",
     label: "Racing & tri",
-    blurb: "Every watt counts",
+    blurb: "Races, time trials and triathlon: aero helmets",
     styles: ["Aero", "Road"],
     suggestedPriority: "aero",
   },
-  { key: "gravel", label: "Gravel", blurb: "Mixed surfaces, long days", styles: ["Multi-sport", "Road", "Mountain"] },
-  { key: "trail", label: "Trail MTB", blurb: "Singletrack, XC, all-mountain", styles: ["Mountain", "Multi-sport"] },
-  { key: "gravity", label: "Enduro & downhill", blurb: "Full-face protection", styles: ["Full-Face"] },
-  { key: "city", label: "City & commute", blurb: "Everyday riding, e-bikes", styles: ["Urban", "Multi-sport", "Road"] },
+  { key: "gravel", label: "Gravel", blurb: "Mixed tarmac and dirt, long days out", styles: ["Multi-sport", "Road", "Mountain"] },
+  { key: "trail", label: "Trail MTB", blurb: "Singletrack and cross-country on a mountain bike", styles: ["Mountain", "Multi-sport"] },
+  { key: "gravity", label: "Enduro & downhill", blurb: "Fast, rough descents: full-face helmets", styles: ["Full-Face"] },
+  {
+    key: "city",
+    label: "City & commute",
+    blurb: "Getting to work, errands, e-bikes up to 25 km/h",
+    // Unclassified helmets are mostly plain all-round helmets, so they stay available here.
+    styles: ["Urban", "Multi-sport", "Road", "Unclassified"],
+  },
   {
     key: "speed",
     label: "Speed pedelec",
-    blurb: "45 km/h e-bikes (NTA 8776)",
+    blurb: "Fast e-bikes up to 45 km/h (needs NTA 8776)",
     styles: null,
     requireNta8776: true,
   },
-  { key: "any", label: "Show me everything", blurb: "All styles", styles: null },
+  { key: "kids", label: "Kids", blurb: "Helmets sized for children and teens", styles: ["Kids"] },
+  // Last on purpose: the fallback when no ride is chosen.
+  { key: "any", label: "Show me everything", blurb: "Every helmet, any style", styles: null },
 ];
 
 export interface Priority {

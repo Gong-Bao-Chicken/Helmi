@@ -2,6 +2,7 @@
   import { RIDES, safetyFor, type Ride } from "../lib/finder";
   import { app } from "../lib/state.svelte";
   import type { Dataset } from "../lib/types";
+  import RideIcon from "./RideIcon.svelte";
 
   let { dataset }: { dataset: Dataset } = $props();
 
@@ -34,12 +35,18 @@
 
 <section aria-labelledby="ride-q" class="mx-auto max-w-4xl">
   <h2 id="ride-q" class="label mb-3 text-center">Step 1 · What do you ride?</h2>
-  <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
-    {#each RIDES as ride (ride.key)}
+  <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+    {#each RIDES as ride, i (ride.key)}
       <button
-        class="card group flex flex-col items-start gap-1 p-4 text-left transition hover:-translate-y-0.5 hover:border-accent"
+        class="card group flex flex-col items-start gap-1 p-4 text-left transition hover:-translate-y-0.5 hover:border-accent {i === RIDES.length - 1 &&
+        RIDES.length % 2 === 1
+          ? 'col-span-2 md:col-span-1'
+          : ''}"
         onclick={() => choose(ride)}
       >
+        <span class="mb-2 grid size-10 place-items-center rounded-xl bg-accent-soft text-accent transition group-hover:bg-accent group-hover:text-accent-ink">
+          <RideIcon ride={ride.key} class="size-5" />
+        </span>
         <span class="font-semibold group-hover:text-accent">{ride.label}</span>
         <span class="text-sm text-ink-2">{ride.blurb}</span>
         <span class="mt-auto pt-2 text-xs text-ink-3 num">{countFor(ride)} helmets</span>

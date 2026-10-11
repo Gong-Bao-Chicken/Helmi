@@ -1,4 +1,4 @@
-import type { Price } from "./finder";
+import { MARKET_NAME, type Price } from "./finder";
 import type { Dataset, RatingSourceKey } from "./types";
 
 const moneyFormatters = new Map<string, Intl.NumberFormat>();
@@ -21,7 +21,9 @@ export function priceLabel(price: Price | null) {
 
 export function priceSourceLabel(price: Price | null) {
   if (!price) return "No price data";
-  if (price.kind === "estimate") return "US price at test time, converted";
+  if (price.kind === "estimate") {
+    return price.from ? `${MARKET_NAME[price.from]} shop price, converted` : "US price at test time, converted";
+  }
   const window = price.window === "14d_median" ? "14-day median" : null;
   return [shopName(price.source), window].filter(Boolean).join(" · ");
 }

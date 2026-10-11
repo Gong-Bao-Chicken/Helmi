@@ -85,6 +85,8 @@ export const DEFAULT_GOALS: Goals = {
 export const SAFE_ENOUGH = 0.6;
 
 const CURRENCY: Record<MarketChoice, string> = { de: "EUR", at: "EUR", ch: "CHF", us: "USD" };
+const NEIGHBOURS: MarketKey[] = ["de", "at", "ch"];
+export const MARKET_NAME: Record<MarketKey, string> = { de: "German", at: "Austrian", ch: "Swiss" };
 
 export function marketCurrency(market: MarketChoice) {
   return CURRENCY[market];
@@ -93,8 +95,10 @@ export function marketCurrency(market: MarketChoice) {
 export interface Price {
   amount: number;
   currency: string;
-  /** live = current shop price; estimate = converted US price at test time. */
+  /** live = current shop price here; estimate = another market's price, converted. */
   kind: "live" | "estimate";
+  /** For an estimate: the neighbouring country whose shop price was converted, or null for the US launch price. */
+  from?: MarketKey | null;
   source?: string | null;
   url?: string | null;
   window?: string | null;
@@ -131,12 +135,22 @@ export function priceFor(helmet: Helmet, market: MarketChoice, fx: Record<string
       };
     }
   }
-  if (helmet.price_at_test_usd == null) return null;
   const currency = CURRENCY[market];
+  if (market !== "us") {
+    // No shop here: a neighbour's shop price, converted, is closer to reality than the US launch price.
+    for (const other of NEIGHBOURS) {
+      const listing = helmet.listings[other];
+      if (other === market || listing?.price == null) continue;
+      const amount = (listing.price / (fx[listing.currency] ?? 1)) * (fx[currency] ?? 1);
+      return { amount: Math.round(amount), currency, kind: "estimate", from: other, source: listing.source, url: listing.url };
+    }
+  }
+  if (helmet.price_at_test_usd == null) return null;
   return {
     amount: Math.round(helmet.price_at_test_usd * (fx[currency] ?? 1)),
     currency,
     kind: market === "us" ? "live" : "estimate",
+    from: null,
     source: market === "us" ? "US retail at test time" : null,
   };
 }
@@ -404,7 +418,10 @@ export function explain(item: Ranked, result: FinderResult, labLabel: (key: Rati
   }
 
   if (item.price?.kind === "estimate") {
-    reasons.push({ tone: "caution", text: "No current shop price found; showing the converted US price at test time" });
+    const text = item.price.from
+      ? `No shop price in this country; showing the ${MARKET_NAME[item.price.from]} price, converted`
+      : "No current shop price found; showing the converted US price at test time";
+    reasons.push({ tone: "caution", text });
   }
 
   const year = Number(item.helmet.test_year);

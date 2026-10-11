@@ -204,10 +204,10 @@
     <label class="flex items-center gap-2"><input type="checkbox" bind:checked={showBand} class="accent-(--accent)" />Show typical safety for the price</label>
   {/if}
   {#if noLive && estimates > 0}
-    <span>No live shop prices in this market, so every price is estimated from the US launch price.</span>
+    <span>No live shop prices in this market, so every price is estimated.</span>
   {:else if estimates > 0}
     <label class="flex items-center gap-2"
-      ><input type="checkbox" bind:checked={includeEstimates} class="accent-(--accent)" />Include {estimates} helmets without a shop price (estimated from US launch price)</label
+      ><input type="checkbox" bind:checked={includeEstimates} class="accent-(--accent)" />Include {estimates} helmets without a shop price here (estimated)</label
     >
   {/if}
 </div>

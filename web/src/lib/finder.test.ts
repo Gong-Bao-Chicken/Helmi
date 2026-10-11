@@ -56,6 +56,16 @@ describe("priceFor", () => {
     expect(priceFor(helmet("b", { safety: 0.5, usd: 100 }), "de", fx)).toMatchObject({ amount: 90, kind: "estimate" });
     expect(priceFor(helmet("c", { safety: 0.5, usd: 100 }), "us", fx)).toMatchObject({ amount: 100, currency: "USD" });
   });
+
+  it("converts a neighbouring country's shop price before the US launch price", () => {
+    expect(priceFor(helmet("d", { safety: 0.5, eur: 90, usd: 300 }), "ch", fx)).toMatchObject({
+      amount: 85,
+      currency: "CHF",
+      kind: "estimate",
+      from: "de",
+    });
+    expect(priceFor(helmet("e", { safety: 0.5, usd: 100 }), "ch", fx)).toMatchObject({ amount: 85, from: null });
+  });
 });
 
 describe("findHelmets", () => {

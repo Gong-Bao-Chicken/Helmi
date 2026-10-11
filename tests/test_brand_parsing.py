@@ -18,3 +18,17 @@ def test_van_rysel_counts_as_european_market():
     assert helmet["brand"] == "Van Rysel"
     assert helmet["model"] == "FCR MIPS Roubaix"
     assert helmet["european_market"] is True
+
+
+def test_lab_rated_btwin_counts_as_european_market():
+    entry = {
+        "source": "certimoov",
+        "brand": "B'Twin",
+        "model": "KH 300",
+        "slug": "btwin-kh-300",
+        "score": 3.5,
+        "stars": 4,
+    }
+    helmet = standalone_from_unmatched(entry, load_eu_brands())
+    assert helmet["brand"] == "Btwin"
+    assert helmet["european_market"] is True

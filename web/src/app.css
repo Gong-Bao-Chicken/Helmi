@@ -4,83 +4,92 @@
 
 :root {
   color-scheme: light;
-  --bg: #f6f6f3;
-  --surface: #fdfdfc;
-  --surface-2: #f0efeb;
-  --border: rgba(11, 11, 11, 0.1);
-  --border-strong: rgba(11, 11, 11, 0.2);
-  --text: #0f0f0e;
-  --text-2: #4b4a46;
-  --text-3: #6f6e69;
-  --accent: #0b7a52;
+  /* Colorway: Sanzo Wada, A Dictionary of Color Combinations, plate 267:
+     Cream Yellow #fdbf68 · Yellow Orange #f99d1b · Benzol Green #00978d · Blue #006eb8.
+     Neutrals are tinted with Cream Yellow's hue; chart steps validated with the dataviz checker. */
+  --bg: #fef8f0;
+  --surface: #fffcf8;
+  --surface-2: #f8efe3;
+  --border: rgba(60, 42, 14, 0.12);
+  --border-strong: rgba(60, 42, 14, 0.24);
+  --text: #1c1812;
+  --text-2: #524c45;
+  --text-3: #716b63;
+  --accent: #00766d;
   --accent-ink: #ffffff;
-  --accent-soft: #dff3ea;
-  --good: #0b7a52;
-  --caution: #a35a00;
-  --caution-soft: #fbefdc;
+  --accent-soft: #d2f3ef;
+  --pick: #fdbf68;
+  --pick-ink: #2a2016;
+  --good: #00766d;
+  --caution: #9f6104;
+  --caution-soft: #ffeaca;
   /* Chart */
-  --chart-surface: #fdfdfc;
-  --grid: #e4e3dc;
-  --axis: #c3c2b7;
-  --dot: #a9a8a1;
-  --frontier: #0b7a52;
-  --highlight: #2a78d6;
-  --selected: #eb6834;
-  --shadow: 0 1px 2px rgba(15, 15, 14, 0.05), 0 4px 16px rgba(15, 15, 14, 0.05);
+  --chart-surface: #fffcf8;
+  --grid: #e8e2da;
+  --axis: #c2bdb5;
+  --dot: #afaaa3;
+  --frontier: #00978d;
+  --highlight: #006eb8;
+  --selected: #d37a00;
+  --shadow: 0 1px 2px rgba(60, 42, 14, 0.06), 0 4px 16px rgba(60, 42, 14, 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #0f0f0e;
-    --surface: #1a1a19;
-    --surface-2: #242422;
-    --border: rgba(255, 255, 255, 0.1);
-    --border-strong: rgba(255, 255, 255, 0.2);
-    --text: #f0efec;
-    --text-2: #c3c2b7;
-    --text-3: #9a998f;
-    --accent: #3fbf8a;
-    --accent-ink: #06130d;
-    --accent-soft: #15382a;
-    --good: #3fbf8a;
-    --caution: #f0a648;
-    --caution-soft: #3a2a12;
-    --chart-surface: #1a1a19;
-    --grid: #2c2c2a;
-    --axis: #383835;
-    --dot: #5d5c57;
-    --frontier: #199e70;
-    --highlight: #3987e5;
-    --selected: #d95926;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+    --bg: #120f0c;
+    --surface: #1c1915;
+    --surface-2: #27231f;
+    --border: rgba(255, 240, 220, 0.1);
+    --border-strong: rgba(255, 240, 220, 0.2);
+    --text: #f2eee9;
+    --text-2: #c2bdb5;
+    --text-3: #97918a;
+    --accent: #28a79d;
+    --accent-ink: #120f0c;
+    --accent-soft: #0c3531;
+    --pick: #fdbf68;
+    --pick-ink: #2a2016;
+    --good: #28a79d;
+    --caution: #f5ac5b;
+    --caution-soft: #3a2b16;
+    --chart-surface: #1c1915;
+    --grid: #292622;
+    --axis: #3a3733;
+    --dot: #5e5a55;
+    --frontier: #008a72;
+    --highlight: #4192ef;
+    --selected: #d37a00;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 4px 16px rgba(0, 0, 0, 0.35);
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0f0f0e;
-  --surface: #1a1a19;
-  --surface-2: #242422;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --text: #f0efec;
-  --text-2: #c3c2b7;
-  --text-3: #9a998f;
-  --accent: #3fbf8a;
-  --accent-ink: #06130d;
-  --accent-soft: #15382a;
-  --good: #3fbf8a;
-  --caution: #f0a648;
-  --caution-soft: #3a2a12;
-  --chart-surface: #1a1a19;
-  --grid: #2c2c2a;
-  --axis: #383835;
-  --dot: #5d5c57;
-  --frontier: #199e70;
-  --highlight: #3987e5;
-  --selected: #d95926;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+  --bg: #120f0c;
+  --surface: #1c1915;
+  --surface-2: #27231f;
+  --border: rgba(255, 240, 220, 0.1);
+  --border-strong: rgba(255, 240, 220, 0.2);
+  --text: #f2eee9;
+  --text-2: #c2bdb5;
+  --text-3: #97918a;
+  --accent: #28a79d;
+  --accent-ink: #120f0c;
+  --accent-soft: #0c3531;
+  --pick: #fdbf68;
+  --pick-ink: #2a2016;
+  --good: #28a79d;
+  --caution: #f5ac5b;
+  --caution-soft: #3a2b16;
+  --chart-surface: #1c1915;
+  --grid: #292622;
+  --axis: #3a3733;
+  --dot: #5e5a55;
+  --frontier: #008a72;
+  --highlight: #4192ef;
+  --selected: #d37a00;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 @theme inline {
@@ -96,6 +105,8 @@
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
   --color-accent-soft: var(--accent-soft);
+  --color-pick: var(--pick);
+  --color-pick-ink: var(--pick-ink);
   --color-good: var(--good);
   --color-caution: var(--caution);
   --color-caution-soft: var(--caution-soft);

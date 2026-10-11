@@ -91,7 +91,7 @@
         {#if ranked?.picks.length}
           <div class="mt-2 flex flex-wrap gap-1">
             {#each ranked.picks as kind (kind)}
-              <span class="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-semibold">{PICK_META[kind].label}</span>
+              <span class="rounded-full px-2 py-0.5 text-xs font-semibold {kind === 'best' ? 'bg-accent text-accent-ink' : 'bg-pick text-pick-ink'}">{PICK_META[kind].label}</span>
             {/each}
           </div>
         {/if}

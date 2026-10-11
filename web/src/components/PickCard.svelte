@@ -47,7 +47,7 @@
   <div class="flex flex-wrap gap-1 px-4 pt-4">
     {#each item.picks as kind (kind)}
       <span
-        class="rounded-full px-2 py-0.5 text-xs font-semibold {kind === 'best' ? 'bg-accent text-accent-ink' : 'bg-accent-soft text-ink'}"
+        class="rounded-full px-2 py-0.5 text-xs font-semibold {kind === 'best' ? 'bg-accent text-accent-ink' : 'bg-pick text-pick-ink'}"
         title={PICK_META[kind].hint}>{PICK_META[kind].label}</span
       >
     {/each}

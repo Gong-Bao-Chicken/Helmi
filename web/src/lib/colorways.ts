@@ -9,21 +9,22 @@ export interface Colorway {
 
 export const COLORWAYS: Colorway[] = [
   { key: "benzol", label: "Benzol", plate: 267, swatches: ["#fdbf68", "#f99d1b", "#00978d", "#006eb8"] },
-  { key: "lavender", label: "Lavender", plate: 215, swatches: ["#fdbf68", "#006eb8", "#bf5892"] },
-  { key: "spectrum", label: "Spectrum", plate: 257, swatches: ["#e31f26", "#fcb315", "#006eb8", "#a36aa5"] },
-  { key: "turquoise", label: "Turquoise", plate: 272, swatches: ["#ffefae",  "#f37420",  "#b5decc",  "#97acc8"] },
-  { key: "pistachio", label: "Pistachio", plate: 127, swatches: ["#fdc57e",  "#648f7b",  "#66629c"] },
-  { key: "cossack", label: "Cossack", plate: 294, swatches: ["#f5ecc2",  "#fdbf68",  "#437742",  "#97acc8"] },
-  { key: "rufous", label: "Rufous", plate: 172, swatches: ["#c27544",  "#007190",  "#59256a"] },
-  { key: "madder", label: "Madder", plate: 314, swatches: ["#f37f94",  "#793327",  "#1c4286",  "#4e1d4c"] },
-  { key: "nile", label: "Nile", plate: 345, swatches: ["#793327",  "#bce4e5",  "#62c6bf",  "#6450a1"] },
-  { key: "rosolanc", label: "Rosolanc", plate: 355, swatches: ["#b73f74",  "#4b3317",  "#00b49b",  "#007190"] },
+  { key: "drab", label: "Purple Drab", plate: 236, swatches: ["#bc892b", "#1c4286", "#84565b"] },
+  { key: "lilac", label: "Lilac", plate: 282, swatches: ["#da525d", "#c59f6b", "#96d1aa", "#b984af"] },
+  { key: "slate", label: "Slate Purple", plate: 248, swatches: ["#f37f94", "#bc892b", "#b5b1d8", "#704357"] },
+  { key: "lyons", label: "Lyons Blue", plate: 247, swatches: ["#bb7125", "#ffdd00", "#00978d", "#1c4286"] },
+  { key: "rosolanc", label: "Rosolanc", plate: 355, swatches: ["#b73f74", "#4b3317", "#00b49b", "#007190"] },
+  { key: "cobalt", label: "Cobalt Green", plate: 156, swatches: ["#d6b43e", "#96d1aa", "#4f4086"] },
 ];
 
 const KEY = "helmet-compare-colorway";
 
 export function currentColorway(): string {
-  return document.documentElement.dataset.colorway ?? "benzol";
+  const key = document.documentElement.dataset.colorway ?? "benzol";
+  // A colorway saved by an older version may no longer exist; fall back to the default.
+  if (COLORWAYS.some((c) => c.key === key)) return key;
+  setColorway("benzol");
+  return "benzol";
 }
 
 export function setColorway(key: string) {

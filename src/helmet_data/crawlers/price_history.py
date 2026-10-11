@@ -65,6 +65,7 @@ def daily_prices(
     offer_from_dict,
     max_days: int,
     min_days: int = 0,
+    market: str | None = None,
 ) -> list[float]:
     now = datetime.now(UTC)
     oldest = now - timedelta(days=max_days)
@@ -79,8 +80,12 @@ def daily_prices(
             continue
 
         day = fetched_at.date().isoformat()
-        day_offers = preferred_offers(offers_from_history_entry(entry, offer_from_dict))
-        day_offers = [offer for offer in day_offers if offer.currency == currency]
+        day_offers = [
+            offer
+            for offer in offers_from_history_entry(entry, offer_from_dict)
+            if offer.currency == currency and (market is None or offer.market == market)
+        ]
+        day_offers = preferred_offers(day_offers)
         if not day_offers:
             continue
         by_day.setdefault(day, []).append(min(offer.price for offer in day_offers))
@@ -97,8 +102,12 @@ def aggregate_price(
     *,
     currency: str,
     offer_from_dict,
+    market: str | None = None,
 ) -> dict[str, Any] | None:
-    preferred_latest = [offer for offer in preferred_offers(latest_offers) if offer.currency == currency]
+    """Median price over recent days, from offers in ``currency`` (and only ``market``'s shops, if given)."""
+    preferred_latest = preferred_offers(
+        [o for o in latest_offers if o.currency == currency and (market is None or o.market == market)]
+    )
     if not preferred_latest and not history:
         return None
 
@@ -107,12 +116,14 @@ def aggregate_price(
         currency=currency,
         offer_from_dict=offer_from_dict,
         max_days=HISTORY_PREFERRED_DAYS,
+        market=market,
     )
     prices_30d = daily_prices(
         history,
         currency=currency,
         offer_from_dict=offer_from_dict,
         max_days=HISTORY_MAX_DAYS,
+        market=market,
     )
 
     window = "latest"

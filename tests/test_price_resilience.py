@@ -89,9 +89,57 @@ def test_apply_market_price_reports_dropped_offers():
     )
     assert len(dropped) == 1
     assert helmet["listings"]["de"]["price"] == 130.0
-    # CH falls back to the converted EUR price instead of the suspect CHF offer.
-    assert helmet["listings"]["ch"]["currency"] == "CHF"
-    assert helmet["listings"]["ch"]["price"] < 200
+    # The suspect CHF offer is dropped and no converted EUR price takes its place.
+    assert helmet["listings"].get("ch", {}).get("price") is None
+
+
+def test_each_market_only_gets_its_own_shops_price():
+    helmet = {"id": "poc-cytal", "price_at_test_usd": 250.0, "ratings": {}}
+    prices.apply_market_price(
+        helmet,
+        offers=[
+            offer("geizhals", 130.0, "EUR"),
+            offer("geizhals_at", 139.0, "EUR"),
+            offer("toppreise", 160.0, "CHF"),
+        ],
+        history=[],
+        rates=RATES,
+        fetched_at="2026-10-11T00:00:00+00:00",
+    )
+    listings = helmet["listings"]
+    assert (listings["de"]["price"], listings["at"]["price"], listings["ch"]["price"]) == (
+        130.0,
+        139.0,
+        160.0,
+    )
+    assert listings["ch"]["currency"] == "CHF"
+
+
+def test_market_without_own_shop_stays_empty_and_stale_price_is_cleared():
+    helmet = {
+        "id": "poc-cytal",
+        "price_at_test_usd": 250.0,
+        "ratings": {},
+        "listings": {"at": {"price": 130.0, "currency": "EUR"}, "ch": {"price": 121.0, "currency": "CHF"}},
+    }
+    prices.apply_market_price(
+        helmet,
+        offers=[offer("geizhals", 130.0, "EUR")],
+        history=[],
+        rates=RATES,
+        fetched_at="2026-10-11T00:00:00+00:00",
+    )
+    listings = helmet["listings"]
+    assert listings["de"]["price"] == 130.0
+    assert listings["at"]["price"] is None
+    assert listings["ch"]["price"] is None
+    assert helmet["current_price"]["amount"] == 130.0
+
+
+def test_offer_market_follows_shop_domain_and_currency():
+    assert offer("geizhals", 1.0, "EUR").market == "de"
+    assert offer("idealo_at", 1.0, "EUR").market == "at"
+    assert offer("toppreise", 1.0, "CHF").market == "ch"
 
 
 # --- matching ---------------------------------------------------------------
@@ -101,6 +149,20 @@ def test_toppreise_uses_median_of_size_variants():
     offers = [offer("toppreise", p, "CHF") for p in (198.8, 466.0, 268.0)] + [offer("geizhals", 180.0, "EUR")]
     deduped = {o.source: o.price for o in price_sources.dedupe_offers(offers)}
     assert deduped == {"geizhals": 180.0, "toppreise": 268.0}
+
+
+def test_idealo_at_offers_are_austrian():
+    item = (
+        '<div class="sr-resultList__item_m"><a href="/preisvergleich/OffersOfProduct/1_-cytal.html">'
+        '<div class="sr-productSummary__title_f">POC Cytal Helm</div>'
+        '<div class="sr-detailedPriceInfo__price_sYVmx">ab 139,99 €</div></a></div>'
+    )
+    html = "<html><body>" + item + "<!--" + "x" * 12000 + "--></body></html>"
+    found = price_sources.search_idealo_html(
+        html, build_search_context("POC", "Cytal"), domain="www.idealo.at"
+    )
+    assert [(o.source, o.market, o.price) for o in found] == [("idealo_at", "at", 139.99)]
+    assert found[0].url.startswith("https://www.idealo.at/")
 
 
 def test_sibling_model_words_are_rejected():
@@ -125,7 +187,7 @@ def test_failing_shop_is_recorded_and_others_still_searched(monkeypatch):
         raise RuntimeError("curl: (35) TLS handshake failed")
 
     monkeypatch.setattr(price_sources, "search_geizhals", boom)
-    monkeypatch.setattr(price_sources, "search_idealo", lambda *_: [])
+    monkeypatch.setattr(price_sources, "search_idealo", lambda *_, **__: [])
     monkeypatch.setattr(price_sources, "search_toppreise", lambda *_: [offer("toppreise", 120.0, "CHF")])
     monkeypatch.setattr(price_sources, "geizhals_is_rate_limited", lambda: False)
     monkeypatch.setattr(price_sources, "search_amazon_de", lambda *_: [])
@@ -214,18 +276,19 @@ def test_cached_offers_are_rescored_on_rebuild():
         exclude_tokens=price_sources.sibling_exclude_tokens(helmet, helmets),
     )
     assert helmet["listings"]["de"]["price"] == 130.0
-    assert "converted_from_eur" in helmet["listings"]["ch"]
+    assert helmet["listings"].get("ch", {}).get("price") is None
 
 
 def test_blocked_geizhals_counts_as_failure(monkeypatch):
     monkeypatch.setattr(price_sources, "search_geizhals", lambda *a, **k: [])
-    monkeypatch.setattr(price_sources, "search_idealo", lambda *_: [offer("idealo", 100.0, "EUR")])
+    monkeypatch.setattr(price_sources, "search_idealo", lambda *_, **__: [offer("idealo", 100.0, "EUR")])
     monkeypatch.setattr(price_sources, "search_toppreise", lambda *_: [])
     monkeypatch.setattr(price_sources, "geizhals_is_rate_limited", lambda: True)
     monkeypatch.setattr(price_sources, "search_amazon_de", lambda *_: [])
     failures = {}
     price_sources.search_http_sources(None, build_search_context("POC", "Cytal"), failures=failures)
     assert "blocked" in failures["geizhals"]
+    assert "blocked" in failures["geizhals_at"]
 
 
 def test_stealth_get_spaces_requests_per_host_not_globally(monkeypatch):

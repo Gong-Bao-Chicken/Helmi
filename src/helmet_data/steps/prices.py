@@ -23,6 +23,7 @@ from ..crawlers.price_history import (
     prune_history,
 )
 from ..crawlers.price_sources import (
+    MARKET_CURRENCY,
     PREFERRED_SOURCES,
     PriceOffer,
     build_search_context,
@@ -44,6 +45,8 @@ from ..enrich.retailer_protection import (
 )
 from ..paths import HELMETS_JSON_PATH, PRICE_CACHE_PATH
 
+# Placeholder ``source`` of a market listing without a price (matches build.market_listings).
+SHOP_SOURCE_LABEL = {"de": "amazon_de", "at": "geizhals_at", "ch": "galaxus"}
 DEFAULT_INPUT = HELMETS_JSON_PATH
 DEFAULT_CACHE = PRICE_CACHE_PATH
 # Lowest accept_offer threshold used by any shop parser.
@@ -69,11 +72,6 @@ def currency_to_usd(amount: float, currency: str, rates: dict[str, float]) -> fl
     if not rate:
         return amount
     return amount / rate
-
-
-def eur_to_chf(amount_eur: float, rates: dict[str, float]) -> float:
-    usd = currency_to_usd(amount_eur, "EUR", rates)
-    return round(usd * rates["CHF"], 2)
 
 
 def load_cache(path: Path) -> dict[str, Any]:
@@ -280,39 +278,31 @@ def apply_market_price(
     if outliers and dropped is not None:
         dropped.extend(outliers)
 
-    eur_agg = aggregate_price(history, offers, currency="EUR", offer_from_dict=offer_from_dict)
-    chf_agg = aggregate_price(history, offers, currency="CHF", offer_from_dict=offer_from_dict)
-
-    if eur_agg:
-        eur_sources = eur_agg["offers"]
-        for market in ("de", "at"):
-            listings[market] = listing_from_aggregate(
-                eur_agg,
-                sources=eur_sources,
-                fetched_at=fetched_at,
-            )
+    # Each country only gets a price from its own shops. A country with none stays empty;
+    # copying or converting another country's price would fake a price comparison.
+    aggregates: dict[str, dict[str, Any]] = {}
+    for market, currency in MARKET_CURRENCY.items():
+        agg = aggregate_price(
+            history, offers, currency=currency, market=market, offer_from_dict=offer_from_dict
+        )
+        if agg:
+            aggregates[market] = agg
+            listings[market] = listing_from_aggregate(agg, sources=agg["offers"], fetched_at=fetched_at)
+            changed = True
+        elif listings.get(market, {}).get("price") is not None:
+            listings[market] = {
+                "price": None,
+                "currency": currency,
+                "rating": None,
+                "review_count": None,
+                "url": None,
+                "source": SHOP_SOURCE_LABEL[market],
+                "fetched_at": None,
+            }
             changed = True
 
-    if chf_agg:
-        listings["ch"] = listing_from_aggregate(
-            chf_agg,
-            sources=chf_agg["offers"],
-            fetched_at=fetched_at,
-        )
-        changed = True
-    elif eur_agg:
-        converted = eur_to_chf(eur_agg["amount"], rates)
-        listings["ch"] = {
-            **listing_from_aggregate(eur_agg, sources=eur_agg["offers"], fetched_at=fetched_at),
-            "price": converted,
-            "currency": "CHF",
-            "source": f"{eur_agg['sources'][0]}_eur_converted" if eur_agg["sources"] else "eur_converted",
-            "converted_from_eur": eur_agg["amount"],
-        }
-        changed = True
-
     test_usd = helmet.get("price_at_test_usd")
-    primary = eur_agg or chf_agg
+    primary = aggregates.get("de") or aggregates.get("at") or aggregates.get("ch")
     if not changed or test_usd is None or primary is None:
         helmet.pop("current_price", None)
         helmet.pop("price_comparison_usd", None)

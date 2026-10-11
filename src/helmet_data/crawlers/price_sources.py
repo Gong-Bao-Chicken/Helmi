@@ -28,9 +28,12 @@ PRICE_RE = re.compile(r"(\d{1,4}[.,]\d{2})")
 GEIZHALS_PRODUCT_URL_RE = re.compile(r"-[av]\d+\.html", re.I)
 MIN_HELMET_PRICE = {"EUR": 20.0, "CHF": 20.0}
 
-PREFERRED_SOURCES = frozenset({"geizhals", "idealo", "toppreise"})
+PREFERRED_SOURCES = frozenset({"geizhals", "idealo", "geizhals_at", "idealo_at", "toppreise"})
 FALLBACK_SOURCES = frozenset({"amazon_de"})
-SOURCE_PRIORITY = ("geizhals", "idealo", "toppreise", "amazon_de")
+SOURCE_PRIORITY = ("geizhals", "idealo", "geizhals_at", "idealo_at", "toppreise", "amazon_de")
+# Shops on Austrian domains; every other EUR shop is German, every CHF shop Swiss.
+AT_SOURCES = frozenset({"geizhals_at", "idealo_at"})
+MARKET_CURRENCY = {"de": "EUR", "at": "EUR", "ch": "CHF"}
 
 
 @dataclass
@@ -44,6 +47,13 @@ class PriceOffer:
     review_count: int | None = None
     available: bool = True
     match_score: float = 0.0
+
+    @property
+    def market(self) -> str:
+        """The country whose shops this price comes from (de, at or ch)."""
+        if self.currency == "CHF":
+            return "ch"
+        return "at" if self.source in AT_SOURCES else "de"
 
 
 @dataclass
@@ -319,6 +329,7 @@ def search_geizhals_html(html: str, ctx: PriceSearchContext, *, domain: str) -> 
     if is_geizhals_blocked(html):
         return []
 
+    source = "geizhals_at" if domain.endswith(".at") else "geizhals"
     soup = BeautifulSoup(html, "html.parser")
     offers: list[PriceOffer] = []
     seen_urls: set[str] = set()
@@ -351,7 +362,7 @@ def search_geizhals_html(html: str, ctx: PriceSearchContext, *, domain: str) -> 
         seen_urls.add(product_url)
 
         offer = PriceOffer(
-            source="geizhals",
+            source=source,
             title=title,
             price=price,
             currency="EUR",
@@ -392,7 +403,7 @@ def search_geizhals_html(html: str, ctx: PriceSearchContext, *, domain: str) -> 
         product_url = href if href.startswith("http") else urljoin(f"https://{domain}/", href.lstrip("/"))
         seen.add(title)
         offer = PriceOffer(
-            source="geizhals",
+            source=source,
             title=title,
             price=price,
             currency="EUR",
@@ -533,9 +544,13 @@ def is_idealo_blocked(html: str) -> bool:
     return len(html) < 10_000 or "akamai" in html.lower() or "sec-if-cpt-container" in html
 
 
-def search_idealo_html(html: str, ctx: PriceSearchContext) -> list[PriceOffer]:
+def search_idealo_html(
+    html: str, ctx: PriceSearchContext, *, domain: str = "www.idealo.de"
+) -> list[PriceOffer]:
     if is_idealo_blocked(html):
         return []
+    source = "idealo_at" if domain.endswith(".at") else "idealo"
+    base_url = f"https://{domain}"
     # 2026 layout: CSS-module classes with hashed suffixes (sr-resultList__item_m, …).
     soup = BeautifulSoup(html, "html.parser")
     items = soup.select('[class*="sr-resultList__item"]')
@@ -552,11 +567,11 @@ def search_idealo_html(html: str, ctx: PriceSearchContext) -> list[PriceOffer]:
                 continue
             href = link_el.get("href") if link_el else None
             offer = PriceOffer(
-                source="idealo",
+                source=source,
                 title=title_el.get_text(" ", strip=True),
                 price=price,
                 currency="EUR",
-                url=urljoin("https://www.idealo.de", href) if href else None,
+                url=urljoin(base_url, href) if href else None,
             )
             accepted = accept_offer(ctx, offer)
             if accepted:
@@ -565,9 +580,9 @@ def search_idealo_html(html: str, ctx: PriceSearchContext) -> list[PriceOffer]:
     return search_shop_html(
         html,
         ctx,
-        source="idealo",
+        source=source,
         currency="EUR",
-        base_url="https://www.idealo.de",
+        base_url=base_url,
         title_selector=(
             '[data-testid="product-list-entry"], .productList-item, .sr-resultList__item, '
             '[class*="productList"]'
@@ -576,12 +591,14 @@ def search_idealo_html(html: str, ctx: PriceSearchContext) -> list[PriceOffer]:
     )
 
 
-def search_idealo(client: httpx.Client, ctx: PriceSearchContext) -> list[PriceOffer]:
-    url = f"https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q={quote_plus(ctx.query)}"
+def search_idealo(
+    client: httpx.Client, ctx: PriceSearchContext, *, domain: str = "www.idealo.de"
+) -> list[PriceOffer]:
+    url = f"https://{domain}/preisvergleich/MainSearchProductCategory.html?q={quote_plus(ctx.query)}"
     status, html = stealth_get(url, validator=is_idealo_html)
     if status != 200 or not html:
         return []
-    return search_idealo_html(html, ctx)
+    return search_idealo_html(html, ctx, domain=domain)
 
 
 def make_price_client() -> httpx.Client:
@@ -616,9 +633,15 @@ def search_http_sources(
             return found
         return search_geizhals(client, ctx, domain="geizhals.eu")
 
+    def geizhals_at() -> list[PriceOffer]:
+        # Same site and rate limit as geizhals.de, so it backs off together with it.
+        return [] if geizhals_is_rate_limited() else search_geizhals(client, ctx, domain="geizhals.at")
+
     searches: tuple[tuple[str, Callable[[], list[PriceOffer]]], ...] = (
         ("geizhals", geizhals),
         ("idealo", lambda: search_idealo(client, ctx)),
+        ("geizhals_at", geizhals_at),
+        ("idealo_at", lambda: search_idealo(client, ctx, domain="www.idealo.at")),
         ("toppreise", lambda: search_toppreise(client, ctx)),
         ("amazon_de", lambda: search_amazon_de(client, ctx)),
     )
@@ -639,9 +662,10 @@ def search_http_sources(
     with ThreadPoolExecutor(max_workers=len(searches)) as pool:
         for result in pool.map(lambda item: run(*item), searches):
             offers.extend(result)
-    if geizhals_is_rate_limited() and failures is not None and "geizhals" not in failures:
+    if geizhals_is_rate_limited() and failures is not None:
         # Blocked (429 / bot challenge) - treat like a failure so cached offers are kept.
-        failures["geizhals"] = "blocked or rate-limited (429/403 bot challenge)"
+        for name in ("geizhals", "geizhals_at"):
+            failures.setdefault(name, "blocked or rate-limited (429/403 bot challenge)")
 
     return offers
 

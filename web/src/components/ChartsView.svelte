@@ -8,16 +8,16 @@
     aeroSafetyPoints,
     brandRows,
     certimoovImpactRows,
+    countryPair,
     groupRows,
-    histogram,
     labCoverage,
     labPairs,
-    priceVsLaunch,
+    MARKET_LABEL,
+    priceVsLaunchByMarket,
     ratedHelmets,
     rowMedian,
     sortByMedian,
     spearman,
-    swissVsGerman,
     vtByYear,
     vtImpactPoints,
   } from "../lib/chartData";
@@ -25,9 +25,9 @@
   import { makeLabLabel, money } from "../lib/format";
   import { median } from "../lib/scoring";
   import { app } from "../lib/state.svelte";
-  import type { Dataset } from "../lib/types";
+  import { orderedStyles, styleColor } from "../lib/styles";
+  import type { Dataset, MarketKey } from "../lib/types";
   import CategoryStrips from "./charts/CategoryStrips.svelte";
-  import Histogram from "./charts/Histogram.svelte";
   import PriceSafetyExplorer from "./charts/PriceSafetyExplorer.svelte";
   import Scatter from "./charts/Scatter.svelte";
 
@@ -53,7 +53,8 @@
 
   // --- What makes a helmet safe
   const rated = $derived(ratedHelmets(dataset, filters));
-  const styleRows = $derived(sortByMedian(groupRows(rated, (h) => h.style, dataset.filters.styles.map((s) => ({ key: s, label: s })))));
+  const styleRows = $derived(sortByMedian(groupRows(rated, (h) => h.style, orderedStyles(dataset.filters.styles))));
+  const unclassified = $derived(styleRows.find((r) => r.key === "Unclassified")?.items.length ?? 0);
   const protectionRows = $derived(
     groupRows(
       rated,
@@ -69,11 +70,29 @@
   const brands = $derived(brandRows(rated));
 
   // --- Prices
-  const launch = $derived(priceVsLaunch(dataset, filters, fx));
-  const launchMedian = $derived(median(launch.map((l) => l.value)));
-  const swiss = $derived(swissVsGerman(dataset, fx));
-  const swissPremium = $derived(median(swiss.map((p) => (p.y / p.x - 1) * 100)));
-  const swissMax = $derived(Math.max(100, ...swiss.flatMap((p) => [p.x, p.y])) * 1.05);
+  const launchRows = $derived(priceVsLaunchByMarket(dataset, filters, fx));
+  const launchSummary = $derived(
+    [...launchRows]
+      .map((r) => ({ label: r.label, med: rowMedian(r) }))
+      .sort((a, b) => a.med - b.med)
+      .map((r) => `${r.label} ${signed(r.med)}`)
+      .join(", "),
+  );
+
+  const COUNTRIES = Object.entries(MARKET_LABEL) as [MarketKey, string][];
+  let pairA = $state<MarketKey>("de");
+  let pairB = $state<MarketKey>("ch");
+  const pair = $derived(countryPair(dataset, pairA, pairB, fx));
+  const pairPremium = $derived(median(pair.map((p) => (p.y / p.x - 1) * 100)));
+  const pairMax = $derived(Math.max(100, ...pair.flatMap((p) => [p.x, p.y])) * 1.05);
+  /** Axis ticks sit at euro positions but read in each country's own currency. */
+  const inCurrency = (market: MarketKey) => (eur: number) => {
+    const cur = marketCurrency(market);
+    return money((eur / (fx.EUR ?? 1)) * (fx[cur] ?? 1), cur);
+  };
+  function swapPair() {
+    [pairA, pairB] = [pairB, pairA];
+  }
 
   // --- Labs
   const pairs = $derived(labPairs(dataset, filters));
@@ -163,49 +182,63 @@
 
     <div class="grid gap-6 lg:grid-cols-2">
       <figure class="card p-5">
-        <h3 class="mb-1 text-lg font-semibold">Are helmets cheaper now than at launch?</h3>
-        {#if launch.length}
+        <h3 class="mb-1 text-lg font-semibold">Where did prices fall the most since launch?</h3>
+        {#if launchRows.length}
           <p class="mb-4 text-sm text-ink-2">
-            Today's shop price against the US price when Virginia Tech tested the helmet, for {launch.length} helmets. The typical helmet costs
-            {signed(launchMedian ?? 0)} compared with launch.
+            Today's shop price in each country against the US price when Virginia Tech tested the helmet. Median change: {launchSummary}. Each dot
+            is a helmet, the bar the median; left of 0% is cheaper than at launch.
           </p>
-          <Histogram
-            bins={histogram(
-              launch.map((l) => l.value),
-              10,
-              [-80, 60],
-            )}
+          <CategoryStrips
+            rows={launchRows}
+            domain={[-80, 60]}
+            ticks={[-80, -60, -40, -20, 0, 20, 40, 60]}
             format={(v) => signed(v)}
             axisLabel="Price change since launch →"
-            reference={{ at: 0, label: "launch price" }}
-            median={launchMedian}
-            ariaLabel="Distribution of price change since launch"
+            ariaLabel="Price change since launch by country"
           />
         {:else}
-          <p class="text-sm text-ink-3">Needs live shop prices in this market. Pick Germany, Austria or Switzerland, or run the price fetch.</p>
+          <p class="text-sm text-ink-3">Needs live shop prices. Run the price fetch.</p>
         {/if}
       </figure>
 
       <figure class="card p-5">
-        <h3 class="mb-1 text-lg font-semibold">Is Switzerland more expensive?</h3>
-        {#if swiss.length}
+        <h3 class="mb-1 text-lg font-semibold">Where is a helmet cheaper?</h3>
+        <div class="mb-3 flex flex-wrap items-center gap-2 text-sm">
+          <select bind:value={pairA} class="rounded-lg border border-line bg-surface px-2 py-1" aria-label="First country">
+            {#each COUNTRIES as [key, label] (key)}<option value={key} disabled={key === pairB}>{label}</option>{/each}
+          </select>
+          <button class="rounded-lg border border-line px-2 py-1 text-ink-2 hover:text-ink" onclick={swapPair} aria-label="Swap countries">⇄</button>
+          <select bind:value={pairB} class="rounded-lg border border-line bg-surface px-2 py-1" aria-label="Second country">
+            {#each COUNTRIES as [key, label] (key)}<option value={key} disabled={key === pairA}>{label}</option>{/each}
+          </select>
+        </div>
+        {#if pair.length}
           <p class="mb-4 text-sm text-ink-2">
-            The same helmet's Swiss price (converted to euro) against its German price, for {swiss.length} helmets sold in both. Above the line
-            costs more in Switzerland; the typical helmet is {signed(swissPremium ?? 0)}.
+            The same helmet's shop price in {MARKET_LABEL[pairA]} and {MARKET_LABEL[pairB]}, for the {pair.length} helmets with a real shop price in
+            both. Compared in euro: above the line it costs more in {MARKET_LABEL[pairB]}; the typical helmet is {signed(pairPremium ?? 0)} there.
+            {#if pair.length < 20}Few helmets, so read this as a hint.{/if}
           </p>
           <Scatter
-            points={swiss.map((p) => ({ ...p, emphasis: "highlight" as const }))}
-            xDomain={[0, swissMax]}
-            yDomain={[0, swissMax]}
-            xLabel="Germany →"
-            yLabel="Switzerland, in € ↑"
-            xFormat={(v) => money(v, "EUR")}
-            yFormat={(v) => money(v, "EUR")}
+            points={pair.map((p) => ({ ...p, emphasis: "highlight" as const }))}
+            xDomain={[0, pairMax]}
+            yDomain={[0, pairMax]}
+            xLabel="{MARKET_LABEL[pairA]} →"
+            yLabel="{MARKET_LABEL[pairB]} ↑"
+            xFormat={inCurrency(pairA)}
+            yFormat={inCurrency(pairB)}
+            details={(p) => {
+              const q = pair.find((x) => x.helmet.id === p.helmet.id)!;
+              return [
+                [MARKET_LABEL[pairA], money(q.a.amount, q.a.currency)],
+                [MARKET_LABEL[pairB], money(q.b.amount, q.b.currency)],
+                ["Difference", signed((q.y / q.x - 1) * 100)],
+              ];
+            }}
             diagonal
-            ariaLabel="Swiss against German price for {swiss.length} helmets"
+            ariaLabel="{MARKET_LABEL[pairB]} against {MARKET_LABEL[pairA]} price for {pair.length} helmets"
           />
         {:else}
-          <p class="text-sm text-ink-3">No helmets with both a German and a Swiss shop price yet.</p>
+          <p class="text-sm text-ink-3">No helmets with a real shop price in both {MARKET_LABEL[pairA]} and {MARKET_LABEL[pairB]} yet.</p>
         {/if}
       </figure>
     </div>
@@ -218,7 +251,11 @@
       <figure class="card p-5">
         <h3 class="mb-1 text-lg font-semibold">Which riding style is safest?</h3>
         <p class="mb-4 text-sm text-ink-2">Safety score of every rated helmet by style, safest median first. Each dot is a helmet, the bar the median.</p>
-        <CategoryStrips rows={styleRows} ariaLabel="Safety score distribution by helmet style" />
+        <CategoryStrips rows={styleRows} color={styleColor} ariaLabel="Safety score distribution by helmet style" />
+        <p class="mt-3 text-xs text-ink-3">
+          Styles come from Virginia Tech, the manufacturer, or words in the model name.{#if unclassified}
+            {unclassified} helmets give no clue, so they are listed as Unclassified rather than guessed.{/if}
+        </p>
       </figure>
 
       <figure class="card p-5">

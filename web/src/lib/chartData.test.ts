@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { brandRows, histogram, spearman, type Valued } from "./chartData";
-import type { Helmet } from "./types";
+import { brandRows, countryPair, histogram, spearman, type Valued } from "./chartData";
+import type { Dataset, Helmet } from "./types";
 
 const helmet = (id: string, brand: string) => ({ id, brand }) as Helmet;
 
@@ -37,5 +37,24 @@ describe("brandRows", () => {
       { helmet: helmet("c0", "Gamma"), value: 99 },
     ];
     expect(brandRows(items, 3).map((r) => r.label)).toEqual(["Beta", "Alpha"]);
+  });
+});
+
+describe("countryPair", () => {
+  const listing = (price: number | null, currency: string) => ({ price, currency, rating: null, review_count: null, url: null, source: "x" });
+  const ds = {
+    helmets: [
+      { id: "a", listings: { de: listing(90, "EUR"), ch: listing(170, "CHF") } },
+      { id: "b", listings: { de: listing(90, "EUR"), ch: listing(null, "CHF") } },
+      { id: "c", listings: { de: listing(90, "EUR") } },
+    ],
+  } as unknown as Dataset;
+
+  it("only pairs helmets with a real price in both countries, converted to euro", () => {
+    const pts = countryPair(ds, "de", "ch", { USD: 1, EUR: 0.9, CHF: 0.85 });
+    expect(pts.map((p) => p.helmet.id)).toEqual(["a"]);
+    expect(pts[0]!.x).toBeCloseTo(90);
+    expect(pts[0]!.y).toBeCloseTo(180);
+    expect(pts[0]!.b).toEqual({ amount: 170, currency: "CHF" });
   });
 });

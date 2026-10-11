@@ -2,6 +2,7 @@
   import { labsFor, priceFor, safetyFor } from "../lib/finder";
   import { makeLabLabel, priceLabel } from "../lib/format";
   import { app, MAX_COMPARE, toggleCompare } from "../lib/state.svelte";
+  import { orderedStyles, styleLabel } from "../lib/styles";
   import type { Dataset } from "../lib/types";
   import HelmetImage from "./HelmetImage.svelte";
   import SafetyMeter from "./SafetyMeter.svelte";
@@ -92,7 +93,7 @@
       />
       <select bind:value={style} aria-label="Style" class="rounded-xl border border-line bg-surface px-2 py-1.5 text-sm">
         <option value="">All styles</option>
-        {#each dataset.filters.styles as s (s)}<option value={s}>{s}</option>{/each}
+        {#each orderedStyles(dataset.filters.styles) as s (s.key)}<option value={s.key}>{s.label}</option>{/each}
       </select>
     </div>
   </div>
@@ -121,7 +122,7 @@
                 <HelmetImage helmet={h} class="size-10 shrink-0" />
                 <div class="min-w-0">
                   <div class="truncate font-medium">{h.brand} {h.model}</div>
-                  <div class="text-xs text-ink-3">{h.style}</div>
+                  <div class="text-xs text-ink-3">{styleLabel(h.style)}</div>
                 </div>
               </div>
             </td>

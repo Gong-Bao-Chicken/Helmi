@@ -9,6 +9,10 @@
     emphasis?: "highlight" | "context" | "normal";
     /** Hollow marker (e.g. an estimated price). */
     hollow?: boolean;
+    /** Fill for a highlighted or normal point, e.g. its category's color (default: --highlight / --dot). */
+    color?: string;
+    /** Drawn larger and above everything else, e.g. the best-value helmets. */
+    key?: boolean;
   }
 </script>
 
@@ -76,7 +80,9 @@
   const FILL = { highlight: "var(--highlight)", normal: "var(--dot)", context: "var(--dot)" } as const;
   const OPACITY = { highlight: 1, normal: 0.85, context: 0.35 } as const;
   const LAYER = { context: 0, normal: 1, highlight: 2 } as const;
-  const layered = $derived([...points].sort((a, b) => LAYER[a.emphasis ?? "normal"] - LAYER[b.emphasis ?? "normal"]));
+  const layer = (p: ScatterPoint) => LAYER[p.emphasis ?? "normal"] + (p.key ? 3 : 0);
+  const layered = $derived([...points].sort((a, b) => layer(a) - layer(b)));
+  const fill = (p: ScatterPoint, e: keyof typeof FILL) => (e !== "context" && p.color) || FILL[e];
 
   const byId = $derived(new Map(points.map((p) => [p.helmet.id, p])));
   let hoverId = $state<string | null>(null);
@@ -192,9 +198,17 @@
     {#each layered as p (p.helmet.id)}
       {@const e = p.emphasis ?? "normal"}
       {#if p.hollow}
-        <circle cx={x(p.x)} cy={y(p.y)} r={RADIUS[e] - 0.75} fill="none" stroke={FILL[e]} stroke-width="1.5" opacity={OPACITY[e]} />
+        <circle cx={x(p.x)} cy={y(p.y)} r={RADIUS[e] - 0.75 + (p.key ? 1 : 0)} fill="none" stroke={fill(p, e)} stroke-width="1.5" opacity={OPACITY[e]} />
       {:else}
-        <circle cx={x(p.x)} cy={y(p.y)} r={RADIUS[e]} fill={FILL[e]} stroke="var(--chart-surface)" stroke-width="1" opacity={OPACITY[e]} />
+        <circle
+          cx={x(p.x)}
+          cy={y(p.y)}
+          r={p.key ? 5 : RADIUS[e]}
+          fill={fill(p, e)}
+          stroke="var(--chart-surface)"
+          stroke-width={p.key ? 2 : 1}
+          opacity={p.key ? 1 : OPACITY[e]}
+        />
       {/if}
     {/each}
 

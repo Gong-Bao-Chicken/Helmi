@@ -20,6 +20,8 @@
     axisLabel?: string;
     format?: (v: number) => string;
     rowHeight?: number;
+    /** Dot color per row (e.g. the riding style's hue); default grey. */
+    color?: (key: string) => string;
   }
   let {
     rows,
@@ -29,6 +31,7 @@
     axisLabel = "Safety score →",
     format = (v) => String(Math.round(v)),
     rowHeight = 40,
+    color,
   }: Props = $props();
 
   const ROW_H = $derived(rowHeight);
@@ -56,7 +59,10 @@
     {/each}
     {#each rows as row, i (row.key)}
       {@const cy = i * ROW_H + ROW_H / 2}
-      <text x={0} y={cy} dy="0.32em" class="fill-ink text-[12px] font-medium">{row.label}</text>
+      {#if color}
+        <circle cx={5} cy={cy} r={4.5} fill={color(row.key)} />
+      {/if}
+      <text x={color ? 15 : 0} y={cy} dy="0.32em" class="fill-ink text-[12px] font-medium">{row.label}</text>
       <text x={width} y={cy} dy="0.32em" text-anchor="end" class="fill-ink-3 text-[11px] num">n={row.items.length}</text>
       {#each row.items as item (item.helmet.id)}
         {@const active = app.hovered === item.helmet.id}
@@ -67,7 +73,8 @@
           cx={x(item.value)}
           cy={cy + jitter(item.helmet.id)}
           r={active ? 6 : rowHeight < 32 ? 3 : 3.5}
-          fill={active ? "var(--selected)" : "var(--dot)"}
+          fill={active ? "var(--selected)" : (color?.(row.key) ?? "var(--dot)")}
+          fill-opacity={active || !color ? 1 : 0.75}
           stroke="var(--chart-surface)"
           stroke-width={active ? 2 : 1}
           class="cursor-pointer"

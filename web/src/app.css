@@ -32,6 +32,15 @@
   --frontier: #00978d;
   --highlight: #006eb8;
   --selected: #d37a00;
+  /* Riding styles: one fixed hue each, in every colorway. Order validated with the dataviz
+     checker (adjacent pairs, light and dark); labels always accompany the color. */
+  --style-road: #2a78d6;
+  --style-aero: #e87ba4;
+  --style-multi: #eda100;
+  --style-mountain: #008300;
+  --style-fullface: #e34948;
+  --style-urban: #6250d6;
+  --style-kids: #eb6834;
   --shadow: 0 1px 2px rgba(60, 42, 14, 0.06), 0 4px 16px rgba(60, 42, 14, 0.06);
 }
 
@@ -61,6 +70,13 @@
     --frontier: #008a72;
     --highlight: #4192ef;
     --selected: #d37a00;
+    --style-road: #3987e5;
+    --style-aero: #d55181;
+    --style-multi: #c98500;
+    --style-mountain: #008300;
+    --style-fullface: #e66767;
+    --style-urban: #9085e9;
+    --style-kids: #d95926;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 4px 16px rgba(0, 0, 0, 0.35);
   }
 }
@@ -90,6 +106,13 @@
   --frontier: #008a72;
   --highlight: #4192ef;
   --selected: #d37a00;
+  --style-road: #3987e5;
+  --style-aero: #d55181;
+  --style-multi: #c98500;
+  --style-mountain: #008300;
+  --style-fullface: #e66767;
+  --style-urban: #9085e9;
+  --style-kids: #d95926;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 

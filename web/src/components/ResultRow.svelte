@@ -3,6 +3,7 @@
   import { priceLabel, priceSourceLabel } from "../lib/format";
   import { PICK_META } from "../lib/picks";
   import { app, MAX_COMPARE, toggleCompare } from "../lib/state.svelte";
+  import { styleLabel } from "../lib/styles";
   import type { RatingSourceKey } from "../lib/types";
   import HelmetImage from "./HelmetImage.svelte";
   import SafetyMeter from "./SafetyMeter.svelte";
@@ -24,7 +25,7 @@
       <span class="line-clamp-2 font-medium sm:line-clamp-1">{item.helmet.brand} {item.helmet.model}</span>
       <span class="flex flex-wrap gap-x-2 text-xs text-ink-3">
         <span class="font-medium text-ink sm:hidden">Safety {Math.round(item.safety * 100)} ·</span>
-        <span>{item.helmet.style}</span>
+        <span>{styleLabel(item.helmet.style)}</span>
         {#if tech}<span>· {tech}</span>{/if}
         <span class="hidden sm:inline">· {item.labs.map(labLabel).join(", ")}</span>
         {#each item.picks as kind (kind)}

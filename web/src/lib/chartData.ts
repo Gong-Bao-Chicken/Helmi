@@ -1,7 +1,7 @@
 /** Pure derivations for the Charts page: each function turns the dataset into one chart's rows. */
 import { priceFor, safetyFor, type MarketChoice, type Price, type SafetySource } from "./finder";
 import { median } from "./scoring";
-import type { Dataset, Helmet, RatingSourceKey } from "./types";
+import type { Dataset, Helmet, MarketKey, RatingSourceKey } from "./types";
 
 export interface ChartFilters {
   market: MarketChoice;
@@ -229,14 +229,39 @@ export function priceVsLaunch(dataset: Dataset, filters: ChartFilters, fx: Recor
   return out;
 }
 
-/** Swiss price converted to euro (x = German €, y = Swiss price in €). */
-export function swissVsGerman(dataset: Dataset, fx: Record<string, number>): XY[] {
-  const out: XY[] = [];
-  const chfToEur = (fx.EUR ?? 1) / (fx.CHF ?? 1);
+export const MARKET_LABEL: Record<MarketKey, string> = { de: "Germany", at: "Austria", ch: "Switzerland" };
+
+/** Today's shop price against the US launch price, one row per country. Only real shop prices count. */
+export function priceVsLaunchByMarket(dataset: Dataset, filters: ChartFilters, fx: Record<string, number>): Row[] {
+  return (Object.keys(MARKET_LABEL) as MarketKey[])
+    .map((market) => ({ key: market, label: MARKET_LABEL[market], items: priceVsLaunch(dataset, { ...filters, market }, fx) }))
+    .filter((row) => row.items.length > 0);
+}
+
+export interface PairPoint extends XY {
+  /** Shop prices in each country's own currency. */
+  a: { amount: number; currency: string };
+  b: { amount: number; currency: string };
+}
+
+/**
+ * The same helmet's shop price in two countries, both converted to euro so the diagonal means
+ * "same price" (x = country a, y = country b). Only helmets with a real shop price in both.
+ */
+export function countryPair(dataset: Dataset, a: MarketKey, b: MarketKey, fx: Record<string, number>): PairPoint[] {
+  const toEur = (amount: number, currency: string) => (amount / (fx[currency] ?? 1)) * (fx.EUR ?? 1);
+  const out: PairPoint[] = [];
   for (const helmet of dataset.helmets) {
-    const de = helmet.listings.de?.price;
-    const ch = helmet.listings.ch?.price;
-    if (de && ch && helmet.listings.ch?.currency === "CHF") out.push({ helmet, x: de, y: ch * chfToEur });
+    const la = helmet.listings[a];
+    const lb = helmet.listings[b];
+    if (la?.price == null || lb?.price == null) continue;
+    out.push({
+      helmet,
+      x: toEur(la.price, la.currency),
+      y: toEur(lb.price, lb.currency),
+      a: { amount: la.price, currency: la.currency },
+      b: { amount: lb.price, currency: lb.currency },
+    });
   }
   return out;
 }

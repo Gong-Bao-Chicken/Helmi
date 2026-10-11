@@ -85,8 +85,9 @@
             <span class="size-3 rounded-full ring-1 ring-black/10" style="background: {hex}"></span>
           {/each}
         </summary>
-        <div class="card absolute right-0 z-40 mt-2 w-64 p-2">
+        <div class="card absolute right-0 z-40 mt-2 max-h-[75vh] w-[min(34rem,calc(100vw-2rem))] overflow-y-auto p-2">
           <p class="label px-2 pt-1 pb-2">Colorway</p>
+          <div class="grid gap-0.5 sm:grid-cols-2">
           {#each COLORWAYS as c (c.key)}
             <button
               class="flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left text-sm transition hover:bg-surface-2 {colorway === c.key ? 'bg-surface-2' : ''}"
@@ -103,6 +104,7 @@
               {#if colorway === c.key}<span class="text-accent" aria-hidden="true">✓</span>{/if}
             </button>
           {/each}
+          </div>
           <p class="px-2 pt-2 pb-1 text-[11px] text-ink-3">From Sanzo Wada, <i>A Dictionary of Color Combinations</i> (1933).</p>
         </div>
       </details>

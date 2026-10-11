@@ -130,3 +130,451 @@
   --selected: #e8272b;
   --frontier: #006cb6;
 }
+
+/* Turquoise: plate 272 (Pale Lemon Yellow · Orange · Turquoise Green · Salvia Blue) */
+:root[data-colorway="turquoise"] {
+  --bg: #fbf9f2;
+  --surface: #fefdf9;
+  --surface-2: #f3f0e5;
+  --text: #1a1812;
+  --text-2: #4f4d45;
+  --text-3: #6e6c63;
+  --grid: #e5e3dc;
+  --axis: #bfbeb7;
+  --dot: #acaba4;
+  --accent: #006f51;
+  --accent-soft: #d6f3e6;
+  --pick: #ffefae;
+  --pick-ink: #262210;
+  --good: #006f51;
+  --chart-surface: #fefdf9;
+  --highlight: #b83d00;
+  --selected: #538ed9;
+  --frontier: #009269;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-colorway="turquoise"]:not([data-theme="light"]) {
+    --bg: #100f0c;
+    --surface: #1a1915;
+    --surface-2: #25241f;
+    --text: #f0eee9;
+    --text-2: #bfbeb7;
+    --text-3: #94928b;
+    --grid: #272623;
+    --axis: #393834;
+    --dot: #5c5b55;
+    --accent: #60b997;
+    --accent-soft: #143529;
+    --pick: #ffefae;
+    --pick-ink: #262210;
+    --good: #60b997;
+    --chart-surface: #1a1915;
+    --highlight: #e66804;
+    --selected: #4781cc;
+    --frontier: #007e5a;
+  }
+}
+:root[data-colorway="turquoise"][data-theme="dark"] {
+  --bg: #100f0c;
+  --surface: #1a1915;
+  --surface-2: #25241f;
+  --text: #f0eee9;
+  --text-2: #bfbeb7;
+  --text-3: #94928b;
+  --grid: #272623;
+  --axis: #393834;
+  --dot: #5c5b55;
+  --accent: #60b997;
+  --accent-soft: #143529;
+  --pick: #ffefae;
+  --pick-ink: #262210;
+  --good: #60b997;
+  --chart-surface: #1a1915;
+  --highlight: #e66804;
+  --selected: #4781cc;
+  --frontier: #007e5a;
+}
+
+/* Pistachio: plate 127 (Cinnamon Buff · Pistachio Green · Dark Soft Violet) */
+:root[data-colorway="pistachio"] {
+  --bg: #fdf8f2;
+  --surface: #fffcf9;
+  --surface-2: #f7efe5;
+  --text: #1c1712;
+  --text-2: #524c45;
+  --text-3: #716b63;
+  --grid: #e7e2dc;
+  --axis: #c2bdb7;
+  --dot: #afaaa4;
+  --accent: #076f4e;
+  --accent-soft: #d7f3e5;
+  --pick: #fdc57e;
+  --pick-ink: #2b1f11;
+  --good: #076f4e;
+  --chart-surface: #fffcf9;
+  --highlight: #975d00;
+  --selected: #867fd7;
+  --frontier: #009265;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-colorway="pistachio"]:not([data-theme="light"]) {
+    --bg: #110f0c;
+    --surface: #1c1915;
+    --surface-2: #27231f;
+    --text: #f2eee9;
+    --text-2: #c2bdb7;
+    --text-3: #96918c;
+    --grid: #292623;
+    --axis: #3a3734;
+    --dot: #5e5a55;
+    --accent: #63b894;
+    --accent-soft: #153528;
+    --pick: #fdc57e;
+    --pick-ink: #2b1f11;
+    --good: #63b894;
+    --chart-surface: #1c1915;
+    --highlight: #c28323;
+    --selected: #7b73ca;
+    --frontier: #007e55;
+  }
+}
+:root[data-colorway="pistachio"][data-theme="dark"] {
+  --bg: #110f0c;
+  --surface: #1c1915;
+  --surface-2: #27231f;
+  --text: #f2eee9;
+  --text-2: #c2bdb7;
+  --text-3: #96918c;
+  --grid: #292623;
+  --axis: #3a3734;
+  --dot: #5e5a55;
+  --accent: #63b894;
+  --accent-soft: #153528;
+  --pick: #fdc57e;
+  --pick-ink: #2b1f11;
+  --good: #63b894;
+  --chart-surface: #1c1915;
+  --highlight: #c28323;
+  --selected: #7b73ca;
+  --frontier: #007e55;
+}
+
+/* Cossack: plate 294 (Sulpher Yellow · Cream Yellow · Cossack Green · Salvia Blue) */
+:root[data-colorway="cossack"] {
+  --bg: #fbf9f2;
+  --surface: #fefdf9;
+  --surface-2: #f3f0e5;
+  --text: #1a1812;
+  --text-2: #4f4d45;
+  --text-3: #6e6c63;
+  --grid: #e5e3dc;
+  --axis: #bfbeb7;
+  --dot: #acaba4;
+  --accent: #376c37;
+  --accent-soft: #def2dd;
+  --pick: #f5ecc2;
+  --pick-ink: #262210;
+  --good: #376c37;
+  --chart-surface: #fefdf9;
+  --highlight: #8b5600;
+  --selected: #5994e0;
+  --frontier: #4b944a;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-colorway="cossack"]:not([data-theme="light"]) {
+    --bg: #100f0c;
+    --surface: #1a1915;
+    --surface-2: #25241f;
+    --text: #f0efe9;
+    --text-2: #bfbeb7;
+    --text-3: #94928b;
+    --grid: #272623;
+    --axis: #393834;
+    --dot: #5c5b55;
+    --accent: #7eb57c;
+    --accent-soft: #20341f;
+    --pick: #f5ecc2;
+    --pick-ink: #262210;
+    --good: #7eb57c;
+    --chart-surface: #1a1915;
+    --highlight: #c18420;
+    --selected: #4781cc;
+    --frontier: #327b33;
+  }
+}
+:root[data-colorway="cossack"][data-theme="dark"] {
+  --bg: #100f0c;
+  --surface: #1a1915;
+  --surface-2: #25241f;
+  --text: #f0efe9;
+  --text-2: #bfbeb7;
+  --text-3: #94928b;
+  --grid: #272623;
+  --axis: #393834;
+  --dot: #5c5b55;
+  --accent: #7eb57c;
+  --accent-soft: #20341f;
+  --pick: #f5ecc2;
+  --pick-ink: #262210;
+  --good: #7eb57c;
+  --chart-surface: #1a1915;
+  --highlight: #c18420;
+  --selected: #4781cc;
+  --frontier: #327b33;
+}
+
+/* Rufous: plate 172 (Cinnamon Rufous · Antwarp Blue · Red Violet) */
+:root[data-colorway="rufous"] {
+  --bg: #fff8f3;
+  --surface: #fffcfa;
+  --surface-2: #f9eee7;
+  --text: #1d1713;
+  --text-2: #534b46;
+  --text-3: #736a64;
+  --grid: #e8e1dd;
+  --axis: #c3bcb8;
+  --dot: #b0a9a5;
+  --accent: #006888;
+  --accent-soft: #d3f1fd;
+  --pick: #ffb989;
+  --pick-ink: #2d1e13;
+  --good: #006888;
+  --chart-surface: #fffcfa;
+  --highlight: #804894;
+  --selected: #d07940;
+  --frontier: #008fba;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-colorway="rufous"]:not([data-theme="light"]) {
+    --bg: #120f0d;
+    --surface: #1c1916;
+    --surface-2: #282320;
+    --text: #f3ede9;
+    --text-2: #c3bcb8;
+    --text-3: #97918c;
+    --grid: #292623;
+    --axis: #3b3735;
+    --dot: #5f5a56;
+    --accent: #56b2d4;
+    --accent-soft: #10323f;
+    --pick: #ffb989;
+    --pick-ink: #2d1e13;
+    --good: #56b2d4;
+    --chart-surface: #1c1916;
+    --highlight: #b277c7;
+    --selected: #bc672c;
+    --frontier: #00759a;
+  }
+}
+:root[data-colorway="rufous"][data-theme="dark"] {
+  --bg: #120f0d;
+  --surface: #1c1916;
+  --surface-2: #282320;
+  --text: #f3ede9;
+  --text-2: #c3bcb8;
+  --text-3: #97918c;
+  --grid: #292623;
+  --axis: #3b3735;
+  --dot: #5f5a56;
+  --accent: #56b2d4;
+  --accent-soft: #10323f;
+  --pick: #ffb989;
+  --pick-ink: #2d1e13;
+  --good: #56b2d4;
+  --chart-surface: #1c1916;
+  --highlight: #b277c7;
+  --selected: #bc672c;
+  --frontier: #00759a;
+}
+
+/* Madder: plate 314 (Eosine Pink · Hay's Russet · Deep Lyons Blue · Dusky Madder Violet) */
+:root[data-colorway="madder"] {
+  --bg: #fff7f5;
+  --surface: #fffcfb;
+  --surface-2: #faedea;
+  --text: #1d1615;
+  --text-2: #544a48;
+  --text-3: #746967;
+  --grid: #e9e1df;
+  --axis: #c4bbba;
+  --dot: #b1a9a7;
+  --accent: #345ba2;
+  --accent-soft: #deecff;
+  --pick: #ffb7a7;
+  --pick-ink: #2e1c18;
+  --good: #345ba2;
+  --chart-surface: #fffcfb;
+  --highlight: #944d90;
+  --selected: #cf6b59;
+  --frontier: #4c79c7;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-colorway="madder"]:not([data-theme="light"]) {
+    --bg: #120e0d;
+    --surface: #1d1817;
+    --surface-2: #282321;
+    --text: #f4edeb;
+    --text-2: #c4bbba;
+    --text-3: #98908e;
+    --grid: #2a2524;
+    --axis: #3b3736;
+    --dot: #605958;
+    --accent: #78a4f1;
+    --accent-soft: #212e44;
+    --pick: #ffb7a7;
+    --pick-ink: #2e1c18;
+    --good: #78a4f1;
+    --chart-surface: #1d1817;
+    --highlight: #bd73b9;
+    --selected: #c06141;
+    --frontier: #3c67b3;
+  }
+}
+:root[data-colorway="madder"][data-theme="dark"] {
+  --bg: #120e0d;
+  --surface: #1d1817;
+  --surface-2: #282321;
+  --text: #f4edeb;
+  --text-2: #c4bbba;
+  --text-3: #98908e;
+  --grid: #2a2524;
+  --axis: #3b3736;
+  --dot: #605958;
+  --accent: #78a4f1;
+  --accent-soft: #212e44;
+  --pick: #ffb7a7;
+  --pick-ink: #2e1c18;
+  --good: #78a4f1;
+  --chart-surface: #1d1817;
+  --highlight: #bd73b9;
+  --selected: #c06141;
+  --frontier: #3c67b3;
+}
+
+/* Nile: plate 345 (Hay's Russet · Nile Blue · Venice Green · Blue Violet) */
+:root[data-colorway="nile"] {
+  --bg: #f2fbfb;
+  --surface: #f9fefe;
+  --surface-2: #e5f3f4;
+  --text: #121a1a;
+  --text-2: #455050;
+  --text-3: #636e6f;
+  --grid: #dce5e5;
+  --axis: #b7c0c0;
+  --dot: #a4adad;
+  --accent: #614d9e;
+  --accent-soft: #ebe7ff;
+  --pick: #bce4e5;
+  --pick-ink: #0e2627;
+  --good: #614d9e;
+  --chart-surface: #f9fefe;
+  --highlight: #aa4a39;
+  --selected: #00a1a7;
+  --frontier: #7d6ac0;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-colorway="nile"]:not([data-theme="light"]) {
+    --bg: #0c1010;
+    --surface: #151b1b;
+    --surface-2: #1f2526;
+    --text: #e9f0f0;
+    --text-2: #b7c0c0;
+    --text-3: #8c9494;
+    --grid: #232828;
+    --axis: #343939;
+    --dot: #555c5d;
+    --accent: #a795ed;
+    --accent-soft: #2e2943;
+    --pick: #bce4e5;
+    --pick-ink: #0e2627;
+    --good: #a795ed;
+    --chart-surface: #151b1b;
+    --highlight: #c86553;
+    --selected: #009498;
+    --frontier: #6c58ac;
+  }
+}
+:root[data-colorway="nile"][data-theme="dark"] {
+  --bg: #0c1010;
+  --surface: #151b1b;
+  --surface-2: #1f2526;
+  --text: #e9f0f0;
+  --text-2: #b7c0c0;
+  --text-3: #8c9494;
+  --grid: #232828;
+  --axis: #343939;
+  --dot: #555c5d;
+  --accent: #a795ed;
+  --accent-soft: #2e2943;
+  --pick: #bce4e5;
+  --pick-ink: #0e2627;
+  --good: #a795ed;
+  --chart-surface: #151b1b;
+  --highlight: #c86553;
+  --selected: #009498;
+  --frontier: #6c58ac;
+}
+
+/* Rosolanc: plate 355 (Rosolanc Purple · Vandyke Brown · Sea Green · Antwarp Blue) */
+:root[data-colorway="rosolanc"] {
+  --bg: #fff6f9;
+  --surface: #fffbfd;
+  --surface-2: #f9ecf1;
+  --text: #1d1619;
+  --text-2: #544a4d;
+  --text-3: #73696c;
+  --grid: #e9e0e3;
+  --axis: #c3bbbe;
+  --dot: #b0a8ab;
+  --accent: #006888;
+  --accent-soft: #d3f1fd;
+  --pick: #ffb0cf;
+  --pick-ink: #2d1c22;
+  --good: #006888;
+  --chart-surface: #fffbfd;
+  --highlight: #905200;
+  --selected: #cf5588;
+  --frontier: #0095c1;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-colorway="rosolanc"]:not([data-theme="light"]) {
+    --bg: #120e10;
+    --surface: #1d181a;
+    --surface-2: #282224;
+    --text: #f3ecef;
+    --text-2: #c3bbbe;
+    --text-3: #989092;
+    --grid: #292527;
+    --axis: #3b3638;
+    --dot: #5f595b;
+    --accent: #56b2d4;
+    --accent-soft: #10323f;
+    --pick: #ffb0cf;
+    --pick-ink: #2d1c22;
+    --good: #56b2d4;
+    --chart-surface: #1d181a;
+    --highlight: #b87514;
+    --selected: #cb4e74;
+    --frontier: #0082a9;
+  }
+}
+:root[data-colorway="rosolanc"][data-theme="dark"] {
+  --bg: #120e10;
+  --surface: #1d181a;
+  --surface-2: #282224;
+  --text: #f3ecef;
+  --text-2: #c3bbbe;
+  --text-3: #989092;
+  --grid: #292527;
+  --axis: #3b3638;
+  --dot: #5f595b;
+  --accent: #56b2d4;
+  --accent-soft: #10323f;
+  --pick: #ffb0cf;
+  --pick-ink: #2d1c22;
+  --good: #56b2d4;
+  --chart-surface: #1d181a;
+  --highlight: #b87514;
+  --selected: #cb4e74;
+  --frontier: #0082a9;
+}

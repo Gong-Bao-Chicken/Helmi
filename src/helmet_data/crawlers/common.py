@@ -8,7 +8,7 @@ BROWSER_USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 )
-CRAWLER_USER_AGENT = "HelmetCompare/0.1 (+https://github.com/local/helmet-compare; research)"
+CRAWLER_USER_AGENT = "LidWiser/0.1 (+https://github.com/Gong-Bao-Chicken/LidWiser; research)"
 
 
 def slugify(*parts: str) -> str:

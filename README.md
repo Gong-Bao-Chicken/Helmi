@@ -1,4 +1,4 @@
-# Helmet Compare
+# LidWiser
 
 Find the right bicycle helmet. Tell it how you ride, what matters most (protection, value, budget or aero) and your budget; it ranks helmets using independent lab tests from [Virginia Tech](https://www.helmet.beam.vt.edu/), Folksam, CERTIMOOV and NSW Helmet STAR, matched with current shop prices in Germany, Austria and Switzerland, and explains each pick in plain language.
 

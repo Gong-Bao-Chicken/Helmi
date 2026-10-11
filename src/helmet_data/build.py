@@ -51,7 +51,7 @@ VT_DATA_URL = "https://www.helmet.beam.vt.edu/js/bicycleData.js"
 VT_IMAGE_BASE = "https://www.helmet.beam.vt.edu/images/bicycle/"
 DEFAULT_OUTPUT = HELMETS_JSON_PATH
 
-USER_AGENT = "HelmetCompare/0.1 (+https://github.com/local/helmet-compare; research prototype)"
+USER_AGENT = "LidWiser/0.1 (+https://github.com/Gong-Bao-Chicken/LidWiser; research prototype)"
 
 
 def slugify(*parts: str) -> str:

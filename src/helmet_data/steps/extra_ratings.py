@@ -7,7 +7,7 @@ from pathlib import Path
 from ..crawlers.certimoov import certimoov_to_dict, fetch_certimoov_ratings
 from ..crawlers.folksam import fetch_folksam_ratings, folksam_to_dict
 from ..crawlers.nsw_helmet_star import fetch_nsw_helmet_star_ratings, nsw_to_dict
-from ..enrich.matching import match_certimoov, match_folksam, match_nsw
+from ..enrich.matching import HelmetMatch, match_certimoov, match_folksam, match_nsw
 from ..enrich.ratings import compute_rank_percentiles
 from ..paths import EXTRA_RATINGS_PATH, EXTRA_RATINGS_RAW_PATH, HELMETS_JSON_PATH
 
@@ -72,6 +72,43 @@ def attach_star_percentiles(entries: list[dict], source_key: str) -> None:
         entry["ratings"][source_key]["rank_pct"] = ranks.get(entry["id"])
 
 
+def _certimoov_block(payload: dict) -> dict:
+    return {
+        "score": payload["score"],
+        "stars": payload["stars"],
+        "test_year": payload["test_year"],
+        "url": payload["url"],
+        "impact_scores": payload["impact_scores"],
+    }
+
+
+def _folksam_block(payload: dict) -> dict:
+    return {
+        "recommended": payload["recommended"],
+        "overall_result_pct": payload["overall_result_pct"],
+        "grade": payload["grade"],
+        "segment": payload["segment"],
+        "test_year": payload["test_year"],
+        "url": payload["url"],
+    }
+
+
+def load_previous(output: Path, raw_output: Path) -> dict:
+    """Previous crawl results (merged matches + raw unmatched) used as per-source fallback."""
+    previous: dict = {"meta": {}, "matches": [], "unmatched": []}
+    for path, keys in ((output, ("meta", "matches")), (raw_output, ("unmatched",))):
+        if not path.exists():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            print(f"  warning: could not read previous ratings cache {path}: {exc}")
+            continue
+        for key in keys:
+            previous[key] = data.get(key, previous[key])
+    return previous
+
+
 def build_matches(
     helmets: list[dict],
     *,
@@ -80,7 +117,14 @@ def build_matches(
     folksam_year: int = 2025,
     nsw_year: int = 2025,
     delay: float = 0.25,
+    previous: dict | None = None,
 ) -> tuple[list[dict], list[dict], dict]:
+    """Crawl each source and match it to helmets.
+
+    A failing source never aborts the run: its entries from ``previous`` (the last
+    successful crawl) are reused and its stats get ``error`` / ``stale: true``.
+    """
+    previous = previous or {}
     by_id: dict[str, dict] = {}
     unmatched: list[dict] = []
     stats: dict[str, dict] = {}
@@ -99,78 +143,73 @@ def build_matches(
             }
         return by_id[match.helmet_id]
 
-    if "certimoov" in sources:
+    def fetch_certimoov() -> list[tuple[dict, object, dict]]:
         print("Fetching CERTIMOOV bike helmets…")
-        certimoov = fetch_certimoov_ratings(
+        items = fetch_certimoov_ratings(
             limit=certimoov_limit,
             delay=delay,
             on_progress=lambda i, total, slug: print(f"  CERTIMOOV {i}/{total}: {slug}", flush=True),
         )
-        matched = 0
-        for item in certimoov:
+        rows = []
+        for item in items:
             payload = certimoov_to_dict(item)
-            match = match_certimoov(payload, helmets)
-            if not match:
-                unmatched.append({"source": "certimoov", **payload})
-                continue
-            entry = ensure_entry(match)
-            entry["ratings"]["certimoov"] = {
-                "score": payload["score"],
-                "stars": payload["stars"],
-                "test_year": payload["test_year"],
-                "url": payload["url"],
-                "impact_scores": payload["impact_scores"],
-            }
-            matched += 1
-        stats["certimoov"] = {"fetched": len(certimoov), "matched": matched}
+            rows.append((payload, match_certimoov(payload, helmets), _certimoov_block(payload)))
+        return rows
 
-    if "folksam" in sources:
+    def fetch_folksam() -> list[tuple[dict, object, dict]]:
         print("Fetching Folksam PDF reports…")
-        folksam = fetch_folksam_ratings(
+        items = fetch_folksam_ratings(
             test_year=folksam_year,
             on_progress=lambda url: print(f"  Folksam PDF: {url}", flush=True),
         )
-        matched = 0
-        for item in folksam:
+        rows = []
+        for item in items:
             payload = folksam_to_dict(item)
-            match = match_folksam(payload, helmets)
-            if not match:
-                unmatched.append({"source": "folksam", **payload})
-                continue
-            entry = ensure_entry(match)
-            entry["ratings"]["folksam"] = {
-                "recommended": payload["recommended"],
-                "overall_result_pct": payload["overall_result_pct"],
-                "grade": payload["grade"],
-                "segment": payload["segment"],
-                "test_year": payload["test_year"],
-                "url": payload["url"],
-            }
-            matched += 1
-        stats["folksam"] = {"fetched": len(folksam), "matched": matched}
+            rows.append((payload, match_folksam(payload, helmets), _folksam_block(payload)))
+        return rows
 
-    if "nsw_helmet_star" in sources:
+    def fetch_nsw() -> list[tuple[dict, object, dict]]:
         print("Fetching NSW Helmet STAR…")
-        nsw = fetch_nsw_helmet_star_ratings(
+        items = fetch_nsw_helmet_star_ratings(
             on_progress=lambda url: print(f"  NSW page: {url}", flush=True),
         )
-        matched = 0
-        for item in nsw:
+        rows = []
+        for item in items:
             payload = nsw_to_dict(item)
-            match = match_nsw(payload, helmets)
-            if not match:
-                unmatched.append({"source": "nsw_helmet_star", **payload})
-                continue
-            entry = ensure_entry(match)
-            entry["ratings"]["nsw_helmet_star"] = {
+            block = {
                 "stars": payload["stars"],
                 "category": payload["category"],
                 "price_band": payload["price_band"],
-                "test_year": nsw_year,
+                "test_year": payload.get("test_year") or nsw_year,
                 "url": payload["url"],
             }
+            rows.append((payload, match_nsw(payload, helmets), block))
+        return rows
+
+    fetchers = {
+        "certimoov": fetch_certimoov,
+        "folksam": fetch_folksam,
+        "nsw_helmet_star": fetch_nsw,
+    }
+
+    for source in ALL_SOURCES:
+        if source not in sources:
+            continue
+        try:
+            rows = fetchers[source]()
+            if not rows:
+                raise RuntimeError("no ratings returned (site layout changed?)")
+        except Exception as exc:  # noqa: BLE001 - one broken lab must not abort the update
+            stats[source] = _fallback_to_previous(source, exc, previous, ensure_entry, unmatched)
+            continue
+        matched = 0
+        for payload, match, block in rows:
+            if not match:
+                unmatched.append({"source": source, **payload})
+                continue
+            ensure_entry(match)["ratings"][source] = block
             matched += 1
-        stats["nsw_helmet_star"] = {"fetched": len(nsw), "matched": matched}
+        stats[source] = {"fetched": len(rows), "matched": matched}
 
     matches = list(by_id.values())
 
@@ -184,6 +223,46 @@ def build_matches(
     attach_star_percentiles(nsw_entries, "nsw_helmet_star")
 
     return matches, unmatched, stats
+
+
+def _fallback_to_previous(source, exc, previous, ensure_entry, unmatched) -> dict:
+    error = f"{type(exc).__name__}: {exc}"
+    print(
+        f"\n  WARNING: {source} fetch failed ({error}).\n"
+        f"  Falling back to previously cached {source} ratings.\n",
+        flush=True,
+    )
+    reused = 0
+    for entry in previous.get("matches", []):
+        block = entry.get("ratings", {}).get(source)
+        if block is None:
+            continue
+        info = entry.get("match", {})
+        cached_match = HelmetMatch(
+            helmet_id=entry["id"],
+            brand=info.get("brand", ""),
+            model=info.get("model", ""),
+            confidence=info.get("confidence", 0.0),
+            method=info.get("method", "cached"),
+        )
+        ensure_entry(cached_match)["ratings"][source] = dict(block)
+        reused += 1
+    reused_unmatched = [u for u in previous.get("unmatched", []) if u.get("source") == source]
+    unmatched.extend(reused_unmatched)
+
+    prev_stats = previous.get("meta", {}).get("sources", {}).get(source, {})
+    stale_since = (
+        prev_stats.get("stale_since")
+        if prev_stats.get("stale")
+        else previous.get("meta", {}).get("generated_at")
+    )
+    return {
+        "fetched": prev_stats.get("fetched", reused + len(reused_unmatched)),
+        "matched": reused,
+        "error": error,
+        "stale": True,
+        "stale_since": stale_since,
+    }
 
 
 def write_output(path: Path, payload: dict) -> None:
@@ -207,8 +286,10 @@ def run_fetch_extra_ratings(
     if not helmets:
         raise SystemExit(f"No helmets found at {helmets_path}. Run `helmet-data build` first.")
 
+    previous = load_previous(output, raw_output)
     matches, unmatched, stats = build_matches(
         helmets,
+        previous=previous,
         sources=sources,
         certimoov_limit=certimoov_limit,
         folksam_year=folksam_year,
@@ -237,5 +318,8 @@ def run_fetch_extra_ratings(
     print(f"\nWrote {len(matches)} matched helmets to {output}")
     print(f"Unmatched entries: {len(unmatched)} (see {raw_output})")
     for source, info in stats.items():
-        print(f"  {source}: fetched {info['fetched']}, matched {info['matched']}")
+        line = f"  {source}: fetched {info['fetched']}, matched {info['matched']}"
+        if info.get("stale"):
+            line += f"  [STALE - fetch failed: {info['error']}; reused cached entries]"
+        print(line)
     print("\nNext: helmet-data build")

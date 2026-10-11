@@ -131,6 +131,10 @@ def match_certimoov(
     if by_guess:
         return by_guess
 
+    if not rating.get("brand"):
+        # Current CERTIMOOV pages only expose a combined "<Brand> <Model>" title.
+        return _match_by_model_only(rating.get("model", ""), helmets, brand_candidates)
+
     return _match_by_brand_model(
         rating.get("brand", ""),
         rating.get("model", ""),

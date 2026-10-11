@@ -12,6 +12,40 @@ FOLKSAM_PDF_URLS = {
     "adults_en": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
     "children_en": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-barn-eng_tcm5-84884.pdf",
 }
+FOLKSAM_BASE = "https://www.folksam.se"
+# Landing pages that link the current report PDFs; used to pick up a newer
+# report (e.g. 2026) automatically. FOLKSAM_PDF_URLS is the fallback.
+FOLKSAM_TEST_PAGES = {
+    "adults_en": f"{FOLKSAM_BASE}/tester-och-goda-rad/vara-tester/cykelhjalmar-for-vuxna",
+    "children_en": f"{FOLKSAM_BASE}/tester-och-goda-rad/vara-tester/cykelhjalmar-for-barn",
+}
+_PDF_LINK_RE = re.compile(
+    r'href="(?P<href>[^"]*cykelhjalmstest-(?P<year>20\d{2})-(?P<seg>vuxen|barn)-eng[^"]*\.pdf)"',
+    re.IGNORECASE,
+)
+
+
+def discover_pdf_urls(client: httpx.Client) -> dict[str, tuple[str, int]]:
+    """Return {key: (pdf_url, year)} for the newest English reports linked from Folksam."""
+    found: dict[str, tuple[str, int]] = {}
+    for key, page_url in FOLKSAM_TEST_PAGES.items():
+        try:
+            response = client.get(page_url)
+            response.raise_for_status()
+        except httpx.HTTPError as exc:
+            print(f"  Folksam: could not read {page_url} ({exc}); using built-in PDF URL")
+            continue
+        candidates = [(int(m.group("year")), m.group("href")) for m in _PDF_LINK_RE.finditer(response.text)]
+        if candidates:
+            year, href = max(candidates)
+            url = href if href.startswith("http") else f"{FOLKSAM_BASE}{href}"
+            found[key] = (url, year)
+    return found
+
+
+def year_from_url(url: str, default: int) -> int:
+    match = re.search(r"cykelhjalmstest-(20\d{2})", url)
+    return int(match.group(1)) if match else default
 
 
 @dataclass
@@ -91,7 +125,9 @@ def fetch_folksam_ratings(
     headers = {"User-Agent": CRAWLER_USER_AGENT}
 
     with httpx.Client(timeout=60.0, headers=headers, follow_redirects=True) as client:
-        for key, url in FOLKSAM_PDF_URLS.items():
+        discovered = discover_pdf_urls(client)
+        for key, fallback_url in FOLKSAM_PDF_URLS.items():
+            url, year = discovered.get(key, (fallback_url, year_from_url(fallback_url, test_year)))
             if on_progress:
                 on_progress(url)
             response = client.get(url)
@@ -99,7 +135,10 @@ def fetch_folksam_ratings(
             reader = PdfReader(BytesIO(response.content))
             text = "\n".join(page.extract_text() or "" for page in reader.pages)
             segment = "adults" if "vuxen" in key or "adult" in key else "children"
-            ratings.extend(_parse_table3(text, segment, url, test_year))
+            parsed = _parse_table3(text, segment, url, year)
+            if not parsed:
+                raise RuntimeError(f"Folksam: no rows parsed from {url} (report layout changed?)")
+            ratings.extend(parsed)
             polite_sleep(0.2)
 
     return ratings

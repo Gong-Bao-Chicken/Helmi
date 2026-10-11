@@ -5,33 +5,38 @@ import re
 from pathlib import Path
 from typing import Any
 
+from ..crawlers.common import normalize_tokens, token_overlap_score
 from ..paths import AERO_RATINGS_PATH
 from .aero_sources import (
     AERO_SOURCES,
     apply_source_rank_percentiles,
     finalize_all_aero,
 )
-from .matching import HelmetMatch, _brand_candidates, _match_by_brand_model, _match_by_slug
+from .matching import (
+    MATCH_THRESHOLD,
+    HelmetMatch,
+    _brand_candidates,
+    _match_by_brand_model,
+    _match_by_slug,
+)
 from .styles import infer_style
 
 DEFAULT_AERO_RATINGS = AERO_RATINGS_PATH
 
+# Explicit aero-entry slug -> helmet id links. Only map the *same* helmet (naming
+# variants such as "S-Works Evade 3" -> "Evade 3"); never a different model or
+# generation (e.g. Tucker -> Falconer, Ibex 3 -> Ibex, Ventral Tempus -> Ventral Air).
 HELMET_ID_HINTS: dict[str, str] = {
     "specialized-s-works-evade-3": "specialized-evade-3",
     "specialized-s-works-prevail-3": "specialized-prevail-3",
     "trek-ballista": "trek-ballista-mips",
     "abus-gamechanger-2-0": "abus-gamechanger-2-0-mips",
-    "abus-gamechanger": "abus-gamechanger-2-0-mips",
     "lazer-vento-kineticore": "lazer-vento-kineticore",
     "lazer-z1-kineticore": "lazer-z1-kineticore",
     "sweet-protection-falconer": "sweet-protection-falconer-aero-2vi-mips",
-    "sweet-protection-tucker-2vi": "sweet-protection-falconer-2vi-mips",
     "scott-cadence": "scott-cadence-plus-mips",
     "giro-aerohead": "giro-aerohead-mips",
     "met-manta": "met-manta-mips",
-    "kask-protone-icon": "kask-protone",
-    "hjc-ibex-3": "hjc-ibex",
-    "hjc-furion-3": "hjc-furion",
     "rudy-project-nytron": "rudy-project-nytron",
     "rudy-project-nytron-pro": "rudy-project-nytron-pro",
     "giro-eclipse": "giro-eclipse-spherical",
@@ -42,8 +47,6 @@ HELMET_ID_HINTS: dict[str, str] = {
     "poc-cytal-carbon": "poc-cytal-carbon",
     "poc-cytal": "poc-cytal",
     "poc-procen-air": "poc-procen-air",
-    "poc-ventral": "poc-ventral-air",
-    "poc-ventral-tempus": "poc-ventral-air",
     "fizik-kudo-aero": "fizik-kudo-aero",
     "kask-elemento": "kask-elemento",
     "specialized-propero-4": "specialized-propero-4",
@@ -72,7 +75,6 @@ HELMET_ID_HINTS: dict[str, str] = {
     "uvex-surge": "extra-aero-uvex-surge",
     "smith-network": "extra-aero-smith-network",
     "smith-trace": "extra-aero-smith-trace",
-    "hjc-furion-3-mips": "hjc-furion",
 }
 
 
@@ -120,12 +122,35 @@ def match_aero_entry(
     if by_slug:
         return by_slug
 
-    return _match_by_brand_model(
+    match = _match_by_brand_model(
         entry.get("brand", ""),
         entry.get("model", ""),
         helmets,
         brand_candidates,
     )
+    if match and match.method == "token_overlap" and not _same_model(entry, match):
+        return None
+    return match
+
+
+def _same_model(entry: dict[str, Any], match: HelmetMatch) -> bool:
+    """Guard fuzzy matches: brand must agree and the *model* tokens must overlap.
+
+    Brand + generic tokens alone (e.g. "Sweet Protection ... 2Vi") are enough to pass the
+    brand+model overlap threshold, which wrongly mapped the Tucker 2Vi to the Falconer 2Vi.
+    """
+    if entry.get("brand", "").strip().lower() != match.brand.strip().lower():
+        return False
+    model = entry.get("model", "")
+    if token_overlap_score(model, match.model) < MATCH_THRESHOLD:
+        return False
+    # Extra model words on the helmet side mean a different model ("Rev" vs "Rev Comp").
+    extra = normalize_tokens(match.model) - normalize_tokens(model) - _GENERIC_MODEL_TOKENS
+    return not extra
+
+
+# Protection-tech suffixes that VT appends to otherwise identical model names.
+_GENERIC_MODEL_TOKENS = {"spherical", "wavecel", "kineticore", "2vi", "koroyd"}
 
 
 def build_source_block(

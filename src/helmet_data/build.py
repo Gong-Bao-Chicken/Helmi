@@ -48,7 +48,7 @@ from .paths import (
 from .steps.extra_ratings import run_fetch_extra_ratings
 
 VT_DATA_URL = "https://www.helmet.beam.vt.edu/js/bicycleData.js"
-VT_IMAGE_BASE = "https://www.helmet.beam.vt.edu/img/bicycle/"
+VT_IMAGE_BASE = "https://www.helmet.beam.vt.edu/images/bicycle/"
 DEFAULT_OUTPUT = HELMETS_JSON_PATH
 
 USER_AGENT = "HelmetCompare/0.1 (+https://github.com/local/helmet-compare; research prototype)"
@@ -272,6 +272,12 @@ BRAND_ALIASES = {
     "decathlon": "Decathlon",
     "van rysel": "Van Rysel",
 }
+
+
+def vt_image_url(photo: str | None, slug: str) -> str:
+    """VT serves photos at /images/bicycle/<photo> (photo field of bicycleData.js)."""
+    filename = (photo or "").strip() or f"{slug}.jpg"
+    return f"{VT_IMAGE_BASE}{filename}"
 
 
 def normalize_brand(brand: str) -> str:
@@ -518,7 +524,7 @@ def enrich_helmet(
         "price_at_test_usd": price,
         "price_at_test_label": raw.get("cost"),
         "value_ratio": value_ratio,
-        "image_url": f"{VT_IMAGE_BASE}{raw['photo']}",
+        "image_url": vt_image_url(raw.get("photo"), slugify(brand, model)),
         "features": features,
         "feature_labels": feature_labels(features),
         "eu_brand": is_eu_brand(brand, eu_brands),

@@ -123,3 +123,17 @@ def test_helmet_field_sets(dataset):
     for helmet in helmets:
         if helmet.get("catalog") == "extra_only":
             assert EXTRA_ONLY_KEYS <= set(helmet) <= EXTRA_ONLY_KEYS | {"aero", "stars"}
+
+
+def test_image_url_uses_vt_photo_field(dataset):
+    vt = {h["id"]: h for h in dataset["helmets"] if h.get("catalog") != "extra_only"}
+    assert vt["giro-aries-spherical"]["image_url"] == (
+        "https://www.helmet.beam.vt.edu/images/bicycle/giro-aries.jpg"
+    )
+
+
+def test_image_url_falls_back_to_slug():
+    assert build.vt_image_url(None, "bell-nomad-2-mips") == (
+        "https://www.helmet.beam.vt.edu/images/bicycle/bell-nomad-2-mips.jpg"
+    )
+    assert build.vt_image_url("", "x").endswith("/images/bicycle/x.jpg")

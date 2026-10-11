@@ -99,3 +99,32 @@ class AeroFusionTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _aero_match(entry, helmets):
+    from helmet_data.enrich.aero import match_aero_entry
+    from helmet_data.enrich.matching import _brand_candidates
+
+    by_id = {h["id"]: h for h in helmets}
+    return match_aero_entry(entry, helmets, by_id, _brand_candidates(helmets))
+
+
+AERO_HELMETS = [
+    {"id": "sweet-protection-falconer-2vi-mips", "brand": "Sweet Protection", "model": "Falconer 2Vi MIPS"},
+    {"id": "giant-rev-comp-mips", "brand": "Giant", "model": "Rev Comp MIPS"},
+    {"id": "abus-powerdome-mips", "brand": "ABUS", "model": "Powerdome MIPS"},
+]
+
+
+def test_aero_does_not_map_tucker_to_falconer():
+    entry = {"id": "sweet-protection-tucker-2vi", "brand": "Sweet Protection", "model": "Tucker 2Vi"}
+    assert _aero_match(entry, AERO_HELMETS) is None
+
+
+def test_aero_rejects_different_model_with_extra_words():
+    assert _aero_match({"id": "giant-rev", "brand": "Giant", "model": "Rev"}, AERO_HELMETS) is None
+
+
+def test_aero_accepts_vt_name_with_tech_suffix():
+    match = _aero_match({"id": "abus-powerdome", "brand": "Abus", "model": "Powerdome"}, AERO_HELMETS)
+    assert match is not None and match.helmet_id == "abus-powerdome-mips"

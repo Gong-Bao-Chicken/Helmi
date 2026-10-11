@@ -284,8 +284,15 @@ def normalize_brand(brand: str) -> str:
     return BRAND_ALIASES.get(brand.strip().lower().replace("’", "'"), brand.strip())
 
 
+# Labs title Decathlon's road line "Decathlon Van Rysel <model>"; the brand people shop for is Van Rysel.
+MULTI_WORD_BRANDS = ("decathlon van rysel", "van rysel")
+
+
 def parse_name_brand_model(name: str) -> tuple[str, str]:
     cleaned = re.sub(r"\s+", " ", name).strip()
+    for prefix in MULTI_WORD_BRANDS:
+        if cleaned.lower().startswith(prefix + " "):
+            return "Van Rysel", cleaned[len(prefix) + 1 :]
     parts = cleaned.split(" ", 1)
     if len(parts) == 1:
         return cleaned, cleaned

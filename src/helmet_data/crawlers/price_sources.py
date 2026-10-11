@@ -1,17 +1,18 @@
 """Shop price search adapters for DE/AT/CH bicycle helmet retailers."""
 
-import contextlib
 import re
 from collections.abc import Callable
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from urllib.parse import quote_plus, urljoin
 
 import httpx
 from bs4 import BeautifulSoup
 
-from .common import BROWSER_USER_AGENT, normalize_tokens, polite_sleep, token_overlap_score
+from .common import BROWSER_USER_AGENT, normalize_tokens, token_overlap_score
 from .stealth_fetch import (
     geizhals_is_rate_limited,
+    host_slot,
     is_geizhals_html,
     is_idealo_html,
     is_toppreise_html,
@@ -28,8 +29,8 @@ GEIZHALS_PRODUCT_URL_RE = re.compile(r"-[av]\d+\.html", re.I)
 MIN_HELMET_PRICE = {"EUR": 20.0, "CHF": 20.0}
 
 PREFERRED_SOURCES = frozenset({"geizhals", "idealo", "toppreise"})
-FALLBACK_SOURCES = frozenset({"amazon_de", "bike24", "galaxus", "velofactory"})
-SOURCE_PRIORITY = ("geizhals", "idealo", "toppreise", "amazon_de", "bike24", "galaxus", "velofactory")
+FALLBACK_SOURCES = frozenset({"amazon_de"})
+SOURCE_PRIORITY = ("geizhals", "idealo", "toppreise", "amazon_de")
 
 
 @dataclass
@@ -51,12 +52,45 @@ class PriceSearchContext:
     model: str
     query: str
     needle: str
+    # Words that identify a *different* model of the same brand (e.g. "carbon" when
+    # searching "POC Cytal" while "POC Cytal Carbon" also exists). Titles with them are rejected.
+    exclude_tokens: frozenset[str] = frozenset()
 
 
-def build_search_context(brand: str, model: str) -> PriceSearchContext:
+def build_search_context(
+    brand: str,
+    model: str,
+    *,
+    exclude_tokens: frozenset[str] | set[str] = frozenset(),
+) -> PriceSearchContext:
     cleaned = re.sub(r"\s+", " ", f"{brand} {model}").strip()
     query = f"{cleaned} Fahrradhelm"
-    return PriceSearchContext(brand=brand, model=model, query=query, needle=cleaned)
+    return PriceSearchContext(
+        brand=brand,
+        model=model,
+        query=query,
+        needle=cleaned,
+        exclude_tokens=frozenset(exclude_tokens),
+    )
+
+
+def sibling_exclude_tokens(helmet: dict, helmets: list[dict]) -> frozenset[str]:
+    """Extra model words of same-brand helmets whose name contains this helmet's model.
+
+    "Cytal" -> {"carbon"} (POC Cytal Carbon), "Rev" -> {"comp"} (Rev Comp MIPS).
+    """
+    brand = helmet.get("brand", "").lower()
+    own = normalize_tokens(helmet.get("model", ""))
+    if not own:
+        return frozenset()
+    extra: set[str] = set()
+    for other in helmets:
+        if other is helmet or other.get("brand", "").lower() != brand:
+            continue
+        tokens = normalize_tokens(other.get("model", ""))
+        if own < tokens:
+            extra |= tokens - own
+    return frozenset(extra)
 
 
 def parse_decimal_price(text: str) -> float | None:
@@ -101,6 +135,38 @@ def brand_match_tokens(brand: str) -> list[str]:
     return tokens
 
 
+# Model words that only name protection tech / shell material variants shared across a
+# brand's range, a year or edition marker - not the model itself.
+GENERIC_MODEL_TOKENS = frozenset(
+    {"2vi", "spherical", "kineticore", "wavecel", "koroyd", "version", "edition", "new"}
+)
+
+
+def distinctive_model_tokens(model: str) -> list[str]:
+    tokens = re.sub(r"[^a-z0-9]+", " ", model.lower()).split()
+    stop = normalize_tokens(model)
+    return [
+        token
+        for token in tokens
+        if token in stop and token not in GENERIC_MODEL_TOKENS and not re.fullmatch(r"(19|20)\d{2}", token)
+    ]
+
+
+def distinctive_model_match(model: str, title: str) -> bool:
+    """The model's name word must appear, and most distinctive words overall.
+
+    Stops "Sweet Protection Falconer 2Vi" being accepted for the Strayer 2Vi (only the
+    shared "2vi" overlapped) or "Fixer Composite" for "Fixer Carbon".
+    """
+    distinct = distinctive_model_tokens(model)
+    if not distinct:
+        return True
+    title_tokens = normalize_tokens(title)
+    if distinct[0] not in title_tokens:
+        return False
+    return sum(token in title_tokens for token in distinct) / len(distinct) >= 0.6
+
+
 def model_overlap_score(model: str, title: str) -> float:
     model_tokens = normalize_tokens(model)
     if not model_tokens:
@@ -122,6 +188,10 @@ def score_offer(ctx: PriceSearchContext, title: str) -> float:
     if brand_tokens and not any(token in title_lower for token in brand_tokens):
         return 0.0
     if model_overlap_score(ctx.model, title) < 0.34:
+        return 0.0
+    if ctx.exclude_tokens and ctx.exclude_tokens & normalize_tokens(title):
+        return 0.0
+    if not distinctive_model_match(ctx.model, title):
         return 0.0
     return overlap
 
@@ -199,7 +269,8 @@ def search_amazon_html(html: str, ctx: PriceSearchContext) -> list[PriceOffer]:
 
 def search_amazon_de(client: httpx.Client, ctx: PriceSearchContext) -> list[PriceOffer]:
     url = f"https://www.amazon.de/s?k={quote_plus(ctx.query)}"
-    response = client.get(url)
+    with host_slot(url):
+        response = client.get(url)
     if response.status_code != 200:
         return []
     return search_amazon_html(response.text, ctx)
@@ -355,51 +426,6 @@ def search_geizhals(
     return search_geizhals_html(html, ctx, domain=domain)
 
 
-def search_galaxus(client: httpx.Client, ctx: PriceSearchContext) -> list[PriceOffer]:
-    url = f"https://www.galaxus.ch/de/search?q={quote_plus(ctx.query)}"
-    status, html = stealth_get(url)
-    if status != 200 or not html:
-        return []
-    return search_galaxus_html(html, ctx)
-
-
-def search_galaxus_html(html: str, ctx: PriceSearchContext) -> list[PriceOffer]:
-    if len(html) < 20_000:
-        return []
-
-    soup = BeautifulSoup(html, "html.parser")
-    offers: list[PriceOffer] = []
-    for article in soup.select("article"):
-        title_el = article.select_one('[data-test="product-title"], a[href*="/product/"]')
-        if not title_el:
-            continue
-        title = title_el.get_text(" ", strip=True)
-        block = article.get_text(" ", strip=True)
-        price_match = re.search(r"(\d{1,4}[.,]\d{2})\s*CHF", block) or re.search(
-            r"(\d{1,4}[.,]\d{2})\s*\.–", block
-        )
-        if not price_match:
-            continue
-        price = parse_decimal_price(price_match.group(1))
-        if price is None:
-            continue
-        href = title_el.get("href")
-        product_url = (
-            href if href and href.startswith("http") else f"https://www.galaxus.ch{href}" if href else None
-        )
-        offer = PriceOffer(
-            source="galaxus",
-            title=title,
-            price=price,
-            currency="CHF",
-            url=product_url,
-        )
-        accepted = accept_offer(ctx, offer)
-        if accepted:
-            offers.append(accepted)
-    return offers
-
-
 def search_shop_html(
     html: str,
     ctx: PriceSearchContext,
@@ -435,38 +461,6 @@ def search_shop_html(
         if accepted:
             offers.append(accepted)
     return offers
-
-
-def search_bike24(client: httpx.Client, ctx: PriceSearchContext) -> list[PriceOffer]:
-    url = f"https://www.bike24.com/search?q={quote_plus(ctx.query)}"
-    response = client.get(url)
-    if response.status_code != 200:
-        return []
-    return search_shop_html(
-        response.text,
-        ctx,
-        source="bike24",
-        currency="EUR",
-        base_url="https://www.bike24.com",
-        title_selector=".product--box, .productbox, .product-list-item",
-        price_selector=".product--price, .price--default, .price",
-    )
-
-
-def search_velofactory(client: httpx.Client, ctx: PriceSearchContext) -> list[PriceOffer]:
-    url = f"https://www.velofactory.ch/de/search?q={quote_plus(ctx.query)}"
-    response = client.get(url)
-    if response.status_code != 200:
-        return []
-    return search_shop_html(
-        response.text,
-        ctx,
-        source="velofactory",
-        currency="CHF",
-        base_url="https://www.velofactory.ch",
-        title_selector=".product-item, .product-card, article",
-        price_selector=".price, .product-price",
-    )
 
 
 def search_toppreise_html(html: str, ctx: PriceSearchContext) -> list[PriceOffer]:
@@ -542,6 +536,32 @@ def is_idealo_blocked(html: str) -> bool:
 def search_idealo_html(html: str, ctx: PriceSearchContext) -> list[PriceOffer]:
     if is_idealo_blocked(html):
         return []
+    # 2026 layout: CSS-module classes with hashed suffixes (sr-resultList__item_m, …).
+    soup = BeautifulSoup(html, "html.parser")
+    items = soup.select('[class*="sr-resultList__item"]')
+    if items:
+        offers: list[PriceOffer] = []
+        for item in items:
+            title_el = item.select_one('[class*="sr-productSummary__title"]')
+            price_el = item.select_one('[class*="sr-detailedPriceInfo__price"]')
+            link_el = item.select_one("a[href]")
+            if not title_el or not price_el:
+                continue
+            price = parse_decimal_price(price_el.get_text(" ", strip=True))
+            if price is None:
+                continue
+            href = link_el.get("href") if link_el else None
+            offer = PriceOffer(
+                source="idealo",
+                title=title_el.get_text(" ", strip=True),
+                price=price,
+                currency="EUR",
+                url=urljoin("https://www.idealo.de", href) if href else None,
+            )
+            accepted = accept_offer(ctx, offer)
+            if accepted:
+                offers.append(accepted)
+        return offers
     return search_shop_html(
         html,
         ctx,
@@ -576,41 +596,72 @@ def make_price_client() -> httpx.Client:
     )
 
 
-def search_http_sources(client: httpx.Client, ctx: PriceSearchContext) -> list[PriceOffer]:
+def search_http_sources(
+    client: httpx.Client,
+    ctx: PriceSearchContext,
+    *,
+    failures: dict[str, str] | None = None,
+) -> list[PriceOffer]:
+    """Query all shops. A failing shop never aborts the search; its error lands in ``failures``.
+
+    ``failures`` maps the offer source name (geizhals, idealo, …) to the error text.
+    """
     offers: list[PriceOffer] = []
-    preferred = (
-        lambda: search_geizhals(client, ctx, domain="geizhals.de"),
-        lambda: [] if geizhals_is_rate_limited() else search_geizhals(client, ctx, domain="geizhals.eu"),
-        lambda: search_idealo(client, ctx),
-        lambda: search_toppreise(client, ctx),
-    )
-    fallback = (
-        lambda: search_amazon_de(client, ctx),
-        lambda: search_bike24(client, ctx),
-        lambda: search_galaxus(client, ctx),
-        lambda: search_velofactory(client, ctx),
+
+    def geizhals() -> list[PriceOffer]:
+        # geizhals.eu is the same catalogue with more countries' shops: only worth a request
+        # (on the same, busiest site) when geizhals.de has nothing.
+        found = search_geizhals(client, ctx, domain="geizhals.de")
+        if found or geizhals_is_rate_limited():
+            return found
+        return search_geizhals(client, ctx, domain="geizhals.eu")
+
+    searches: tuple[tuple[str, Callable[[], list[PriceOffer]]], ...] = (
+        ("geizhals", geizhals),
+        ("idealo", lambda: search_idealo(client, ctx)),
+        ("toppreise", lambda: search_toppreise(client, ctx)),
+        ("amazon_de", lambda: search_amazon_de(client, ctx)),
     )
 
-    for search_fn in preferred:
-        with contextlib.suppress(httpx.HTTPError):
-            offers.extend(search_fn())
-        polite_sleep(1.5)
+    def run(name: str, search_fn: Callable[[], list[PriceOffer]]) -> list[PriceOffer]:
+        try:
+            return search_fn()
+        except Exception as exc:  # noqa: BLE001 - httpx, curl_cffi, parser errors alike
+            message = f"{type(exc).__name__}: {exc}"[:300]
+            print(f"  warning: {name} search failed ({message})", flush=True)
+            if failures is not None:
+                failures[name] = message
+            return []
 
-    if not any(offer.source in PREFERRED_SOURCES for offer in offers):
-        for search_fn in fallback:
-            with contextlib.suppress(httpx.HTTPError):
-                offers.extend(search_fn())
-            polite_sleep(0.25)
+    # Every shop at once: each is a different site with its own request spacing. Amazon is
+    # queried alongside, not after - preferred offers still win when a price is picked
+    # (preferred_offers / pick_best_offer); its offer is extra data.
+    with ThreadPoolExecutor(max_workers=len(searches)) as pool:
+        for result in pool.map(lambda item: run(*item), searches):
+            offers.extend(result)
+    if geizhals_is_rate_limited() and failures is not None and "geizhals" not in failures:
+        # Blocked (429 / bot challenge) - treat like a failure so cached offers are kept.
+        failures["geizhals"] = "blocked or rate-limited (429/403 bot challenge)"
 
     return offers
 
 
+# Sources that list one offer per size/colour variant; their cheapest row is often a
+# clearance size and the dearest a bundle, so take the median offer instead.
+MEDIAN_OFFER_SOURCES = frozenset({"toppreise"})
+
+
 def dedupe_offers(offers: list[PriceOffer]) -> list[PriceOffer]:
-    best_by_source: dict[str, PriceOffer] = {}
+    by_source: dict[str, list[PriceOffer]] = {}
     for offer in offers:
-        current = best_by_source.get(offer.source)
-        if current is None or offer.price < current.price:
-            best_by_source[offer.source] = offer
+        by_source.setdefault(offer.source, []).append(offer)
+    best_by_source: dict[str, PriceOffer] = {}
+    for source, group in by_source.items():
+        group = sorted(group, key=lambda item: item.price)
+        if source in MEDIAN_OFFER_SOURCES:
+            best_by_source[source] = group[(len(group) - 1) // 2]
+        else:
+            best_by_source[source] = group[0]
     priority = {source: index for index, source in enumerate(SOURCE_PRIORITY)}
     return sorted(
         best_by_source.values(),

@@ -9,6 +9,7 @@ from .build import run_build
 from .pipeline import run_update
 from .steps.aero import run_fetch_aero
 from .steps.extra_ratings import ALL_SOURCES, run_fetch_extra_ratings
+from .steps.prices import DEFAULT_WORKERS as DEFAULT_PRICE_WORKERS
 from .steps.prices import run_fetch_prices
 from .steps.protection import run_fetch_protection
 
@@ -58,6 +59,7 @@ def _cmd_fetch_prices(args: argparse.Namespace) -> None:
         limit=args.limit,
         force=args.force,
         cache_only=args.cache_only,
+        workers=args.workers,
     )
 
 
@@ -215,6 +217,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--cache-only",
         action="store_true",
         help="Apply cached median prices only (no shop requests)",
+    )
+    p.add_argument(
+        "--workers",
+        type=int,
+        default=DEFAULT_PRICE_WORKERS,
+        help="Helmets fetched at the same time; each shop stays paced per host (default %(default)s)",
     )
     p.set_defaults(func=_cmd_fetch_prices)
 

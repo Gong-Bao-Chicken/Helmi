@@ -350,6 +350,8 @@ def standalone_from_unmatched(entry: dict, eu_brands: set[str]) -> dict | None:
     if source == "certimoov":
         brand = normalize_brand(entry.get("brand", ""))
         model = entry.get("model", "")
+        if not brand:  # current CERTIMOOV pages only have a combined "<Brand> <Model>" title
+            brand, model = parse_name_brand_model(model)
     elif source == "folksam":
         brand, model = parse_name_brand_model(entry.get("name", ""))
     elif source == "nsw_helmet_star":
@@ -396,7 +398,7 @@ def standalone_from_unmatched(entry: dict, eu_brands: set[str]) -> dict | None:
         "price_at_test_usd": None,
         "price_at_test_label": None,
         "value_ratio": None,
-        "image_url": None,
+        "image_url": entry.get("image_url"),
         "features": features,
         "feature_labels": feature_labels(features),
         "eu_brand": eu_brand,
@@ -419,13 +421,27 @@ def standalone_from_unmatched(entry: dict, eu_brands: set[str]) -> dict | None:
     }
 
 
+def _unmatched_dedupe_key(standalone: dict) -> tuple:
+    """CERTIMOOV publishes some tests twice (slug ``foo`` and ``foo-0``) with identical data."""
+    source = standalone["primary_rating_source"]
+    block = dict(standalone["ratings"][source])
+    block.pop("url", None)
+    name = re.sub(r"[^a-z0-9]+", "", f"{standalone['brand']} {standalone['model']}".lower())
+    return source, name, json.dumps(block, sort_keys=True)
+
+
 def append_unmatched_helmets(helmets: list[dict], unmatched: list[dict], eu_brands: set[str]) -> int:
     existing_ids = {helmet["id"] for helmet in helmets}
+    seen_keys: set[tuple] = set()
     added = 0
     for entry in unmatched:
         standalone = standalone_from_unmatched(entry, eu_brands)
         if not standalone or standalone["id"] in existing_ids:
             continue
+        key = _unmatched_dedupe_key(standalone)
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
         helmets.append(standalone)
         existing_ids.add(standalone["id"])
         added += 1
@@ -542,10 +558,22 @@ def enrich_helmet(
     }
 
 
-def fetch_vt_data(client: httpx.Client) -> list[dict]:
-    response = client.get(VT_DATA_URL)
-    response.raise_for_status()
-    return parse_vt_js(response.text)
+def fetch_vt_data(client: httpx.Client, *, attempts: int = 4) -> list[dict]:
+    """Fetch bicycleData.js, retrying transient network/TLS errors (VT drops TLS now and then)."""
+    for attempt in range(1, attempts + 1):
+        try:
+            response = client.get(VT_DATA_URL)
+            response.raise_for_status()
+            return parse_vt_js(response.text)
+        except httpx.HTTPError as exc:
+            if attempt == attempts:
+                raise
+            wait = 2**attempt
+            print(
+                f"  VT fetch failed ({type(exc).__name__}: {exc}); retry {attempt}/{attempts - 1} in {wait}s"
+            )
+            time.sleep(wait)
+    raise AssertionError("unreachable")
 
 
 def build_dataset(

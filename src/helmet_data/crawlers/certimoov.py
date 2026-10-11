@@ -34,6 +34,7 @@ class CertimoovRating:
     test_year: int | None
     url: str
     impact_scores: dict[str, float]
+    image_url: str | None = None
 
 
 def list_bike_slugs(
@@ -123,6 +124,7 @@ def parse_detail_html(html: str, slug: str) -> CertimoovRating | None:
                 break
 
     return CertimoovRating(
+        image_url=_product_image(soup),
         slug=slug,
         brand=brand,
         model=model,
@@ -132,6 +134,17 @@ def parse_detail_html(html: str, slug: str) -> CertimoovRating | None:
         url=detail_url(slug),
         impact_scores=impact_scores,
     )
+
+
+def _product_image(soup: BeautifulSoup) -> str | None:
+    og = soup.select_one('meta[property="og:image"]')
+    if og and og.get("content"):
+        return og["content"]
+    images = [img.get("src", "") for img in soup.select("img[src*='product_slider']")]
+    if not images:
+        return None
+    best = next((src for src in images if "front" in src.lower()), images[0])
+    return best if best.startswith("http") else f"{CERTIMOOV_BASE}{best}"
 
 
 def fetch_certimoov_ratings(
@@ -172,4 +185,5 @@ def certimoov_to_dict(rating: CertimoovRating) -> dict:
         "test_year": rating.test_year,
         "url": rating.url,
         "impact_scores": rating.impact_scores,
+        "image_url": rating.image_url,
     }

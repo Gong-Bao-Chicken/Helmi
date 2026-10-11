@@ -114,7 +114,6 @@ def run_fetch_protection(
                     helmet,
                     cache=retailer_cache,
                     price_cache_entry=price_cache.get(helmet["id"]),
-                    fetch_delay_s=delay,
                     force=force,
                 )
                 retailer_label = (

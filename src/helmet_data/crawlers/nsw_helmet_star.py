@@ -9,6 +9,7 @@ helmetstar.com.au (2026): listing pages with one card per helmet
 import re
 from collections.abc import Callable
 from dataclasses import dataclass, replace
+from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
@@ -39,6 +40,7 @@ class NswHelmetStarRating:
     test_year: int | None = None
     helmet_type: str | None = None
     age_group: str | None = None
+    image_url: str | None = None
 
 
 def _text(el) -> str:
@@ -74,6 +76,7 @@ def parse_listing_html(html: str) -> list[NswHelmetStarRating]:
         price_band = None
         if price_el:
             price_band = "$" * int(re.search(r"level (\d)", price_el["aria-label"]).group(1))
+        img = card.select_one("img[src]")
         age_el = card.select_one("h3 + span")
         age_group = _text(age_el) or None
         seen.add(link)
@@ -85,6 +88,7 @@ def parse_listing_html(html: str) -> list[NswHelmetStarRating]:
                 price_band=price_band,
                 source_url=f"{NSW_HELMET_STAR_BASE}{link}",
                 age_group=age_group,
+                image_url=urljoin(NSW_HELMET_STAR_BASE, img["src"]) if img else None,
             )
         )
     return ratings
@@ -171,4 +175,5 @@ def nsw_to_dict(rating: NswHelmetStarRating) -> dict:
         "price_band": rating.price_band,
         "url": rating.source_url,
         "test_year": rating.test_year,
+        "image_url": rating.image_url,
     }

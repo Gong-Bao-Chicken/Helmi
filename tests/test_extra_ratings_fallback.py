@@ -155,3 +155,24 @@ def test_all_sources_failing_without_cache_does_not_raise(monkeypatch, tmp_path)
     merged, _ = _run((helmets_path, tmp_path / "out.json", tmp_path / "raw.json"))
     assert merged["matches"] == []
     assert all(info["stale"] for info in merged["meta"]["sources"].values())
+
+
+def test_extra_only_stubs_are_not_match_targets(tmp_path):
+    path = tmp_path / "helmets.json"
+    path.write_text(
+        json.dumps(
+            {
+                "helmets": HELMETS
+                + [
+                    {
+                        "id": "extra-btwin-kh-300",
+                        "brand": "B'Twin",
+                        "model": "KH 300",
+                        "catalog": "extra_only",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    assert [h["id"] for h in extra_ratings.load_helmets(path)] == ["giro-register", "bell-nomad"]

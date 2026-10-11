@@ -36,3 +36,18 @@ class PriceMatchingTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_idealo_2026_layout_is_parsed():
+    from helmet_data.crawlers.price_sources import search_idealo_html
+
+    item = (
+        '<div class="sr-resultList__item_m"><a class="sr-resultItemLink_YbJS" '
+        'href="https://www.idealo.de/preisvergleich/OffersOfProduct/202298398_-aries.html">'
+        '<div class="sr-productSummary__title_f">Giro Aries Spherical MIPS</div>'
+        '<div class="sr-detailedPriceInfo__price_sYVmx">ab 189,99 €</div></a></div>'
+    )
+    html = "<html><body>" + item + "<!--" + "x" * 12000 + "--></body></html>"
+    offers = search_idealo_html(html, build_search_context("Giro", "Aries Spherical"))
+    assert [(o.price, o.currency) for o in offers] == [(189.99, "EUR")]
+    assert offers[0].url.endswith("202298398_-aries.html")

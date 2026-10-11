@@ -2,7 +2,7 @@
 
 import json
 import re
-import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 from urllib.parse import unquote, urlparse
@@ -229,7 +229,6 @@ def crawl_helmet_retailer_protection(
     client: httpx.Client | None = None,
     force: bool = False,
     cache: dict[str, dict[str, Any]] | None = None,
-    fetch_delay_s: float = 0.5,
     max_urls: int = 3,
     price_cache_entry: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -250,25 +249,20 @@ def crawl_helmet_retailer_protection(
         cache[helmet_id] = entry
         return entry
 
-    results: list[dict[str, Any]] = []
-    errors: list[str] = []
-    for source, url in urls:
+    def fetch(source: str, url: str) -> dict[str, Any] | str:
         try:
             status, html = fetch_retailer_product_page(url, source)
             if status != 200 or len(html) < 5_000:
-                errors.append(f"{source}:{status}")
-                continue
-            results.append(
-                protection_result_from_html(
-                    html,
-                    product_url=url,
-                    model=helmet["model"],
-                    source=source,
-                )
-            )
+                return f"{source}:{status}"
+            return protection_result_from_html(html, product_url=url, model=helmet["model"], source=source)
         except Exception as exc:  # noqa: BLE001 — collect per-source failures
-            errors.append(f"{source}:{exc}")
-        time.sleep(fetch_delay_s)
+            return f"{source}:{exc}"
+
+    # Pages on different hosts load in parallel; stealth_get spaces requests to one host.
+    with ThreadPoolExecutor(max_workers=len(urls)) as pool:
+        outcomes = list(pool.map(lambda item: fetch(*item), urls))
+    results = [o for o in outcomes if isinstance(o, dict)]
+    errors = [o for o in outcomes if isinstance(o, str)]
 
     best = best_protection_result(results)
     if best:
@@ -391,7 +385,6 @@ def apply_retailer_protection_crawl(
     client: httpx.Client | None = None,
     cache_only: bool = False,
     helmet_ids: set[str] | None = None,
-    fetch_delay_s: float = 0.5,
 ) -> dict[str, int]:
     cache = load_retailer_protection_cache()
     stats = {"cached": 0, "fetched": 0, "skipped": 0, "detected": 0, "errors": 0}
@@ -420,7 +413,6 @@ def apply_retailer_protection_crawl(
             helmet,
             client=client,
             cache=cache,
-            fetch_delay_s=fetch_delay_s,
         )
         if had_cache:
             stats["cached"] += 1

@@ -87,3 +87,45 @@ def test_nsw_detail_parsing():
         "age_group": "Adult",
         "helmet_type": "Road",
     }
+
+
+def test_extra_only_stub_from_combined_title_keeps_lab_photo():
+    from helmet_data import build
+
+    entry = {
+        "source": "certimoov",
+        "brand": "",
+        "model": "Abus Hyban 2.0",
+        "slug": "abus-hyban-20",
+        "score": 3.5,
+        "stars": 4,
+        "test_year": 2020,
+        "url": "https://www.certimoov.com/en/les-tests/bike/abus-hyban-20",
+        "impact_scores": {},
+        "image_url": "https://www.certimoov.com/sites/default/files/hyban_front.jpg",
+    }
+    stub = build.standalone_from_unmatched(entry, set())
+    assert stub is not None
+    assert stub["brand"].lower() == "abus" and "Hyban" in stub["model"]
+    assert stub["image_url"] == entry["image_url"]
+
+
+def test_duplicate_certimoov_pages_become_one_stub():
+    from helmet_data import build
+
+    base = {
+        "source": "certimoov",
+        "brand": "",
+        "model": "Abus Yadd-I",
+        "score": 3.0,
+        "stars": 3,
+        "test_year": 2020,
+        "impact_scores": {"choc-frontal": 3.0},
+    }
+    entries = [
+        {**base, "slug": "abus-yadd-i", "url": "https://x/abus-yadd-i"},
+        {**base, "slug": "abus-yadd-i-0", "url": "https://x/abus-yadd-i-0"},
+        {**base, "slug": "abus-yadd-i-mips", "model": "Abus Yadd-I MIPS", "url": "https://x/m"},
+    ]
+    helmets: list[dict] = []
+    assert build.append_unmatched_helmets(helmets, entries, set()) == 2

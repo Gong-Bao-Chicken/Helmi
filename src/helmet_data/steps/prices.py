@@ -1,11 +1,18 @@
 """Fetch live shop prices and merge median market prices into helmets.json."""
 
+import io
 import json
+import math
 import re
 import sys
+import threading
+from collections.abc import Iterator
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from contextlib import contextmanager, redirect_stdout
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, TextIO
 
 import httpx
 
@@ -22,10 +29,11 @@ from ..crawlers.price_sources import (
     dedupe_offers,
     make_price_client,
     parse_geizhals_phist_html,
-    polite_sleep,
+    score_offer,
     search_http_sources,
+    sibling_exclude_tokens,
 )
-from ..crawlers.stealth_fetch import stealth_get
+from ..crawlers.stealth_fetch import site_report, site_stats, stealth_get
 from ..enrich.protection_tech import apply_protection_to_helmet, load_mips_lookup
 from ..enrich.ratings import value_ratio_from_ratings
 from ..enrich.retailer_protection import (
@@ -38,6 +46,8 @@ from ..paths import HELMETS_JSON_PATH, PRICE_CACHE_PATH
 
 DEFAULT_INPUT = HELMETS_JSON_PATH
 DEFAULT_CACHE = PRICE_CACHE_PATH
+# Lowest accept_offer threshold used by any shop parser.
+MIN_CACHED_MATCH_SCORE = 0.5
 FRANKFURTER_URL = "https://api.frankfurter.app/latest?from=USD&to=EUR,CHF"
 
 
@@ -154,6 +164,105 @@ def history_from_geizhals_phist(
     return history
 
 
+# Plausibility bounds for shop offers (prices compared in USD after FX).
+TEST_PRICE_RATIO_BOUNDS = (0.3, 2.5)  # offer vs price_at_test_usd
+CH_DE_RATIO_BOUNDS = (0.7, 1.6)  # CHF offer vs EUR offer for the same helmet
+
+
+def price_outlier_check(
+    offers: list[PriceOffer],
+    *,
+    test_usd: float | None,
+    rates: dict[str, float],
+):
+    """Return ``reason(offer) -> str | None`` flagging implausible offers.
+
+    1. Offers far from the VT test price (< 0.3x or > 2.5x) are wrong-product/bundle matches.
+    2. If the CHF and EUR prices disagree beyond 0.7-1.6x after FX, the side further from
+       the test price (CHF when there is no test price) is treated as the mismatch -
+       unless two of its sources agree, which makes it a genuine market price.
+    """
+    low, high = TEST_PRICE_RATIO_BOUNDS
+
+    def test_reason(offer: PriceOffer) -> str | None:
+        if not test_usd:
+            return None
+        ratio = currency_to_usd(offer.price, offer.currency, rates) / test_usd
+        if ratio < low or ratio > high:
+            return f"{ratio:.2f}x test price"
+        return None
+
+    sane = [offer for offer in offers if test_reason(offer) is None]
+    refs: dict[str, float] = {}
+    for currency in ("EUR", "CHF"):
+        prices = [currency_to_usd(o.price, o.currency, rates) for o in sane if o.currency == currency]
+        if prices:
+            refs[currency] = min(prices)
+
+    def corroborated(currency: str) -> bool:
+        """At least two different sources in this currency, within 1.35x of each other."""
+        by_source: dict[str, float] = {}
+        for o in sane:
+            if o.currency == currency:
+                usd = currency_to_usd(o.price, o.currency, rates)
+                by_source[o.source] = min(usd, by_source.get(o.source, usd))
+        prices = sorted(by_source.values())
+        return any(b / a <= 1.35 for a, b in zip(prices, prices[1:], strict=False))
+
+    suspect_currency: str | None = None
+    if "EUR" in refs and "CHF" in refs:
+        ratio = refs["CHF"] / refs["EUR"]
+        if not CH_DE_RATIO_BOUNDS[0] <= ratio <= CH_DE_RATIO_BOUNDS[1]:
+            suspect_currency = "CHF"
+            if test_usd:
+                dev = {cur: abs(math.log(refs[cur] / test_usd)) for cur in refs}
+                suspect_currency = max(dev, key=dev.get)
+            if corroborated(suspect_currency):
+                # Two shops agreeing is a real market price (e.g. a German clearance price
+                # far below Swiss list price), not a wrong-product match.
+                suspect_currency = None
+    other = {"CHF": "EUR", "EUR": "CHF"}
+
+    def reason(offer: PriceOffer) -> str | None:
+        found = test_reason(offer)
+        if found:
+            return found
+        if suspect_currency and offer.currency == suspect_currency:
+            ref = refs[other[suspect_currency]]
+            usd = currency_to_usd(offer.price, offer.currency, rates)
+            ratio = usd / ref if suspect_currency == "CHF" else ref / usd
+            if not CH_DE_RATIO_BOUNDS[0] <= ratio <= CH_DE_RATIO_BOUNDS[1]:
+                return f"CH/DE ratio {ratio:.2f}"
+        return None
+
+    return reason
+
+
+def drop_price_outliers(
+    offers: list[PriceOffer],
+    history: list[dict[str, Any]],
+    *,
+    test_usd: float | None,
+    rates: dict[str, float],
+) -> tuple[list[PriceOffer], list[dict[str, Any]], list[dict[str, Any]]]:
+    """Remove implausible offers from the latest offers and the price history."""
+    reason = price_outlier_check(offers, test_usd=test_usd, rates=rates)
+    dropped: list[dict[str, Any]] = []
+    kept: list[PriceOffer] = []
+    for offer in offers:
+        why = reason(offer)
+        if why:
+            dropped.append({**offer_to_dict(offer), "reason": why})
+        else:
+            kept.append(offer)
+    clean_history: list[dict[str, Any]] = []
+    for entry in history:
+        entry_offers = [item for item in entry.get("offers", []) if reason(offer_from_dict(item)) is None]
+        if entry_offers:
+            clean_history.append({**entry, "offers": entry_offers})
+    return kept, clean_history, dropped
+
+
 def apply_market_price(
     helmet: dict[str, Any],
     *,
@@ -161,9 +270,15 @@ def apply_market_price(
     history: list[dict[str, Any]],
     rates: dict[str, float],
     fetched_at: str,
+    dropped: list[dict[str, Any]] | None = None,
 ) -> bool:
     listings = helmet.setdefault("listings", {})
     changed = False
+    offers, history, outliers = drop_price_outliers(
+        offers, history, test_usd=helmet.get("price_at_test_usd"), rates=rates
+    )
+    if outliers and dropped is not None:
+        dropped.extend(outliers)
 
     eur_agg = aggregate_price(history, offers, currency="EUR", offer_from_dict=offer_from_dict)
     chf_agg = aggregate_price(history, offers, currency="CHF", offer_from_dict=offer_from_dict)
@@ -241,20 +356,59 @@ def geizhals_phist_samples(product_url: str) -> list[tuple[str, float]]:
     return parse_geizhals_phist_html(html)
 
 
+def search_shops(
+    client: httpx.Client,
+    helmet: dict[str, Any],
+    *,
+    exclude_tokens: frozenset[str] = frozenset(),
+    failures: dict[str, str] | None = None,
+) -> list[PriceOffer]:
+    ctx = build_search_context(helmet["brand"], helmet["model"], exclude_tokens=exclude_tokens)
+    return dedupe_offers(search_http_sources(client, ctx, failures=failures))
+
+
+def geizhals_history(
+    offers: list[PriceOffer], failures: dict[str, str] | None = None
+) -> list[dict[str, Any]]:
+    """Daily prices from the matched Geizhals product's price-history page (optional extra)."""
+    geizhals_offer = next((offer for offer in offers if offer.source == "geizhals" and offer.url), None)
+    if not geizhals_offer:
+        return []
+    try:
+        return history_from_geizhals_phist(geizhals_phist_samples(geizhals_offer.url), geizhals_offer)
+    except Exception as exc:  # noqa: BLE001 - history is optional
+        print(f"  warning: geizhals price history failed ({type(exc).__name__}: {exc})", flush=True)
+        if failures is not None:
+            failures["geizhals_phist"] = f"{type(exc).__name__}: {exc}"[:300]
+        return []
+
+
 def search_all_sources(
     client: httpx.Client,
     helmet: dict[str, Any],
+    *,
+    exclude_tokens: frozenset[str] = frozenset(),
+    failures: dict[str, str] | None = None,
 ) -> tuple[list[PriceOffer], list[dict[str, Any]]]:
-    ctx = build_search_context(helmet["brand"], helmet["model"])
-    offers = dedupe_offers(search_http_sources(client, ctx))
-    external_history: list[dict[str, Any]] = []
+    offers = search_shops(client, helmet, exclude_tokens=exclude_tokens, failures=failures)
+    return offers, geizhals_history(offers, failures)
 
-    geizhals_offer = next((offer for offer in offers if offer.source == "geizhals" and offer.url), None)
-    if geizhals_offer:
-        phist = geizhals_phist_samples(geizhals_offer.url)
-        external_history = history_from_geizhals_phist(phist, geizhals_offer)
 
-    return offers, external_history
+def carry_over_failed_sources(
+    offers: list[PriceOffer],
+    cached: dict[str, Any] | None,
+    failed_sources: set[str],
+) -> list[PriceOffer]:
+    """Keep the previously cached offer of every shop whose search just failed."""
+    if not cached or not failed_sources:
+        return offers
+    present = {offer.source for offer in offers}
+    carried = [
+        offer_from_dict(item)
+        for item in cached.get("offers", [])
+        if item.get("source") in failed_sources and item.get("source") not in present
+    ]
+    return offers + carried
 
 
 def rebuild_from_cache_entry(
@@ -263,15 +417,30 @@ def rebuild_from_cache_entry(
     *,
     rates: dict[str, float],
     retailer_cache: dict[str, dict[str, Any]] | None = None,
+    dropped: list[dict[str, Any]] | None = None,
+    exclude_tokens: frozenset[str] = frozenset(),
 ) -> None:
     history = prune_history(cached.get("history", []))
     offers = [offer_from_dict(item) for item in cached.get("offers", [])]
+    # Re-score cached titles with the current matching rules (offers cached by older,
+    # looser matching - e.g. "POC Cytal Carbon" for the Cytal - must not keep pricing a helmet).
+    ctx = build_search_context(helmet["brand"], helmet["model"], exclude_tokens=exclude_tokens)
+
+    def still_matches(item: dict[str, Any]) -> bool:
+        return score_offer(ctx, item.get("title", "")) >= MIN_CACHED_MATCH_SCORE
+
+    offers = [offer for offer in offers if still_matches(offer_to_dict(offer))]
+    history = [
+        {**entry, "offers": [item for item in entry.get("offers", []) if still_matches(item)]}
+        for entry in history
+    ]
     apply_market_price(
         helmet,
         offers=offers,
         history=history,
         rates=rates,
         fetched_at=cached.get("fetched_at", datetime.now(UTC).isoformat()),
+        dropped=dropped,
     )
     if retailer_cache:
         lookup = merge_retailer_cache_into_lookup(load_mips_lookup(), retailer_cache)
@@ -282,6 +451,64 @@ def rebuild_from_cache_entry(
         )
 
 
+# Helmets fetched at the same time. Shops are still paced per host (stealth_fetch), so more
+# workers mostly keep every shop busy rather than raising the request rate to any one of them.
+DEFAULT_WORKERS = 8
+
+
+class _HelmetOutput(io.TextIOBase):
+    """stdout that buffers each worker thread's lines, so a helmet's log prints as one block,
+    numbered in completion order."""
+
+    def __init__(self, real: TextIO, total: int) -> None:
+        self.real = real
+        self.total = total
+        self.done = 0
+        self.local = threading.local()
+        self.lock = threading.Lock()
+
+    def write(self, text: str) -> int:
+        buffer = getattr(self.local, "buffer", None)
+        if buffer is None:
+            with self.lock:
+                return self.real.write(text)
+        buffer.append(text)
+        return len(text)
+
+    def flush(self) -> None:
+        if getattr(self.local, "buffer", None) is None:
+            self.real.flush()
+
+    @contextmanager
+    def block(self, header: str) -> Iterator[None]:
+        self.local.buffer = []
+        try:
+            yield
+        finally:
+            text = "".join(self.local.buffer)
+            self.local.buffer = None
+            with self.lock:
+                self.done += 1
+                self.real.write(f"[{self.done}/{self.total}] {header}…\n{text}")
+                self.real.flush()
+
+
+@dataclass
+class _Run:
+    """State shared by the price workers; every read-modify-write goes through ``lock``."""
+
+    cache: dict[str, Any]
+    cache_path: Path
+    retailer_cache: dict[str, dict[str, Any]]
+    source_errors: dict[str, dict[str, Any]]
+    outliers: dict[str, list[dict[str, Any]]]
+    lock: threading.Lock = field(default_factory=threading.Lock)
+
+    def record_error(self, source: str, message: str) -> None:
+        with self.lock:
+            _record_error(self.source_errors, source, message)
+
+
 def update_helmets(
     helmets: list[dict[str, Any]],
     *,
@@ -290,10 +517,20 @@ def update_helmets(
     force: bool,
     cache_only: bool,
     cache_path: Path,
+    source_errors: dict[str, dict[str, Any]] | None = None,
+    outliers: dict[str, list[dict[str, Any]]] | None = None,
+    workers: int = DEFAULT_WORKERS,
 ) -> dict[str, int]:
-    cache = load_cache(cache_path)
+    """Refresh shop prices, ``workers`` helmets at a time. ``source_errors``/``outliers``
+    collect per-shop failures and dropped implausible offers for the output meta."""
+    run = _Run(
+        cache=load_cache(cache_path),
+        cache_path=cache_path,
+        retailer_cache=load_retailer_protection_cache(),
+        source_errors=source_errors if source_errors is not None else {},
+        outliers=outliers if outliers is not None else {},
+    )
     stats = {"checked": 0, "priced": 0, "better": 0, "cached": 0, "skipped": 0}
-    retailer_cache = load_retailer_protection_cache()
 
     candidates = [
         helmet
@@ -304,102 +541,208 @@ def update_helmets(
     if limit is not None:
         candidates = candidates[:limit]
 
+    def count_price(helmet: dict[str, Any]) -> None:
+        stats["priced"] += 1
+        if helmet.get("current_price", {}).get("better_than_test"):
+            stats["better"] += 1
+
     with make_price_client() as client:
         rates = fetch_exchange_rates(client)
-        cache["exchange_rates"] = rates
+        run.cache["exchange_rates"] = rates
 
-        for index, helmet in enumerate(candidates, start=1):
-            helmet_id = helmet["id"]
-            cached = cache.get("helmets", {}).get(helmet_id)
-
+        due: list[dict[str, Any]] = []
+        for helmet in candidates:
+            cached = run.cache.get("helmets", {}).get(helmet["id"])
             if cache_only and not cached:
                 stats["skipped"] += 1
-                continue
-
-            if cache_only or not fetch_is_due(cached, force=force):
+            elif cache_only or not fetch_is_due(cached, force=force):
                 if cached:
+                    dropped: list[dict[str, Any]] = []
                     rebuild_from_cache_entry(
                         helmet,
                         cached,
                         rates=rates,
-                        retailer_cache=retailer_cache,
+                        retailer_cache=run.retailer_cache,
+                        dropped=dropped,
+                        exclude_tokens=sibling_exclude_tokens(helmet, helmets),
                     )
+                    if dropped:
+                        run.outliers[helmet["id"]] = dropped
                     stats["cached"] += 1
                     stats["checked"] += 1
                     if helmet.get("current_price"):
-                        stats["priced"] += 1
-                        if helmet["current_price"].get("better_than_test"):
-                            stats["better"] += 1
-                continue
-
-            stats["checked"] += 1
-            print(f"[{index}/{len(candidates)}] {helmet['brand']} {helmet['model']}…", flush=True)
-            offers, external_history = search_all_sources(client, helmet)
-            fetched_at = datetime.now(UTC).isoformat()
-
-            prior_history = prune_history(cached.get("history", []) if cached else [])
-            history = append_history(
-                {"history": prior_history + external_history},
-                offers=offers,
-                fetched_at=fetched_at,
-                offer_to_dict=offer_to_dict,
-            )
-
-            cache.setdefault("helmets", {})[helmet_id] = {
-                "fetched_at": fetched_at,
-                "offers": [offer_to_dict(offer) for offer in offers],
-                "history": history,
-            }
-            save_cache(cache_path, cache)
-
-            cache_entry = cache["helmets"][helmet_id]
-            if offers and not cache_only:
-                retailer_cache = load_retailer_protection_cache()
-                crawl_helmet_retailer_protection(
-                    helmet,
-                    cache=retailer_cache,
-                    price_cache_entry=cache_entry,
-                    fetch_delay_s=0.35,
-                )
-                save_retailer_protection_cache(retailer_cache)
-                lookup = merge_retailer_cache_into_lookup(load_mips_lookup(), retailer_cache)
-                apply_protection_to_helmet(
-                    helmet,
-                    lookup=lookup,
-                    extra_texts=[offer.title for offer in offers],
-                )
-
-            if apply_market_price(
-                helmet,
-                offers=offers,
-                history=history,
-                rates=rates,
-                fetched_at=fetched_at,
-            ):
-                stats["priced"] += 1
-                current = helmet.get("current_price", {})
-                if current.get("better_than_test"):
-                    stats["better"] += 1
-                    print(f"  better price: {helmet.get('price_comparison_label', '')}", flush=True)
-                elif offers:
-                    print(
-                        f"  {current.get('amount', '?')} {current.get('currency', '')} "
-                        f"({current.get('price_window', 'latest')}; "
-                        f"{', '.join(current.get('sources', []))})",
-                        flush=True,
-                    )
+                        count_price(helmet)
             else:
-                stats["skipped"] += 1
-                preferred = [offer.source for offer in offers if offer.source in PREFERRED_SOURCES]
-                print(
-                    f"  no preferred offer (got: {', '.join(preferred) or 'none'})",
-                    flush=True,
-                )
+                due.append(helmet)
 
-            polite_sleep(2.0)
+        if due:
+            print(f"Fetching {len(due)} helmets, {min(workers, len(due))} at a time…", flush=True)
+            output = _HelmetOutput(sys.stdout, len(due))
 
-    save_cache(cache_path, cache)
+            def fetch_one(helmet: dict[str, Any]) -> bool:
+                with output.block(f"{helmet['brand']} {helmet['model']}"):
+                    return _fetch_helmet(
+                        helmet,
+                        cached=run.cache.get("helmets", {}).get(helmet["id"]),
+                        client=client,
+                        rates=rates,
+                        exclude_tokens=sibling_exclude_tokens(helmet, helmets),
+                        run=run,
+                    )
+
+            with redirect_stdout(output), ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+                futures = {pool.submit(fetch_one, helmet): helmet for helmet in due}
+                for future in as_completed(futures):
+                    stats["checked"] += 1
+                    if future.result():
+                        count_price(futures[future])
+                    else:
+                        stats["skipped"] += 1
+
+    with run.lock:
+        save_cache(cache_path, run.cache)
     return stats
+
+
+def _record_error(source_errors: dict[str, dict[str, Any]], source: str, message: str) -> None:
+    info = source_errors.setdefault(source, {"count": 0, "last_error": None})
+    info["count"] += 1
+    info["last_error"] = message[:300]
+
+
+def _has_listing(helmet: dict[str, Any]) -> bool:
+    return any(
+        isinstance(listing, dict) and listing.get("price") is not None
+        for listing in helmet.get("listings", {}).values()
+    )
+
+
+def _fetch_helmet(
+    helmet: dict[str, Any],
+    *,
+    cached: dict[str, Any] | None,
+    client: httpx.Client,
+    rates: dict[str, float],
+    exclude_tokens: frozenset[str],
+    run: _Run,
+) -> bool:
+    """One helmet, never raising: a failure falls back to its cached prices."""
+    try:
+        priced = _refresh_helmet_price(
+            helmet, cached=cached, client=client, rates=rates, exclude_tokens=exclude_tokens, run=run
+        )
+    except Exception as exc:  # noqa: BLE001 - one helmet must not abort the run
+        print(
+            f"  WARNING: price refresh failed ({type(exc).__name__}: {exc}); using cached prices", flush=True
+        )
+        run.record_error("helmet_refresh", f"{helmet['id']}: {type(exc).__name__}: {exc}")
+        priced = False
+        if cached:
+            try:
+                rebuild_from_cache_entry(helmet, cached, rates=rates)
+                priced = bool(helmet.get("current_price") or _has_listing(helmet))
+            except Exception as inner:  # noqa: BLE001
+                print(f"  cache rebuild failed too: {inner}", flush=True)
+    return priced
+
+
+def _crawl_protection(helmet: dict[str, Any], offers: list[PriceOffer], run: _Run) -> None:
+    """Read MIPS & co. off the retailer product pages (only for helmets not crawled before)."""
+    helmet_id = helmet["id"]
+    with run.lock:
+        own = {helmet_id: run.retailer_cache[helmet_id]} if helmet_id in run.retailer_cache else {}
+    crawl_helmet_retailer_protection(
+        helmet, cache=own, price_cache_entry={"offers": [offer_to_dict(offer) for offer in offers]}
+    )
+    with run.lock:
+        run.retailer_cache.update(own)
+        save_retailer_protection_cache(run.retailer_cache)
+        lookup = merge_retailer_cache_into_lookup(load_mips_lookup(), run.retailer_cache)
+    apply_protection_to_helmet(helmet, lookup=lookup, extra_texts=[offer.title for offer in offers])
+
+
+def _refresh_helmet_price(
+    helmet: dict[str, Any],
+    *,
+    cached: dict[str, Any] | None,
+    client: httpx.Client,
+    rates: dict[str, float],
+    exclude_tokens: frozenset[str],
+    run: _Run,
+) -> bool:
+    helmet_id = helmet["id"]
+    failures: dict[str, str] = {}
+    offers = search_shops(client, helmet, exclude_tokens=exclude_tokens, failures=failures)
+
+    # Price history and the product-page protection check both start from the offers and hit
+    # different pages, so run them side by side.
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        history_job = pool.submit(geizhals_history, offers, failures)
+        protection_job = pool.submit(_crawl_protection, helmet, offers, run) if offers else None
+        external_history = history_job.result()
+        if protection_job is not None:
+            try:
+                protection_job.result()
+            except Exception as exc:  # noqa: BLE001 - protection crawl is a side quest
+                print(
+                    f"  warning: retailer protection crawl failed ({type(exc).__name__}: {exc})", flush=True
+                )
+                run.record_error("retailer_protection", f"{type(exc).__name__}: {exc}")
+
+    for source, message in failures.items():
+        run.record_error(source, message)
+    offers = carry_over_failed_sources(offers, cached, set(failures))
+    fetched_at = datetime.now(UTC).isoformat()
+
+    prior_history = prune_history(cached.get("history", []) if cached else [])
+    history = append_history(
+        {"history": prior_history + external_history},
+        offers=offers,
+        fetched_at=fetched_at,
+        offer_to_dict=offer_to_dict,
+    )
+
+    with run.lock:
+        run.cache.setdefault("helmets", {})[helmet_id] = {
+            "fetched_at": fetched_at,
+            "offers": [offer_to_dict(offer) for offer in offers],
+            "history": history,
+        }
+        save_cache(run.cache_path, run.cache)
+
+    dropped: list[dict[str, Any]] = []
+    priced = apply_market_price(
+        helmet,
+        offers=offers,
+        history=history,
+        rates=rates,
+        fetched_at=fetched_at,
+        dropped=dropped,
+    )
+    if dropped:
+        with run.lock:
+            run.outliers[helmet_id] = dropped
+        for item in dropped:
+            print(
+                f"  dropped suspect offer: {item['source']} {item['price']} "
+                f"{item['currency']} ({item['reason']})",
+                flush=True,
+            )
+    if priced:
+        current = helmet.get("current_price", {})
+        if current.get("better_than_test"):
+            print(f"  better price: {helmet.get('price_comparison_label', '')}", flush=True)
+        elif offers:
+            print(
+                f"  {current.get('amount', '?')} {current.get('currency', '')} "
+                f"({current.get('price_window', 'latest')}; "
+                f"{', '.join(current.get('sources', []))})",
+                flush=True,
+            )
+    else:
+        preferred = [offer.source for offer in offers if offer.source in PREFERRED_SOURCES]
+        print(f"  no preferred offer (got: {', '.join(preferred) or 'none'})", flush=True)
+    return priced
 
 
 def run_fetch_prices(
@@ -410,6 +753,7 @@ def run_fetch_prices(
     limit: int | None = None,
     force: bool = False,
     cache_only: bool = False,
+    workers: int = DEFAULT_WORKERS,
 ) -> None:
     """Fetch live shop prices and merge median market prices into helmets.json."""
     if not input_path.exists():
@@ -419,6 +763,8 @@ def run_fetch_prices(
     data = json.loads(input_path.read_text(encoding="utf-8"))
     helmets = data.get("helmets", [])
 
+    source_errors: dict[str, dict[str, Any]] = {}
+    outliers: dict[str, list[dict[str, Any]]] = {}
     stats = update_helmets(
         helmets,
         european_only=not all_helmets,
@@ -426,6 +772,9 @@ def run_fetch_prices(
         force=force,
         cache_only=cache_only,
         cache_path=cache_path,
+        source_errors=source_errors,
+        outliers=outliers,
+        workers=workers,
     )
 
     meta = data.setdefault("meta", {})
@@ -436,6 +785,16 @@ def run_fetch_prices(
         "Uses median daily price over 14 days when enough snapshots exist. "
         "Amazon is fallback when comparison portals are blocked."
     )
+    meta["market_prices_source_errors"] = source_errors
+    meta["market_prices_outliers"] = {
+        "helmets": len(outliers),
+        "offers": sum(len(items) for items in outliers.values()),
+        "rules": {
+            "test_price_ratio": list(TEST_PRICE_RATIO_BOUNDS),
+            "ch_de_ratio": list(CH_DE_RATIO_BOUNDS),
+        },
+        "dropped": outliers,
+    }
 
     input_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
@@ -443,3 +802,10 @@ def run_fetch_prices(
         f"\nDone. checked={stats['checked']} priced={stats['priced']} "
         f"better_than_test={stats['better']} cached={stats['cached']} skipped={stats['skipped']}"
     )
+    if outliers:
+        print(f"Dropped {sum(len(v) for v in outliers.values())} suspect offers on {len(outliers)} helmets")
+    for source, info in source_errors.items():
+        print(f"  WARNING: {source} failed {info['count']}x (last: {info['last_error']})")
+    if site_stats:
+        print("Time per site (the busiest one sets the pace):")
+        print(site_report())

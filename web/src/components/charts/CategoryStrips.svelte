@@ -1,5 +1,8 @@
 <script lang="ts">
-  /** One row of dots per category on a shared 0–100 safety axis, with each row's median. */
+  /**
+   * One row of dots per category on a shared 0–100 safety axis, with each row's median. Rows with a
+   * `recent` trend also get the recent helmets' median (hollow diamond) and the direction it moved.
+   */
   import { scaleLinear } from "d3-scale";
   import { median } from "../../lib/scoring";
   import { app } from "../../lib/state.svelte";
@@ -11,6 +14,7 @@
     label: string;
     hint?: string;
     items: { helmet: Helmet; value: number }[];
+    recent?: { value: number; n: number; delta: number | null } | null;
   }
   interface Props {
     rows: Row[];
@@ -22,6 +26,8 @@
     rowHeight?: number;
     /** Dot color per row (e.g. the riding style's hue); default grey. */
     color?: (key: string) => string;
+    /** Legend text for the recent-median marker, e.g. "median of 2025–26 helmets". */
+    recentLabel?: string;
   }
   let {
     rows,
@@ -32,13 +38,19 @@
     format = (v) => String(Math.round(v)),
     rowHeight = 40,
     color,
+    recentLabel = "recent median",
   }: Props = $props();
 
   const ROW_H = $derived(rowHeight);
   const LABEL_W = 132;
   let width = $state(600);
   const height = $derived(rows.length * ROW_H + 26);
-  const x = $derived(scaleLinear().domain(domain).range([LABEL_W, width - 56]));
+  const hasTrend = $derived(rows.some((r) => r.recent));
+  const x = $derived(scaleLinear().domain(domain).range([LABEL_W, width - (hasTrend ? 100 : 56)]));
+  /** Values past the axis sit on its end instead of spilling over the labels. */
+  const at = (v: number) => x(Math.min(Math.max(v, domain[0]), domain[1]));
+  /** Moves under 5 points are within noise for a handful of helmets. */
+  const arrow = (delta: number | null) => (delta == null ? "" : delta >= 5 ? `▲${Math.round(delta)}` : delta <= -5 ? `▼${Math.round(-delta)}` : "≈");
   const medians = $derived(rows.map((r) => median(r.items.map((i) => i.value))));
 
   // Deterministic jitter keeps dense rows countable without a force layout.
@@ -64,13 +76,20 @@
       {/if}
       <text x={color ? 15 : 0} y={cy} dy="0.32em" class="fill-ink text-[12px] font-medium">{row.label}</text>
       <text x={width} y={cy} dy="0.32em" text-anchor="end" class="fill-ink-3 text-[11px] num">n={row.items.length}</text>
+      {#if row.recent}
+        <text x={width - 40} y={cy} dy="0.32em" text-anchor="end" class="fill-ink-2 text-[11px] font-medium num"
+          >{arrow(row.recent.delta)}<title>{recentLabel}: {format(row.recent.value)} from {row.recent.n} helmets{row.recent.delta != null
+              ? `, ${row.recent.delta >= 0 ? "+" : "−"}${Math.abs(Math.round(row.recent.delta))} against older ones`
+              : ""}</title></text
+        >
+      {/if}
       {#each row.items as item (item.helmet.id)}
         {@const active = app.hovered === item.helmet.id}
         <circle
           role="button"
           tabindex="-1"
           aria-label="{item.helmet.brand} {item.helmet.model}"
-          cx={x(item.value)}
+          cx={at(item.value)}
           cy={cy + jitter(item.helmet.id)}
           r={active ? 6 : rowHeight < 32 ? 3 : 3.5}
           fill={active ? "var(--selected)" : (color?.(row.key) ?? "var(--dot)")}
@@ -80,7 +99,7 @@
           class="cursor-pointer"
           onmouseenter={() => {
             app.hovered = item.helmet.id;
-            tip = { helmet: item.helmet, value: item.value, x: x(item.value), y: cy };
+            tip = { helmet: item.helmet, value: item.value, x: at(item.value), y: cy };
           }}
           onmouseleave={() => {
             app.hovered = null;
@@ -90,13 +109,28 @@
           onkeydown={(e) => e.key === "Enter" && (app.selected = item.helmet.id)}
         />
       {/each}
+      {#if row.recent}
+        {@const rx = at(row.recent.value)}
+        <path
+          d="M{rx} {cy - 6} L{rx + 5} {cy} L{rx} {cy + 6} L{rx - 5} {cy} Z"
+          fill="var(--chart-surface)"
+          stroke="var(--text)"
+          stroke-width="1.75"
+          class="pointer-events-none"
+        />
+      {/if}
       {#if medians[i] != null}
-        <line x1={x(medians[i]!)} x2={x(medians[i]!)} y1={cy - ROW_H / 2 + 4} y2={cy + ROW_H / 2 - 4} stroke="var(--text)" stroke-width="2.5" stroke-linecap="round" />
+        <line x1={at(medians[i]!)} x2={at(medians[i]!)} y1={cy - ROW_H / 2 + 4} y2={cy + ROW_H / 2 - 4} stroke="var(--text)" stroke-width="2.5" stroke-linecap="round" />
       {/if}
     {/each}
   </svg>
   <div class="mt-1 flex items-center gap-4 text-xs text-ink-3" aria-hidden="true">
     <span class="flex items-center gap-1.5"><svg class="h-3 w-1"><rect width="2.5" height="12" fill="var(--text)" /></svg>median</span>
+    {#if hasTrend}
+      <span class="flex items-center gap-1.5"
+        ><svg class="size-3"><path d="M6 1 L11 6 L6 11 L1 6 Z" fill="none" stroke="var(--text)" stroke-width="1.5" /></svg>{recentLabel}</span
+      >
+    {/if}
     <span>{axisLabel}</span>
   </div>
 

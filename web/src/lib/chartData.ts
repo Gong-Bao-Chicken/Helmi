@@ -53,6 +53,31 @@ export interface Row {
   label: string;
   hint?: string;
   items: Valued[];
+  /** Median of the row's recent helmets, and how far it moved against its older ones. */
+  recent?: Trend | null;
+}
+
+export interface Trend {
+  value: number;
+  n: number;
+  /** Recent median minus older median; null when either side has fewer than two helmets. */
+  delta: number | null;
+}
+
+const testYear = (h: Helmet) => Number(String(h.test_year ?? "").slice(0, 4)) || null;
+
+/** The newest test year in the data: "recent" means this year and the one before. */
+export function latestTestYear(items: Valued[]) {
+  return Math.max(0, ...items.map((i) => testYear(i.helmet) ?? 0)) || null;
+}
+
+/** Recent helmets (tested in `since` or later) against the rest. Null without two recent ones. */
+export function trendOf(items: Valued[], since: number): Trend | null {
+  const recent = items.filter((i) => (testYear(i.helmet) ?? 0) >= since).map((i) => i.value);
+  const older = items.filter((i) => (testYear(i.helmet) ?? 0) < since).map((i) => i.value);
+  if (recent.length < 2) return null;
+  const value = median(recent)!;
+  return { value, n: recent.length, delta: older.length >= 2 ? value - median(older)! : null };
 }
 
 export function groupRows(items: Valued[], keyOf: (h: Helmet) => string | null | undefined, order: { key: string; label: string; hint?: string }[]): Row[] {
@@ -79,8 +104,8 @@ export function vtByYear(dataset: Dataset, filters: ChartFilters): Row[] {
     .map(([year, items]) => ({ key: year, label: year, items }));
 }
 
-/** Brands with at least `minCount` rated helmets, safest median first. */
-export function brandRows(items: Valued[], minCount = 6): Row[] {
+/** Brands with at least `minCount` rated helmets, safest median first, each with its recent trend. */
+export function brandRows(items: Valued[], minCount = 6, since = (latestTestYear(items) ?? 0) - 1): Row[] {
   const byBrand = new Map<string, Valued[]>();
   for (const item of items) {
     const key = (item.helmet.brand_key ?? item.helmet.brand).toLowerCase();
@@ -89,8 +114,13 @@ export function brandRows(items: Valued[], minCount = 6): Row[] {
   return sortByMedian(
     [...byBrand.entries()]
       .filter(([, list]) => list.length >= minCount)
-      .map(([key, list]) => ({ key, label: list[0]!.helmet.brand, items: list })),
+      .map(([key, list]) => ({ key, label: list[0]!.helmet.brand, items: list, recent: trendOf(list, since) })),
   );
+}
+
+/** Rank by the recent median instead; brands without enough recent helmets go last. */
+export function sortByRecent(rows: Row[]) {
+  return [...rows].sort((a, b) => (b.recent?.value ?? -1) - (a.recent?.value ?? -1) || rowMedian(b) - rowMedian(a));
 }
 
 const IMPACTS: { key: string; label: string }[] = [

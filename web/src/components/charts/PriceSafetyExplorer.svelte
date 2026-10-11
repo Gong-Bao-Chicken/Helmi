@@ -72,7 +72,10 @@
   const kneePoint = $derived(all.find((q) => q.helmet.id === main.knee));
   /** The sweet spot plus the cheapest and the safest best-value helmet: three labels, no more. */
   const bestLabels = $derived.by(() => {
-    const ends = [main.front[0], main.front.at(-1)].filter((p): p is Point => !!p && p.id !== main.knee);
+    const knee = main.front.find((p) => p.id === main.knee);
+    // Skip an end so close to the sweet spot that the two labels would stack.
+    const near = (p: Point) => !!knee && Math.abs(p.price - knee.price) < xMax * 0.05 && Math.abs(p.safety - knee.safety) < 0.05;
+    const ends = [main.front[0], main.front.at(-1)].filter((p): p is Point => !!p && p.id !== main.knee && !near(p));
     const model = (id: string) => all.find((q) => q.helmet.id === id)?.helmet.model ?? "";
     return [
       ...(kneePoint ? [{ id: kneePoint.helmet.id, text: `Sweet spot: ${kneePoint.helmet.model}` }] : []),

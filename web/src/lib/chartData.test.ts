@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { brandRows, countryPair, histogram, spearman, type Valued } from "./chartData";
+import { brandRows, countryPair, histogram, spearman, trendOf, type Valued } from "./chartData";
 import type { Dataset, Helmet } from "./types";
 
 const helmet = (id: string, brand: string) => ({ id, brand }) as Helmet;
@@ -56,5 +56,19 @@ describe("countryPair", () => {
     expect(pts[0]!.x).toBeCloseTo(90);
     expect(pts[0]!.y).toBeCloseTo(180);
     expect(pts[0]!.b).toEqual({ amount: 170, currency: "CHF" });
+  });
+});
+
+describe("trendOf", () => {
+  const item = (year: string, value: number) => ({ helmet: { id: year + value, test_year: year } as Helmet, value });
+
+  it("compares the recent helmets' median with the older ones", () => {
+    const items = [item("2018", 40), item("2019", 50), item("2025", 70), item("2026", 80)];
+    expect(trendOf(items, 2025)).toEqual({ value: 75, n: 2, delta: 30 });
+  });
+
+  it("needs two recent helmets, and two older ones for a direction", () => {
+    expect(trendOf([item("2019", 40), item("2026", 80)], 2025)).toBeNull();
+    expect(trendOf([item("2025", 70), item("2026", 80)], 2025)).toEqual({ value: 75, n: 2, delta: null });
   });
 });

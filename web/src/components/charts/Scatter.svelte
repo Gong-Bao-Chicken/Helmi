@@ -36,7 +36,7 @@
     yFormat?: (v: number) => string;
     xTicks?: number;
     yTicks?: number;
-    /** Draw the y = x line (agreement / parity charts). */
+    /** Draw the corner-to-corner line: y = x when both domains match (agreement / parity charts). */
     diagonal?: boolean;
     /** Direct labels: selective, never on every point. */
     labels?: { id: string; text: string }[];
@@ -188,9 +188,7 @@
     {/if}
 
     {#if diagonal}
-      {@const lo = Math.max(Math.min(...xDomain), Math.min(...yDomain))}
-      {@const hi = Math.min(Math.max(...xDomain), Math.max(...yDomain))}
-      <line x1={x(lo)} y1={y(lo)} x2={x(hi)} y2={y(hi)} stroke="var(--axis)" stroke-width="1.5" />
+      <line x1={x(xDomain[0])} y1={y(yDomain[0])} x2={x(xDomain[1])} y2={y(yDomain[1])} stroke="var(--axis)" stroke-width="1.5" />
     {/if}
 
     {#if underlay}{@render underlay(x, y)}{/if}

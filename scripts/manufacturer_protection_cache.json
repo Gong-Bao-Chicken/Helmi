@@ -1,0 +1,30 @@
+{
+  "fox-racing-speedframe-rs": {
+    "fetched": true,
+    "product_url": "https://www.foxracing.com/product/speedframe-rs-aura/38359.html",
+    "mips_variant": "integra_split",
+    "mips_label": "MIPS Integra Split",
+    "protection_tech": "mips_integra_split",
+    "snippet": "California Residents null Key Features Mips® equipped BOA® Fit System to dial in fit FIDLOCK SNAP helme",
+    "spin": false,
+    "sweet_2vi": false,
+    "wavecel": false,
+    "koroyd": false,
+    "error": null,
+    "source": "manufacturer_crawl"
+  },
+  "specialized-prevail-3": {
+    "fetched": true,
+    "product_url": "https://www.specialized.com/ch/en/search/Prevail%203",
+    "mips_variant": null,
+    "mips_label": null,
+    "protection_tech": "none",
+    "snippet": null,
+    "spin": false,
+    "sweet_2vi": false,
+    "wavecel": false,
+    "koroyd": false,
+    "error": null,
+    "source": "manufacturer_crawl"
+  }
+}

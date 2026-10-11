@@ -1,0 +1,118 @@
+{
+  "Specialized": {
+    "website": "https://www.specialized.com",
+    "search_url": "https://www.specialized.com/us/en/search?q={query}"
+  },
+  "Giro": {
+    "website": "https://www.giro.com",
+    "search_url": "https://www.giro.com/search?q={query}"
+  },
+  "Bell": {
+    "website": "https://www.bellhelmets.com",
+    "search_url": "https://www.bellhelmets.com/search?q={query}"
+  },
+  "Bontrager": {
+    "website": "https://www.bontrager.com",
+    "search_url": "https://www.bontrager.com/us/en_US/search?q={query}"
+  },
+  "Giant": {
+    "website": "https://www.giant-bicycles.com",
+    "search_url": "https://www.giant-bicycles.com/global/search?q={query}"
+  },
+  "Liv": {
+    "website": "https://www.liv-cycling.com",
+    "search_url": "https://www.liv-cycling.com/global/search?q={query}"
+  },
+  "Lazer": {
+    "website": "https://www.lazersport.com",
+    "search_url": "https://www.lazersport.com/en/search?q={query}"
+  },
+  "Trek": {
+    "website": "https://www.trekbikes.com",
+    "search_url": "https://www.trekbikes.com/us/en_US/search/?text={query}"
+  },
+  "POC": {
+    "website": "https://www.poc.com",
+    "search_url": "https://www.poc.com/eu/en/search?q={query}"
+  },
+  "Fox Racing": {
+    "website": "https://www.foxracing.com",
+    "search_url": "https://www.foxracing.com/search?q={query}"
+  },
+  "Troy Lee Designs": {
+    "website": "https://www.troyleedesigns.com",
+    "search_url": "https://www.troyleedesigns.com/search?q={query}"
+  },
+  "Scott": {
+    "website": "https://www.scott-sports.com",
+    "search_url": "https://www.scott-sports.com/global/en/search?q={query}"
+  },
+  "Sweet Protection": {
+    "website": "https://www.sweetprotection.com",
+    "search_url": "https://www.sweetprotection.com/search?q={query}"
+  },
+  "Kask": {
+    "website": "https://www.kask.com",
+    "search_url": "https://www.kask.com/en/search?q={query}"
+  },
+  "MET": {
+    "website": "https://www.met-helmets.com",
+    "search_url": "https://www.met-helmets.com/en/search?q={query}"
+  },
+  "Abus": {
+    "website": "https://www.abus.com",
+    "search_url": "https://www.abus.com/usa/Search?q={query}"
+  },
+  "Uvex": {
+    "website": "https://www.uvex-sports.com",
+    "search_url": "https://www.uvex-sports.com/en/search?q={query}"
+  },
+  "Smith": {
+    "website": "https://www.smithoptics.com",
+    "search_url": "https://www.smithoptics.com/en_US/search?q={query}"
+  },
+  "Oakley": {
+    "website": "https://www.oakley.com",
+    "search_url": "https://www.oakley.com/en-us/search?q={query}"
+  },
+  "Bern": {
+    "website": "https://www.bernhelmets.com",
+    "search_url": "https://www.bernhelmets.com/search?q={query}"
+  },
+  "Cannondale": {
+    "website": "https://www.cannondale.com",
+    "search_url": "https://www.cannondale.com/en-us/search?q={query}"
+  },
+  "Limar": {
+    "website": "https://www.limar.com",
+    "search_url": "https://www.limar.com/?s={query}"
+  },
+  "Leatt": {
+    "website": "https://www.leatt.com",
+    "search_url": "https://www.leatt.com/search?q={query}"
+  },
+  "100%": {
+    "website": "https://www.100percent.com",
+    "search_url": "https://www.100percent.com/search?q={query}"
+  },
+  "Bell Sports": {
+    "website": "https://www.bellhelmets.com",
+    "search_url": "https://www.bellhelmets.com/search?q={query}"
+  },
+  "Rudy Project": {
+    "website": "https://www.rudyproject.com",
+    "search_url": "https://www.rudyproject.com/us/en/search?q={query}"
+  },
+  "Kali Protectives": {
+    "website": "https://www.kaliprotectives.com",
+    "search_url": "https://www.kaliprotectives.com/search?q={query}"
+  },
+  "Nutcase": {
+    "website": "https://www.nutcasehelmets.com",
+    "search_url": "https://www.nutcasehelmets.com/search?q={query}"
+  },
+  "XLC": {
+    "website": "https://www.xlc-parts.com",
+    "search_url": "https://www.xlc-parts.com/en/search?q={query}"
+  }
+}

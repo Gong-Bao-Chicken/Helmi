@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "note": "MIPS variants for helmets where Virginia Tech model names omit MIPS. Keys match helmet id slugs."
+  },
+  "helmets": {
+    "poc-cularis": {
+      "variant": "air_node",
+      "source": "manufacturer",
+      "note": "POC Cularis uses MIPS Air Node (Cularis Pure is MIPS Evolve, not in VT catalog separately)"
+    },
+    "poc-cytal": {
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    "poc-cytal-carbon": {
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    "fox-racing-speedframe-pro": {
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    "fox-racing-dropframe-pro-2023": {
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    "fox-racing-dropframe-pro-2020-version": {
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    "fox-racing-crossframe-pro": {
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    "smith-forefront": {
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    "smith-overtake": {
+      "variant": "air",
+      "source": "manufacturer"
+    },
+    "extra-aero-smith-network": {
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    "extra-aero-smith-trace": {
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    "kask-elemento": {
+      "variant": "standard",
+      "source": "manufacturer"
+    },
+    "kask-valegro": {
+      "variant": "standard",
+      "source": "manufacturer"
+    },
+    "met-terrae": {
+      "variant": "standard",
+      "source": "manufacturer"
+    },
+    "met-revo": {
+      "variant": "standard",
+      "source": "manufacturer"
+    },
+    "met-shelter": {
+      "variant": "standard",
+      "source": "manufacturer"
+    },
+    "extra-aero-met-manta": {
+      "variant": "standard",
+      "source": "manufacturer"
+    },
+    "fox-racing-speedframe-rs": {
+      "variant": "integra_split",
+      "source": "manufacturer",
+      "note": "California Residents null Key Features Mips® equipped BOA® Fit System to dial in fit FIDLOCK SNAP helme"
+    }
+  },
+  "patterns": [
+    {
+      "brand": "POC",
+      "model_contains": "Cularis Pure",
+      "variant": "evolve",
+      "source": "manufacturer"
+    },
+    {
+      "brand": "Smith",
+      "model_contains": "Forefront",
+      "variant": "air_node",
+      "source": "manufacturer"
+    },
+    {
+      "brand": "Fox Racing",
+      "model_contains": "Speedframe Pro",
+      "variant": "air_node",
+      "source": "manufacturer"
+    }
+  ]
+}

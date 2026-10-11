@@ -44,6 +44,9 @@
         --chart-title: #334155;
         --chart-font: #1e293b;
         --marker-stroke: #ffffff;
+        --chart-label-bg: rgba(255, 255, 255, 0.94);
+        --chart-label-border: rgba(15, 23, 42, 0.14);
+        --chart-label-text: #0f172a;
         --input-bg: #ffffff;
         --shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
       }
@@ -70,6 +73,9 @@
         --chart-title: #cbd5e1;
         --chart-font: #e2e8f0;
         --marker-stroke: #0a0f1a;
+        --chart-label-bg: rgba(15, 23, 42, 0.92);
+        --chart-label-border: rgba(148, 163, 184, 0.4);
+        --chart-label-text: #f8fafc;
         --input-bg: #0a0f1a;
         --shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
       }
@@ -283,6 +289,61 @@
         padding: 0.125rem 0.375rem;
       }
 
+      .aero-tier {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        border-radius: 9999px;
+        padding: 0.125rem 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .aero-tier-elite {
+        background: color-mix(in srgb, #22c55e 18%, transparent);
+        color: #16a34a;
+        border: 1px solid color-mix(in srgb, #22c55e 35%, transparent);
+      }
+
+      .aero-tier-strong {
+        background: color-mix(in srgb, #84cc16 18%, transparent);
+        color: #65a30d;
+        border: 1px solid color-mix(in srgb, #84cc16 35%, transparent);
+      }
+
+      .aero-tier-moderate {
+        background: color-mix(in srgb, #eab308 20%, transparent);
+        color: #ca8a04;
+        border: 1px solid color-mix(in srgb, #eab308 35%, transparent);
+      }
+
+      .aero-tier-neutral {
+        background: color-mix(in srgb, #94a3b8 16%, transparent);
+        color: #64748b;
+        border: 1px solid color-mix(in srgb, #94a3b8 30%, transparent);
+      }
+
+      .aero-tier-draggy {
+        background: color-mix(in srgb, #f87171 16%, transparent);
+        color: #dc2626;
+        border: 1px solid color-mix(in srgb, #f87171 35%, transparent);
+      }
+
+      .aero-tier-none {
+        background: var(--surface-elevated);
+        color: var(--text-muted);
+        border: 1px solid var(--border-subtle);
+        font-weight: 500;
+      }
+
+      html[data-theme="dark"] .aero-tier-elite { color: #4ade80; }
+      html[data-theme="dark"] .aero-tier-strong { color: #a3e635; }
+      html[data-theme="dark"] .aero-tier-moderate { color: #facc15; }
+      html[data-theme="dark"] .aero-tier-neutral { color: #cbd5e1; }
+      html[data-theme="dark"] .aero-tier-draggy { color: #fca5a5; }
+
       .tr-selected {
         background: color-mix(in srgb, var(--accent) 12%, transparent);
         outline: 1px solid var(--accent);
@@ -302,6 +363,39 @@
 
       .table-row {
         cursor: pointer;
+      }
+
+      .table-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        background: var(--surface-elevated);
+      }
+
+      .sortable-th {
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+      }
+
+      .sortable-th:hover {
+        color: var(--text);
+      }
+
+      .sortable-th.sorted-asc::after,
+      .sortable-th.sorted-desc::after {
+        font-size: 0.65rem;
+        opacity: 0.85;
+      }
+
+      .sortable-th.sorted-asc::after {
+        content: " ↑";
+      }
+
+      .sortable-th.sorted-desc::after {
+        content: " ↓";
       }
 
       #themeToggle {
@@ -325,7 +419,7 @@
       </header>
 
       <section class="card mb-5 p-4 sm:p-5">
-        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           <label>
             <span class="field-label">Search</span>
             <input id="searchFilter" type="search" placeholder="Brand or model" class="field-input" />
@@ -338,6 +432,14 @@
             <span class="field-label">Score source</span>
             <select id="presentationMode" class="field-input"></select>
           </label>
+          <label id="vtScoreModePanel">
+            <span class="field-label">VT display</span>
+            <select id="vtScoreMode" class="field-input">
+              <option value="percentile" selected>Percentile</option>
+              <option value="normalized">Normalized</option>
+              <option value="star">STAR score</option>
+            </select>
+          </label>
           <label>
             <span class="field-label">Market</span>
             <select id="marketFilter" class="field-input"></select>
@@ -348,14 +450,6 @@
           <summary class="details-summary">More filters &amp; weights</summary>
           <div class="mt-4 space-y-4">
             <div class="grid gap-3 sm:grid-cols-2">
-              <div>
-                <span class="field-label">VT stars</span>
-                <div class="flex items-center gap-2">
-                  <select id="starsMinFilter" class="field-input min-w-0 flex-1"></select>
-                  <span style="color: var(--text-muted)">–</span>
-                  <select id="starsMaxFilter" class="field-input min-w-0 flex-1"></select>
-                </div>
-              </div>
               <div class="flex flex-wrap items-end gap-2">
                 <span class="field-label w-full">Presets</span>
                 <button type="button" data-preset="lab" class="preset-btn btn">Lab</button>
@@ -376,14 +470,29 @@
             </div>
 
             <div>
-              <p class="field-label">Rotational protection</p>
-              <div id="protectionFilters" class="flex flex-wrap gap-3"></div>
+              <p class="field-label">Protection technology</p>
+              <p class="mb-2 text-xs" style="color: var(--text-muted)">
+                Slip-plane tech slides on impact; crumple tech collapses to absorb energy.
+              </p>
+              <div id="protectionFilters" class="space-y-3"></div>
+            </div>
+
+            <div>
+              <p class="field-label">
+                Aero tier
+                <span style="font-weight:400">(Cyclingnews SSEH 2025)</span>
+              </p>
+              <div id="aeroTierFilters" class="flex flex-wrap gap-3"></div>
             </div>
 
             <div class="flex flex-wrap gap-x-5 gap-y-2">
               <label class="filter-chip">
                 <input id="euMarketFilter" type="checkbox" checked />
                 European market only
+              </label>
+              <label class="filter-chip">
+                <input id="aeroDataOnlyFilter" type="checkbox" />
+                Has aero test data
               </label>
               <label class="filter-chip">
                 <input id="paretoOnlyFilter" type="checkbox" />
@@ -416,7 +525,7 @@
         </div>
         <div class="stat-card">
           <p class="stat-label">Sweet spots</p>
-          <p class="stat-value" id="paretoCount">–</p>
+          <p class="stat-value" id="sweetSpotCount">–</p>
         </div>
         <div class="stat-card">
           <p class="stat-label" id="bestScoreLabel">Best safety</p>
@@ -433,7 +542,7 @@
           <div>
             <h2 class="text-sm font-semibold" style="color: var(--text-secondary)">Price vs safety</h2>
             <p class="mt-0.5 text-xs" style="color: var(--text-muted)" id="chartHelpText">
-              Color by value score (within style). Shaded band = expected safety for price. Green outline = sweet spot. Click chart or table row to link.
+              Color by value score (within style). Fair-value band appears when one style is selected. Green outline = sweet spot. Click chart or table row to link.
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-2 text-xs" style="color: var(--text-muted)">
@@ -442,11 +551,14 @@
               <select id="chartColorMode" class="field-input !w-auto !py-1 !text-xs">
                 <option value="value">Value score</option>
                 <option value="composite">Composite</option>
+                <option value="aero">Aero tier</option>
                 <option value="style">Style</option>
                 <option value="brand">Brand</option>
-                <option value="stars">VT stars</option>
+                <option value="protection">Protection tech</option>
               </select>
             </label>
+            <div id="aeroColorLegend" class="hidden flex flex-wrap gap-1.5"></div>
+            <div id="protectionColorLegend" class="hidden flex flex-wrap gap-1.5"></div>
             <label class="filter-chip">
               <input id="showFairValueBand" type="checkbox" checked />
               Fair-value band
@@ -485,21 +597,34 @@
         <summary class="details-summary border-b px-4 py-3" style="border-color: var(--border-subtle); background: var(--surface-elevated)">
           All helmets
         </summary>
+        <div class="table-toolbar border-b px-4 py-2" style="border-color: var(--border-subtle)">
+          <label class="flex min-w-[12rem] flex-1 items-center gap-2 text-xs" style="color: var(--text-muted)">
+            Filter
+            <input
+              id="mainTableFilter"
+              type="search"
+              class="field-input !max-w-sm !flex-1 !py-1 !text-xs"
+              placeholder="Filter rows…"
+              autocomplete="off"
+            />
+          </label>
+          <span id="mainTableCount" class="text-xs text-muted"></span>
+        </div>
         <div class="overflow-x-auto">
-          <table class="min-w-full text-left text-sm">
+          <table id="mainHelmetsTable" class="min-w-full text-left text-sm">
             <thead class="table-head">
               <tr>
                 <th class="w-10 px-2 py-3" title="Pin on chart"></th>
-                <th class="px-4 py-3">Helmet</th>
-                <th class="px-4 py-3" id="safetyColHeader">Safety</th>
-                <th class="px-4 py-3">VT ★</th>
-                <th class="px-4 py-3">Value</th>
-                <th class="px-4 py-3">vs peers</th>
-                <th class="px-4 py-3">Price</th>
-                <th class="px-4 py-3 shop-col hidden">Shop</th>
-                <th class="px-4 py-3 shop-col hidden">Reviews</th>
-                <th class="px-4 py-3">Composite</th>
-                <th class="px-4 py-3">Protection</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="helmet" data-sortable="true">Helmet</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="safety" data-sortable="true" id="safetyColHeader">Safety</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="aero" data-sortable="true">Aero</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="value" data-sortable="true">Value</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="residual" data-sortable="true">vs peers</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="price" data-sortable="true">Price</th>
+                <th class="sortable-th shop-col hidden px-4 py-3" data-sort-key="shop" data-sortable="true">Shop</th>
+                <th class="sortable-th shop-col hidden px-4 py-3" data-sort-key="reviews" data-sortable="true">Reviews</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="composite" data-sortable="true">Composite</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="protection" data-sortable="true">Protection</th>
               </tr>
             </thead>
             <tbody id="tableBody" class="divide-y table-divider"></tbody>
@@ -511,20 +636,32 @@
         <summary class="details-summary border-b px-4 py-3" style="border-color: var(--border-subtle); background: var(--surface-elevated)">
           Top 20 by value
         </summary>
+        <div class="table-toolbar border-b px-4 py-2" style="border-color: var(--border-subtle)">
+          <label class="flex min-w-[12rem] flex-1 items-center gap-2 text-xs" style="color: var(--text-muted)">
+            Filter
+            <input
+              id="topPicksTableFilter"
+              type="search"
+              class="field-input !max-w-sm !flex-1 !py-1 !text-xs"
+              placeholder="Filter rows…"
+              autocomplete="off"
+            />
+          </label>
+          <span id="topPicksTableCount" class="text-xs text-muted"></span>
+        </div>
         <div class="overflow-x-auto">
-          <table class="min-w-full text-left text-sm">
+          <table id="topPicksTable" class="min-w-full text-left text-sm">
             <thead class="table-head">
               <tr>
                 <th class="w-10 px-2 py-3"></th>
                 <th class="px-4 py-3">#</th>
-                <th class="px-4 py-3">Helmet</th>
-                <th class="px-4 py-3">Value</th>
-                <th class="px-4 py-3" id="safetyColHeaderTop">Safety</th>
-                <th class="px-4 py-3">VT ★</th>
-                <th class="px-4 py-3">Price</th>
-                <th class="px-4 py-3 shop-col hidden">Shop</th>
-                <th class="px-4 py-3 shop-col hidden">Rating</th>
-                <th class="px-4 py-3">Protection</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="helmet" data-sortable="true">Helmet</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="value" data-sortable="true">Value</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="safety" data-sortable="true" id="safetyColHeaderTop">Safety</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="price" data-sortable="true">Price</th>
+                <th class="sortable-th shop-col hidden px-4 py-3" data-sort-key="shop" data-sortable="true">Shop</th>
+                <th class="sortable-th shop-col hidden px-4 py-3" data-sort-key="reviews" data-sortable="true">Rating</th>
+                <th class="sortable-th px-4 py-3" data-sort-key="protection" data-sortable="true">Protection</th>
               </tr>
             </thead>
             <tbody id="topPicksBody" class="divide-y table-divider"></tbody>
@@ -533,9 +670,9 @@
       </details>
     </div>
 
+    <script src="./scoring.js"></script>
     <script>
-      const MAX_FUSED_SOURCES = 2;
-      const DEFAULT_PRESENTATION_MODE = "virginia_tech_raw";
+      const DEFAULT_PRESENTATION_MODE = "virginia_tech";
       const TOP_LABEL_COUNT = 5;
       const THEME_KEY = "helmet-compare-theme";
       const STYLE_COLORS = {
@@ -547,14 +684,6 @@
         "Multi-sport": "#facc15",
       };
       const STYLE_FALLBACK_COLORS = ["#2dd4bf", "#fb7185", "#c084fc", "#4ade80", "#fdba74"];
-      const STAR_COLORS = {
-        5: "#22c55e",
-        4: "#84cc16",
-        3: "#eab308",
-        2: "#f97316",
-        1: "#ef4444",
-        0: "#64748b",
-      };
       const SOURCE_COLORS = {
         virginia_tech: "#34d399",
         certimoov: "#c084fc",
@@ -564,6 +693,49 @@
         hiper: "#f472b6",
       };
       const SOURCE_ORDER = ["virginia_tech", "fused", "certimoov", "folksam", "nsw_helmet_star", "hiper"];
+      // Fallbacks only; overridden from dataset.filters.protection_groups on load.
+      let PROTECTION_GROUPS = [
+        {
+          key: "spherical",
+          label: "Spherical",
+          hint: "Ball-and-socket rotation (MIPS Spherical, Bell Spherical)",
+          color: "#818cf8",
+        },
+        {
+          key: "rotational",
+          label: "Slip-plane",
+          hint: "Low-friction layer slides on your head (MIPS, POC SPIN, Sweet 2Vi)",
+          color: "#34d399",
+        },
+        {
+          key: "crumple",
+          label: "Crumple",
+          hint: "Cells or tubes collapse to absorb impact (WaveCel, Koroyd)",
+          color: "#f472b6",
+        },
+        {
+          key: "none",
+          label: "None",
+          hint: "No detected slip-plane or crumple tech",
+          color: "#94a3b8",
+        },
+      ];
+
+      const AERO_TIER_COLORS = {
+        elite: "#22c55e",
+        strong: "#84cc16",
+        moderate: "#eab308",
+        neutral: "#94a3b8",
+        draggy: "#f87171",
+      };
+
+      const AERO_TIER_LABELS = {
+        elite: "Elite",
+        strong: "Strong",
+        moderate: "Moderate",
+        neutral: "Neutral",
+        draggy: "Draggy",
+      };
 
       const CHART_IDS = ["valueChart", "compositeChart", "multiSourceChart"];
       const EPS_SAFETY_NORM = 0.03;
@@ -581,7 +753,10 @@
       let chartsLinked = false;
       let suppressHoverSync = false;
       let helmetPlotIndex = {};
-      let activeSafetyMeta = { yTitle: "STAR score (↑ safer at top)", higherIsSafer: false, shortLabel: "STAR" };
+      let activeSafetyMeta = { yTitle: "VT safety score (↑ safer at top)", higherIsSafer: true, shortLabel: "VT" };
+      let tableRenderContext = { helmets: [], searchTerms: [], paretoSet: new Set() };
+      let mainTableState = { sortKey: "value", sortDir: "desc", filter: "" };
+      let topPicksTableState = { sortKey: "value", sortDir: "desc", filter: "" };
 
       function chartTheme() {
         const root = getComputedStyle(document.documentElement);
@@ -598,6 +773,9 @@
           accent: root.getPropertyValue("--accent").trim(),
           annotation: root.getPropertyValue("--text-muted").trim(),
           labelFont: root.getPropertyValue("--text-secondary").trim(),
+          labelBg: root.getPropertyValue("--chart-label-bg").trim(),
+          labelBorder: root.getPropertyValue("--chart-label-border").trim(),
+          labelText: root.getPropertyValue("--chart-label-text").trim(),
           calloutBg: root.getPropertyValue("--surface-elevated").trim(),
           calloutBorder: root.getPropertyValue("--border").trim(),
         };
@@ -664,6 +842,10 @@
         return j ? [j.x, j.y] : [x, y];
       }
 
+      function getVtScoreMode() {
+        return document.getElementById("vtScoreMode")?.value || "percentile";
+      }
+
       function getPresentationMode() {
         const el = document.getElementById("presentationMode");
         return el?.value || DEFAULT_PRESENTATION_MODE;
@@ -678,9 +860,9 @@
       }
 
       function getFusedSourceKeys() {
-        return [...document.querySelectorAll("[data-fusion-source]:checked")]
-          .map((el) => el.dataset.fusionSource)
-          .slice(0, MAX_FUSED_SOURCES);
+        return [...document.querySelectorAll("[data-fusion-source]:checked")].map(
+          (el) => el.dataset.fusionSource
+        );
       }
 
       function helmetHasSource(helmet, sourceKey) {
@@ -697,7 +879,7 @@
       function computeFusedRankPct(helmet, sourceKeys) {
         const ratings = helmet.ratings || {};
         const eligible = [];
-        for (const key of sourceKeys.slice(0, MAX_FUSED_SOURCES)) {
+        for (const key of sourceKeys) {
           const block = ratings[key];
           if (!block || block.rank_pct == null) continue;
           const meta = sourceMeta(key);
@@ -708,26 +890,38 @@
         return eligible.reduce((sum, entry) => sum + entry.rank * entry.weight, 0) / total;
       }
 
-      function computeSafetyMetric(helmet, mode, fusedKeys, rawMin, rawMax) {
+      function computeSafetyMetric(helmet, mode, fusedKeys) {
         const ratings = helmet.ratings || {};
         const vt = ratings.virginia_tech || {};
 
-        if (mode === "virginia_tech_raw") {
-          const value = vt.score ?? helmet.score;
-          const available = value != null;
-          const norm = !available || rawMin === rawMax ? 1 : (rawMax - value) / (rawMax - rawMin);
-          return {
-            value,
-            display: available ? value.toFixed(1) : "–",
-            higherIsSafer: false,
-            norm: available ? norm : null,
-            available,
-            yTitle: "STAR score (↑ safer at top)",
-            shortLabel: "STAR",
-          };
-        }
-
-        if (mode === "virginia_tech_pct") {
+        if (mode === "virginia_tech") {
+          const vtMode = getVtScoreMode();
+          const rawScore = vt.score ?? helmet.score;
+          if (vtMode === "star") {
+            const available = rawScore != null;
+            return {
+              value: rawScore,
+              display: available ? rawScore.toFixed(1) : "–",
+              higherIsSafer: false,
+              norm: vt.score_norm ?? vt.rank_pct ?? null,
+              available,
+              yTitle: "STAR score (↑ safer at top)",
+              shortLabel: "STAR",
+            };
+          }
+          if (vtMode === "normalized") {
+            const value = vt.score_norm;
+            const available = value != null;
+            return {
+              value,
+              display: available ? `${(value * 100).toFixed(0)}%` : "–",
+              higherIsSafer: true,
+              norm: value,
+              available,
+              yTitle: "VT normalized score (↑ safer at top)",
+              shortLabel: "VT norm",
+            };
+          }
           const value = vt.rank_pct;
           const available = value != null;
           return {
@@ -775,24 +969,9 @@
 
       function attachSafetyMetrics(helmets, mode) {
         const fusedKeys = mode === "fused" ? getFusedSourceKeys() : [];
-        let rawMin = Infinity;
-        let rawMax = -Infinity;
-        if (mode === "virginia_tech_raw") {
-          for (const helmet of helmets) {
-            const value = helmet.ratings?.virginia_tech?.score ?? helmet.score;
-            if (value != null) {
-              rawMin = Math.min(rawMin, value);
-              rawMax = Math.max(rawMax, value);
-            }
-          }
-          if (!Number.isFinite(rawMin)) {
-            rawMin = 8;
-            rawMax = 30;
-          }
-        }
         return helmets.map((helmet) => ({
           ...helmet,
-          safety: computeSafetyMetric(helmet, mode, fusedKeys, rawMin, rawMax),
+          safety: computeSafetyMetric(helmet, mode, fusedKeys),
         }));
       }
 
@@ -860,23 +1039,6 @@
         }
       }
 
-      function fillStarsRangeSelects() {
-        const stars = dataset.filters.stars.filter((s) => s > 0).sort((a, b) => a - b);
-        fillSelect(document.getElementById("starsMinFilter"), stars, "Any min");
-        fillSelect(document.getElementById("starsMaxFilter"), stars, "Any max");
-      }
-
-      function getStarsRange() {
-        const minVal = document.getElementById("starsMinFilter").value;
-        const maxVal = document.getElementById("starsMaxFilter").value;
-        const rawMin = minVal === "" ? 0 : Number(minVal);
-        const rawMax = maxVal === "" ? 5 : Number(maxVal);
-        return {
-          minStars: Math.min(rawMin, rawMax),
-          maxStars: Math.max(rawMin, rawMax),
-        };
-      }
-
       function getActiveStyleKeys() {
         return [...document.querySelectorAll("[data-style-key]:checked")].map((el) => el.dataset.styleKey);
       }
@@ -898,22 +1060,112 @@
 
       function hasRotationalTech(helmet) {
         const f = helmet.features || {};
-        return !!(f.mips_standard || f.mips_spherical || f.mips || f.wavecel || f.spin || f.sweet_2vi);
+        return !!(f.mips_standard || f.mips_spherical || f.wavecel || f.spin || f.sweet_2vi);
+      }
+
+      function helmetProtectionGroup(helmet) {
+        if (helmet.protection_group) return helmet.protection_group;
+        const f = helmet.features || {};
+        if (f.mips_spherical) return "spherical";
+        if (f.wavecel || f.koroyd) return "crumple";
+        if (
+          f.mips_standard ||
+          f.spin ||
+          f.sweet_2vi ||
+          f.rotational_protection ||
+          helmet.protection?.has_mips
+        ) {
+          return "rotational";
+        }
+        return "none";
+      }
+
+      function protectionGroupColor(key) {
+        return PROTECTION_GROUPS.find((group) => group.key === key)?.color || "#94a3b8";
+      }
+
+      function protectionGroupLabel(key) {
+        return PROTECTION_GROUPS.find((group) => group.key === key)?.label || key;
+      }
+
+      function helmetProtectionTech(helmet) {
+        return helmet.protection_tech || "none";
       }
 
       function helmetMatchesProtection(helmet, keys) {
         if (!keys.length) return true;
-        const f = helmet.features || {};
-        return keys.some((key) => {
-          if (key === "none") return !hasRotationalTech(helmet);
-          if (key === "mips_standard") return f.mips_standard || (f.mips && !f.mips_spherical);
-          if (key === "mips_spherical") return f.mips_spherical || f.spherical;
-          return !!f[key];
-        });
+        const tech = helmetProtectionTech(helmet);
+        return keys.includes(tech);
       }
 
       function getActiveProtectionKeys() {
         return [...document.querySelectorAll("[data-protection-key]:checked")].map((el) => el.dataset.protectionKey);
+      }
+
+      function getActiveAeroTierKeys() {
+        return [...document.querySelectorAll("[data-aero-tier-key]:checked")].map((el) => el.dataset.aeroTierKey);
+      }
+
+      function helmetMatchesAeroTier(helmet, keys) {
+        if (!keys.length) return true;
+        const tier = helmet.aero?.tier;
+        if (!tier) return false;
+        return keys.includes(tier);
+      }
+
+      function aeroTierColor(tier) {
+        return AERO_TIER_COLORS[tier] || "#64748b";
+      }
+
+      function aeroTierLabel(tier) {
+        return AERO_TIER_LABELS[tier] || tier || "–";
+      }
+
+      function formatAeroWatts(helmet) {
+        const watts = helmet.aero?.watts_saved;
+        if (watts == null) return null;
+        const sign = watts > 0 ? "+" : "";
+        return `${sign}${watts.toFixed(2)}W`;
+      }
+
+      function aeroSourceCount(helmet) {
+        const keys = helmet.aero?.source_keys || (helmet.aero?.source ? [helmet.aero.source] : []);
+        return keys.filter((key) => key !== "fused").length;
+      }
+
+      function aeroTooltipTitle(helmet) {
+        const aero = helmet.aero;
+        if (!aero?.tier) return "";
+        const parts = [];
+        if (aero.score != null) {
+          parts.push(`Fused aero score ${aero.score}/100 (${aeroTierLabel(aero.tier)})`);
+        }
+        const sourceCount = aeroSourceCount(helmet);
+        if (sourceCount > 1) {
+          parts.push(`${sourceCount} CN Labs tests`);
+        } else if (sourceCount === 1) {
+          const key = (aero.source_keys || [])[0];
+          const label = dataset?.filters?.aero_sources?.find((s) => s.key === key)?.short || "CN Labs";
+          parts.push(label);
+        }
+        const watts = formatAeroWatts(helmet);
+        if (watts) {
+          const src2025 = aero.sources?.cyclingnews_sseh_2025;
+          const baseline = src2025?.baseline_helmet || "baseline";
+          parts.push(`${watts} vs ${baseline} @ 40 km/h`);
+        }
+        return parts.join(" · ");
+      }
+
+      function aeroTierBadgeHtml(helmet) {
+        const aero = helmet.aero;
+        if (!aero?.tier) {
+          return '<span class="aero-tier aero-tier-none">–</span>';
+        }
+        const score = aero.score != null ? `${aero.score}` : formatAeroWatts(helmet) || "–";
+        const sourceSuffix = aeroSourceCount(helmet) > 1 ? ` · ${aeroSourceCount(helmet)}src` : "";
+        const title = aeroTooltipTitle(helmet);
+        return `<span class="aero-tier aero-tier-${aero.tier}" title="${title}">${aeroTierLabel(aero.tier)} · ${score}${sourceSuffix}</span>`;
       }
 
       function getWeights() {
@@ -964,21 +1216,26 @@
         return ids;
       }
 
+      function hasLiveShopPrice(helmet) {
+        return helmet.price_comparison_usd != null;
+      }
+
+      function getComparisonPriceUsd(helmet) {
+        return helmet.price_comparison_usd ?? helmet.price_at_test_usd;
+      }
+
+      function priceNormForHelmets(helmets) {
+        return HelmetScoring.assignPriceNorms(helmets, hasLiveShopPrice, getComparisonPriceUsd);
+      }
+
       function withCompositeScores(helmets) {
         if (!helmets.length) return [];
         const w = getWeights();
-        const prices = helmets.map((h) => getComparisonPriceUsd(h)).filter((p) => p != null);
-        const minP = prices.length ? Math.min(...prices) : 0;
-        const maxP = prices.length ? Math.max(...prices) : 0;
+        const priceNormById = priceNormForHelmets(helmets);
 
         return helmets.map((helmet) => {
           const safetyNorm = helmet.safety?.norm;
-          const hasPrice = getComparisonPriceUsd(helmet) != null;
-          const priceNorm = !hasPrice
-            ? null
-            : maxP === minP
-              ? 1
-              : (maxP - getComparisonPriceUsd(helmet)) / (maxP - minP);
+          const priceNorm = priceNormById.get(helmet.id) ?? null;
 
           let composite = 0;
           const active = [];
@@ -1027,15 +1284,74 @@
       }
 
       function percentileRank(values, value) {
-        const sorted = values.filter((v) => v != null && !Number.isNaN(v)).sort((a, b) => a - b);
-        if (!sorted.length || value == null || Number.isNaN(value)) return null;
-        let below = 0;
-        let equal = 0;
-        for (const v of sorted) {
-          if (v < value) below += 1;
-          else if (v === value) equal += 1;
+        return HelmetScoring.percentileRank(values, value);
+      }
+
+      function attachReviewMetrics(helmets) {
+        if (!helmets.length) return helmets;
+        const reviewPrior = computeBayesianReviewPrior(helmets);
+        const reviewScores = helmets
+          .map((h) => bayesianReviewScore(getListing(h), reviewPrior))
+          .filter((s) => s != null);
+        for (const helmet of helmets) {
+          const reviewRaw = bayesianReviewScore(getListing(helmet), reviewPrior);
+          helmet.review_smoothed = reviewRaw;
+          helmet.review_pct =
+            reviewRaw == null ? null : HelmetScoring.percentileRank(reviewScores, reviewRaw);
         }
-        return (below + equal * 0.5) / sorted.length;
+        return helmets;
+      }
+
+      function attachValueMetrics(helmets) {
+        if (!helmets.length) return helmets;
+        const byStyle = new Map();
+        for (const helmet of helmets) {
+          const style = helmet.style || "Other";
+          if (!byStyle.has(style)) byStyle.set(style, []);
+          byStyle.get(style).push(helmet);
+        }
+
+        for (const group of byStyle.values()) {
+          const { live, test } = HelmetScoring.splitPriceCohorts(
+            group,
+            hasLiveShopPrice,
+            getComparisonPriceUsd
+          );
+          for (const cohort of [live, test]) {
+            if (!cohort.length) continue;
+            const prices = cohort.map((h) => getComparisonPriceUsd(h));
+            const priced = cohort.filter(
+              (h) => h.safety?.norm != null && getComparisonPriceUsd(h) != null
+            );
+            const bins =
+              priced.length >= 4
+                ? buildPriceBins(
+                    priced,
+                    (h) => getComparisonPriceUsd(h),
+                    (h) => h.safety.norm,
+                    Math.min(8, Math.max(3, Math.floor(priced.length / 6)))
+                  )
+                : [];
+
+            for (const helmet of cohort) {
+              const price = getComparisonPriceUsd(helmet);
+              const safetyPct = helmet.safety?.norm ?? null;
+              const rawPricePct = price == null ? null : HelmetScoring.percentileRank(prices, price);
+              const { valueIndex, valueScore, cheapnessPct } =
+                HelmetScoring.computeValueFromPercentiles(safetyPct, rawPricePct);
+              const expected =
+                price != null && helmet.safety?.norm != null ? interpolateBinMedian(bins, price) : null;
+
+              helmet.style_value_index = valueIndex;
+              helmet.value_score = valueScore;
+              helmet.price_pct = cheapnessPct;
+              helmet.price_basis = hasLiveShopPrice(helmet) ? "live" : "test";
+              helmet.fair_value_residual =
+                expected != null && helmet.safety?.norm != null ? helmet.safety.norm - expected : null;
+            }
+          }
+        }
+        return helmets;
       }
 
       function computeBayesianReviewPrior(helmets) {
@@ -1084,59 +1400,6 @@
           }
         }
         return sorted[sorted.length - 1].median;
-      }
-
-      function attachDerivedMetrics(helmets) {
-        if (!helmets.length) return helmets;
-        const reviewPrior = computeBayesianReviewPrior(helmets);
-        const reviewScores = helmets
-          .map((h) => bayesianReviewScore(getListing(h), reviewPrior))
-          .filter((s) => s != null);
-        const byStyle = new Map();
-        for (const helmet of helmets) {
-          const style = helmet.style || "Other";
-          if (!byStyle.has(style)) byStyle.set(style, []);
-          byStyle.get(style).push(helmet);
-        }
-
-        for (const group of byStyle.values()) {
-          const prices = group.map((h) => getComparisonPriceUsd(h)).filter((p) => p != null);
-          const priced = group.filter(
-            (h) => h.safety?.norm != null && getComparisonPriceUsd(h) != null
-          );
-          const bins =
-            priced.length >= 4
-              ? buildPriceBins(
-                  priced,
-                  (h) => getComparisonPriceUsd(h),
-                  (h) => h.safety.norm,
-                  Math.min(8, Math.max(3, Math.floor(priced.length / 6)))
-                )
-              : [];
-
-          for (const helmet of group) {
-            const price = getComparisonPriceUsd(helmet);
-            const safetyPct = helmet.safety?.norm ?? null;
-            const rawPricePct = price == null ? null : percentileRank(prices, price);
-            const pricePct = rawPricePct == null ? null : 1 - rawPricePct;
-            const valueIndex =
-              safetyPct != null && pricePct != null ? safetyPct - pricePct : safetyPct ?? pricePct ?? null;
-            const reviewRaw = bayesianReviewScore(getListing(helmet), reviewPrior);
-            const reviewPct =
-              reviewRaw == null ? null : percentileRank(reviewScores, reviewRaw);
-            const expected =
-              price != null && helmet.safety?.norm != null ? interpolateBinMedian(bins, price) : null;
-
-            helmet.style_value_index = valueIndex;
-            helmet.value_score = valueIndex == null ? null : Math.round((valueIndex + 1) * 50);
-            helmet.price_pct = pricePct;
-            helmet.review_pct = reviewPct;
-            helmet.review_smoothed = reviewRaw;
-            helmet.fair_value_residual =
-              expected != null && helmet.safety?.norm != null ? helmet.safety.norm - expected : null;
-          }
-        }
-        return helmets;
       }
 
       function buildFairValueBandTraces(chartable) {
@@ -1236,7 +1499,7 @@
               name: `${style} · mean ${formatPlotStatValue(mean)}`,
               x: [xMin, xMax],
               y: [mean, mean],
-              line: { color, width: 1.5, dash: "dash" },
+              line: { color, width: 2.25, dash: "dash" },
               hovertemplate: `${style} mean: ${formatPlotStatValue(mean)}<extra></extra>`,
             });
           }
@@ -1248,7 +1511,7 @@
               name: `${style} · median ${formatPlotStatValue(median)}`,
               x: [xMin, xMax],
               y: [median, median],
-              line: { color, width: 1.5, dash: "dot" },
+              line: { color, width: 2.25, dash: "dot" },
               hovertemplate: `${style} median: ${formatPlotStatValue(median)}<extra></extra>`,
             });
           }
@@ -1267,28 +1530,13 @@
           return ids;
         }
 
-        let bestKnee = null;
-        let bestAngle = Infinity;
-        for (let i = 1; i < frontier.length - 1; i += 1) {
-          const prev = frontier[i - 1];
-          const curr = frontier[i];
-          const next = frontier[i + 1];
-          const dx1 = getComparisonPriceUsd(curr) - getComparisonPriceUsd(prev);
-          const dx2 = getComparisonPriceUsd(next) - getComparisonPriceUsd(curr);
-          const dy1 = higherIsSafer
-            ? curr.safety.value - prev.safety.value
-            : prev.safety.value - curr.safety.value;
-          const dy2 = higherIsSafer
-            ? next.safety.value - curr.safety.value
-            : curr.safety.value - next.safety.value;
-          if (dx1 <= 0 || dx2 <= 0 || dy1 <= 0 || dy2 <= 0) continue;
-          const angle = Math.abs(Math.atan2(dy2 / dx2, 1) - Math.atan2(dy1 / dx1, 1));
-          if (angle < bestAngle) {
-            bestAngle = angle;
-            bestKnee = curr;
-          }
-        }
-        if (bestKnee) ids.add(bestKnee.id);
+        const kneeId = HelmetScoring.findKneeId(
+          frontier,
+          (h) => getComparisonPriceUsd(h),
+          (h) => h.safety.value,
+          higherIsSafer
+        );
+        if (kneeId) ids.add(kneeId);
         [...frontier]
           .sort((a, b) => (b.value_score ?? -1) - (a.value_score ?? -1))
           .slice(0, 3)
@@ -1372,18 +1620,17 @@
         return `${stars}★${n}`;
       }
 
-      function passesBaseFilters(helmet, paretoSet) {
+      function passesBaseFilters(helmet) {
         const brand = document.getElementById("brandFilter").value;
-        const { minStars, maxStars } = getStarsRange();
         const europeanOnly = document.getElementById("euMarketFilter").checked;
-        const paretoOnly = document.getElementById("paretoOnlyFilter").checked;
+        const aeroDataOnly = document.getElementById("aeroDataOnlyFilter")?.checked;
 
         if (europeanOnly && !helmet.european_market) return false;
-        if (paretoOnly && !paretoSet.has(helmet.id)) return false;
+        if (aeroDataOnly && !helmet.aero) return false;
         if (brand && helmetBrandKey(helmet) !== brand.toLowerCase()) return false;
         if (!helmetMatchesStyle(helmet, getActiveStyleKeys())) return false;
-        if (helmet.stars < minStars || helmet.stars > maxStars) return false;
         if (!helmetMatchesProtection(helmet, getActiveProtectionKeys())) return false;
+        if (!helmetMatchesAeroTier(helmet, getActiveAeroTierKeys())) return false;
         if (helmet.catalog !== "extra_only" && helmet.price_at_test_usd == null) return false;
         return true;
       }
@@ -1399,11 +1646,13 @@
           return !europeanOnly || h.european_market;
         });
         const poolWithSafety = attachSafetyMetrics(pool, mode);
-        const poolPareto = computeParetoIds(poolWithSafety);
-        const base = poolWithSafety.filter((h) => passesBaseFilters(h, poolPareto));
-        const scored = attachDerivedMetrics(withCompositeScores(base));
-        const basePareto = computeParetoIds(scored);
-        kneeIds = computeKneeIds(scored, basePareto);
+        const base = poolWithSafety.filter((h) => passesBaseFilters(h));
+        const viewPareto = computeParetoIds(base);
+        const paretoOnly = document.getElementById("paretoOnlyFilter").checked;
+        const filtered = paretoOnly ? base.filter((h) => viewPareto.has(h.id)) : base;
+        const withReviews = attachReviewMetrics(filtered);
+        const scored = attachValueMetrics(withCompositeScores(withReviews));
+        kneeIds = computeKneeIds(scored, viewPareto);
 
         if (scored.length && scored[0].safety) {
           activeSafetyMeta = {
@@ -1413,17 +1662,13 @@
           };
         }
 
-        return { helmets: scored, paretoIds: basePareto, searchTerms: getSearchTerms(), mode };
+        return { helmets: scored, paretoIds: viewPareto, searchTerms: getSearchTerms(), mode };
       }
 
       function formatUsd(value) {
         return value == null
           ? "–"
           : new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
-      }
-
-      function getComparisonPriceUsd(helmet) {
-        return helmet.price_comparison_usd ?? helmet.price_at_test_usd;
       }
 
       function formatComparisonPrice(helmet) {
@@ -1470,6 +1715,161 @@
 
       function helmetLabel(helmet) {
         return `${helmet.brand} ${helmet.model}`;
+      }
+
+      function protectionText(helmet) {
+        const protection = helmet.protection;
+        if (protection?.rotational_label) return protection.rotational_label;
+        return (helmet.feature_labels || []).join(", ") || "–";
+      }
+
+      function tableColumnSpecs() {
+        return {
+          helmet: {
+            sortValue: (helmet) => helmetLabel(helmet).toLowerCase(),
+            filterText: (helmet) => `${helmet.brand} ${helmet.model} ${helmet.style || ""}`,
+          },
+          safety: {
+            sortValue: (helmet) => helmet.safety?.value ?? null,
+            filterText: (helmet) => helmet.safety?.display ?? "",
+          },
+          aero: {
+            sortValue: (helmet) => helmet.aero?.rank_pct ?? helmet.aero?.score ?? null,
+            filterText: (helmet) => {
+              const aero = helmet.aero;
+              if (!aero) return "";
+              const score = aero.score != null ? `${aero.score}` : formatAeroWatts(helmet) || "";
+              return `${aeroTierLabel(aero.tier)} ${score}`;
+            },
+          },
+          value: {
+            sortValue: (helmet) => helmet.value_score ?? null,
+            filterText: (helmet) => formatValueScore(helmet),
+          },
+          residual: {
+            sortValue: (helmet) => helmet.fair_value_residual ?? null,
+            filterText: (helmet) => formatFairResidual(helmet),
+          },
+          price: {
+            sortValue: (helmet) => getComparisonPriceUsd(helmet),
+            filterText: (helmet) => formatComparisonPrice(helmet).replace(/<[^>]+>/g, " "),
+          },
+          shop: {
+            sortValue: (helmet) => getListing(helmet).price ?? null,
+            filterText: (helmet) => formatShopPrice(getListing(helmet)),
+          },
+          reviews: {
+            sortValue: (helmet) => helmet.review_smoothed ?? getListing(helmet).rating ?? null,
+            filterText: (helmet) => formatReviewDerived(helmet),
+          },
+          composite: {
+            sortValue: (helmet) => helmet.composite_score ?? null,
+            filterText: (helmet) =>
+              helmet.composite_score == null ? "" : String(Math.round(helmet.composite_score * 100)),
+          },
+          protection: {
+            sortValue: (helmet) => protectionText(helmet).toLowerCase(),
+            filterText: (helmet) => protectionText(helmet),
+          },
+        };
+      }
+
+      function compareSortValues(a, b) {
+        const aNull = a == null || Number.isNaN(a);
+        const bNull = b == null || Number.isNaN(b);
+        if (aNull && bNull) return 0;
+        if (aNull) return 1;
+        if (bNull) return -1;
+        if (typeof a === "number" && typeof b === "number") return a - b;
+        return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: "base" });
+      }
+
+      function filterTableHelmets(helmets, filterText) {
+        const query = filterText.trim().toLowerCase();
+        if (!query) return helmets;
+        const columns = tableColumnSpecs();
+        return helmets.filter((helmet) => {
+          const haystack = Object.values(columns)
+            .map((column) => column.filterText(helmet))
+            .join(" ")
+            .toLowerCase();
+          return haystack.includes(query);
+        });
+      }
+
+      function sortTableHelmets(helmets, state, { searchTerms = [], searchBoost = false } = {}) {
+        const columns = tableColumnSpecs();
+        const column = columns[state.sortKey];
+        if (!column) return helmets.slice();
+        const dir = state.sortDir === "asc" ? 1 : -1;
+        return helmets.slice().sort((a, b) => {
+          if (searchBoost && searchTerms.length) {
+            const am = helmetMatchesSearch(a, searchTerms);
+            const bm = helmetMatchesSearch(b, searchTerms);
+            if (am !== bm) return am ? -1 : 1;
+          }
+          return compareSortValues(column.sortValue(a), column.sortValue(b)) * dir;
+        });
+      }
+
+      function prepareTableRows(helmets, state, options = {}) {
+        const filtered = filterTableHelmets(helmets, state.filter);
+        const sorted = sortTableHelmets(filtered, state, options);
+        return { rows: sorted, total: filtered.length };
+      }
+
+      function updateTableSortHeaders() {
+        for (const [tableId, state] of [
+          ["mainHelmetsTable", mainTableState],
+          ["topPicksTable", topPicksTableState],
+        ]) {
+          const table = document.getElementById(tableId);
+          if (!table) continue;
+          table.querySelectorAll("th[data-sort-key]").forEach((th) => {
+            th.classList.remove("sorted-asc", "sorted-desc");
+            if (th.dataset.sortKey === state.sortKey) {
+              th.classList.add(state.sortDir === "asc" ? "sorted-asc" : "sorted-desc");
+            }
+          });
+        }
+      }
+
+      function refreshTables() {
+        const { helmets, searchTerms, paretoSet } = tableRenderContext;
+        renderTopPicks(helmets, paretoSet);
+        renderTable(helmets, searchTerms);
+        updateTableSortHeaders();
+      }
+
+      function bindTableControls() {
+        for (const [tableId, state, filterId] of [
+          ["mainHelmetsTable", mainTableState, "mainTableFilter"],
+          ["topPicksTable", topPicksTableState, "topPicksTableFilter"],
+        ]) {
+          const table = document.getElementById(tableId);
+          const filterInput = document.getElementById(filterId);
+          if (filterInput && !filterInput.dataset.bound) {
+            filterInput.dataset.bound = "1";
+            filterInput.addEventListener("input", () => {
+              state.filter = filterInput.value;
+              refreshTables();
+            });
+          }
+          if (!table || table.dataset.sortBound) continue;
+          table.dataset.sortBound = "1";
+          table.querySelector("thead")?.addEventListener("click", (event) => {
+            const th = event.target.closest("th[data-sort-key]");
+            if (!th || th.dataset.sortable === "false") return;
+            const key = th.dataset.sortKey;
+            if (state.sortKey === key) {
+              state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+            } else {
+              state.sortKey = key;
+              state.sortDir = "desc";
+            }
+            refreshTables();
+          });
+        }
       }
 
       function togglePinHelmet(id) {
@@ -1523,16 +1923,16 @@
         return `hsl(${hue}, 52%, 52%)`;
       }
 
-      function starsColor(stars) {
-        return STAR_COLORS[stars] ?? STAR_COLORS[0];
-      }
-
       function helmetFillColor(helmet, colorMode, searchTerms, minC, maxC) {
         const hasSearch = searchTerms.length > 0;
         if (hasSearch && !helmetMatchesSearch(helmet, searchTerms)) return chartTheme().faded;
+        if (colorMode === "aero") {
+          if (!helmet.aero?.tier) return chartTheme().faded;
+          return aeroTierColor(helmet.aero.tier);
+        }
+        if (colorMode === "protection") return protectionGroupColor(helmetProtectionGroup(helmet));
         if (colorMode === "style") return styleColor(helmet.style);
         if (colorMode === "brand") return brandColor(helmet.brand);
-        if (colorMode === "stars") return starsColor(helmet.stars);
         if (colorMode === "value") {
           const t = helmet.value_score == null ? 0 : helmet.value_score / 100;
           return compositeToColor(t);
@@ -1553,6 +1953,12 @@
       function formatSourceScore(sourceKey, block) {
         if (!block) return "–";
         if (sourceKey === "virginia_tech" && block.score != null) return `${block.score.toFixed(1)} STAR`;
+        if (sourceKey === "virginia_tech" && block.score_norm != null) {
+          return `${(block.score_norm * 100).toFixed(0)}% norm`;
+        }
+        if (sourceKey === "virginia_tech" && block.rank_pct != null) {
+          return `${(block.rank_pct * 100).toFixed(0)}%`;
+        }
         if (block.score != null) return `${block.score.toFixed(1)}`;
         if (block.rank_pct != null) return `${(block.rank_pct * 100).toFixed(0)}%`;
         if (block.stars != null) return `${block.stars} ★`;
@@ -1600,10 +2006,10 @@
         }
 
         const vt = ratings.virginia_tech;
-        if (vt?.score != null && helmet.safety?.norm != null) {
+        if (vt?.rank_pct != null) {
           return {
             source: "virginia_tech",
-            norm: helmet.safety.norm,
+            norm: vt.rank_pct,
             display: formatSourceScore("virginia_tech", vt),
           };
         }
@@ -1620,6 +2026,8 @@
           residual: formatFairResidual(helmet),
           review: formatReviewDerived(helmet),
           style: helmet.style || "–",
+          protection: protectionText(helmet),
+          aero: helmet.aero ? `${aeroTierLabel(helmet.aero.tier)} · ${helmet.aero.score ?? formatAeroWatts(helmet) ?? "–"}` : "–",
           pareto: paretoSet.has(helmet.id) ? "Yes" : "No",
           knee: kneeIds.has(helmet.id) ? "Yes" : "No",
           safety: helmet.safety.display,
@@ -1628,7 +2036,7 @@
       }
 
       const HELMET_HOVER =
-        "<b>%{text}</b><br>Style: %{customdata.style}<br>Safety: %{customdata.safety}<br>Price: $%{x}<br>Value score: %{customdata.value}<br>vs peers: %{customdata.residual}<br>Reviews: %{customdata.review}<br>Pareto: %{customdata.pareto} · Sweet spot: %{customdata.knee}<br><i>Click to select</i><extra></extra>";
+        "<b>%{text}</b><br>Style: %{customdata.style}<br>Protection: %{customdata.protection}<br>Safety: %{customdata.safety}<br>Aero: %{customdata.aero}<br>Price: $%{x}<br>Value score: %{customdata.value}<br>vs peers: %{customdata.residual}<br>Reviews: %{customdata.review}<br>Pareto: %{customdata.pareto} · Sweet spot: %{customdata.knee}<br><i>Click to select</i><extra></extra>";
 
       function compositeRange(helmets) {
         const composites = helmets.map((h) => h.composite_score);
@@ -1705,6 +2113,58 @@
             }));
         }
 
+        if (colorMode === "aero") {
+          const tiers = dataset?.filters?.aero_tiers || [];
+          const traces = tiers
+            .map((tier) => chartable.filter((h) => h.aero?.tier === tier.key))
+            .filter((subset) => subset.length)
+            .map((subset) => ({
+              type: "scattergl",
+              mode: "markers",
+              name: `${aeroTierLabel(subset[0].aero.tier)} aero`,
+              x: subset.map((h) => coords(h).x),
+              y: subset.map((h) => coords(h).y),
+              text: subset.map((h) => helmetLabel(h)),
+              customdata: subset.map((h) => helmetCustomData(h, paretoSet)),
+              marker: markerFor(subset),
+              hovertemplate: HELMET_HOVER,
+            }));
+          const untested = chartable.filter((h) => !h.aero?.tier);
+          if (untested.length) {
+            traces.push({
+              type: "scattergl",
+              mode: "markers",
+              name: "No aero data",
+              x: untested.map((h) => coords(h).x),
+              y: untested.map((h) => coords(h).y),
+              text: untested.map((h) => helmetLabel(h)),
+              customdata: untested.map((h) => helmetCustomData(h, paretoSet)),
+              marker: markerFor(untested),
+              hovertemplate: HELMET_HOVER,
+            });
+          }
+          return traces;
+        }
+
+        if (colorMode === "protection") {
+          return PROTECTION_GROUPS.map((group) => ({
+            group,
+            subset: chartable.filter((h) => helmetProtectionGroup(h) === group.key),
+          }))
+            .filter(({ subset }) => subset.length)
+            .map(({ group, subset }) => ({
+              type: "scattergl",
+              mode: "markers",
+              name: group.label,
+              x: subset.map((h) => coords(h).x),
+              y: subset.map((h) => coords(h).y),
+              text: subset.map((h) => helmetLabel(h)),
+              customdata: subset.map((h) => helmetCustomData(h, paretoSet)),
+              marker: markerFor(subset),
+              hovertemplate: HELMET_HOVER,
+            }));
+        }
+
         return [
           {
             type: "scattergl",
@@ -1752,6 +2212,153 @@
             .forEach((h) => ids.add(h.id));
         }
         return ids;
+      }
+
+      const CHART_LABEL_POSITIONS = [
+        "top center",
+        "top right",
+        "top left",
+        "middle right",
+        "middle left",
+        "bottom center",
+        "bottom right",
+        "bottom left",
+      ];
+
+      function chartLabelPriority(a, b) {
+        const aPinned = pinnedHelmetIds.has(a.id);
+        const bPinned = pinnedHelmetIds.has(b.id);
+        if (aPinned !== bPinned) return aPinned ? -1 : 1;
+        return (b.composite_score ?? 0) - (a.composite_score ?? 0);
+      }
+
+      function shortenChartLabel(helmet) {
+        const full = helmetLabel(helmet);
+        if (full.length <= 28) return full;
+        const words = full.split(/\s+/);
+        if (words.length <= 2) return `${full.slice(0, 26)}…`;
+        return `${words[0]} ${words[1]}…`;
+      }
+
+      function annotationAnchorForPosition(position) {
+        const anchors = {
+          "top center": { xanchor: "center", yanchor: "bottom", ax: 0, ay: -12 },
+          "top right": { xanchor: "left", yanchor: "bottom", ax: 8, ay: -12 },
+          "top left": { xanchor: "right", yanchor: "bottom", ax: -8, ay: -12 },
+          "middle right": { xanchor: "left", yanchor: "middle", ax: 12, ay: 0 },
+          "middle left": { xanchor: "right", yanchor: "middle", ax: -12, ay: 0 },
+          "bottom center": { xanchor: "center", yanchor: "top", ax: 0, ay: 12 },
+          "bottom right": { xanchor: "left", yanchor: "top", ax: 8, ay: 12 },
+          "bottom left": { xanchor: "right", yanchor: "top", ax: -8, ay: 12 },
+        };
+        return anchors[position] || anchors["top center"];
+      }
+
+      function estimateLabelExtents(text, xSpan, ySpan) {
+        const w = Math.min(xSpan * 0.42, Math.max(xSpan * 0.06, text.length * xSpan * 0.012));
+        const h = Math.max(ySpan * 0.062, ySpan * 0.028);
+        return { w, h };
+      }
+
+      function labelBoxForPosition(x, y, text, position, xSpan, ySpan) {
+        const { w, h } = estimateLabelExtents(text, xSpan, ySpan);
+        const shift = {
+          "top center": [0, h * 0.9],
+          "top right": [w * 0.34, h * 0.9],
+          "top left": [-w * 0.34, h * 0.9],
+          "middle right": [w * 0.52, 0],
+          "middle left": [-w * 0.52, 0],
+          "bottom center": [0, -h * 0.9],
+          "bottom right": [w * 0.34, -h * 0.9],
+          "bottom left": [-w * 0.34, -h * 0.9],
+        };
+        const [dx, dy] = shift[position] || shift["top center"];
+        const cx = x + dx;
+        const cy = y + dy;
+        const padX = w * 0.1;
+        const padY = h * 0.18;
+        return {
+          left: cx - w / 2 - padX,
+          right: cx + w / 2 + padX,
+          top: cy + h / 2 + padY,
+          bottom: cy - h / 2 - padY,
+        };
+      }
+
+      function labelBoxesOverlap(a, b) {
+        return !(a.right < b.left || a.left > b.right || a.top < b.bottom || a.bottom > b.top);
+      }
+
+      function layoutChartLabels(helmets, jitterMap, getX, getY, xMin, xMax, yMin, yMax) {
+        const xSpan = Math.max(xMax - xMin, 1);
+        const ySpan = Math.max(yMax - yMin, 0.5);
+        const edgePadX = xSpan * 0.02;
+        const edgePadY = ySpan * 0.03;
+        const sorted = helmets.slice().sort(chartLabelPriority);
+        const placed = [];
+        const layout = new Map();
+
+        for (const helmet of sorted) {
+          const baseX = getX(helmet);
+          const baseY = getY(helmet);
+          const [x, y] = jitteredPoint(helmet.id, jitterMap, baseX, baseY);
+          let text = helmetLabel(helmet);
+          let chosen = CHART_LABEL_POSITIONS[0];
+          let placedBox = null;
+
+          for (const useShort of [false, true]) {
+            if (useShort) text = shortenChartLabel(helmet);
+            for (const position of CHART_LABEL_POSITIONS) {
+              const box = labelBoxForPosition(x, y, text, position, xSpan, ySpan);
+              if (box.left < xMin - edgePadX || box.right > xMax + edgePadX) continue;
+              if (box.top > yMax + edgePadY || box.bottom < yMin - edgePadY) continue;
+              if (placed.some((entry) => labelBoxesOverlap(box, entry.box))) continue;
+              chosen = position;
+              placedBox = box;
+              break;
+            }
+            if (placedBox) break;
+          }
+
+          if (placedBox) placed.push({ box: placedBox });
+          layout.set(helmet.id, {
+            x,
+            y,
+            text: placedBox ? text : shortenChartLabel(helmet),
+            position: chosen,
+          });
+        }
+
+        return layout;
+      }
+
+      function buildChartLabelAnnotations(labelHelmets, layout, theme) {
+        if (!labelHelmets.length) return [];
+        const ordered = labelHelmets.slice().sort(chartLabelPriority).reverse();
+        return ordered.map((helmet) => {
+          const entry = layout.get(helmet.id);
+          const pinned = pinnedHelmetIds.has(helmet.id);
+          return {
+            x: entry.x,
+            y: entry.y,
+            text: `<b>${entry.text}</b>`,
+            showarrow: false,
+            xref: "x",
+            yref: "y",
+            ...annotationAnchorForPosition(entry.position),
+            bgcolor: theme.labelBg,
+            bordercolor: pinned ? theme.pinRing : theme.labelBorder,
+            borderwidth: pinned ? 2 : 1,
+            borderpad: 6,
+            opacity: 1,
+            captureevents: false,
+            font: {
+              family: "DM Sans, system-ui, sans-serif",
+              size: 11,
+              color: pinned ? theme.pinRing : theme.labelText,
+            },
+          };
+        });
       }
 
       function renderPinnedPanel(helmets) {
@@ -2044,7 +2651,9 @@
           );
           indexHelmetTraces("valueChart", helmetTraces);
 
-          const showBand = document.getElementById("showFairValueBand")?.checked !== false;
+          const activeStyles = getActiveStyleKeys();
+          const showBand =
+            document.getElementById("showFairValueBand")?.checked !== false && activeStyles.length === 1;
           const bandTraces = showBand ? buildFairValueBandTraces(valueChartable) : [];
           const styleStatTraces = buildStyleStatTraces(valueChartable, {
             showMean: document.getElementById("showStyleMean")?.checked === true,
@@ -2066,34 +2675,36 @@
             },
           ];
 
+          let labelAnnotations = [];
           if (labelHelmets.length) {
-            traces.push({
-              type: "scatter",
-              mode: "text",
-              name: "Labels",
-              x: labelHelmets.map((h) =>
-                jitteredPoint(h.id, valueJitter, getComparisonPriceUsd(h), h.safety.value)[0]
-              ),
-              y: labelHelmets.map((h) =>
-                jitteredPoint(h.id, valueJitter, getComparisonPriceUsd(h), h.safety.value)[1]
-              ),
-              text: labelHelmets.map((h) => helmetLabel(h)),
-              textposition: "top center",
-              textfont: {
-                color: labelHelmets.map((h) =>
-                  pinnedHelmetIds.has(h.id) ? theme.pinRing : theme.labelFont
-                ),
-                size: 9,
-              },
-              hoverinfo: "skip",
-              showlegend: false,
-            });
+            const xValues = valueChartable.map((h) => getComparisonPriceUsd(h));
+            const validY = yValues.filter((v) => v != null && !Number.isNaN(v));
+            const yLo = validY.length ? Math.min(...validY) : 0;
+            const yHi = validY.length ? Math.max(...validY) : 100;
+            const ySpan = yHi - yLo;
+            const yPad = higherIsSafer ? Math.max(ySpan * 0.08, 0.02) : Math.max(ySpan * 0.08, 0.5);
+            const labelLayout = layoutChartLabels(
+              labelHelmets,
+              valueJitter,
+              (h) => getComparisonPriceUsd(h),
+              (h) => h.safety.value,
+              Math.min(...xValues),
+              Math.max(...xValues),
+              yLo - yPad,
+              yHi + yPad
+            );
+            labelAnnotations = buildChartLabelAnnotations(labelHelmets, labelLayout, theme);
+          }
+
+          const valueLayout = plotLayout(yValues, "Price (USD)", yTitle, higherIsSafer);
+          if (labelAnnotations.length) {
+            valueLayout.annotations = [...valueLayout.annotations, ...labelAnnotations];
           }
 
           Plotly.react(
             "valueChart",
             traces,
-            plotLayout(yValues, "Price (USD)", yTitle, higherIsSafer),
+            valueLayout,
             { responsive: true, displayModeBar: false }
           );
         }
@@ -2129,6 +2740,27 @@
                 type: "scattergl",
                 mode: "markers",
                 name: subset[0].style,
+                x: subset.map((h) =>
+                  jitteredPoint(h.id, compositeJitter, getComparisonPriceUsd(h), h.composite_score * 100)[0]
+                ),
+                y: subset.map((h) =>
+                  jitteredPoint(h.id, compositeJitter, getComparisonPriceUsd(h), h.composite_score * 100)[1]
+                ),
+                text: subset.map((h) => helmetLabel(h)),
+                customdata: subset.map((h) => helmetCustomData(h, paretoSet)),
+                marker: markerFor(subset),
+                hovertemplate: COMPOSITE_HOVER,
+              }));
+          } else if (colorMode === "protection") {
+            compositeTraces = PROTECTION_GROUPS.map((group) => ({
+              group,
+              subset: compositeChartable.filter((h) => helmetProtectionGroup(h) === group.key),
+            }))
+              .filter(({ subset }) => subset.length)
+              .map(({ group, subset }) => ({
+                type: "scattergl",
+                mode: "markers",
+                name: group.label,
                 x: subset.map((h) =>
                   jitteredPoint(h.id, compositeJitter, getComparisonPriceUsd(h), h.composite_score * 100)[0]
                 ),
@@ -2252,10 +2884,15 @@
       function renderTopPicks(helmets, paretoSet) {
         const tbody = document.getElementById("topPicksBody");
         const showShop = hasShopListingData();
-        const top = helmets
-          .slice()
-          .sort((a, b) => (b.value_score ?? -1) - (a.value_score ?? -1))
-          .slice(0, 20);
+        const { rows, total } = prepareTableRows(helmets, topPicksTableState);
+        const top = rows.slice(0, 20);
+        const countEl = document.getElementById("topPicksTableCount");
+        if (countEl) {
+          countEl.textContent =
+            topPicksTableState.filter.trim() || topPicksTableState.sortKey !== "value" || topPicksTableState.sortDir !== "desc"
+              ? `Showing ${top.length} of ${total}`
+              : `Top ${top.length} of ${total}`;
+        }
         tbody.innerHTML = top
           .map((helmet, index) => {
             const listing = getListing(helmet);
@@ -2273,11 +2910,10 @@
                 </td>
                 <td class="px-4 py-3 font-medium text-accent">${formatValueScore(helmet)}</td>
                 <td class="px-4 py-3">${helmet.safety?.display ?? "–"}</td>
-                <td class="px-4 py-3">${helmet.stars}</td>
                 <td class="px-4 py-3">${formatComparisonPrice(helmet)}</td>
                 ${showShop ? `<td class="shop-col px-4 py-3 text-muted">${formatShopPrice(listing)}</td>` : ""}
                 ${showShop ? `<td class="shop-col px-4 py-3 text-muted">${formatReviewDerived(helmet)}</td>` : ""}
-                <td class="px-4 py-3 text-muted">${(helmet.feature_labels || []).join(", ") || "–"}</td>
+                <td class="px-4 py-3 text-muted">${protectionText(helmet)}</td>
               </tr>
             `;
           })
@@ -2289,15 +2925,17 @@
       function renderTable(helmets, searchTerms) {
         const tbody = document.getElementById("tableBody");
         const showShop = hasShopListingData();
-        tbody.innerHTML = helmets
-          .slice()
-          .sort((a, b) => {
-            const am = helmetMatchesSearch(a, searchTerms);
-            const bm = helmetMatchesSearch(b, searchTerms);
-            if (am !== bm) return am ? -1 : 1;
-            return (b.value_score ?? -1) - (a.value_score ?? -1);
-          })
-          .slice(0, 80)
+        const searchBoost =
+          !mainTableState.filter.trim() &&
+          mainTableState.sortKey === "value" &&
+          mainTableState.sortDir === "desc" &&
+          searchTerms.length > 0;
+        const { rows } = prepareTableRows(helmets, mainTableState, { searchTerms, searchBoost });
+        const countEl = document.getElementById("mainTableCount");
+        if (countEl) {
+          countEl.textContent = `${rows.length} of ${helmets.length} helmets`;
+        }
+        tbody.innerHTML = rows
           .map((helmet) => {
             const matched = helmetMatchesSearch(helmet, searchTerms);
             const listing = getListing(helmet);
@@ -2311,14 +2949,14 @@
                   ${helmet.catalog === "extra_only" ? '<span class="ml-1 rounded border px-1 text-xs text-muted" style="border-color:var(--border)">extra</span>' : ""}
                 </td>
                 <td class="px-4 py-3">${helmet.safety?.display ?? "–"}</td>
-                <td class="px-4 py-3">${helmet.stars}</td>
+                <td class="px-4 py-3">${aeroTierBadgeHtml(helmet)}</td>
                 <td class="px-4 py-3 font-medium text-accent">${formatValueScore(helmet)}</td>
                 <td class="px-4 py-3">${formatFairResidual(helmet)}</td>
                 <td class="px-4 py-3">${formatComparisonPrice(helmet)}</td>
                 ${showShop ? `<td class="shop-col px-4 py-3 text-muted">${formatShopPrice(listing)}</td>` : ""}
                 ${showShop ? `<td class="shop-col px-4 py-3 text-muted">${formatReviewDerived(helmet)}</td>` : ""}
                 <td class="px-4 py-3">${(helmet.composite_score * 100).toFixed(0)}</td>
-                <td class="px-4 py-3 text-muted">${(helmet.feature_labels || []).join(", ") || "–"}</td>
+                <td class="px-4 py-3 text-muted">${protectionText(helmet)}</td>
               </tr>
             `;
           })
@@ -2329,7 +2967,7 @@
 
       function updateSummary(helmets, paretoSet) {
         document.getElementById("visibleCount").textContent = helmets.length;
-        document.getElementById("paretoCount").textContent = kneeIds.size;
+        document.getElementById("sweetSpotCount").textContent = kneeIds.size;
         document.getElementById("bestScoreLabel").textContent = `Best ${activeSafetyMeta.shortLabel}`;
         for (const id of ["safetyColHeader", "safetyColHeaderTop"]) {
           const el = document.getElementById(id);
@@ -2384,14 +3022,14 @@
 
       function applyPreset(name) {
         document.getElementById("paretoOnlyFilter").checked = false;
-        document.getElementById("starsMinFilter").value = "";
-        document.getElementById("starsMaxFilter").value = "";
         document.querySelectorAll("[data-protection-key]").forEach((el) => (el.checked = false));
         document.querySelectorAll("[data-style-key]").forEach((el) => (el.checked = false));
 
         if (name === "reset") {
           document.getElementById("searchFilter").value = "";
           document.getElementById("brandFilter").value = "";
+          document.getElementById("aeroDataOnlyFilter").checked = false;
+          document.querySelectorAll("[data-aero-tier-key]").forEach((el) => (el.checked = false));
           document.getElementById("weightSafety").value = 55;
           document.getElementById("weightPrice").value = 45;
           const reviewWeight = document.getElementById("weightReview");
@@ -2403,7 +3041,6 @@
         }
 
         if (name === "lab") {
-          document.getElementById("starsMinFilter").value = "4";
           document.getElementById("weightSafety").value = 75;
           document.getElementById("weightPrice").value = 25;
         } else if (name === "value") {
@@ -2426,25 +3063,116 @@
         updateReviewWeightVisibility();
         const { helmets, paretoIds: paretoSet, searchTerms } = getFilteredData();
         paretoIds = paretoSet;
+        tableRenderContext = { helmets, searchTerms, paretoSet };
         updateSummary(helmets, paretoSet);
+        updateAeroColorLegend();
         renderTopPicks(helmets, paretoSet);
         renderCharts(helmets, searchTerms, paretoSet);
         renderTable(helmets, searchTerms);
+        updateTableSortHeaders();
       }
 
       function renderProtectionFilters() {
         const container = document.getElementById("protectionFilters");
-        container.innerHTML = dataset.filters.protection_types
-          .map(
-            (item) => `
-              <label class="filter-chip-btn">
-                <input type="checkbox" data-protection-key="${item.key}" />
-                ${item.label}
-              </label>
-            `
-          )
+        const technologies = dataset?.filters?.protection_technologies || [];
+        const previous = new Set(getActiveProtectionKeys());
+        const supersets = dataset?.filters?.protection_groups || PROTECTION_GROUPS;
+
+        container.innerHTML = supersets
+          .map((group) => {
+            const items = technologies.filter((item) => item.group === group.key);
+            if (!items.length) return "";
+            return `
+              <div>
+                <p class="mb-1.5 text-xs font-medium" style="color: var(--text-muted)" title="${group.hint || ""}">
+                  ${group.label}
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  ${items
+                    .map((item) => {
+                      const count = item.count ?? 0;
+                      const checked = previous.size ? previous.has(item.key) : false;
+                      return `
+                        <label class="filter-chip-btn ${count ? "" : "opacity-50"}" title="${item.hint || ""}">
+                          <input
+                            type="checkbox"
+                            data-protection-key="${item.key}"
+                            ${checked ? "checked" : ""}
+                          />
+                          ${item.label}${count ? ` (${count})` : ""}
+                        </label>
+                      `;
+                    })
+                    .join("")}
+                </div>
+              </div>
+            `;
+          })
           .join("");
         container.querySelectorAll("input").forEach((el) => el.addEventListener("change", render));
+      }
+
+      function renderAeroTierFilters() {
+        const container = document.getElementById("aeroTierFilters");
+        if (!container) return;
+        const tiers = dataset?.filters?.aero_tiers || [];
+        const previous = new Set(getActiveAeroTierKeys());
+        const pool = dataset.helmets.filter((h) => h.aero?.tier);
+        container.innerHTML = tiers
+          .map((tier) => {
+            const count = pool.filter((h) => h.aero.tier === tier.key).length;
+            const color = aeroTierColor(tier.key);
+            return `
+              <label class="filter-chip-btn ${count ? "" : "opacity-50"}">
+                <input
+                  type="checkbox"
+                  data-aero-tier-key="${tier.key}"
+                  ${previous.has(tier.key) ? "checked" : ""}
+                />
+                <span class="inline-block h-2.5 w-2.5 rounded-full" style="background:${color}"></span>
+                ${tier.label} (${count})
+              </label>
+            `;
+          })
+          .join("");
+        container.querySelectorAll("input").forEach((el) => el.addEventListener("change", render));
+      }
+
+      function updateAeroColorLegend() {
+        const legend = document.getElementById("aeroColorLegend");
+        const protectionLegend = document.getElementById("protectionColorLegend");
+        const colorMode = getChartColorMode();
+        if (legend) {
+          const show = colorMode === "aero";
+          legend.classList.toggle("hidden", !show);
+          if (show) {
+            const tiers = dataset?.filters?.aero_tiers || [];
+            legend.innerHTML = tiers
+              .map(
+                (tier) => `
+              <span class="source-legend-chip">
+                <span class="inline-block h-2 w-2 rounded-full" style="background:${aeroTierColor(tier.key)}"></span>
+                ${tier.label}
+              </span>
+            `
+              )
+              .join("");
+          }
+        }
+        if (protectionLegend) {
+          const show = colorMode === "protection";
+          protectionLegend.classList.toggle("hidden", !show);
+          if (show) {
+            protectionLegend.innerHTML = PROTECTION_GROUPS.map(
+              (group) => `
+              <span class="source-legend-chip" title="${group.hint}">
+                <span class="inline-block h-2 w-2 rounded-full" style="background:${protectionGroupColor(group.key)}"></span>
+                ${group.label}
+              </span>
+            `
+            ).join("");
+          }
+        }
       }
 
       function renderStyleFilters() {
@@ -2468,7 +3196,7 @@
       }
 
       function modeHasData(mode) {
-        if (mode === "virginia_tech_raw" || mode === "virginia_tech_pct" || mode === "fused") return true;
+        if (mode === "virginia_tech" || mode === "fused") return true;
         const pool = dataset.helmets.filter((h) => h.price_at_test_usd != null);
         return countPoolWithSource(pool, mode) > 0;
       }
@@ -2494,7 +3222,7 @@
         const container = document.getElementById("fusionSourceFilters");
         const sources = getRatingSources();
         const previous = new Set(getFusedSourceKeys());
-        const defaultChecked = new Set(["virginia_tech"]);
+        const defaultChecked = new Set(sources.map((source) => source.key));
 
         container.innerHTML = sources
           .map((source) => {
@@ -2515,19 +3243,14 @@
           .join("");
 
         container.querySelectorAll("input").forEach((el) => {
-          el.addEventListener("change", (event) => {
-            const checked = getFusedSourceKeys();
-            if (checked.length > MAX_FUSED_SOURCES) {
-              event.target.checked = false;
-            }
-            render();
-          });
+          el.addEventListener("change", () => render());
         });
       }
 
       function updateFusionPanelVisibility() {
-        const fused = getPresentationMode() === "fused";
-        document.getElementById("fusionSourcePanel").classList.toggle("hidden", !fused);
+        const mode = getPresentationMode();
+        document.getElementById("fusionSourcePanel").classList.toggle("hidden", mode !== "fused");
+        document.getElementById("vtScoreModePanel")?.classList.toggle("hidden", mode !== "virginia_tech");
       }
 
       async function init() {
@@ -2553,9 +3276,15 @@
           throw new Error("helmets.json is empty. Run ./update-data.sh --quick");
         }
 
+        if (dataset.filters?.protection_groups?.length) {
+          PROTECTION_GROUPS = dataset.filters.protection_groups;
+        }
+
         document.getElementById("meta").innerHTML = `
           <div>${dataset.meta.helmet_count_european_market} EU-market helmets</div>
-          <div>${dataset.meta.helmet_count_total} total in VT dataset</div>
+          <div>${dataset.meta.helmet_count_total} total in catalog</div>
+          ${dataset.meta.helmets_with_aero ? `<div>${dataset.meta.helmets_with_aero} with fused aero data (CN Labs 2024+2025)</div>` : ""}
+          ${dataset.meta.aero_catalog_stubs_added ? `<div>${dataset.meta.aero_catalog_stubs_added} aero-only catalog entries</div>` : ""}
           <div>Updated ${new Date(dataset.meta.generated_at).toLocaleString()}</div>
         `;
 
@@ -2564,8 +3293,8 @@
           .join("");
         document.getElementById("marketFilter").value = "de";
 
-        fillStarsRangeSelects();
         renderStyleFilters();
+        renderAeroTierFilters();
 
         renderPresentationModeSelect();
         renderFusionSourceFilters();
@@ -2581,16 +3310,18 @@
           render();
         });
 
+        document.getElementById("vtScoreMode").addEventListener("change", render);
+
         document.getElementById("euMarketFilter").addEventListener("change", () => {
           updateBrandOptions();
           render();
         });
 
-        ["paretoOnlyFilter", "marketFilter"].forEach((id) => {
+        ["paretoOnlyFilter", "marketFilter", "aeroDataOnlyFilter"].forEach((id) => {
           document.getElementById(id).addEventListener("change", render);
         });
 
-        ["searchFilter", "brandFilter", "starsMinFilter", "starsMaxFilter"].forEach((id) => {
+        ["searchFilter", "brandFilter"].forEach((id) => {
           const el = document.getElementById(id);
           el.addEventListener("change", render);
           el.addEventListener("input", render);
@@ -2612,6 +3343,8 @@
         document.getElementById("showStyleMean").addEventListener("change", render);
         document.getElementById("showStyleMedian").addEventListener("change", render);
         document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+
+        bindTableControls();
 
         const deepLink = getHelmetIdFromUrl();
         if (deepLink) applyHelmetDeepLink(deepLink);

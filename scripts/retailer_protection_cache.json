@@ -1,0 +1,46 @@
+{
+  "specialized-prevail-3": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/ext_de?pid=0&did=2089&oid=509562187&gdt=MjAyNi0wNi0yOCAxNDowMjozNg==&slsrt=rd&prcst=shipping&lpos=1",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "reibung Multi Impact Protection System (MIPS): schützende Technologie für den Kopf bei Sturz mit Rotatio",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "geizhals",
+      "toppreise",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "lazer-anverz-nta-mips": {
+    "fetched": true,
+    "mips_variant": null,
+    "protection_tech": "none",
+    "error": "no_protection_signals",
+    "sources_tried": [
+      "amazon_de",
+      "amazon_de"
+    ]
+  },
+  "rudy-project-rebel": {
+    "fetched": true,
+    "mips_variant": null,
+    "protection_tech": "none",
+    "error": "no_protection_signals",
+    "sources_tried": [
+      "amazon_de",
+      "amazon_de"
+    ]
+  },
+  "triple-8-dual-certified-mips": {
+    "fetched": true,
+    "mips_variant": null,
+    "protection_tech": "none",
+    "error": "no_protection_signals",
+    "sources_tried": [
+      "amazon_de"
+    ]
+  }
+}

@@ -12,13 +12,30 @@
     hint?: string;
     items: { helmet: Helmet; value: number }[];
   }
-  let { rows, ariaLabel }: { rows: Row[]; ariaLabel: string } = $props();
+  interface Props {
+    rows: Row[];
+    ariaLabel: string;
+    domain?: [number, number];
+    ticks?: number[];
+    axisLabel?: string;
+    format?: (v: number) => string;
+    rowHeight?: number;
+  }
+  let {
+    rows,
+    ariaLabel,
+    domain = [0, 100],
+    ticks = [0, 25, 50, 75, 100],
+    axisLabel = "Safety score →",
+    format = (v) => String(Math.round(v)),
+    rowHeight = 40,
+  }: Props = $props();
 
-  const ROW_H = 40;
+  const ROW_H = $derived(rowHeight);
   const LABEL_W = 132;
   let width = $state(600);
   const height = $derived(rows.length * ROW_H + 26);
-  const x = $derived(scaleLinear().domain([0, 100]).range([LABEL_W, width - 56]));
+  const x = $derived(scaleLinear().domain(domain).range([LABEL_W, width - 56]));
   const medians = $derived(rows.map((r) => median(r.items.map((i) => i.value))));
 
   // Deterministic jitter keeps dense rows countable without a force layout.
@@ -33,9 +50,9 @@
 
 <div class="relative" bind:clientWidth={width}>
   <svg {width} {height} role="img" aria-label={ariaLabel} class="block overflow-visible">
-    {#each [0, 25, 50, 75, 100] as t (t)}
+    {#each ticks as t (t)}
       <line x1={x(t)} x2={x(t)} y1={0} y2={rows.length * ROW_H} stroke="var(--grid)" />
-      <text x={x(t)} y={rows.length * ROW_H + 16} text-anchor="middle" class="fill-ink-3 text-[11px] num">{t}</text>
+      <text x={x(t)} y={rows.length * ROW_H + 16} text-anchor="middle" class="fill-ink-3 text-[11px] num">{format(t)}</text>
     {/each}
     {#each rows as row, i (row.key)}
       {@const cy = i * ROW_H + ROW_H / 2}
@@ -49,8 +66,8 @@
           aria-label="{item.helmet.brand} {item.helmet.model}"
           cx={x(item.value)}
           cy={cy + jitter(item.helmet.id)}
-          r={active ? 6 : 3.5}
-          fill={active ? "var(--highlight)" : "var(--dot)"}
+          r={active ? 6 : rowHeight < 32 ? 3 : 3.5}
+          fill={active ? "var(--selected)" : "var(--dot)"}
           stroke="var(--chart-surface)"
           stroke-width={active ? 2 : 1}
           class="cursor-pointer"
@@ -73,7 +90,7 @@
   </svg>
   <div class="mt-1 flex items-center gap-4 text-xs text-ink-3" aria-hidden="true">
     <span class="flex items-center gap-1.5"><svg class="h-3 w-1"><rect width="2.5" height="12" fill="var(--text)" /></svg>median</span>
-    <span>Safety score →</span>
+    <span>{axisLabel}</span>
   </div>
 
   {#if tip}
@@ -85,7 +102,7 @@
       <div class="min-w-0">
         <div class="truncate text-ink-3">{tip.helmet.brand}</div>
         <div class="font-semibold text-ink">{tip.helmet.model}</div>
-        <div class="mt-1 num">Safety <span class="font-semibold">{Math.round(tip.value)}</span></div>
+        <div class="mt-1 num">{axisLabel.replace(/\s*→$/, "")} <span class="font-semibold">{format(tip.value)}</span></div>
       </div>
     </div>
   {/if}

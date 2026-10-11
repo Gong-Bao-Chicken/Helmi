@@ -1,4 +1,5 @@
 /** App state, mirrored into the URL so any view can be bookmarked or shared. */
+import { DEFAULT_CHART_FILTERS } from "./chartData";
 import { DEFAULT_GOALS, PRIORITIES, RIDES, type Goals, type MarketChoice, type SafetySource } from "./finder";
 
 export type View = "find" | "charts" | "explore";
@@ -40,6 +41,8 @@ export const app = $state({
   selected: initial.helmet as string | null,
   compare: initial.compare,
   compareOpen: false,
+  /** Charts page filters: deliberately separate from the finder's goals. */
+  charts: { ...DEFAULT_CHART_FILTERS },
   /** Hovered helmet, shared between list and chart. */
   hovered: null as string | null,
 });

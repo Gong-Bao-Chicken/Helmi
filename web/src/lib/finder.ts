@@ -2,7 +2,7 @@
  * Goal-based helmet finder: turns "what do you ride / what matters / constraints" into a
  * filtered, ranked shortlist with highlighted picks and human-readable reasons.
  */
-import { frontier, kneeId, median, paretoIds, percentileRank, type Point } from "./scoring";
+import { fairValueBand, frontier, kneeId, median, paretoIds, percentileRank, type Bin, type Point } from "./scoring";
 import type { Dataset, Helmet, MarketKey, RatingSourceKey } from "./types";
 
 export type RideKey = "road" | "race" | "gravel" | "trail" | "gravity" | "city" | "speed" | "any";
@@ -181,7 +181,12 @@ export interface Ranked {
 export interface FinderResult {
   ranked: Ranked[];
   picks: { kind: PickKind; item: Ranked }[];
+  /** Price/safety frontier; prices in the market currency, like `band`. */
   frontier: Point[];
+  /** Typical safety by price across the shortlist (market currency). */
+  band: Bin[];
+  /** Id of the frontier's knee (the "sweet spot"), if any. */
+  kneeId: string | null;
   /** Why the pool is the size it is, for the empty/short-list states. */
   excluded: { reason: string; count: number }[];
   /** Total helmets with a safety rating for the chosen source. */
@@ -249,9 +254,10 @@ export function findHelmets(dataset: Dataset, goals: Goals, fx = deriveFxRates(d
   }
 
   const prices = candidates.map((c) => c.priceUsd);
+  // All candidate prices share the market currency, so the frontier and band use it directly.
   const points: Point[] = candidates
-    .filter((c) => c.priceUsd != null)
-    .map((c) => ({ id: c.helmet.id, price: c.priceUsd!, safety: c.safety }));
+    .filter((c) => c.price != null)
+    .map((c) => ({ id: c.helmet.id, price: c.price!.amount, safety: c.safety }));
   const pareto = paretoIds(points);
   const front = frontier(points);
   const weights = weightsFor(goals.priority);
@@ -306,14 +312,41 @@ export function findHelmets(dataset: Dataset, goals: Goals, fx = deriveFxRates(d
     ranked,
     picks,
     frontier: front,
+    band: fairValueBand(points),
+    kneeId: knee,
     excluded: [...excluded].map(([reason, count]) => ({ reason, count })).sort((a, b) => b.count - a.count),
     ratedTotal,
   };
 }
 
+export type Evidence =
+  | { kind: "rank" }
+  | { kind: "peers"; ids: string[]; medianPrice: number; diff: number }
+  | { kind: "frontier" }
+  | { kind: "labs" }
+  | { kind: "aero" };
+
 export interface Reason {
   tone: "good" | "neutral" | "caution";
   text: string;
+  /** Which graphic backs this claim. */
+  evidence?: Evidence;
+}
+
+/** Similarly safe helmets: within this many percentile points. */
+export const PEER_WINDOW = 0.1;
+
+/**
+ * Helmets on the shortlist with similar safety and a known price, and their median price.
+ * Shared by the "% cheaper" reason and its chart so both always use the same set.
+ */
+export function peersOf(item: Ranked, result: FinderResult) {
+  const peers = result.ranked.filter(
+    (r) => r !== item && r.price != null && Math.abs(r.safety - item.safety) <= PEER_WINDOW,
+  );
+  const medianPrice = median(peers.map((r) => r.price!.amount));
+  const diff = medianPrice != null && item.price ? (item.price.amount - medianPrice) / medianPrice : null;
+  return { peers, medianPrice, diff };
 }
 
 /** Plain-language reasons why a helmet is on the list, plus honest caveats. */
@@ -327,31 +360,31 @@ export function explain(item: Ranked, result: FinderResult, labLabel: (key: Rati
     text: `${pct >= 100 ? "Among the very safest lab-tested helmets" : `Safer than ${pct}% of lab-tested helmets`}${
       total > 1 ? ` · #${item.safetyRank} of ${total} matches` : ""
     }`,
+    evidence: { kind: "rank" },
   });
 
   if (item.labs.length > 1) {
-    reasons.push({ tone: "good", text: `Confirmed by ${item.labs.length} labs: ${item.labs.map(labLabel).join(", ")}` });
+    reasons.push({
+      tone: "good",
+      text: `Confirmed by ${item.labs.length} labs: ${item.labs.map(labLabel).join(", ")}`,
+      evidence: { kind: "labs" },
+    });
   } else if (item.labs.length === 1) {
-    reasons.push({ tone: "neutral", text: `Rated by ${labLabel(item.labs[0]!)} only` });
+    reasons.push({ tone: "neutral", text: `Rated by ${labLabel(item.labs[0]!)} only`, evidence: { kind: "labs" } });
   }
 
-  if (item.priceUsd != null) {
-    const peers = result.ranked.filter(
-      (r) => r !== item && r.priceUsd != null && Math.abs(r.safety - item.safety) <= 0.1,
-    );
-    const peerMedian = median(peers.map((r) => r.priceUsd!));
-    if (peerMedian != null && peers.length >= 3) {
-      const diff = (item.priceUsd - peerMedian) / peerMedian;
-      if (diff <= -0.15) {
-        reasons.push({ tone: "good", text: `${Math.round(-diff * 100)}% cheaper than similarly safe helmets` });
-      } else if (diff >= 0.25) {
-        reasons.push({ tone: "caution", text: `${Math.round(diff * 100)}% pricier than similarly safe helmets` });
-      }
+  const { peers, medianPrice, diff } = peersOf(item, result);
+  if (medianPrice != null && diff != null && peers.length >= 3) {
+    const evidence: Evidence = { kind: "peers", ids: peers.map((r) => r.helmet.id), medianPrice, diff };
+    if (diff <= -0.15) {
+      reasons.push({ tone: "good", text: `${Math.round(-diff * 100)}% cheaper than similarly safe helmets`, evidence });
+    } else if (diff >= 0.25) {
+      reasons.push({ tone: "caution", text: `${Math.round(diff * 100)}% pricier than similarly safe helmets`, evidence });
     }
   }
 
   if (item.onFrontier) {
-    reasons.push({ tone: "good", text: "No helmet on your list is both safer and cheaper" });
+    reasons.push({ tone: "good", text: "No helmet on your list is both safer and cheaper", evidence: { kind: "frontier" } });
   }
 
   const tech = item.helmet.protection?.rotational_label ?? item.helmet.protection?.mips_label;
@@ -366,6 +399,7 @@ export function explain(item: Ranked, result: FinderResult, labLabel: (key: Rati
       text: `Aero ${aero.tier}: ${aero.watts_saved > 0 ? "saves" : "costs"} ${Math.abs(aero.watts_saved).toFixed(1)} W at 40 km/h${
         baseline ? ` vs ${baseline}` : ""
       }`,
+      evidence: { kind: "aero" },
     });
   }
 

@@ -5,13 +5,12 @@
   import type { Dataset } from "../lib/types";
   import PickCard from "./PickCard.svelte";
   import ResultRow from "./ResultRow.svelte";
-  import ScatterChart from "./ScatterChart.svelte";
+  import PositionChart from "./charts/PositionChart.svelte";
 
   let { dataset, result }: { dataset: Dataset; result: FinderResult } = $props();
 
   const PAGE = 15;
   let shown = $state(PAGE);
-  let mode = $state<"list" | "chart">("list");
   const labLabel = $derived(makeLabLabel(dataset));
   const ride = $derived(RIDES.find((r) => r.key === app.goals.ride));
   const priority = $derived(PRIORITIES.find((p) => p.key === app.goals.priority));
@@ -35,18 +34,6 @@
       </h1>
       <p class="mt-1 text-sm text-ink-2">{ride?.label} · ranked by <span class="lowercase">{priority?.label}</span></p>
     </div>
-    {#if result.ranked.length}
-      <div class="flex gap-1 rounded-xl bg-surface-2 p-1 text-sm" role="tablist" aria-label="Result view">
-        {#each [["list", "List"], ["chart", "Price vs safety"]] as [key, label] (key)}
-          <button
-            role="tab"
-            aria-selected={mode === key}
-            class="rounded-lg px-3 py-1 font-medium transition {mode === key ? 'bg-surface shadow-card' : 'text-ink-3 hover:text-ink'}"
-            onclick={() => (mode = key as typeof mode)}>{label}</button
-          >
-        {/each}
-      </div>
-    {/if}
   </div>
 
   {#if !result.ranked.length}
@@ -72,25 +59,33 @@
       {/each}
     </div>
 
-    {#if mode === "chart"}
-      <div class="card mt-6 p-4">
-        <ScatterChart {result} currency={result.ranked.find((r) => r.price)?.price?.currency ?? "EUR"} />
-      </div>
-    {:else}
-      <h2 class="label mt-8 mb-2">Full ranking</h2>
-      <ol class="card divide-y divide-line overflow-hidden">
-        {#each result.ranked.slice(0, shown) as item (item.helmet.id)}
-          <ResultRow {item} {labLabel} />
-        {/each}
-      </ol>
-      {#if shown < result.ranked.length}
-        <div class="mt-4 text-center">
-          <button class="btn" onclick={() => (shown += PAGE * 2)}>
-            Show more ({result.ranked.length - shown} left)
-          </button>
+    <div class="mt-8 grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(24rem,42%)]">
+      <div class="min-w-0 xl:order-2">
+        <div class="card p-4 xl:sticky xl:top-20">
+          <h2 class="label mb-3">Your matches at a glance</h2>
+          <PositionChart {result} size="full" showBand />
+          <p class="mt-2 text-xs text-ink-3">
+            Up and to the left is better. Helmets on the green line can't be beaten on both safety and price; the grey band is
+            the typical safety at each price. Hover a card or row to find it here.
+          </p>
         </div>
-      {/if}
-    {/if}
+      </div>
+      <div class="min-w-0 xl:order-1">
+        <h2 class="label mb-2">Full ranking</h2>
+        <ol class="card divide-y divide-line overflow-hidden">
+          {#each result.ranked.slice(0, shown) as item (item.helmet.id)}
+            <ResultRow {item} {labLabel} />
+          {/each}
+        </ol>
+        {#if shown < result.ranked.length}
+          <div class="mt-4 text-center">
+            <button class="btn" onclick={() => (shown += PAGE * 2)}>
+              Show more ({result.ranked.length - shown} left)
+            </button>
+          </div>
+        {/if}
+      </div>
+    </div>
 
     {#if result.excluded.length}
       <p class="mt-6 text-xs text-ink-3">

@@ -1,9 +1,11 @@
 <script lang="ts">
   import { labsFor, priceFor, safetyFor, type FinderResult } from "../lib/finder";
-  import { makeLabLabel, pct, priceLabel, priceSourceLabel } from "../lib/format";
+  import { makeLabLabel, priceLabel, priceSourceLabel } from "../lib/format";
   import { PICK_META } from "../lib/picks";
   import { app, toggleCompare } from "../lib/state.svelte";
   import type { Dataset, Helmet } from "../lib/types";
+  import LabAgreement from "./charts/LabAgreement.svelte";
+  import PositionChart from "./charts/PositionChart.svelte";
   import HelmetImage from "./HelmetImage.svelte";
   import SafetyMeter from "./SafetyMeter.svelte";
 
@@ -23,6 +25,8 @@
       return { h, safety, price, ranked: result.ranked.find((r) => r.helmet.id === h.id) };
     }),
   );
+  const onChart = $derived(rows.filter((r) => r.ranked?.price).map((r) => r.h.id));
+  const offChart = $derived(rows.filter((r) => !r.ranked?.price).map((r) => r.h.model));
   const bestSafety = $derived(Math.max(...rows.map((r) => r.safety ?? 0)));
   const bestPrice = $derived(Math.min(...rows.map((r) => r.price?.amount ?? Infinity)));
 
@@ -49,6 +53,15 @@
     <h2 class="font-semibold">Compare {items.length} helmets</h2>
     <button class="btn size-8 p-0" onclick={close} aria-label="Close">✕</button>
   </div>
+  {#if onChart.length}
+    <figure class="border-b border-line px-5 py-4">
+      <PositionChart {result} size="medium" numbered={onChart} showFrontier ariaLabel="Compared helmets by price and safety among your matches" />
+      <figcaption class="mt-2 text-xs text-ink-3">
+        Numbered dots are the helmets you're comparing, against all your matches. Up and to the left is better.
+        {#if offChart.length}Not shown (filtered out by your goals): {offChart.join(", ")}.{/if}
+      </figcaption>
+    </figure>
+  {/if}
   <table class="w-full min-w-[40rem] text-sm">
     <thead>
       <tr>
@@ -56,7 +69,7 @@
         {#each rows as { h } (h.id)}
           <th class="p-3 text-left align-top font-normal">
             <HelmetImage helmet={h} class="aspect-[4/3] w-full max-w-40" />
-            <span class="mt-2 block text-xs text-ink-3">{h.brand}</span>
+            <span class="mt-2 block text-xs text-ink-3">{#if onChart.includes(h.id)}<span class="mr-1 inline-flex size-4 items-center justify-center rounded-full bg-(--highlight) text-[10px] font-bold text-white">{onChart.indexOf(h.id) + 1}</span>{/if}{h.brand}</span>
             <button class="block text-left font-semibold hover:underline" onclick={() => ((app.selected = h.id), close())}>{h.model}</button>
             <button class="mt-1 text-xs text-ink-3 hover:text-ink" onclick={() => toggleCompare(h.id)}>Remove</button>
           </th>
@@ -103,6 +116,12 @@
         {/each}
       </tr>
       <tr>
+        <th>Lab agreement</th>
+        {#each rows as r (r.h.id)}
+          <td><LabAgreement helmet={r.h} combined={r.safety} {labLabel} compact /></td>
+        {/each}
+      </tr>
+      <tr>
         <th>Virginia Tech STAR</th>
         {#each rows as { h } (h.id)}
           <td class="num">{h.ratings.virginia_tech?.score?.toFixed(2) ?? "–"} <span class="text-xs text-ink-3">(lower is safer)</span></td>
@@ -135,12 +154,6 @@
         <th>Style · tested</th>
         {#each rows as { h } (h.id)}
           <td>{h.style} · {h.test_year ?? "–"}</td>
-        {/each}
-      </tr>
-      <tr>
-        <th>Safety percentile by lab</th>
-        {#each rows as { h } (h.id)}
-          <td class="text-xs num">{labsFor(h).map((k) => `${labLabel(k)} ${pct(h.ratings[k]?.rank_pct)}`).join(" · ") || "–"}</td>
         {/each}
       </tr>
     </tbody>

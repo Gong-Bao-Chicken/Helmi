@@ -21,7 +21,7 @@
 </script>
 
 <header class="sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur">
-  <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3 sm:px-6">
+  <div class="mx-auto flex max-w-[96rem] flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3 sm:px-6">
     <button
       class="flex items-center gap-2 text-left"
       onclick={() => {

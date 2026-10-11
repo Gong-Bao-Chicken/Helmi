@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { frontier, kneeId, median, paretoIds, percentileRank } from "./scoring";
+import { expectedSafetyAt, fairValueBand, frontier, kneeId, median, paretoIds, percentileRank, priceBins } from "./scoring";
 
 describe("percentileRank", () => {
   const prices = [50, 100, 150, 200];
@@ -57,5 +57,29 @@ describe("kneeId", () => {
   it("falls back to the safest point on short frontiers", () => {
     expect(kneeId([{ id: "x", price: 1, safety: 0.1 }, { id: "y", price: 2, safety: 0.9 }])).toBe("y");
     expect(kneeId([])).toBeNull();
+  });
+});
+
+describe("fair-value band", () => {
+  const points = Array.from({ length: 12 }, (_, i) => ({ id: `h${i}`, price: 10 * (i + 1), safety: i / 11 }));
+  it("bins by price and reports quartiles per bin", () => {
+    const bins = priceBins(points, 3);
+    expect(bins).toHaveLength(3);
+    expect(bins[0]).toMatchObject({ x: 25 });
+    for (const b of bins) expect(b.q25 <= b.median && b.median <= b.q75).toBe(true);
+  });
+  it("needs enough points", () => {
+    expect(fairValueBand(points.slice(0, 5))).toEqual([]);
+    expect(fairValueBand(points).length).toBeGreaterThanOrEqual(3);
+  });
+  it("interpolates and clamps the expected safety", () => {
+    const bins = [
+      { x: 100, q25: 0, median: 0.4, q75: 1 },
+      { x: 200, q25: 0, median: 0.8, q75: 1 },
+    ];
+    expect(expectedSafetyAt(bins, 150)).toBeCloseTo(0.6);
+    expect(expectedSafetyAt(bins, 50)).toBe(0.4);
+    expect(expectedSafetyAt(bins, 500)).toBe(0.8);
+    expect(expectedSafetyAt([], 10)).toBeNull();
   });
 });

@@ -33,7 +33,7 @@
 <div class="min-h-dvh pb-28">
   <Header {dataset} />
 
-  <main class="mx-auto max-w-7xl px-4 sm:px-6">
+  <main class="mx-auto max-w-[96rem] px-4 sm:px-6">
     {#if error}
       <div class="card mx-auto mt-16 max-w-lg p-6">
         <h2 class="text-lg font-semibold">Could not load helmet data</h2>

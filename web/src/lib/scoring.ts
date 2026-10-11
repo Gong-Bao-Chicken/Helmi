@@ -91,3 +91,48 @@ export function kneeId(front: readonly Point[]): string | null {
   }
   return best;
 }
+
+export interface Bin {
+  x: number;
+  q25: number;
+  median: number;
+  q75: number;
+}
+
+/** Split points into equal-count price bins and take safety quartiles per bin. */
+export function priceBins(points: readonly Point[], binCount: number): Bin[] {
+  const sorted = [...points].sort((a, b) => a.price - b.price);
+  const size = Math.max(1, Math.ceil(sorted.length / binCount));
+  const bins: Bin[] = [];
+  for (let i = 0; i < sorted.length; i += size) {
+    const slice = sorted.slice(i, i + size);
+    const xs = slice.map((p) => p.price);
+    const ys = slice.map((p) => p.safety).sort((a, b) => a - b);
+    const q = (f: number) => ys[Math.min(ys.length - 1, Math.floor(f * (ys.length - 1)))]!;
+    bins.push({ x: (Math.min(...xs) + Math.max(...xs)) / 2, q25: q(0.25), median: q(0.5), q75: q(0.75) });
+  }
+  return bins;
+}
+
+/** Typical safety at each price: the middle 50% of helmets per price bin. Empty for tiny pools. */
+export function fairValueBand(points: readonly Point[]): Bin[] {
+  if (points.length < 8) return [];
+  return priceBins(points, Math.min(8, Math.max(3, Math.floor(points.length / 6))));
+}
+
+/** Median safety expected at a price, interpolated between bins. */
+export function expectedSafetyAt(bins: readonly Bin[], price: number): number | null {
+  if (!bins.length) return null;
+  const first = bins[0]!;
+  const last = bins[bins.length - 1]!;
+  if (price <= first.x) return first.median;
+  if (price >= last.x) return last.median;
+  for (let i = 1; i < bins.length; i += 1) {
+    const [left, right] = [bins[i - 1]!, bins[i]!];
+    if (price <= right.x) {
+      const t = (price - left.x) / (right.x - left.x || 1);
+      return left.median + t * (right.median - left.median);
+    }
+  }
+  return last.median;
+}

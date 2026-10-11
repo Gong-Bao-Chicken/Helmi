@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_GOALS, explain, findHelmets, priceFor } from "./finder";
+import { DEFAULT_GOALS, explain, findHelmets, peersOf, priceFor } from "./finder";
 import type { Dataset, Helmet } from "./types";
 
 const features = {
@@ -100,5 +100,36 @@ describe("findHelmets", () => {
     const reasons = explain(res.ranked[0]!, res, (k) => k).map((r) => r.text);
     expect(reasons[0]).toMatch(/Safer than 90%/);
     expect(reasons).toContain("No helmet on your list is both safer and cheaper");
+  });
+});
+
+describe("evidence", () => {
+  const data = dataset([
+    helmet("target", { safety: 0.8, eur: 50 }),
+    helmet("p1", { safety: 0.82, eur: 120 }),
+    helmet("p2", { safety: 0.75, eur: 100 }),
+    helmet("p3", { safety: 0.88, eur: 140 }),
+    helmet("far", { safety: 0.3, eur: 20 }),
+  ]);
+  const res = findHelmets(data, { ...DEFAULT_GOALS, ride: "road" }, fx);
+  const target = res.ranked.find((r) => r.helmet.id === "target")!;
+
+  it("peersOf uses the safety window and market-currency median", () => {
+    const { peers, medianPrice } = peersOf(target, res);
+    expect(peers.map((p) => p.helmet.id).sort()).toEqual(["p1", "p2", "p3"]);
+    expect(medianPrice).toBe(120);
+  });
+
+  it("the % cheaper claim carries the same peer set as its evidence", () => {
+    const reason = explain(target, res, (k) => k).find((r) => r.evidence?.kind === "peers")!;
+    expect(reason.text).toBe("58% cheaper than similarly safe helmets");
+    expect(reason.evidence).toMatchObject({ kind: "peers", medianPrice: 120 });
+    if (reason.evidence?.kind === "peers") expect(reason.evidence.ids.sort()).toEqual(["p1", "p2", "p3"]);
+  });
+
+  it("tags rank and frontier reasons", () => {
+    const kinds = explain(target, res, (k) => k).map((r) => r.evidence?.kind);
+    expect(kinds).toContain("rank");
+    expect(kinds).toContain("frontier");
   });
 });

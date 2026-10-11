@@ -1,9 +1,12 @@
 <script lang="ts">
-  import { explain, labsFor, priceFor, safetyFor, type FinderResult } from "../lib/finder";
+  import { explain, labsFor, PEER_WINDOW, priceFor, safetyFor, type FinderResult, type Reason } from "../lib/finder";
   import { makeLabLabel, money, pct, shopName } from "../lib/format";
   import { PICK_META } from "../lib/picks";
   import { app, MAX_COMPARE, toggleCompare } from "../lib/state.svelte";
   import type { Dataset, Helmet, MarketKey } from "../lib/types";
+  import LabAgreement from "./charts/LabAgreement.svelte";
+  import PositionChart from "./charts/PositionChart.svelte";
+  import StripPlot from "./charts/StripPlot.svelte";
   import HelmetImage from "./HelmetImage.svelte";
   import SafetyMeter from "./SafetyMeter.svelte";
 
@@ -17,6 +20,25 @@
   const comparing = $derived(app.compare.includes(helmet.id));
   const r = $derived(helmet.ratings);
   const tech = $derived(helmet.protection?.rotational_label ?? helmet.protection?.mips_label);
+
+  // Group reasons by the graphic that backs them; the position chart covers both the peer and frontier claims.
+  const reasons = $derived(ranked ? explain(ranked, result, labLabel) : []);
+  const byKind = (kinds: string[]) => reasons.filter((x) => x.evidence && kinds.includes(x.evidence.kind));
+  const rankReasons = $derived(byKind(["rank"]));
+  const positionReasons = $derived(byKind(["peers", "frontier"]));
+  const labReasons = $derived(byKind(["labs"]));
+  const aeroReasons = $derived(byKind(["aero"]));
+  const otherReasons = $derived(reasons.filter((x) => !x.evidence));
+  const peerEvidence = $derived(positionReasons.map((x) => x.evidence).find((e) => e?.kind === "peers"));
+
+  const safetyItems = $derived(
+    result.ranked.map((x) => ({ id: x.helmet.id, value: x.safety * 100, label: `${x.helmet.brand} ${x.helmet.model}` })),
+  );
+  const aeroItems = $derived(
+    dataset.helmets
+      .filter((h) => h.aero?.score != null)
+      .map((h) => ({ id: h.id, value: h.aero!.score!, label: `${h.brand} ${h.model}` })),
+  );
 
   const markets: { key: MarketKey; label: string }[] = [
     { key: "de", label: "Germany" },
@@ -32,6 +54,17 @@
     panel?.focus();
   });
 </script>
+
+{#snippet claims(list: Reason[])}
+  <ul class="mb-3 space-y-1 text-sm">
+    {#each list as reason (reason.text)}
+      <li class="flex gap-2 {reason.tone === 'caution' ? 'text-caution' : reason.tone === 'good' ? 'text-ink' : 'text-ink-2'}">
+        <span aria-hidden="true" class="w-3 shrink-0">{reason.tone === "caution" ? "!" : reason.tone === "good" ? "✓" : "·"}</span>
+        {reason.text}
+      </li>
+    {/each}
+  </ul>
+{/snippet}
 
 <svelte:window onkeydown={(e) => e.key === "Escape" && close()} />
 
@@ -76,21 +109,73 @@
           <h3 class="label">Safety score</h3>
           <SafetyMeter value={safety} />
         </div>
-        {#if ranked}
-          <ul class="mt-3 space-y-1.5 text-sm">
-            {#each explain(ranked, result, labLabel) as reason (reason.text)}
-              <li class="flex gap-2 {reason.tone === 'caution' ? 'text-caution' : reason.tone === 'good' ? 'text-ink' : 'text-ink-2'}">
-                <span aria-hidden="true" class="w-3 shrink-0">{reason.tone === "caution" ? "!" : reason.tone === "good" ? "✓" : "·"}</span>
-                {reason.text}
-              </li>
-            {/each}
-          </ul>
-        {:else}
+        {#if !ranked}
           <p class="mt-1 text-sm text-ink-2">Safer than {pct(safety)}% of lab-tested helmets.</p>
           <p class="mt-2 text-xs text-ink-3">Not on your current shortlist; your goals filter it out.</p>
         {/if}
       </section>
     {/if}
+
+    <section>
+      <h3 class="label mb-2">How it compares</h3>
+      <div class="space-y-3">
+        {#if ranked && rankReasons.length}
+          <figure class="card p-4">
+            {@render claims(rankReasons)}
+            <StripPlot
+              items={safetyItems}
+              focusId={helmet.id}
+              domain={[0, 100]}
+              ends={["less safe", "safer"]}
+              focusLabel="#{ranked.safetyRank} of {result.ranked.length}"
+              ariaLabel="Safety of {helmet.model} among {result.ranked.length} matches"
+            />
+          </figure>
+        {/if}
+        {#if ranked?.price}
+          <figure class="card p-4">
+            {#if positionReasons.length}
+              {@render claims(positionReasons)}
+            {:else}
+              <p class="mb-2 text-sm text-ink-2">Where it sits on price and safety among your matches.</p>
+            {/if}
+            <PositionChart
+              {result}
+              size="medium"
+              focusId={helmet.id}
+              peers={peerEvidence?.kind === "peers" ? { ids: peerEvidence.ids, medianPrice: peerEvidence.medianPrice, window: PEER_WINDOW } : null}
+              ariaLabel="{helmet.model} by price and safety among your matches"
+            />
+            {#if peerEvidence?.kind === "peers"}
+              <figcaption class="mt-2 text-xs text-ink-3">
+                Shaded: the {peerEvidence.ids.length} helmets within {Math.round(PEER_WINDOW * 100)} safety points. The line is their median price.
+              </figcaption>
+            {/if}
+          </figure>
+        {/if}
+        <figure class="card p-4">
+          {#if labReasons.length}{@render claims(labReasons)}{/if}
+          <LabAgreement {helmet} combined={safety} {labLabel} />
+        </figure>
+        {#if helmet.aero?.score != null && aeroItems.length > 1}
+          <figure class="card p-4">
+            {#if aeroReasons.length}{@render claims(aeroReasons)}{/if}
+            <StripPlot
+              items={aeroItems}
+              focusId={helmet.id}
+              domain={[0, 100]}
+              ends={["draggy", "fast"]}
+              focusLabel="aero {helmet.aero.score}"
+              ariaLabel="Aero score of {helmet.model} among {aeroItems.length} wind-tunnel-tested helmets"
+            />
+            <figcaption class="mt-1 text-xs text-ink-3">Among all {aeroItems.length} wind-tunnel-tested helmets</figcaption>
+          </figure>
+        {/if}
+        {#if otherReasons.length}
+          <div class="px-1">{@render claims(otherReasons)}</div>
+        {/if}
+      </div>
+    </section>
 
     <section>
       <h3 class="label mb-2">Lab results</h3>

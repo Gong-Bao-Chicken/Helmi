@@ -5,7 +5,7 @@
   let failed = $state(false);
 </script>
 
-<div class="flex items-center justify-center overflow-hidden rounded-xl bg-white {klass}">
+<div class="flex items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-line {klass}">
   {#if helmet.image_url && !failed}
     <img
       src={helmet.image_url}

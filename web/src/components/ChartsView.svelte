@@ -257,8 +257,8 @@
         <p class="mb-4 text-sm text-ink-2">Safety score of every rated helmet by style, safest median first. Each dot is a helmet, the bar the median.</p>
         <CategoryStrips rows={styleRows} color={styleColor} ariaLabel="Safety score distribution by helmet style" />
         <p class="mt-3 text-xs text-ink-3">
-          Styles come from Virginia Tech, the manufacturer, or words in the model name.{#if unclassified}
-            {unclassified} helmets give no clue, so they are listed as Unclassified rather than guessed.{/if}
+          Styles come from Virginia Tech, the manufacturer, or words in the model name.{#if unclassified}{" "}{unclassified} helmets give no
+            clue, so they are listed as Unclassified rather than guessed.{/if}
         </p>
       </figure>
 

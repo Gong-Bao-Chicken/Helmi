@@ -1,0 +1,40 @@
+[project]
+name = "helmet-data"
+version = "0.1.0"
+description = "Data pipeline for Helmet Compare: crawls helmet safety ratings, prices and protection tech into helmets.json."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "curl-cffi>=0.16.3",
+    "httpx>=0.28.1",
+    "pypdf>=6.20.0",
+]
+
+[project.scripts]
+helmet-data = "helmet_data.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.0,<0.12"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["helmet_data"]

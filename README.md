@@ -2,47 +2,45 @@
 
 Compare bicycle helmet safety ratings from [Virginia Tech](https://www.helmet.beam.vt.edu/), with optional scores from CERTIMOOV, Folksam, and NSW Helmet STAR. Filter by EU market, rotational protection, price, and more.
 
-## Requirements (Mac)
+## Requirements
 
-- macOS with **Python 3.11+** (check with `python3 --version`)
+- [uv](https://docs.astral.sh/uv/) (`curl -LsSf https://astral.sh/uv/install.sh | sh`) — it installs the
+  pinned Python (see `.python-version`) and all dependencies from `uv.lock`
 - Internet access to download helmet data
 
 ## First-time setup
 
-Open Terminal and run:
-
 ```bash
 cd /path/to/Helmet
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-Or use the helper script (creates the venv for you):
-
-```bash
-chmod +x update-data.sh serve.sh
-./update-data.sh --quick
+uv sync            # creates .venv with runtime + dev dependencies
 ```
 
 ## Fetch / update data
 
 | Command | What it does | Time |
 |---------|----------------|------|
-| `./update-data.sh --quick` | Virginia Tech dataset only; merges cached extra ratings and cached shop prices if present | ~5 s |
-| `./update-data.sh` | VT + crawl extra labs + live shop prices (Amazon, Geizhals, …) | ~15–45 min |
+| `uv run helmet-data update --quick` | Virginia Tech dataset only; merges cached extra ratings, protection data and shop prices if present | ~5 s |
+| `uv run helmet-data update` | VT + aero refresh + crawl extra labs + live shop prices (Geizhals, Idealo, …) | ~15–45 min |
 
-Equivalent Python commands (with venv activated):
+`./update-data.sh [flags]` is a thin wrapper around `uv run helmet-data update [flags]`.
+
+`update` flags: `--quick`, `--fetch-manufacturer`, `--skip-prices`, `--force-prices`.
+
+Individual steps (run `uv run helmet-data <command> --help` for all flags):
+
+| Command | Replaces | Purpose |
+|---------|----------|---------|
+| `build` (alias `fetch-vt`) | `fetch_helmets.py` | Fetch VT ratings and assemble `helmets.json` from cached enrichments (`--skip-extra-ratings`, `--verify-styles`, `--crawl-manufacturer-protection`, …) |
+| `fetch-ratings` | `fetch_extra_ratings.py` | Crawl CERTIMOOV / Folksam / NSW Helmet STAR → `data/cache/extra_ratings*.json` |
+| `fetch-prices` | `fetch_listings.py` | Shop prices → `helmets.json` (`--cache-only`, `--force`, `--limit N`, `--all-helmets`) |
+| `fetch-aero` | `fetch_aero_ratings.py` | Aero coverage report; `--fetch` refreshes `data/reference/aero_ratings.json` from CN Labs |
+| `fetch-protection` | `fetch_manufacturer_protection.py` | Crawl manufacturer/retailer pages for MIPS etc. (`--helmet ID`, `--brand`, `--all-missing`, `--retailers`, `--write-lookup`) |
+
+Development:
 
 ```bash
-python scripts/update_data.py --quick
-python scripts/update_data.py
-```
-
-Refresh only Virginia Tech (skip extra sources):
-
-```bash
-python scripts/fetch_helmets.py --skip-extra-ratings
+uv run pytest          # tests
+uv run ruff check      # lint (ruff format to format)
 ```
 
 ## Start the website
@@ -77,34 +75,37 @@ After updating data, hard-refresh the page (Cmd+Shift+R) so the browser does not
 
 ```
 Helmet/
-├── README.md
-├── serve.sh              # start local web server
-├── update-data.sh        # fetch / refresh all data
-├── requirements.txt
-├── scripts/
-│   ├── update_data.py    # main data update entry point
-│   ├── fetch_helmets.py  # Virginia Tech + merge into web/data/helmets.json
-│   ├── fetch_extra_ratings.py
-│   └── extra_ratings.json   # generated; merged into helmets.json
-└── web/
-    ├── index.html
-    └── data/
-        └── helmets.json  # generated; required for the UI
+├── pyproject.toml / uv.lock     # Python project (helmet-data), deps, ruff + pytest config
+├── update-data.sh               # wrapper: uv run helmet-data update "$@"
+├── src/helmet_data/
+│   ├── cli.py                   # `helmet-data` entry point (subcommands)
+│   ├── pipeline.py              # `update`: orchestrates the steps below
+│   ├── build.py                 # VT fetch + dataset assembly → helmets.json
+│   ├── paths.py                 # all file locations
+│   ├── steps/                   # fetch-ratings, fetch-prices, fetch-aero, fetch-protection
+│   ├── crawlers/                # CERTIMOOV, Folksam, NSW, price sources, stealth (curl_cffi) fetch
+│   └── enrich/                  # ratings fusion, aero, styles, protection tech, matching
+├── data/
+│   ├── reference/               # hand-maintained inputs (brands, EU brands, MIPS lookup, aero list)
+│   └── cache/                   # generated caches (extra ratings + protection caches tracked;
+│                                #   price/style caches, cookies, browser profile gitignored)
+├── tests/                       # pytest suite
+└── web/                         # frontend; reads web/public/data/helmets.json (generated)
 ```
 
 ## Troubleshooting
 
 | Problem | Fix |
 |---------|-----|
-| “Could not load helmet data” / blank page | Run `./update-data.sh --quick`, then `./serve.sh` |
+| “Could not load helmet data” / blank page | Run `uv run helmet-data update --quick`, then `./serve.sh` |
 | Opened file in Finder | Use `./serve.sh` and visit http://localhost:8080 |
 | `Address already in use` | Another server is on that port — use `PORT=9000 ./serve.sh` |
-| Extra rating modes show “no data” | Run full `./update-data.sh` (not `--quick`) |
-| Shop price / rating columns missing | Run full `./update-data.sh` (not `--quick`). Geizhals needs `curl_cffi` (installed via `requirements.txt`). |
+| Extra rating modes show “no data” | Run full `uv run helmet-data update` (not `--quick`) |
+| Shop price / rating columns missing | Run full `uv run helmet-data update` (not `--quick`). Geizhals needs `curl_cffi` (installed by `uv sync`). |
 | Only Amazon prices appear | Geizhals should work after the curl_cffi fix; Idealo/toppreise may still block bots — see README data sources |
 
 ## Data sources
 
 - **Virginia Tech Helmet Lab** — primary STAR scores (lower = safer)
-- **CERTIMOOV**, **Folksam**, **NSW Helmet STAR** — optional; crawled by `fetch_extra_ratings.py`
-- **Prices shown** — VT US test-time price by default; full `./update-data.sh` checks Geizhals, Idealo, and toppreise.ch (median over ~14 days when cached snapshots exist) and uses a lower shop price when found
+- **CERTIMOOV**, **Folksam**, **NSW Helmet STAR** — optional; crawled by `helmet-data fetch-ratings`
+- **Prices shown** — VT US test-time price by default; full `helmet-data update` checks Geizhals, Idealo, and toppreise.ch (median over ~14 days when cached snapshots exist) and uses a lower shop price when found

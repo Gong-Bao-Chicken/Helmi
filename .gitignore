@@ -1,10 +1,15 @@
 .venv/
 __pycache__/
 *.pyc
-scripts/price_cache.json
-scripts/manufacturer_style_cache.json
-scripts/.stealth-cookies.json
-scripts/.browser-profile/
+.pytest_cache/
+.ruff_cache/
+
+# Generated caches (local only)
+data/cache/price_cache.json
+data/cache/manufacturer_style_cache.json
+data/cache/.stealth-cookies.json
+data/cache/.browser-profile/
+
 .playwright-browsers/
 price-fetch.log
 .DS_Store

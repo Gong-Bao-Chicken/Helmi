@@ -1,42 +1,17 @@
 <script lang="ts">
-  import { explain, SAFE_ENOUGH, type FinderResult, type Ranked } from "../lib/finder";
+  import { explain, type FinderResult, type Ranked } from "../lib/finder";
   import { priceLabel, priceSourceLabel } from "../lib/format";
   import { PICK_META } from "../lib/picks";
   import { app, MAX_COMPARE, toggleCompare } from "../lib/state.svelte";
   import type { RatingSourceKey } from "../lib/types";
-  import PositionChart from "./charts/PositionChart.svelte";
-  import StripPlot from "./charts/StripPlot.svelte";
   import HelmetImage from "./HelmetImage.svelte";
   import SafetyMeter from "./SafetyMeter.svelte";
 
   let { item, result, labLabel }: { item: Ranked; result: FinderResult; labLabel: (k: RatingSourceKey) => string } =
     $props();
 
-  const reasons = $derived(explain(item, result, labLabel).filter((r) => r.tone !== "neutral").slice(0, 2));
+  const reasons = $derived(explain(item, result, labLabel).filter((r) => r.tone !== "neutral").slice(0, 3));
   const comparing = $derived(app.compare.includes(item.helmet.id));
-  const lead = $derived(item.picks[0] ?? "alt");
-  const total = $derived(result.ranked.length);
-
-  const caption = $derived.by(() => {
-    switch (lead) {
-      case "safest":
-        return `Highest safety of your ${total} matches`;
-      case "value":
-        return "The bend in the green line: beyond it, more money buys little safety";
-      case "budget":
-        return "Cheapest helmet above the safety bar";
-      case "aero":
-        return "Aero score against every wind-tunnel-tested match";
-      default:
-        return `#${item.rank} of ${total} for your goals · up and left is better`;
-    }
-  });
-
-  const aeroItems = $derived(
-    result.ranked
-      .filter((r) => r.helmet.aero?.score != null)
-      .map((r) => ({ id: r.helmet.id, value: r.helmet.aero!.score!, label: r.helmet.model })),
-  );
 </script>
 
 <article
@@ -54,7 +29,7 @@
   </div>
   <button class="flex flex-1 flex-col px-4 pt-3 text-left" onclick={() => (app.selected = item.helmet.id)}>
     <div class="flex items-center gap-3">
-      <HelmetImage helmet={item.helmet} class="size-20 shrink-0" />
+      <HelmetImage helmet={item.helmet} class="size-24 shrink-0" />
       <div class="min-w-0">
         <span class="block text-xs text-ink-3">{item.helmet.brand}</span>
         <span class="block leading-snug font-semibold">{item.helmet.model}</span>
@@ -67,30 +42,6 @@
       <SafetyMeter value={item.safety} size="sm" />
     </div>
 
-    <figure class="mt-3">
-      {#if lead === "aero" && aeroItems.length > 1}
-        <div class="rounded-[10px] bg-surface-2 px-2 pt-1">
-          <StripPlot
-            items={aeroItems}
-            focusId={item.helmet.id}
-            domain={[0, 100]}
-            ends={["draggy", "fast"]}
-            focusLabel="aero {item.helmet.aero?.score}"
-            ariaLabel="Aero score of {item.helmet.model} compared with {aeroItems.length} tested matches"
-          />
-        </div>
-      {:else}
-        <PositionChart
-          {result}
-          size="mini"
-          focusId={item.helmet.id}
-          markKnee={lead === "value"}
-          threshold={lead === "budget" ? SAFE_ENOUGH : null}
-          ariaLabel="Position of {item.helmet.model} among {total} matches by price and safety"
-        />
-      {/if}
-      <figcaption class="mt-1.5 text-[11px] leading-snug text-ink-3">{caption}</figcaption>
-    </figure>
 
     <ul class="mt-3 mb-4 space-y-1 text-xs">
       {#each reasons as r (r.text)}

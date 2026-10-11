@@ -1,7 +1,7 @@
 /** App state, mirrored into the URL so any view can be bookmarked or shared. */
 import { DEFAULT_GOALS, PRIORITIES, RIDES, type Goals, type MarketChoice, type SafetySource } from "./finder";
 
-export type View = "find" | "explore";
+export type View = "find" | "charts" | "explore";
 
 const MARKETS: MarketChoice[] = ["de", "at", "ch", "us"];
 const SOURCES: SafetySource[] = ["fused", "virginia_tech", "folksam", "certimoov", "nsw_helmet_star"];
@@ -25,7 +25,7 @@ function readUrl() {
   goals.euOnly = p.get("eu") !== "0";
   return {
     goals,
-    view: (p.get("view") === "explore" ? "explore" : "find") as View,
+    view: (["charts", "explore"].includes(p.get("view") ?? "") ? p.get("view") : "find") as View,
     helmet: p.get("helmet"),
     compare: (p.get("compare") ?? "").split(",").filter(Boolean).slice(0, MAX_COMPARE),
   };

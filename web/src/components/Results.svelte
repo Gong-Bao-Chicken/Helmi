@@ -5,7 +5,6 @@
   import type { Dataset } from "../lib/types";
   import PickCard from "./PickCard.svelte";
   import ResultRow from "./ResultRow.svelte";
-  import PositionChart from "./charts/PositionChart.svelte";
 
   let { dataset, result }: { dataset: Dataset; result: FinderResult } = $props();
 
@@ -59,33 +58,22 @@
       {/each}
     </div>
 
-    <div class="mt-8 grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(24rem,42%)]">
-      <div class="min-w-0 xl:order-2">
-        <div class="card p-4 xl:sticky xl:top-20">
-          <h2 class="label mb-3">Your matches at a glance</h2>
-          <PositionChart {result} size="full" showBand />
-          <p class="mt-2 text-xs text-ink-3">
-            Up and to the left is better. Helmets on the green line can't be beaten on both safety and price; the grey band is
-            the typical safety at each price. Hover a card or row to find it here.
-          </p>
-        </div>
-      </div>
-      <div class="min-w-0 xl:order-1">
-        <h2 class="label mb-2">Full ranking</h2>
-        <ol class="card divide-y divide-line overflow-hidden">
-          {#each result.ranked.slice(0, shown) as item (item.helmet.id)}
-            <ResultRow {item} {labLabel} />
-          {/each}
-        </ol>
-        {#if shown < result.ranked.length}
-          <div class="mt-4 text-center">
-            <button class="btn" onclick={() => (shown += PAGE * 2)}>
-              Show more ({result.ranked.length - shown} left)
-            </button>
-          </div>
-        {/if}
-      </div>
+    <div class="mt-8 flex items-baseline justify-between gap-3">
+      <h2 class="label">Full ranking</h2>
+      <button class="text-xs text-ink-3 underline hover:text-ink" onclick={() => (app.view = "charts")}>See these helmets on a chart</button>
     </div>
+    <ol class="card mt-2 divide-y divide-line overflow-hidden">
+      {#each result.ranked.slice(0, shown) as item (item.helmet.id)}
+        <ResultRow {item} {labLabel} />
+      {/each}
+    </ol>
+    {#if shown < result.ranked.length}
+      <div class="mt-4 text-center">
+        <button class="btn" onclick={() => (shown += PAGE * 2)}>
+          Show more ({result.ranked.length - shown} left)
+        </button>
+      </div>
+    {/if}
 
     {#if result.excluded.length}
       <p class="mt-6 text-xs text-ink-3">

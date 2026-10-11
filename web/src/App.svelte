@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ChartsView from "./components/ChartsView.svelte";
   import CompareDialog from "./components/CompareDialog.svelte";
   import CompareTray from "./components/CompareTray.svelte";
   import ExploreTable from "./components/ExploreTable.svelte";
@@ -44,6 +45,8 @@
       </div>
     {:else if !dataset || !result}
       <div class="mt-24 text-center text-sm text-ink-3" aria-live="polite">Loading helmets…</div>
+    {:else if app.view === "charts"}
+      <ChartsView {dataset} {fx} />
     {:else if app.view === "explore"}
       <ExploreTable {dataset} {fx} />
     {:else if !app.goals.ride}

@@ -5,8 +5,8 @@
   import { app, MAX_COMPARE, toggleCompare } from "../lib/state.svelte";
   import { styleLabel } from "../lib/styles";
   import type { RatingSourceKey } from "../lib/types";
+  import EvidenceChip from "./EvidenceChip.svelte";
   import HelmetImage from "./HelmetImage.svelte";
-  import SafetyMeter from "./SafetyMeter.svelte";
 
   let { item, labLabel }: { item: Ranked; labLabel: (k: RatingSourceKey) => string } = $props();
   const comparing = $derived(app.compare.includes(item.helmet.id));
@@ -24,7 +24,6 @@
     <span class="min-w-0">
       <span class="line-clamp-2 font-medium sm:line-clamp-1">{item.helmet.brand} {item.helmet.model}</span>
       <span class="flex flex-wrap gap-x-2 text-xs text-ink-3">
-        <span class="font-medium text-ink sm:hidden">Safety {Math.round(item.safety * 100)} ·</span>
         <span>{styleLabel(item.helmet.style)}</span>
         {#if tech}<span>· {tech}</span>{/if}
         <span class="hidden sm:inline">· {item.labs.map(labLabel).join(", ")}</span>
@@ -34,17 +33,20 @@
       </span>
     </span>
   </button>
-  <div class="hidden shrink-0 sm:block"><SafetyMeter value={item.safety} size="sm" /></div>
-  <div class="w-24 shrink-0 text-right">
-    <span class="block font-medium num">{priceLabel(item.price)}</span>
-    <span class="block truncate text-[11px] text-ink-3">{priceSourceLabel(item.price)}</span>
+  <div class="flex shrink-0 flex-col items-end gap-1.5 sm:flex-row sm:items-center sm:gap-4">
+    <EvidenceChip helmet={item.helmet} safety={item.safety} source={app.goals.safetySource} {labLabel} />
+    <div class="text-right sm:w-24">
+      <span class="block font-medium num">{priceLabel(item.price)}</span>
+      <span class="block max-w-28 truncate text-[11px] text-ink-3">{priceSourceLabel(item.price)}</span>
+    </div>
   </div>
-  <input
-    type="checkbox"
-    aria-label="Compare {item.helmet.model}"
-    checked={comparing}
+  <button
+    class="btn min-h-11 min-w-11 shrink-0 px-2 text-xs {comparing ? 'btn-primary' : ''}"
+    aria-pressed={comparing}
+    aria-label="{comparing ? 'Remove from' : 'Add to'} comparison: {item.helmet.brand} {item.helmet.model}"
     disabled={!comparing && app.compare.length >= MAX_COMPARE}
-    onchange={() => toggleCompare(item.helmet.id)}
-    class="shrink-0 accent-(--accent)"
-  />
+    onclick={() => toggleCompare(item.helmet.id)}
+  >
+    {comparing ? "✓" : "+"}<span class="hidden sm:inline">&nbsp;Compare</span>
+  </button>
 </li>

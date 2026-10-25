@@ -67,6 +67,8 @@ Other frontend commands (run in `web/`):
 | `npm test` | Unit tests for the ranking logic (Vitest) |
 | `npm run check` | Type-check Svelte + TypeScript |
 
+The site loads `web/public/data/helmets.site.json`, a compact copy of `helmets.json` without the pipeline's debug fields (both are written together); `helmets.json` stays complete for anyone reusing the data. The *How it works* page (`?view=about`) explains the method.
+
 The live site is at https://gong-bao-chicken.github.io/Helmi/. `.github/workflows/deploy-pages.yml` rebuilds and deploys it when `web/` changes on `main` and after each successful data update.
 
 The app keeps all state in the URL (`?ride=road&priority=value&budget=150&helmet=…&compare=…`), so any result can be bookmarked or shared.
@@ -75,6 +77,8 @@ The app keeps all state in the URL (`?ride=road&priority=value&budget=150&helmet
 
 - **Safety** is a percentile (0–100) across all lab-tested helmets. By default the labs are combined, each weighted by how much its protocol is trusted (VT 1.0, Folksam 0.9, CERTIMOOV/NSW 0.85); under *Advanced* you can use a single lab.
 - **Price** is the live shop price in your market; each country only takes prices from its own shops. If a helmet has none, a neighbouring country's shop price is shown instead (Germany ↔ Austria unchanged, since both use euro; to or from Switzerland converted), and without any shop price the converted US price at test time. Both are marked with "≈". Conversions use the ECB reference rates the pipeline fetches on every price update (`meta.exchange_rates` in `helmets.json`).
+- **Evidence:** every score says how many labs tested the helmet and whether they agree (percentiles more than 30 points apart count as disagreeing); tapping it shows the weighted calculation. Kids' helmets are also ranked among kids' helmets only. For the money-driven priorities an estimated price ranks like an unknown one, and the budget pick needs a live price when one exists.
+- **Duplicates:** helmets listed twice because two labs named them differently are folded together via `data/reference/helmet_merges.json` (checked by hand; two tests by the same lab are two versions and stay apart).
 - **Style** comes from Virginia Tech's category, the hand-checked corrections in `data/reference/style_overrides.json` (these win), or words in the model name. Helmets none of these can place are *Unclassified*.
 - **Priorities** set the weights: value = 55% safety / 45% cheapness; max protection = 95/5; cheapest-safe = only top-40% safety, then mostly price; fast-and-safe adds wind-tunnel results (wind-tunnel-tested helmets only).
 - **Picks**: *Best match* (top of the ranking), *Safest*, *Sweet spot* (the knee of the price/safety frontier, where spending more stops buying much more safety), *Budget pick* (cheapest with top-40% safety) and *Fastest safe*.

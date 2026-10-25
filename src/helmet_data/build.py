@@ -17,6 +17,7 @@ from .enrich.manufacturer_protection import (
     apply_manufacturer_protection_crawl,
     load_protection_cache,
 )
+from .enrich.merges import apply_helmet_merges, load_helmet_merges
 from .enrich.protection_tech import (
     apply_protection_to_all,
     mips_variants_for_filters,
@@ -52,10 +53,12 @@ from .paths import (
     EXTRA_RATINGS_RAW_PATH,
     HELMETS_JSON_PATH,
 )
+from .site_data import write_dataset
 from .steps.extra_ratings import run_fetch_extra_ratings
 
 VT_DATA_URL = "https://www.helmet.beam.vt.edu/js/bicycleData.js"
 VT_IMAGE_BASE = "https://www.helmet.beam.vt.edu/images/bicycle/"
+NTA_RE = re.compile(r"\bNTA\b")
 VT_RATINGS_URL = "https://www.helmet.beam.vt.edu/bicycle-helmet-ratings.html"
 # VT has no page per helmet; its ratings page shows each helmet's result as this chart.
 VT_RESULT_PLOT_BASE = "https://www.helmet.beam.vt.edu/images/bicycle-plots/"
@@ -116,7 +119,8 @@ def extract_features(model: str, certifications: str) -> dict[str, bool]:
         "sweet_2vi": sweet_2vi,
         "koroyd": koroyd,
         "rotational_protection": rotational_protection,
-        "nta8776": "NTA" in cert_upper or "NTA" in model.upper(),
+        # Whole word only: a substring test also matched "Trenta", "Syntax" and "Mountain".
+        "nta8776": bool(NTA_RE.search(cert_upper) or NTA_RE.search(model.upper())),
         "asia_fit": "asia fit" in model_lower,
         "round_fit": "round fit" in model_lower,
     }
@@ -365,6 +369,27 @@ def normalize_brand_names(helmets: list[dict]) -> None:
         helmet["search_text"] = f"{helmet['brand']} {helmet['model']}".lower()
 
 
+# Words lab titles write in capitals that are names, not shouting.
+KEEP_UPPER = {"MIPS", "NTA", "LED", "MTB", "BMX", "EVO", "WAVECEL", "SPIN", "XC"}
+
+
+def tidy_model_name(model: str) -> str:
+    """'- Urban-I-3.0' -> 'Urban-I-3.0', 'GEKKO-MIPS' -> 'Gekko-MIPS'.
+
+    Lab titles can start with a stray dash or be written in capitals; short words (CAB, FCJ)
+    are kept as they are, since they are usually model codes.
+    """
+    model = model.strip().lstrip("-–").strip()
+    if not any(char.islower() for char in model):
+
+        def word(match: re.Match) -> str:
+            text = match.group(0)
+            return text if len(text) <= 3 or text in KEEP_UPPER else text.capitalize()
+
+        model = re.sub(r"[A-Z]+", word, model)
+    return model
+
+
 def standalone_from_unmatched(entry: dict, eu_brands: set[str]) -> dict | None:
     source = entry.get("source")
     if source not in RATING_SOURCES:
@@ -389,6 +414,7 @@ def standalone_from_unmatched(entry: dict, eu_brands: set[str]) -> dict | None:
     eu_brand = is_eu_brand(brand, eu_brands)
     eu_version = is_eu_version(features)
     helmet_id = f"extra-{entry.get('slug') or slugify(brand, model)}"
+    model = tidy_model_name(model)  # after the id, so ids (and caches keyed by them) stay stable
     rating_block = rating_block_from_unmatched(entry)
     stars = rating_block.get("stars", 0) or 0
 
@@ -651,6 +677,10 @@ def build_dataset(
     if AERO_RATINGS_PATH.exists():
         aero_stats = merge_aero_ratings(helmets, load_aero_ratings(AERO_RATINGS_PATH))
 
+    helmets_merged = apply_helmet_merges(helmets, load_helmet_merges())
+    if helmets_merged:
+        finalize_all_ratings(helmets)
+
     protection_crawl_stats: dict[str, int] = {}
     manufacturer_protection_cache = load_protection_cache()
     if crawl_manufacturer_protection or manufacturer_protection_cache_only or PROTECTION_CACHE_PATH.exists():
@@ -715,6 +745,7 @@ def build_dataset(
         "extra_ratings_merged": extra_merged,
         "extra_only_count": extra_only_added,
         "styles_reviewed": styles_reviewed,
+        "helmets_merged": helmets_merged,
     }
     if aero_stats:
         meta_extra["aero_ratings_matched"] = aero_stats.get("matched", 0)
@@ -786,7 +817,7 @@ def build_dataset(
 
 def write_json(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    write_dataset(path, payload)
 
 
 def run_build(

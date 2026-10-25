@@ -2,6 +2,7 @@
   import { labsFor, priceFor, safetyFor, type FinderResult } from "../lib/finder";
   import { makeLabLabel, priceLabel, priceSourceLabel } from "../lib/format";
   import { PICK_META } from "../lib/picks";
+  import { focusTrap } from "../lib/focusTrap";
   import { styleLabel } from "../lib/styles";
   import { app, toggleCompare } from "../lib/state.svelte";
   import type { Dataset, Helmet } from "../lib/types";
@@ -31,8 +32,6 @@
   const bestSafety = $derived(Math.max(...rows.map((r) => r.safety ?? 0)));
   const bestPrice = $derived(Math.min(...rows.map((r) => r.price?.amount ?? Infinity)));
 
-  let dialog = $state<HTMLElement>();
-  $effect(() => dialog?.focus());
   const close = () => (app.compareOpen = false);
   $effect(() => {
     if (items.length < 2) close();
@@ -43,7 +42,7 @@
 
 <div class="fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px]" onclick={close} aria-hidden="true"></div>
 <div
-  bind:this={dialog}
+  use:focusTrap
   role="dialog"
   aria-modal="true"
   aria-label="Compare helmets"
@@ -52,7 +51,7 @@
 >
   <div class="sticky top-0 z-10 flex items-center justify-between border-b border-line bg-bg/90 px-5 py-3 backdrop-blur">
     <h2 class="font-semibold">Compare {items.length} helmets</h2>
-    <button class="btn size-8 p-0" onclick={close} aria-label="Close">✕</button>
+    <button class="btn size-11 p-0 sm:size-8" onclick={close} aria-label="Close">✕</button>
   </div>
   {#if onChart.length}
     <figure class="border-b border-line px-5 py-4">

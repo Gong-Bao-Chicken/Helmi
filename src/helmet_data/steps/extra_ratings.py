@@ -213,7 +213,16 @@ def build_matches(
             if not match:
                 unmatched.append({"source": source, **payload})
                 continue
-            ensure_entry(match)["ratings"][source] = block
+            # Keep the lab's own name for the helmet, so a wrong match can be spotted on the site.
+            test_name = " ".join(filter(None, [payload.get("brand"), payload.get("model")])).strip()
+            ensure_entry(match)["ratings"][source] = {
+                **block,
+                "match": {
+                    "test_name": test_name or None,
+                    "confidence": round(match.confidence, 3),
+                    "method": match.method,
+                },
+            }
             matched += 1
         stats[source] = {"fetched": len(rows), "matched": matched}
 

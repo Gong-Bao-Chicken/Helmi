@@ -41,7 +41,7 @@ export const RIDES: Ride[] = [
   {
     key: "speed",
     label: "Speed pedelec",
-    blurb: "Fast e-bikes up to 45 km/h (needs NTA 8776)",
+    blurb: "Fast e-bikes up to 45 km/h, with a number plate",
     styles: null,
     requireNta8776: true,
   },
@@ -75,7 +75,25 @@ export interface Goals {
   pricedOnly: boolean;
   /** Only brands/versions sold in Europe. */
   euOnly: boolean;
+  /** Only helmets tested by at least two labs. */
+  multiLab: boolean;
+  /** Wind-tunnel helmet class (racing): vented, semi-aero, aero road or time trial. */
+  aeroClass: AeroClass | null;
   safetySource: SafetySource;
+}
+
+export type AeroClass = "vented" | "semi_aero" | "aero" | "time_trial";
+export const AERO_CLASSES: { key: AeroClass; label: string }[] = [
+  { key: "vented", label: "Vented" },
+  { key: "semi_aero", label: "Semi-aero" },
+  { key: "aero", label: "Aero road" },
+  { key: "time_trial", label: "Time trial" },
+];
+
+/** The wind-tunnel class of a helmet, from its newest test. */
+export function aeroClassOf(helmet: Helmet): AeroClass | null {
+  const sources = Object.values(helmet.aero?.sources ?? {}).sort((a, b) => Number(b.test_year ?? 0) - Number(a.test_year ?? 0));
+  return (sources.find((s) => s.helmet_class)?.helmet_class as AeroClass | undefined) ?? null;
 }
 
 export const DEFAULT_GOALS: Goals = {
@@ -86,6 +104,8 @@ export const DEFAULT_GOALS: Goals = {
   rotational: false,
   pricedOnly: false,
   euOnly: true,
+  multiLab: false,
+  aeroClass: null,
   safetySource: "fused",
 };
 
@@ -186,6 +206,39 @@ export function safetyFor(helmet: Helmet, source: SafetySource): number | null {
   return helmet.ratings[source]?.rank_pct ?? null;
 }
 
+/** "Top 10%" etc.: what a safety percentile means in words. */
+export function scoreBand(safety: number) {
+  if (safety >= 0.9) return "Top 10%";
+  if (safety >= 0.75) return "Top 25%";
+  if (safety >= 0.5) return "Above average";
+  if (safety >= 0.25) return "Below average";
+  return "Bottom 25%";
+}
+
+/** Lab percentiles further apart than this count as the labs disagreeing. */
+const DISAGREE_SPREAD = 0.3;
+
+export interface LabEvidence {
+  labs: RatingSourceKey[];
+  /** single = one lab; agree / disagree = how far apart the labs' percentiles are. */
+  agreement: "none" | "single" | "agree" | "disagree";
+  /** Newest test year across the labs, if known. */
+  newestYear: number | null;
+}
+
+/** How solid a helmet's safety score is: how many labs tested it and whether they agree. */
+export function evidenceFor(helmet: Helmet): LabEvidence {
+  const labs = labsFor(helmet);
+  const pcts = labs.map((k) => helmet.ratings[k]!.rank_pct!);
+  const years = labs.map((k) => Number(String(helmet.ratings[k]!.test_year ?? "").slice(0, 4))).filter((y) => y > 0);
+  const spread = pcts.length ? Math.max(...pcts) - Math.min(...pcts) : 0;
+  return {
+    labs,
+    agreement: labs.length === 0 ? "none" : labs.length === 1 ? "single" : spread > DISAGREE_SPREAD ? "disagree" : "agree",
+    newestYear: years.length ? Math.max(...years) : null,
+  };
+}
+
 export function hasRotationalTech(helmet: Helmet) {
   return (helmet.protection_group ?? "none") !== "none";
 }
@@ -207,6 +260,8 @@ export interface Ranked {
   onFrontier: boolean;
   picks: PickKind[];
   labs: RatingSourceKey[];
+  /** Kids' helmets: percentile among rated kids' helmets only, since they score lower as a group. */
+  groupSafety: { pct: number; n: number } | null;
 }
 
 export interface FinderResult {
@@ -222,6 +277,8 @@ export interface FinderResult {
   excluded: { reason: string; count: number }[];
   /** Total helmets with a safety rating for the chosen source. */
   ratedTotal: number;
+  /** "Fast and safe": wind-tunnel-tested helmets of this riding style that no lab has crash-tested. */
+  aeroOnly: Helmet[];
 }
 
 function weightsFor(priority: PriorityKey) {
@@ -245,15 +302,20 @@ export function findHelmets(dataset: Dataset, goals: Goals, fx = fxRates(dataset
   const excluded = new Map<string, number>();
   const drop = (reason: string) => excluded.set(reason, (excluded.get(reason) ?? 0) + 1);
 
-  const candidates: Omit<Ranked, "cheapness" | "score" | "rank" | "safetyRank" | "onFrontier" | "picks">[] = [];
+  const candidates: Omit<Ranked, "cheapness" | "score" | "rank" | "safetyRank" | "onFrontier" | "picks" | "groupSafety">[] = [];
   let ratedTotal = 0;
+  const aeroOnly: Helmet[] = [];
+  const inRide = (helmet: Helmet) =>
+    (!ride.styles || ride.styles.includes(helmet.style)) && (!ride.requireNta8776 || helmet.features.nta8776);
 
   for (const helmet of dataset.helmets) {
     const safety = safetyFor(helmet, goals.safetySource);
-    if (safety == null) continue;
+    if (safety == null) {
+      if (goals.priority === "aero" && helmet.aero?.rank_pct != null && inRide(helmet)) aeroOnly.push(helmet);
+      continue;
+    }
     ratedTotal += 1;
-    if (ride.styles && !ride.styles.includes(helmet.style)) continue;
-    if (ride.requireNta8776 && !helmet.features.nta8776) continue;
+    if (!inRide(helmet)) continue;
     if (goals.euOnly && goals.market !== "us" && !helmet.european_market) {
       drop("not sold in Europe");
       continue;
@@ -271,9 +333,17 @@ export function findHelmets(dataset: Dataset, goals: Goals, fx = fxRates(dataset
       drop(price == null ? "no known price" : "over budget");
       continue;
     }
+    if (goals.multiLab && labsFor(helmet).length < 2) {
+      drop("tested by one lab only");
+      continue;
+    }
     const aero = helmet.aero?.rank_pct ?? null;
     if (goals.priority === "aero" && aero == null) {
       drop("no wind-tunnel data");
+      continue;
+    }
+    if (goals.aeroClass && aeroClassOf(helmet) !== goals.aeroClass) {
+      drop("other aero class");
       continue;
     }
     if (goals.priority === "budget" && safety < SAFE_ENOUGH) {
@@ -293,12 +363,26 @@ export function findHelmets(dataset: Dataset, goals: Goals, fx = fxRates(dataset
   const front = frontier(points);
   const weights = weightsFor(goals.priority);
 
+  // Kids' helmets are also ranked among kids' helmets: as a group they score lower than adult ones.
+  const kidsSafety = dataset.helmets
+    .filter((h) => h.style === "Kids")
+    .map((h) => safetyFor(h, goals.safetySource))
+    .filter((s): s is number => s != null);
+  // For money-driven priorities an estimated price only counts as "unknown": the budget pick and
+  // best-value ranking must rest on prices people can actually pay.
+  const liveOnly = goals.priority === "value" || goals.priority === "budget";
+
   const ranked: Ranked[] = candidates.map((c) => {
     const pricePct = percentileRank(prices, c.priceUsd);
-    const cheapness = pricePct == null ? null : 1 - pricePct;
+    let cheapness = pricePct == null ? null : 1 - pricePct;
+    if (liveOnly && c.price?.kind === "estimate" && cheapness != null) cheapness = Math.min(cheapness, UNKNOWN_CHEAPNESS);
+    const groupSafety =
+      c.helmet.style === "Kids" && kidsSafety.length > 1
+        ? { pct: kidsSafety.filter((s) => s < c.safety).length / (kidsSafety.length - 1), n: kidsSafety.length }
+        : null;
     const score =
       weights.safety * c.safety + weights.cheap * (cheapness ?? UNKNOWN_CHEAPNESS) + weights.aero * (c.aero ?? 0);
-    return { ...c, cheapness, score, rank: 0, safetyRank: 0, onFrontier: pareto.has(c.helmet.id), picks: [] };
+    return { ...c, cheapness, score, rank: 0, safetyRank: 0, onFrontier: pareto.has(c.helmet.id), picks: [], groupSafety };
   });
 
   ranked.sort((a, b) => b.score - a.score || b.safety - a.safety);
@@ -320,11 +404,12 @@ export function findHelmets(dataset: Dataset, goals: Goals, fx = fxRates(dataset
   );
   const knee = kneeId(front);
   addPick("value", knee ? byId.get(knee) : undefined);
+  // The budget pick needs a price someone can pay today when any candidate has one.
+  const budgetPool = ranked.filter((r) => r.safety >= SAFE_ENOUGH && r.priceUsd != null);
+  const liveBudget = budgetPool.filter((r) => r.price?.kind === "live");
   addPick(
     "budget",
-    ranked
-      .filter((r) => r.safety >= SAFE_ENOUGH && r.priceUsd != null)
-      .sort((a, b) => a.priceUsd! - b.priceUsd! || b.safety - a.safety)[0],
+    (liveBudget.length ? liveBudget : budgetPool).sort((a, b) => a.priceUsd! - b.priceUsd! || b.safety - a.safety)[0],
   );
   if (goals.priority === "aero" || ride.key === "race" || ride.key === "road") {
     addPick(
@@ -347,6 +432,7 @@ export function findHelmets(dataset: Dataset, goals: Goals, fx = fxRates(dataset
     kneeId: knee,
     excluded: [...excluded].map(([reason, count]) => ({ reason, count })).sort((a, b) => b.count - a.count),
     ratedTotal,
+    aeroOnly: aeroOnly.sort((a, b) => (b.aero?.rank_pct ?? 0) - (a.aero?.rank_pct ?? 0)),
   };
 }
 
@@ -394,6 +480,14 @@ export function explain(item: Ranked, result: FinderResult, labLabel: (key: Rati
     evidence: { kind: "rank" },
   });
 
+  if (item.groupSafety) {
+    const kidsPct = Math.round(item.groupSafety.pct * 100);
+    reasons.push({
+      tone: item.groupSafety.pct >= 0.75 ? "good" : item.groupSafety.pct >= 0.4 ? "neutral" : "caution",
+      text: `Safer than ${kidsPct}% of the ${item.groupSafety.n} lab-tested kids' helmets`,
+    });
+  }
+
   if (item.labs.length > 1) {
     reasons.push({
       tone: "good",
@@ -401,7 +495,8 @@ export function explain(item: Ranked, result: FinderResult, labLabel: (key: Rati
       evidence: { kind: "labs" },
     });
   } else if (item.labs.length === 1) {
-    reasons.push({ tone: "neutral", text: `Rated by ${labLabel(item.labs[0]!)} only`, evidence: { kind: "labs" } });
+    // One lab is thin evidence; on the pick cards (which show only good and caution lines) it should be visible.
+    reasons.push({ tone: "caution", text: `Tested by ${labLabel(item.labs[0]!)} only`, evidence: { kind: "labs" } });
   }
 
   const { peers, medianPrice, diff } = peersOf(item, result);

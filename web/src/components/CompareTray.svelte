@@ -8,7 +8,7 @@
 </script>
 
 {#if items.length}
-  <div class="fixed inset-x-0 bottom-0 z-30 px-4 pb-4">
+  <div class="fixed inset-x-0 bottom-16 z-30 px-4 pb-2 sm:bottom-0 sm:pb-4">
     <div class="card mx-auto flex max-w-3xl items-center gap-3 p-2.5 pl-4 shadow-xl">
       <span class="label hidden sm:block">Compare</span>
       <ul class="flex min-w-0 flex-1 gap-2">
@@ -18,7 +18,7 @@
               <HelmetImage helmet={h} class="size-11 border border-line" />
             </button>
             <button
-              class="absolute -top-1.5 -right-1.5 hidden size-5 items-center justify-center rounded-full bg-ink text-[10px] text-bg group-hover:flex"
+              class="absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full bg-ink text-[10px] text-bg sm:hidden sm:group-hover:flex sm:group-focus-within:flex"
               aria-label="Remove {h.model}"
               onclick={() => toggleCompare(h.id)}>✕</button
             >

@@ -118,11 +118,11 @@ def test_helmet_field_sets(dataset):
     vt = [h for h in helmets if h.get("catalog") != "extra_only"]
     assert len(vt) == len(RAW_VT)
     for helmet in vt:
-        assert VT_HELMET_KEYS <= set(helmet) <= VT_HELMET_KEYS | {"aero"}
+        assert VT_HELMET_KEYS <= set(helmet) <= VT_HELMET_KEYS | {"aero", "merged_from"}
         assert set(helmet["listings"]) == {"de", "at", "ch"}
     for helmet in helmets:
         if helmet.get("catalog") == "extra_only":
-            assert EXTRA_ONLY_KEYS <= set(helmet) <= EXTRA_ONLY_KEYS | {"aero", "stars"}
+            assert EXTRA_ONLY_KEYS <= set(helmet) <= EXTRA_ONLY_KEYS | {"aero", "stars", "merged_from"}
 
 
 def test_image_url_uses_vt_photo_field(dataset):
@@ -137,3 +137,17 @@ def test_image_url_falls_back_to_slug():
         "https://www.helmet.beam.vt.edu/images/bicycle/bell-nomad-2-mips.jpg"
     )
     assert build.vt_image_url("", "x").endswith("/images/bicycle/x.jpg")
+
+
+def test_nta_flag_needs_the_whole_word():
+    assert build.extract_features("Anverz NTA MIPS", "")["nta8776"]
+    assert build.extract_features("Urbanize", "CPSC, NTA 8776")["nta8776"]
+    for model in ("Trenta 3K Carbon MIPS", "Syntax MIPS", "DBX 3.0 All Mountain"):
+        assert not build.extract_features(model, "CPSC")["nta8776"]
+
+
+def test_lab_model_names_are_tidied():
+    assert build.tidy_model_name("- Urban-I-3.0") == "Urban-I-3.0"
+    assert build.tidy_model_name("GEKKO-MIPS") == "Gekko-MIPS"
+    assert build.tidy_model_name("FCJ 201") == "FCJ 201"
+    assert build.tidy_model_name("Scrapper 3.0") == "Scrapper 3.0"

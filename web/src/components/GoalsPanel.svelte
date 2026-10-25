@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { marketCurrency, priceFor, PRIORITIES, RIDES, type FinderResult, type SafetySource } from "../lib/finder";
+  import { AERO_CLASSES, marketCurrency, priceFor, PRIORITIES, RIDES, type FinderResult, type SafetySource } from "../lib/finder";
   import { money } from "../lib/format";
   import { app } from "../lib/state.svelte";
   import type { Dataset } from "../lib/types";
@@ -117,7 +117,29 @@
         <input type="checkbox" bind:checked={app.goals.euOnly} class="mt-0.5 accent-(--accent)" disabled={app.goals.market === "us"} />
         <span>Sold in Europe</span>
       </label>
+      <label class="flex items-start gap-2.5 text-sm">
+        <input type="checkbox" bind:checked={app.goals.multiLab} class="mt-0.5 accent-(--accent)" />
+        <span>Tested by 2 or more labs <span class="block text-xs text-ink-3">Scores confirmed by an independent second test</span></span>
+      </label>
     </fieldset>
+
+    {#if app.goals.ride === "race" || app.goals.priority === "aero"}
+      <fieldset>
+        <legend class="label mb-2">Aero class</legend>
+        <div class="flex flex-wrap gap-1.5">
+          {#each [{ key: null, label: "Any" }, ...AERO_CLASSES] as c (c.key ?? "any")}
+            <button
+              class="rounded-full border px-3 py-1 text-sm transition {app.goals.aeroClass === c.key
+                ? 'border-accent bg-accent-soft font-medium text-ink'
+                : 'border-line text-ink-2 hover:border-line-strong'}"
+              aria-pressed={app.goals.aeroClass === c.key}
+              onclick={() => (app.goals.aeroClass = c.key)}>{c.label}</button
+            >
+          {/each}
+        </div>
+        <p class="mt-1.5 text-xs text-ink-3">From the wind-tunnel test; only wind-tunnel-tested helmets have a class.</p>
+      </fieldset>
+    {/if}
 
     <details class="group">
       <summary class="label cursor-pointer list-none">

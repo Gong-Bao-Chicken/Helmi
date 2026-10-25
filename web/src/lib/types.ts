@@ -19,6 +19,8 @@ export interface RatingBlock {
   stars?: number | null;
   test_year?: string | number | null;
   url?: string | null;
+  /** How the lab's entry was matched to this helmet, with the lab's own name for it. */
+  match?: { test_name: string | null; confidence: number; method: string };
   // Virginia Tech
   /** VT's chart of this helmet's impact results (VT has no page per helmet). */
   result_url?: string | null;
@@ -70,6 +72,8 @@ export interface AeroSourceResult {
   rank_pct?: number;
   score?: number;
   baseline_helmet?: string;
+  helmet_class?: string | null;
+  error_margin_w?: number | null;
   watts_saved?: number;
   drag_watts_40kph?: number;
   match?: { confidence: number; method: string; test_name: string };
@@ -125,6 +129,8 @@ export interface Helmet {
   price_comparison_usd?: number | null;
   aero?: Aero;
   catalog?: "extra_only";
+  /** Entries for the same helmet under another lab's name, folded into this one. */
+  merged_from?: { id: string; name: string }[];
   primary_rating_source?: RatingSourceKey;
 }
 

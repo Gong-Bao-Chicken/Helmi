@@ -25,8 +25,14 @@ export function priceSourceLabel(price: Price | null) {
     if (!price.from) return "US price at test time, converted";
     return `${MARKET_NAME[price.from]} shop price${price.converted ? ", converted" : ""}`;
   }
-  const window = price.window === "14d_median" ? "14-day median" : null;
-  return [shopName(price.source), window].filter(Boolean).join(" · ");
+  return [shopName(price.source), priceWindowLabel(price.window)].filter(Boolean).join(" · ");
+}
+
+/** "30d_median" -> "30-day median"; the pipeline writes `<days>d_<median|latest>`. */
+export function priceWindowLabel(window: string | null | undefined) {
+  const match = /^(\d+)d_(median|latest)$/.exec(window ?? "");
+  if (!match) return null;
+  return match[2] === "median" ? `${match[1]}-day median` : "latest price";
 }
 
 const SHOPS: Record<string, string> = {

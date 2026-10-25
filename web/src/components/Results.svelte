@@ -1,5 +1,6 @@
 <script lang="ts">
   import { PRIORITIES, RIDES, type FinderResult } from "../lib/finder";
+  import RideNote from "./RideNote.svelte";
   import { makeLabLabel } from "../lib/format";
   import { app } from "../lib/state.svelte";
   import type { Dataset } from "../lib/types";
@@ -34,6 +35,8 @@
       <p class="mt-1 text-sm text-ink-2">{ride?.label} · ranked by <span class="lowercase">{priority?.label}</span></p>
     </div>
   </div>
+
+  <RideNote ride={app.goals.ride} />
 
   {#if !result.ranked.length}
     <div class="card mt-6 p-6">
@@ -73,6 +76,23 @@
           Show more ({result.ranked.length - shown} left)
         </button>
       </div>
+    {/if}
+
+    {#if result.aeroOnly.length}
+      <h2 class="label mt-8">Fast, but no crash test yet</h2>
+      <p class="mt-1 text-xs text-ink-3">Wind-tunnel results only. No lab has crash-tested these, so they can't be ranked for safety.</p>
+      <ul class="card mt-2 divide-y divide-line overflow-hidden">
+        {#each result.aeroOnly as h (h.id)}
+          <li>
+            <button class="flex min-h-11 w-full items-center justify-between gap-3 px-4 py-2 text-left hover:bg-surface-2" onclick={() => (app.selected = h.id)}>
+              <span class="min-w-0 truncate font-medium">{h.brand} {h.model}</span>
+              <span class="shrink-0 text-xs text-ink-3 num">
+                aero {h.aero?.score ?? "–"}/100{h.aero?.watts_saved != null ? ` · ${h.aero.watts_saved > 0 ? "saves" : "costs"} ${Math.abs(h.aero.watts_saved).toFixed(1)} W` : ""}
+              </span>
+            </button>
+          </li>
+        {/each}
+      </ul>
     {/if}
 
     {#if result.excluded.length}

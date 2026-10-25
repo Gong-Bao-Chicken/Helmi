@@ -45,6 +45,7 @@ from ..enrich.retailer_protection import (
     save_retailer_protection_cache,
 )
 from ..paths import HELMETS_JSON_PATH, PRICE_CACHE_PATH
+from ..site_data import write_dataset
 
 DEFAULT_INPUT = HELMETS_JSON_PATH
 DEFAULT_CACHE = PRICE_CACHE_PATH
@@ -556,12 +557,9 @@ def update_helmets(
     )
     stats = {"checked": 0, "priced": 0, "better": 0, "cached": 0, "skipped": 0}
 
-    candidates = [
-        helmet
-        for helmet in helmets
-        if (not european_only or helmet.get("european_market"))
-        and helmet.get("price_at_test_usd") is not None
-    ]
+    # Helmets tested only by Folksam, CERTIMOOV or NSW have no US launch price but are sold
+    # here all the same (all kids' helmets among them), so they are priced too.
+    candidates = [helmet for helmet in helmets if not european_only or helmet.get("european_market")]
     if limit is not None:
         candidates = candidates[:limit]
 
@@ -826,7 +824,7 @@ def run_fetch_prices(
         "dropped": outliers,
     }
 
-    input_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    write_dataset(input_path, data)
 
     print(
         f"\nDone. checked={stats['checked']} priced={stats['priced']} "

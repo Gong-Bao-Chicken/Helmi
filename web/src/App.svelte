@@ -1,7 +1,9 @@
 <script lang="ts">
   import ChartsView from "./components/ChartsView.svelte";
   import CompareDialog from "./components/CompareDialog.svelte";
+  import AboutView from "./components/AboutView.svelte";
   import CompareTray from "./components/CompareTray.svelte";
+  import Footer from "./components/Footer.svelte";
   import ExploreTable from "./components/ExploreTable.svelte";
   import GoalsPanel from "./components/GoalsPanel.svelte";
   import Header from "./components/Header.svelte";
@@ -31,10 +33,11 @@
   });
 </script>
 
-<div class="min-h-dvh pb-28">
+<a href="#main" class="sr-only z-50 rounded-xl bg-surface px-3 py-2 focus:not-sr-only focus:fixed focus:top-2 focus:left-2">Skip to content</a>
+<div class="min-h-dvh pb-40 sm:pb-28">
   <Header {dataset} />
 
-  <main class="mx-auto max-w-[96rem] px-4 sm:px-6">
+  <main id="main" tabindex="-1" class="mx-auto max-w-[96rem] px-4 outline-none sm:px-6">
     {#if error}
       <div class="card mx-auto mt-16 max-w-lg p-6">
         <h2 class="text-lg font-semibold">Could not load helmet data</h2>
@@ -44,7 +47,17 @@
         </p>
       </div>
     {:else if !dataset || !result}
-      <div class="mt-24 text-center text-sm text-ink-3" aria-live="polite">Loading helmets…</div>
+      <!-- Same shape as the first screen, so nothing jumps when the data arrives. -->
+      <div class="mx-auto max-w-4xl animate-pulse pt-14 sm:pt-20" aria-busy="true">
+        <span class="sr-only" aria-live="polite">Loading helmets…</span>
+        <div class="mx-auto h-10 max-w-xl rounded-xl bg-surface-2"></div>
+        <div class="mx-auto mt-4 h-5 max-w-lg rounded-lg bg-surface-2"></div>
+        <div class="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
+          {#each Array(9) as _, i (i)}<div class="h-24 rounded-2xl bg-surface-2"></div>{/each}
+        </div>
+      </div>
+    {:else if app.view === "about"}
+      <AboutView {dataset} />
     {:else if app.view === "charts"}
       <ChartsView {dataset} {fx} />
     {:else if app.view === "explore"}
@@ -58,6 +71,8 @@
       </div>
     {/if}
   </main>
+
+  <Footer {dataset} />
 
   {#if dataset && result}
     <CompareTray {helmetsById} />

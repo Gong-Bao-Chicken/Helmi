@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_GOALS, explain, findHelmets, fxRates, peersOf, priceFor } from "./finder";
+import { DEFAULT_GOALS, evidenceFor, explain, findHelmets, fxRates, peersOf, priceFor } from "./finder";
 import type { Dataset, Helmet } from "./types";
 
 const features = {
@@ -110,6 +110,35 @@ describe("findHelmets", () => {
   it("maximum protection puts the safest helmet first", () => {
     const res = findHelmets(data, { ...DEFAULT_GOALS, ride: "road", priority: "protection" }, fx);
     expect(res.ranked[0]!.helmet.id).toBe("premium");
+  });
+
+  it("budget pick uses a live shop price over a cheaper estimate", () => {
+    const withEstimate = dataset([
+      helmet("estimated", { safety: 0.8, usd: 30 }),
+      helmet("in-shops", { safety: 0.8, eur: 60 }),
+    ]);
+    const res = findHelmets(withEstimate, { ...DEFAULT_GOALS, ride: "road", priority: "budget" }, fx);
+    expect(res.picks.find((p) => p.kind === "budget")!.item.helmet.id).toBe("in-shops");
+  });
+
+  it("can require two labs", () => {
+    const twoLabs = helmet("two", {
+      safety: 0.7,
+      ratings: {
+        virginia_tech: { rank_pct: 0.7 },
+        folksam: { rank_pct: 0.75 },
+        fused: { rank_pct: 0.72, sources: ["virginia_tech", "folksam"], weights: { virginia_tech: 1, folksam: 0.9 } },
+      },
+    });
+    const res = findHelmets(dataset([twoLabs, helmet("one", { safety: 0.9 })]), { ...DEFAULT_GOALS, ride: "road", multiLab: true }, fx);
+    expect(res.ranked.map((r) => r.helmet.id)).toEqual(["two"]);
+    expect(evidenceFor(twoLabs).agreement).toBe("agree");
+  });
+
+  it("ranks kids' helmets among kids' helmets too", () => {
+    const kids = ["a", "b", "c"].map((id, i) => helmet(id, { safety: 0.2 + i * 0.1, style: "Kids" }));
+    const res = findHelmets(dataset([...kids, helmet("adult", { safety: 0.9 })]), { ...DEFAULT_GOALS, ride: "kids" }, fx);
+    expect(res.ranked.find((r) => r.helmet.id === "c")!.groupSafety).toEqual({ pct: 1, n: 3 });
   });
 
   it("budget priority enforces the safety bar and sorts by price", () => {

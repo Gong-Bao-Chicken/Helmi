@@ -1,0 +1,9 @@
+{
+  "_comment": "The same helmet listed twice because two labs named it differently. Each duplicate id is folded into the kept id: lab results and aero data the kept helmet lacks move over, the duplicate is dropped. Applied by enrich.merges.apply_helmet_merges. Only add a pair after checking it is the same product (not a MIPS/non-MIPS or older version); two tests by the same lab are two versions and stay separate.",
+  "merges": {
+    "extra-met-parachute-mcr": {"into": "met-parachute-mcr", "note": "VT and NSW Helmet STAR test of the same helmet"},
+    "extra-lazer-anvez-nta-mips": {"into": "lazer-anverz-nta-mips", "note": "CERTIMOOV spells it Anvez, VT Anverz"},
+    "extra-woom-kids-helmet": {"into": "extra-woom-kids-helm", "note": "Folksam and CERTIMOOV test of the woom KIDS helmet"},
+    "extra-aero-uvex-surge": {"into": "extra-uvex-surge-aero-mips", "note": "Wind-tunnel test of the Surge Aero MIPS"}
+  }
+}

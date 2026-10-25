@@ -77,3 +77,21 @@ def test_reviewed_style_overrides_win_and_record_the_rule_style():
 def test_style_overrides_file_only_uses_site_styles():
     allowed = {"Road", "Aero", "Mountain", "Full-Face", "Multi-sport", "Urban", "Kids"}
     assert {entry["style"] for entry in load_style_overrides().values()} <= allowed
+
+
+def test_merged_duplicate_hands_over_missing_labs_and_is_dropped():
+    from helmet_data.enrich.merges import apply_helmet_merges
+
+    helmets = [
+        {"id": "met-parachute-mcr", "model": "Parachute MCR", "ratings": {"virginia_tech": {"score": 9}}},
+        {
+            "id": "extra-met-parachute-mcr",
+            "model": "Parachute MCR",
+            "ratings": {"nsw_helmet_star": {"stars": 4}, "virginia_tech": {"score": 99}},
+        },
+    ]
+    merges = {"extra-met-parachute-mcr": {"into": "met-parachute-mcr"}}
+    assert apply_helmet_merges(helmets, merges) == 1
+    assert [h["id"] for h in helmets] == ["met-parachute-mcr"]
+    assert helmets[0]["ratings"] == {"virginia_tech": {"score": 9}, "nsw_helmet_star": {"stars": 4}}
+    assert helmets[0]["merged_from"] == [{"id": "extra-met-parachute-mcr", "name": "Parachute MCR"}]

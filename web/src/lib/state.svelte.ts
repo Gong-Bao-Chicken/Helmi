@@ -1,8 +1,8 @@
 /** App state, mirrored into the URL so any view can be bookmarked or shared. */
 import { DEFAULT_CHART_FILTERS } from "./chartData";
-import { DEFAULT_GOALS, PRIORITIES, RIDES, type Goals, type MarketChoice, type SafetySource } from "./finder";
+import { AERO_CLASSES, DEFAULT_GOALS, PRIORITIES, RIDES, type Goals, type MarketChoice, type SafetySource } from "./finder";
 
-export type View = "find" | "charts" | "explore";
+export type View = "find" | "charts" | "explore" | "about";
 
 const MARKETS: MarketChoice[] = ["de", "at", "ch", "us"];
 const SOURCES: SafetySource[] = ["fused", "virginia_tech", "folksam", "certimoov", "nsw_helmet_star"];
@@ -24,9 +24,12 @@ function readUrl() {
   goals.rotational = p.get("rot") === "1";
   goals.pricedOnly = p.get("priced") === "1";
   goals.euOnly = p.get("eu") !== "0";
+  goals.multiLab = p.get("labs") === "2";
+  const aeroClass = p.get("aclass");
+  if (AERO_CLASSES.some((c) => c.key === aeroClass)) goals.aeroClass = aeroClass as Goals["aeroClass"];
   return {
     goals,
-    view: (["charts", "explore"].includes(p.get("view") ?? "") ? p.get("view") : "find") as View,
+    view: (["charts", "explore", "about"].includes(p.get("view") ?? "") ? p.get("view") : "find") as View,
     helmet: p.get("helmet"),
     compare: (p.get("compare") ?? "").split(",").filter(Boolean).slice(0, MAX_COMPARE),
   };
@@ -59,6 +62,8 @@ export function writeUrl() {
   if (goals.rotational) p.set("rot", "1");
   if (goals.pricedOnly) p.set("priced", "1");
   if (!goals.euOnly) p.set("eu", "0");
+  if (goals.multiLab) p.set("labs", "2");
+  if (goals.aeroClass) p.set("aclass", goals.aeroClass);
   if (selected) p.set("helmet", selected);
   if (compare.length) p.set("compare", compare.join(","));
   const qs = p.toString();

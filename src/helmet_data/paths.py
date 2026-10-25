@@ -16,6 +16,7 @@ MIPS_LOOKUP_PATH = REFERENCE_DIR / "mips_lookup.json"
 # Curated aero list; numeric fields are refreshed by `helmet-data fetch-aero --fetch`.
 AERO_RATINGS_PATH = REFERENCE_DIR / "aero_ratings.json"
 STYLE_OVERRIDES_PATH = REFERENCE_DIR / "style_overrides.json"
+HELMET_MERGES_PATH = REFERENCE_DIR / "helmet_merges.json"
 
 # Generated caches (tracked: extra ratings + protection caches, so `update --quick` works offline)
 EXTRA_RATINGS_PATH = CACHE_DIR / "extra_ratings.json"

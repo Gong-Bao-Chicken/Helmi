@@ -36,7 +36,8 @@
   ];
 </script>
 
-<aside class="lg:sticky lg:top-20 lg:self-start" aria-label="Your goals">
+<!-- Sticky on large screens, and scrollable on its own when it is taller than the window. -->
+<aside class="lg:sticky lg:top-20 lg:max-h-[calc(100dvh-6rem)] lg:self-start lg:overflow-y-auto lg:overscroll-contain lg:rounded-2xl" aria-label="Your goals">
   <button
     class="card flex w-full items-center justify-between gap-3 px-4 py-3 text-left lg:hidden"
     aria-expanded={open}

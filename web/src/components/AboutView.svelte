@@ -53,6 +53,10 @@
   <h2>What the score can't tell you</h2>
   <ul>
     <li>A percentile compares helmets <em>within</em> a lab's test. Labs choose which helmets to test, so a score from one lab is less certain than one confirmed by two.</li>
+    <li>
+      NSW Helmet STAR scores out of 100 and caps a helmet at 29 for a design fault, such as a buckle part that can come off or a helmet
+      that shifts on the head. Helmi uses NSW's capped total and shows the reason next to it.
+    </li>
     <li>The labs test the helmet shell. None of them crash-tests the chin bar of a full-face helmet.</li>
     <li>Kids' helmets score lower as a group, so Helmi also ranks each one among kids' helmets only.</li>
     <li>A model on sale today may be a newer version than the one tested. Check the test year.</li>

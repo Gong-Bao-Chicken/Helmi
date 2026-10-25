@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_GOALS, evidenceFor, explain, findHelmets, fxRates, peersOf, priceFor } from "./finder";
+import { DEFAULT_GOALS, evidenceFor, explain, findHelmets, fxRates, nswPenalty, peersOf, priceFor } from "./finder";
 import type { Dataset, Helmet } from "./types";
 
 const features = {
@@ -187,5 +187,14 @@ describe("evidence", () => {
     const kinds = explain(target, res, (k) => k).map((r) => r.evidence?.kind);
     expect(kinds).toContain("rank");
     expect(kinds).toContain("frontier");
+  });
+});
+
+describe("nswPenalty", () => {
+  it("names the design fault NSW capped the score for", () => {
+    const capped = (modifier: string) => helmet("x", { safety: 0.5, ratings: { nsw_helmet_star: { rank_pct: 0.08, modifier } } });
+    expect(nswPenalty(capped("...the male part of the retention system buckle is not permanently attached."))).toMatch(/buckle/);
+    expect(nswPenalty(capped("...as the dynamic displacement of the helmet..."))).toMatch(/shift/);
+    expect(nswPenalty(helmet("y", { safety: 0.5 }))).toBeNull();
   });
 });

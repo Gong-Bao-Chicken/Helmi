@@ -239,6 +239,15 @@ export function evidenceFor(helmet: Helmet): LabEvidence {
   };
 }
 
+/** NSW Helmet STAR caps a helmet at 29/100 for a design fault; the reason in a few words, if any. */
+export function nswPenalty(helmet: Helmet): string | null {
+  const modifier = helmet.ratings.nsw_helmet_star?.modifier;
+  if (!modifier) return null;
+  if (/buckle/i.test(modifier)) return "part of the buckle is not permanently attached";
+  if (/displacement/i.test(modifier)) return "the helmet can shift on the head in a crash";
+  return "a test result fell below NSW's minimum";
+}
+
 export function hasRotationalTech(helmet: Helmet) {
   return (helmet.protection_group ?? "none") !== "none";
 }
@@ -512,6 +521,9 @@ export function explain(item: Ranked, result: FinderResult, labLabel: (key: Rati
   if (item.onFrontier) {
     reasons.push({ tone: "good", text: "No helmet on your list is both safer and cheaper", evidence: { kind: "frontier" } });
   }
+
+  const penalty = nswPenalty(item.helmet);
+  if (penalty) reasons.push({ tone: "caution", text: `NSW capped its score: ${penalty}`, evidence: { kind: "labs" } });
 
   const tech = item.helmet.protection?.rotational_label ?? item.helmet.protection?.mips_label;
   if (tech) reasons.push({ tone: "neutral", text: `Rotational protection: ${tech}` });

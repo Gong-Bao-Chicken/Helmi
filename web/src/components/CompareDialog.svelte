@@ -9,7 +9,7 @@
   import LabAgreement from "./charts/LabAgreement.svelte";
   import PositionChart from "./charts/PositionChart.svelte";
   import HelmetImage from "./HelmetImage.svelte";
-  import SafetyMeter from "./SafetyMeter.svelte";
+  import EvidenceChip from "./EvidenceChip.svelte";
 
   let {
     dataset,
@@ -82,7 +82,7 @@
         {#each rows as r (r.h.id)}
           <td>
             {#if r.safety != null}
-              <SafetyMeter value={r.safety} size="sm" />
+              <EvidenceChip helmet={r.h} safety={r.safety} source={app.goals.safetySource} {labLabel} />
               {#if r.safety === bestSafety}<span class="text-xs font-semibold text-good">Safest</span>{/if}
             {:else}–{/if}
           </td>
@@ -133,7 +133,7 @@
           <td class="space-y-0.5 text-xs">
             {#if h.ratings.folksam}<div>Folksam: {h.ratings.folksam.overall_result_pct ?? "–"}%{h.ratings.folksam.recommended ? " · recommended" : ""}</div>{/if}
             {#if h.ratings.certimoov}<div>CERTIMOOV: {h.ratings.certimoov.score ?? "–"}/5</div>{/if}
-            {#if h.ratings.nsw_helmet_star}<div>NSW: {h.ratings.nsw_helmet_star.score != null ? `${h.ratings.nsw_helmet_star.score.toFixed(1)}/100` : `${h.ratings.nsw_helmet_star.stars ?? "–"}★`}</div>{/if}
+            {#if h.ratings.nsw_helmet_star}<div>NSW: {h.ratings.nsw_helmet_star.score != null ? `${h.ratings.nsw_helmet_star.score.toFixed(1)}/100` : `${h.ratings.nsw_helmet_star.stars ?? "–"}★`}{#if h.ratings.nsw_helmet_star.modifier}<span class="text-caution" title={h.ratings.nsw_helmet_star.modifier}> · penalty</span>{/if}</div>{/if}
             {#if !h.ratings.folksam && !h.ratings.certimoov && !h.ratings.nsw_helmet_star}<span class="text-ink-3">–</span>{/if}
           </td>
         {/each}

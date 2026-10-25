@@ -1,11 +1,11 @@
 <script lang="ts">
   import { labsFor, priceFor, safetyFor } from "../lib/finder";
-  import { makeLabLabel, priceLabel } from "../lib/format";
+  import { makeLabLabel, priceLabel, priceSourceLabel } from "../lib/format";
   import { app, MAX_COMPARE, toggleCompare } from "../lib/state.svelte";
   import { orderedStyles, styleLabel } from "../lib/styles";
   import type { Dataset } from "../lib/types";
+  import EvidenceChip from "./EvidenceChip.svelte";
   import HelmetImage from "./HelmetImage.svelte";
-  import SafetyMeter from "./SafetyMeter.svelte";
 
   let { dataset, fx }: { dataset: Dataset; fx: Record<string, number> } = $props();
 
@@ -126,22 +126,26 @@
                 </div>
               </div>
             </td>
-            <td class="px-3 py-2">{#if safety != null}<SafetyMeter value={safety} size="sm" />{:else}<span class="text-ink-3">–</span>{/if}</td>
+            <td class="px-3 py-2" onclick={(e) => e.stopPropagation()}>
+              {#if safety != null}<EvidenceChip helmet={h} {safety} source={app.goals.safetySource} {labLabel} />{:else}<span class="text-ink-3">–</span>{/if}
+            </td>
             <td class="px-3 py-2 num">{h.ratings.virginia_tech?.score?.toFixed(1) ?? "–"}</td>
             <td class="px-3 py-2 text-xs text-ink-2">{labsFor(h).map(labLabel).join(", ") || "–"}</td>
-            <td class="px-3 py-2 text-right font-medium num">{priceLabel(price)}</td>
+            <td class="px-3 py-2 text-right">
+              <span class="block font-medium num">{priceLabel(price)}</span>
+              <span class="block max-w-36 truncate text-[11px] text-ink-3">{priceSourceLabel(price)}</span>
+            </td>
             <td class="px-3 py-2 text-xs text-ink-2">{h.protection?.rotational_label ?? h.protection?.mips_label ?? "–"}</td>
             <td class="px-3 py-2 text-xs capitalize">{h.aero?.tier ?? "–"}</td>
             <td class="px-3 py-2 text-ink-2 num">{h.test_year ?? "–"}</td>
             <td class="px-3 py-2" onclick={(e) => e.stopPropagation()}>
-              <input
-                type="checkbox"
-                aria-label="Compare {h.model}"
-                checked={comparing}
+              <button
+                class="btn min-h-9 px-2 text-xs {comparing ? 'btn-primary' : ''}"
+                aria-pressed={comparing}
+                aria-label="{comparing ? 'Remove from' : 'Add to'} comparison: {h.brand} {h.model}"
                 disabled={!comparing && app.compare.length >= MAX_COMPARE}
-                onchange={() => toggleCompare(h.id)}
-                class="accent-(--accent)"
-              />
+                onclick={() => toggleCompare(h.id)}>{comparing ? "✓" : "+"} Compare</button
+              >
             </td>
           </tr>
         {/each}

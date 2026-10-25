@@ -122,6 +122,7 @@ Helmi/
 
 ## Data sources
 
-- **Virginia Tech Helmet Lab** — primary STAR scores (lower = safer)
-- **CERTIMOOV**, **Folksam**, **NSW Helmet STAR** — optional; crawled by `helmet-data fetch-ratings`
-- **Prices shown** — VT US test-time price by default; full `helmet-data update` checks Geizhals, Idealo, and toppreise.ch (median over ~14 days when cached snapshots exist) and uses a lower shop price when found
+- **Virginia Tech Helmet Lab** — STAR scores (lower = safer); each helmet links to VT's result chart for it
+- **CERTIMOOV** (score out of 5), **Folksam** (result vs best in test), **NSW Helmet STAR** (total out of 100, with its parts and any penalty; NSW caps a helmet at 29 for a design fault) — crawled by `helmet-data fetch-ratings` (`--sources` to crawl only some; the others keep their last results)
+- **Prices** — Geizhals and Idealo (Germany, Austria; Geizhals limited to the country's own shops), toppreise.ch (Switzerland) and Amazon, for every helmet sold in Europe, including those only Folksam, CERTIMOOV or NSW tested. 30-day median where there is enough history; implausible offers (accessories, other models) are dropped. Without a shop price the site shows a neighbouring country's price or the converted US launch price, marked "≈".
+- **Exchange rates** — ECB reference rates (Frankfurter), refreshed on every price update

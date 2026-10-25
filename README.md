@@ -1,4 +1,4 @@
-# LidWiser
+# Helmi
 
 Find the right bicycle helmet. Tell it how you ride, what matters most (protection, value, budget or aero) and your budget; it ranks helmets using independent lab tests from [Virginia Tech](https://www.helmet.beam.vt.edu/), Folksam, CERTIMOOV and NSW Helmet STAR, matched with current shop prices in Germany, Austria and Switzerland, and explains each pick in plain language.
 
@@ -17,7 +17,7 @@ Two parts:
 ## First-time setup
 
 ```bash
-cd /path/to/Helmet
+cd /path/to/Helmi
 uv sync            # creates .venv with runtime + dev dependencies
 npm --prefix web install
 ```
@@ -77,7 +77,7 @@ The app keeps all state in the URL (`?ride=road&priority=value&budget=150&helmet
 ## Project layout
 
 ```
-Helmet/
+Helmi/
 ├── pyproject.toml / uv.lock     # Python project (helmet-data), deps, ruff + pytest config
 ├── update-data.sh               # wrapper: uv run helmet-data update "$@"
 ├── src/helmet_data/

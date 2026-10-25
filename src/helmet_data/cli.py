@@ -82,7 +82,7 @@ def _cmd_fetch_protection(args: argparse.Namespace) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="helmet-data", description="LidWiser data pipeline.")
+    parser = argparse.ArgumentParser(prog="helmet-data", description="Helmi data pipeline.")
     sub = parser.add_subparsers(dest="command", required=True, metavar="COMMAND")
 
     # update (formerly scripts/update_data.py)

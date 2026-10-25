@@ -48,7 +48,7 @@
         <path d="M4 20a12 12 0 0 1 24 0v2H4z" fill="var(--accent)" />
         <path d="M8 22h20l-2 4H8z" fill="var(--accent)" opacity=".55" />
       </svg>
-      <span class="font-semibold tracking-tight">LidWiser</span>
+      <span class="font-semibold tracking-tight">Helmi</span>
     </button>
 
     <nav class="flex gap-1 rounded-xl bg-surface-2 p-1 text-sm" aria-label="Views">

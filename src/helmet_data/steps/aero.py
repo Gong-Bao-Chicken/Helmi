@@ -14,7 +14,7 @@ from ..enrich.aero_sources import AERO_SOURCES, apply_source_rank_percentiles
 from ..paths import HELMETS_JSON_PATH
 
 DEFAULT_HELMETS = HELMETS_JSON_PATH
-USER_AGENT = "LidWiser/0.1 (+https://github.com/Gong-Bao-Chicken/LidWiser; research prototype)"
+USER_AGENT = "Helmi/0.1 (+https://github.com/Gong-Bao-Chicken/Helmi; research prototype)"
 
 CN_2025_URL = AERO_SOURCES["cyclingnews_sseh_2025"]["url"]
 CN_2024_URL = AERO_SOURCES["cyclingnews_sseh_2024"]["url"]

@@ -1,7 +1,7 @@
 [project]
 name = "helmet-data"
 version = "0.1.0"
-description = "Data pipeline for LidWiser: crawls helmet safety ratings, prices and protection tech into helmets.json."
+description = "Data pipeline for Helmi: crawls helmet safety ratings, prices and protection tech into helmets.json."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

@@ -9,7 +9,8 @@ export interface ChartFilters {
   euOnly: boolean;
 }
 
-export const DEFAULT_CHART_FILTERS: ChartFilters = { market: "de", source: "fused", euOnly: true };
+/** The Charts page's own filters; the safety source is the site-wide setting (app.goals.safetySource). */
+export const DEFAULT_CHART_FILTERS: Omit<ChartFilters, "source"> = { market: "de", euOnly: true };
 
 export interface Valued {
   helmet: Helmet;

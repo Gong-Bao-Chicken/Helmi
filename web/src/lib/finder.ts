@@ -96,6 +96,15 @@ export function aeroClassOf(helmet: Helmet): AeroClass | null {
   return (sources.find((s) => s.helmet_class)?.helmet_class as AeroClass | undefined) ?? null;
 }
 
+/** Where the safety score comes from: one site-wide setting (top bar), used by every view. */
+export const SAFETY_SOURCES: { key: SafetySource; label: string; short: string }[] = [
+  { key: "fused", label: "All labs combined", short: "Combined" },
+  { key: "virginia_tech", label: "Virginia Tech only", short: "VT" },
+  { key: "folksam", label: "Folksam only", short: "Folksam" },
+  { key: "certimoov", label: "CERTIMOOV only", short: "CERTIMOOV" },
+  { key: "nsw_helmet_star", label: "NSW Helmet STAR only", short: "NSW" },
+];
+
 export const DEFAULT_GOALS: Goals = {
   ride: null,
   priority: "value",

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { COLORWAYS, currentColorway, setColorway } from "../lib/colorways";
-  import type { MarketChoice } from "../lib/finder";
+  import { SAFETY_SOURCES, type MarketChoice } from "../lib/finder";
   import { relativeDate } from "../lib/format";
   import { app, currentTheme, setTheme, type View } from "../lib/state.svelte";
   import type { Dataset } from "../lib/types";
@@ -36,6 +36,17 @@
 </script>
 
 {#snippet controls(marketId: string)}
+  <label class="sr-only" for="{marketId}-score">Safety score from</label>
+  <select
+    id="{marketId}-score"
+    bind:value={app.goals.safetySource}
+    title="Which lab results the safety score uses, everywhere on the site"
+    class="rounded-xl border border-line bg-surface px-2 py-1.5 text-sm"
+  >
+    {#each SAFETY_SOURCES as s (s.key)}
+      <option value={s.key}>Score: {s.short}</option>
+    {/each}
+  </select>
       <label class="sr-only" for={marketId}>Market</label>
       <select
         id={marketId}
@@ -127,17 +138,17 @@
       {/each}
     </nav>
 
-    <div class="ml-auto hidden items-center gap-3 sm:flex">
+    <div class="ml-auto hidden items-center gap-3 lg:flex">
       {#if dataset}
-        <span class="hidden text-xs text-ink-3 lg:inline">
+        <span class="hidden text-xs text-ink-3 xl:inline">
           Data from {relativeDate(dataset.meta.generated_at)}
         </span>
       {/if}
       {@render controls("market")}
     </div>
 
-    <!-- Phones: one settings panel instead of a second row of controls. -->
-    <details class="relative ml-auto sm:hidden" data-popover>
+    <!-- Phones and tablets: one settings panel instead of a second row of controls. -->
+    <details class="relative ml-auto lg:hidden" data-popover>
       <summary class="btn size-11 list-none p-0" aria-label="Settings">
         <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"
           ><path d="M4 6h16M4 12h16M4 18h16" /></svg

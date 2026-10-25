@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { AERO_CLASSES, marketCurrency, priceFor, PRIORITIES, RIDES, type FinderResult, type SafetySource } from "../lib/finder";
+  import { AERO_CLASSES, marketCurrency, priceFor, PRIORITIES, RIDES, SAFETY_SOURCES, type FinderResult } from "../lib/finder";
   import { money } from "../lib/format";
   import { app } from "../lib/state.svelte";
   import type { Dataset } from "../lib/types";
@@ -27,13 +27,6 @@
       .join(" · "),
   );
 
-  const sources: { key: SafetySource; label: string }[] = [
-    { key: "fused", label: "All labs combined (recommended)" },
-    { key: "virginia_tech", label: "Virginia Tech only" },
-    { key: "folksam", label: "Folksam only" },
-    { key: "certimoov", label: "CERTIMOOV only" },
-    { key: "nsw_helmet_star", label: "NSW Helmet STAR only" },
-  ];
 </script>
 
 <!-- Sticky on large screens, and scrollable on its own when it is taller than the window. -->
@@ -142,21 +135,9 @@
       </fieldset>
     {/if}
 
-    <details class="group">
-      <summary class="label cursor-pointer list-none">
-        <span class="inline-block transition group-open:rotate-90">›</span> Advanced
-      </summary>
-      <label class="mt-3 block text-sm">
-        <span class="mb-1 block text-ink-2">Safety rating source</span>
-        <select bind:value={app.goals.safetySource} class="w-full rounded-xl border border-line bg-surface px-2 py-1.5">
-          {#each sources as s (s.key)}
-            <option value={s.key}>{s.label}</option>
-          {/each}
-        </select>
-      </label>
-      <p class="mt-2 text-xs text-ink-3">
-        {result.ratedTotal} helmets have a rating from this source. Combining labs weighs each by how rigorous its protocol is.
-      </p>
-    </details>
+    <p class="text-xs text-ink-3">
+      Safety score: {SAFETY_SOURCES.find((s) => s.key === app.goals.safetySource)?.label.toLowerCase()} ({result.ratedTotal} helmets rated).
+      Change it in the top bar.
+    </p>
   </div>
 </aside>

@@ -23,7 +23,7 @@
     vtByYear,
     vtImpactPoints,
   } from "../lib/chartData";
-  import { convert, marketCurrency, type MarketChoice, type SafetySource } from "../lib/finder";
+  import { convert, marketCurrency, type MarketChoice } from "../lib/finder";
   import { makeLabLabel, money } from "../lib/format";
   import { median } from "../lib/scoring";
   import { app } from "../lib/state.svelte";
@@ -36,7 +36,7 @@
 
   let { dataset, fx }: { dataset: Dataset; fx: Record<string, number> } = $props();
 
-  const filters = $derived(app.charts);
+  const filters = $derived({ ...app.charts, source: app.goals.safetySource });
   const labLabel = $derived(makeLabLabel(dataset));
   const currency = $derived(marketCurrency(filters.market));
 
@@ -45,13 +45,6 @@
     { key: "at", label: "Austria" },
     { key: "ch", label: "Switzerland" },
     { key: "us", label: "US (launch price)" },
-  ];
-  const SOURCES: { key: SafetySource; label: string }[] = [
-    { key: "fused", label: "All labs combined" },
-    { key: "virginia_tech", label: "Virginia Tech" },
-    { key: "certimoov", label: "CERTIMOOV" },
-    { key: "nsw_helmet_star", label: "NSW Helmet STAR" },
-    { key: "folksam", label: "Folksam" },
   ];
 
   // --- What makes a helmet safe
@@ -166,12 +159,6 @@
       <span class="label">Prices in</span>
       <select bind:value={app.charts.market} class="rounded-lg border border-line bg-surface px-2 py-1">
         {#each MARKETS as m (m.key)}<option value={m.key}>{m.label}</option>{/each}
-      </select>
-    </label>
-    <label class="flex items-center gap-2">
-      <span class="label">Safety from</span>
-      <select bind:value={app.charts.source} class="rounded-lg border border-line bg-surface px-2 py-1">
-        {#each SOURCES as s (s.key)}<option value={s.key}>{s.label}</option>{/each}
       </select>
     </label>
     <label class="flex items-center gap-2 text-ink-2">

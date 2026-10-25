@@ -9,7 +9,7 @@
   function countFor(ride: Ride) {
     return dataset.helmets.filter(
       (h) =>
-        safetyFor(h, "fused") != null &&
+        safetyFor(h, app.goals.safetySource) != null &&
         (!ride.styles || ride.styles.includes(h.style)) &&
         (!ride.requireNta8776 || h.features.nta8776) &&
         (!app.goals.euOnly || app.goals.market === "us" || h.european_market),

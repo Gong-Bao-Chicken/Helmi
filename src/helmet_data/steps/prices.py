@@ -809,9 +809,9 @@ def run_fetch_prices(
     meta["exchange_rates"] = {"base": "USD", **rates}
     meta["market_prices_stats"] = stats
     meta["market_price_note"] = (
-        "Prefers Geizhals (curl_cffi Safari TLS), Idealo, and toppreise.ch. "
-        "Uses median daily price over 14 days when enough snapshots exist. "
-        "Amazon is fallback when comparison portals are blocked."
+        "Each country only takes prices from its own shops: Geizhals and Idealo (DE, AT), "
+        "toppreise.ch (CH); Amazon when comparison sites have none. Median daily price over "
+        "14 days (30 when there are too few); implausible offers are dropped (market_prices_outliers)."
     )
     meta["market_prices_source_errors"] = source_errors
     meta["market_prices_outliers"] = {

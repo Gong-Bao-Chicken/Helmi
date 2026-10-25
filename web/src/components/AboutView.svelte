@@ -66,8 +66,8 @@
   <h2>Prices</h2>
   <p>
     Prices come from comparison sites and shops in each country: Geizhals and Idealo for Germany and Austria, toppreise.ch for
-    Switzerland, and Amazon. Each country only shows prices from its own shops. Helmi uses the median price over the last 30 days where
-    there is enough history, so one-day spikes don't count. Offers that don't fit (a helmet light at €30, a different model) are filtered
+    Switzerland, and Amazon. Each country only shows prices from its own shops. Helmi uses the median price of the last 14 days (30 days
+    when there are too few prices), so one-day spikes don't count. Offers that don't fit (a helmet light at €30, a different model) are filtered
     out.
   </p>
   <p>

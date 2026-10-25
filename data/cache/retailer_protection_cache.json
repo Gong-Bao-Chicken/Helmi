@@ -305,10 +305,18 @@
     "error": null
   },
   "giant-rev-comp-mips": {
-    "fetched": false,
-    "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "fetched": true,
+    "product_url": "https://geizhals.de/giant-rev-comp-mips-helm-v180495.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Giant Rev Comp Mips Helm ab €&#xa0;76,49 (2026) | Preisvergleich Geizhals Deuts",
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals",
+      "geizhals"
+    ],
+    "error": null
   },
   "leatt-gravity-5-0": {
     "fetched": true,
@@ -1343,10 +1351,18 @@
     "error": null
   },
   "giant-liv-relay-mips": {
-    "fetched": false,
-    "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "fetched": true,
+    "product_url": "https://geizhals.eu/liv-relay-mips-helm-damen-v156801.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Liv Relay MIPS Helm (Damen) ab €&#xa0;48,99 (2026) | Preisvergleich Geizha",
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals",
+      "geizhals"
+    ],
+    "error": null
   },
   "bell-z20-aero-mips": {
     "fetched": true,
@@ -2531,10 +2547,17 @@
     "error": null
   },
   "triple-8-dual-certified-mips": {
-    "fetched": false,
-    "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B01GNGBUY4",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Triple 8 Helm Dual Certified MIPS (Hyper Blue Matte) : Amazon.de: Sport &amp; Freizeit Spring",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "amazon_de"
+    ],
+    "error": null
   },
   "abus-purl-y": {
     "fetched": true,
@@ -2880,5 +2903,1454 @@
     "mips_variant": null,
     "protection_tech": null,
     "error": "no_product_urls"
+  },
+  "extra-bell-local": {
+    "fetched": true,
+    "product_url": "https://geizhals.de/bell-local-helm-v74443.html",
+    "mips_variant": null,
+    "mips_label": null,
+    "protection_tech": "none",
+    "snippet": null,
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals",
+      "geizhals",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-abus-skurb-mips": {
+    "fetched": true,
+    "product_url": "https://geizhals.at/abus-skurb-mips-helm-v229121.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "sweet_2vi",
+    "snippet": "ABUS Skurb MIPS Helm ab €&#xa0;94,53 (2026) | Preisvergleich Geizhals Öster",
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals",
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-lazer-gekko": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-bern-nino": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202795162_-nino-2-0-youth-bern.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "geizhals",
+      "geizhals",
+      "idealo"
+    ],
+    "error": null
+  },
+  "extra-abus-yadd-i": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5689539_-yadd-i-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "geizhals",
+      "idealo",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-kask-lifestyle": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/4305916_-urban-lifestyle-kask.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-montrailer-quin-mtb-velvet": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-nutcase-little-nutty": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/200848472_-little-nutty-reflective-defy-gravity-mips-nutcase.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "se Little Nutty Reflective Defy Gravity Mips ab 29,99 € (Oktober 2026) | Preisvergleich bei idealo.de 0\"",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-abus-urban-i-30": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/preisvergleich/Velohelme/ABUS-Urban-I-3-0-ACE-Velohelm-S-51-55-cm-Polar-White-p1033119",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "spin",
+    "snippet": "Konstruktion PC-Schale EPS-Innenschale MIPS-System - Verschluss Fidlock Magnet-Verschluss ABUS Zoom Spi",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-hud-y": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201873503_-hud-y-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-youn-i-mips": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/preisvergleich/Velohelme/ABUS-Youn-I-MIPS-Velohelm-S-48-54-cm-Polar-p1051546",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "spin",
+    "snippet": "ABUS Youn-I MIPS Velohelm, S (48 - 54 cm), Polar ab CHF 90.90 bei Toppreise.",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-youn-i-20": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/preisvergleich/Velohelme/ABUS-Youn-I-2-0-Velohelm-S-48-54-cm-Velvet-Black-p1033737",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "spin",
+    "snippet": "oduktverlauf Produktverlauf ABUS Youn-I MIPS Velohelm, S (48 - 54 cm), Polar ab CHF 90.90 ab CHF 90.90 A",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-skurb": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201456584_-skurb-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-urban-i-20": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201606188_-urban-i-3-0-titan-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-bell-trace-mips": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/ext_de?pid=0&did=2027&oid=623470889&gdt=MjAyNi0xMC0yNSAxOTowNDoyNw==&slsrt=rd&prcst=shipping&lpos=2",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "BELL Trace MIPS MTB/Trekking Fahrrad Helm matt schwarz/gelb 2024, M &ndash;",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-abus-yadd-i-0": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5689539_-yadd-i-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-btwin-city-540-bowl": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-btwin-city-500-bowl": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-bell-tracker": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5334560_-tracker-helm-bell-helmets.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-cannondale-radius": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-endura-fs260-pro-helmet-ii": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B083V59C8D",
+    "mips_variant": null,
+    "mips_label": null,
+    "protection_tech": "none",
+    "snippet": null,
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-poc-pocito-crane-mips": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B0BRY9WRB1",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "POC POCito Crane MIPS – Kinder‑Fahrradhelm mit MIPS Evolve, Robuster PC‑Schale, R",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-agilis": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B0GL2KPXQM",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "Giro - Agilis MIPS Helme - Erwachsene Unisex - Schutzausrüstung, Fahrradhelm,",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-endura-fs260-pro-mips-helmet-ii": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-abus-moventor-20": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201832510_-moventor-2-0-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-moventor-20-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201832510_-moventor-2-0-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-bell-sidetrack-ii-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201131278_-sidetrack-ii-bell-helmets.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-agilis-mips": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B0GL2KPXQM",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "Giro - Agilis MIPS Helme - Erwachsene Unisex - Schutzausrüstung, Fahrradhelm,",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-kask-mojito-3": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B08Y81NKQ3",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "chweiz Feedback POC Omne Air Resistance MIPS – Vielseitiger Fahrradhelm mit MIPS Air Node, erweiter... 5",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-fixture-mips-ii": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210268667_-fixture-ii-jugendhelm-39346-giro.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-quarter-fs": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5582451_-quarter-fs-giro.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "zeit beliebt auf idealo Giro Quarter FS Mips matte chalk ab&nbsp;45,49 € Giro Quarter FS Mips (39296) ma",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-scamp-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210268701_-scamp-ii-jugendhelm-39350-purple-lava-giro.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-tremor-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6050802_-tremor-giro.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-lazer-armor-20-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201100839_-armor-2-0-lazer.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "extra-met-allroad": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/200315715_-allroad-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-allroad-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201858537_-allroad-mips-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "MET Allroad MIPS ab 58,49 € (Oktober 2026) | Vergleiche 33 Angebote auf idea",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-urbex-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202052006_-urbex-mips-black-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "MET Urbex MIPS black ab 64,99 € (Oktober 2026) | Vergleiche 13 Angebote au",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "extra-lazer-revolution-mips": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B018MA4DCA",
+    "mips_variant": null,
+    "mips_label": null,
+    "protection_tech": "none",
+    "snippet": null,
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-scott-spunto": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203167254_-spunto-mtb-green-scott-sports.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-smith-session-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210673628_-session-mips-downhillhelmet-matte-black-smith-optics.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Smith Session Mips DownhillHelmet Matte Black ab 78,90 € (Oktober 2026) | Verg",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-lumos-matrix-mips": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B07YWX9J2N",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "ad brief content. Farbe: Charcoal Black MIPS {\"desktop_buybox_group_1\":[{\"displayPrice\":\"225,23 CHF\",\"pr",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-mobilite": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201458377_-mobilite-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-mobilite-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201458377_-mobilite-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "troy-lee-designs-a2-mips-decoy": {
+    "fetched": true,
+    "product_url": "https://geizhals.de/troy-lee-designs-a2-helm-decoy-grau-a2565383.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "€ 101,99 4 Angebote Troy Lee Designs A2 MIPS Helm silhouette red Derzeit keine Angebote Troy Lee Designs",
+    "source": "retailer_geizhals",
+    "sources_tried": [
+      "geizhals",
+      "geizhals",
+      "geizhals"
+    ],
+    "error": null
+  },
+  "extra-aero-abus-airbreaker": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6289507_-airbreaker-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-smiley-2-0": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201861300_-smiley-3-0-shiny-orange-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-smiley-3-0": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201834246_-smiley-3-0-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-abus-stormchaser": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/200685203_-stormchaser-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-urban-i-3-0-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/204048416_-urban-i-3-0-ace-green-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-abus-youdrop-ff": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202245400_-youdrop-ff-abus.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-bell-falcon-xr-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202756277_-falcon-xr-mips-blau-grau-bell-helmets.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Bell Falcon XR MIPS blau/grau ab 64,57 € (Oktober 2026) | Vergleiche 5 Angebote",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-bell-sanction": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/204903674_-sanction-2-mtb-helmet-bell-helmets.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giant-hoot-arx": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-bell-spark-2-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201861553_-spark-2-bell-helmets.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "sweet_2vi",
+    "snippet": "rlauf Preiswecker Produktübersicht: mit MIPS (Kopfschutz System) Produktdetails Ähnliche Produkte: Bell",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-bell-spark-youth-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201861598_-spark-2-matt-dark-blue-bell-helmets.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "rlauf Preiswecker Produktübersicht: mit MIPS (Kopfschutz System) Produktdetails Ähnliche Produkte: Bell",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-bell-super-air-r-spherical": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/200013428_-super-air-mips-bell-helmets.html",
+    "mips_variant": "spherical",
+    "mips_label": "MIPS Spherical",
+    "protection_tech": "mips_spherical",
+    "snippet": "Bell Super Air MIPS ab 104,99 € (Oktober 2026) | Vergleiche 18 Angebote auf ide",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-bell-xr-spherical-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202038231_-xr-mips-spherical-bell-helmets.html",
+    "mips_variant": "spherical",
+    "mips_label": "MIPS Spherical",
+    "protection_tech": "mips_spherical",
+    "snippet": "Bell XR MIPS Spherical ab 97,99 € (Oktober 2026) | Vergleiche 44 Angebot",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-giant-rivet": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-aero-giro-aerohead": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/ext_de?pid=0&did=2027&oid=420028977&gdt=MjAyNi0xMC0yNSAxOTozNzo1Mg==&slsrt=rd&prcst=shipping&lpos=2",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Giro Aerohead MIPS Fahrradhelm S White/Silver, S White/Silver &ndash; techstud",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-elixir": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-aero-giant-rev": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201941555_-rev-pro-mips-giant.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Giant Rev Pro MIPS ab 119,99 € (Oktober 2026) | Vergleiche 5 Angebote auf idea",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "extra-giro-scamp": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/ext_de?pid=0&did=2143&oid=591810835&gdt=MjAyNi0xMC0yNSAxOTozODoxNA==&slsrt=rd&prcst=shipping&lpos=6",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "por - Zeitfahrhelm CHF 420,00 Met Miles Mips - Fahrradhelm CHF 64,98 CHF 80,00 -18% Giro bike Dime FS Mi",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-caden-ii-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201832571_-caden-ii-giro.html",
+    "mips_variant": "evolve",
+    "mips_label": "MIPS Evolve",
+    "protection_tech": "mips_evolve",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-cormick-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6504837_-cormick-black-giro.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-giro-hale-youth": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5972232_-hale-giro.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "sweet_2vi",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "extra-giro-radix-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/7001614_-radix-helmet-giro.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-julbo-sprint": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/ext_de?pid=0&did=2039&oid=616972800&gdt=MjAyNi0xMC0yNSAxOTozODo0Ng==&slsrt=rd&prcst=shipping&lpos=1",
+    "mips_variant": null,
+    "mips_label": null,
+    "protection_tech": "none",
+    "snippet": null,
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-giro-tremor": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210269030_-tremor-kids-helmet-2026-giro.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-kask-protone-icon": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B0G489LBS4",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "rten Vorheriger Foliensatz POC Omne Air MIPS – Vielseitiger All‑Road‑Helm mit MIPS Air Node, Optimierter",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-hjc-ibex-3": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202578304_-ibex-2-0-road-green-hjc.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-kask-sintesi": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B0BPT2Q5D8",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "r Größe L Besonderes Merkmal Belüftung, MIPS-Technologie Modellname Sintesi Außenmaterial Polycarbonat (",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-kask-nirvana": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206189083_-nirvana-ultraviolet-kask.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-leatt-all-mtn-4-0": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B0CJCDB66H",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "eiz Feedback ABUS Fullface-Helm AirDrop MIPS - MTB: Downhill, Freeride und Enduro - Mountainbike... 97 -",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-kask-protone": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210673886_-protone-innenpolsterung-black-kask.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "extra-aero-kask-utopia-y": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6475216_-utopia-wg11-kask.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-lazer-maze-jr-kineticore": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210673846_-maze-kineticore-ce-cpsc-astm-stadthelmet-galaxy-lazer.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-lazer-sphere-kineticore": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210007419_-sphere-kineticore-lazer.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-lazer-verde-kineticore": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/204718313_-verde-urban-helmet-black-lazer.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-limar-air-atlas": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202579445_-air-atlas-road-limar.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-codatronca": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B0BYKW5164",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "izierte Bestellungen Feedback POC Octal MIPS Fahrradhelm - Der prämierte Octal Helm bietet revolutionäre",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-crackerjack": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202858938_-crackerjack-mtb-kids-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "sweet_2vi",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-crossover": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/2568805_-crossover-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "sweet_2vi",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-echo-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6567054_-echo-helmet-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-veleno-mips": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B09SV28JTV",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "MET Veleno MIPS Helm schwarz : Amazon.de: Sport &amp; Freizeit Springe zu H",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-oakley-aro7": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/ext_de?pid=0&did=2039&oid=595163549&gdt=MjAyNi0xMC0yNSAxOTo0MDo0Mg==&slsrt=rd&prcst=shipping&lpos=4",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "and-Magnetverschluss Visier verstellbar Mips® Kopfumfang von 52 cm Kopfumfang bis 56 cm Zertifizierung n",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-met-hooray": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202075498_-hooray-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "sweet_2vi",
+    "snippet": "om READY ab&nbsp;62,21 € 4 POC Omne Air MIPS ab&nbsp;89,99 € 5 Cratoni MadCat MIPS ab&nbsp;71,85 € 6 uve",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-met-idolo": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5797811_-idolo-met.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-met-manta": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B0FQ39LJ67",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "Road Helmet MET Manta MIPS - S / 52-56cm - Hyper Teal MY26 : Amazon.de: Sport &amp; Fr",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-oakley-velo-mach": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210003633_-velo-mach-oakley.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-poc-crane-mips": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B08ZYN9Z3F",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "POC Crane MIPS Fahrradhelm - Leichter, strapazierfähiger und druckstabiler",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-poc-kortal-race-mips": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B08TGD4S47",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "sweet_2vi",
+    "snippet": "POC Kortal Race MIPS – Ultraleichter Enduro/Trail MTB-Helm mit MIPS, RECCO &amp;",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-poc-procen-air": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/204249494_-procen-air-poc.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "et Mtb ab&nbsp;39,95 € 2 Cratoni MadCat MIPS ab&nbsp;71,85 € 3 uvex i-vo 2 MIPS Helmet 2026 ab&nbsp;79,9",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "extra-aero-poc-ventral": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B09FTHFNLK",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "sweet_2vi",
+    "snippet": "POC Ventral MIPS Fahrradhelm - Aerodynamische Leistung, Sicherheit und Luftd",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-rudy-project-nytron-pro": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-poc-ventral-air-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201834303_-ventral-air-mips-poc.html",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "POC Ventral Air MIPS ab 116,99 € (Oktober 2026) | Vergleiche 122 Angebote auf id",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-poc-ventral-tempus": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/ext_de?pid=0&did=2039&oid=621837392&gdt=MjAyNi0xMC0yNSAxOTo0MTozMQ==&slsrt=rd&prcst=shipping&lpos=3",
+    "mips_variant": "integra",
+    "mips_label": "MIPS Integra",
+    "protection_tech": "mips_integra",
+    "snippet": "POC Ventral Tempus Mips Fahrradhelm kaufen | Bergzeit Dynafit Super.Natural Patagon",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "idealo",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-aero-rudy-project-nytron": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B09RP8MKK5",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "esponserter Produkte Feedback POC Octal MIPS Fahrradhelm - Der prämierte Octal Helm bietet revolutionäre",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-smith-network-mips": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/ext_de?pid=0&did=2039&oid=592259060&gdt=MjAyNi0xMC0yNSAxOTo0MjoxMg==&slsrt=rd&prcst=shipping&lpos=3",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Smith Network Mips Fahrradhelm kaufen | Bergzeit Dynafit Super.Natural Patagon",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-smith-engage-2-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201245025_-engage-mips-cycling-helmet-smith-optics.html",
+    "mips_variant": "spherical",
+    "mips_label": "MIPS Spherical",
+    "protection_tech": "mips_spherical",
+    "snippet": "Smith Engage Mips Cycling Helmet ab 52,99 € (Oktober 2026) | Vergleiche 23 An",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-smith-hardline-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206553911_-hardline-mips-smith-optics.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Smith Hardline MIPS ab 233,97 € (Oktober 2026) | Vergleiche 55 Angebote auf ide",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-aero-smith-ignite": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210005662_-ignite-mips-eu-mattecenotestripes-smith-optics.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Smith Ignite Mips Eu MatteCenoteStripes ab 98,99 € (Oktober 2026) | Vergleich",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-smith-payroll-mips": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/204243683_-payroll-mips-smith-optics.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Smith Payroll Mips ab 106,99 € (Oktober 2026) | Vergleiche 60 Angebote auf ide",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-aero-smith-trace": {
+    "fetched": true,
+    "product_url": "https://www.amazon.de/dp/B08R5T348W",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "Trace MIPS : Amazon.de: Sport &amp; Freizeit Springe zu Hauptinhalt In",
+    "source": "retailer_amazon_de",
+    "sources_tried": [
+      "idealo",
+      "toppreise",
+      "amazon_de"
+    ],
+    "error": null
+  },
+  "extra-specialized-shuffle-2-led": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/214017389_-shuffle-child-led-2-led-mips-camo-graphic-specialized.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Specialized Shuffle Child LED 2 LED MIPS Camo Graphic ab 54,99 € (Oktober 2026) | Preisvergleich bei",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "extra-trek-tyro": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-aero-van-rysel-fcr": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-aero-sweet-protection-tucker-2vi": {
+    "fetched": true,
+    "product_url": "https://www.toppreise.ch/ext_de?pid=0&did=2039&oid=550959299&gdt=MjAyNi0xMC0yNSAxOTo0Mjo1Ng==&slsrt=rd&prcst=shipping&lpos=3",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "sweet_2vi",
+    "snippet": "Sweet Protection Tucker III 2Vi Mips Fahrradhelm kaufen | Bergzeit Dynafit Super.Natural Patagon",
+    "source": "retailer_toppreise",
+    "sources_tried": [
+      "idealo",
+      "toppreise"
+    ],
+    "error": null
+  },
+  "extra-aero-van-rysel-rcr-f": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "extra-trek-starvos-wavecel": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208468079_-starvos-wavecel-trek.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "10 Produkte Rennradhelme 1 Giro Agilis Mips (39356) ab&nbsp;74,49 € 2 POC Omne Air MIPS ab&nbsp;89,99 €",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "extra-aero-uvex-rise-pro": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203335787_-rise-pro-mips-uvex.html",
+    "mips_variant": "air_node",
+    "mips_label": "MIPS Air Node",
+    "protection_tech": "mips_air_node",
+    "snippet": "uvex rise pro MIPS ab 107,99 € (Oktober 2026) | Vergleiche 26 Angebote auf ide",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo",
+      "amazon_de"
+    ],
+    "error": null
   }
 }

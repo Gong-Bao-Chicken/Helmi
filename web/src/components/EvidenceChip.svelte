@@ -11,7 +11,15 @@
     source,
     labLabel,
     size = "sm",
-  }: { helmet: Helmet; safety: number; source: SafetySource; labLabel: (k: RatingSourceKey) => string; size?: "sm" | "md" } = $props();
+    align = "end",
+  }: {
+    helmet: Helmet;
+    safety: number;
+    source: SafetySource;
+    labLabel: (k: RatingSourceKey) => string;
+    size?: "sm" | "md";
+    align?: "start" | "end";
+  } = $props();
 
   const evidence = $derived(evidenceFor(helmet));
   const AGREEMENT = { none: "no lab result", single: "1 lab", agree: "labs agree", disagree: "labs disagree" } as const;
@@ -32,7 +40,7 @@
   onkeydown={(e) => open && e.key === "Escape" && (e.stopPropagation(), (open = false))}
 />
 
-<div class="relative inline-flex flex-col items-end gap-0.5" bind:this={root}>
+<div class="relative inline-flex flex-col gap-0.5 {align === 'start' ? 'items-start' : 'items-end'}" bind:this={root}>
   <SafetyMeter value={safety} {size} />
   <button
     class="flex items-center gap-1 text-[11px] text-ink-3 hover:text-ink {evidence.agreement === 'single' || evidence.agreement === 'disagree'
@@ -50,7 +58,7 @@
     <span class="sr-only">How this score is calculated</span>
   </button>
   {#if open}
-    <div {id} class="card absolute top-full right-0 z-30 mt-1 w-72 p-3 text-left text-xs shadow-card">
+    <div {id} class="card absolute top-full z-30 {align === 'start' ? 'left-0' : 'right-0'} mt-1 w-72 p-3 text-left text-xs shadow-card">
       <p class="font-medium text-ink">Safer than {Math.round(safety * 100)}% of lab-tested helmets</p>
       {#if source === "fused" && evidence.labs.length}
         <p class="mt-1 text-ink-3">Each lab's result becomes a percentile among the helmets that lab tested. Labs are weighted by how rigorous their test is:</p>

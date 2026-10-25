@@ -127,7 +127,7 @@
               </div>
             </td>
             <td class="px-3 py-2" onclick={(e) => e.stopPropagation()}>
-              {#if safety != null}<EvidenceChip helmet={h} {safety} source={app.goals.safetySource} {labLabel} />{:else}<span class="text-ink-3">–</span>{/if}
+              {#if safety != null}<EvidenceChip helmet={h} {safety} source={app.goals.safetySource} {labLabel} align="start" />{:else}<span class="text-ink-3">–</span>{/if}
             </td>
             <td class="px-3 py-2 num">{h.ratings.virginia_tech?.score?.toFixed(1) ?? "–"}</td>
             <td class="px-3 py-2 text-xs text-ink-2">{labsFor(h).map(labLabel).join(", ") || "–"}</td>

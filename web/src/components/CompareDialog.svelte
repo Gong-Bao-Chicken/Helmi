@@ -82,7 +82,7 @@
         {#each rows as r (r.h.id)}
           <td>
             {#if r.safety != null}
-              <EvidenceChip helmet={r.h} safety={r.safety} source={app.goals.safetySource} {labLabel} />
+              <EvidenceChip helmet={r.h} safety={r.safety} source={app.goals.safetySource} {labLabel} align="start" />
               {#if r.safety === bestSafety}<span class="text-xs font-semibold text-good">Safest</span>{/if}
             {:else}–{/if}
           </td>

@@ -9,7 +9,7 @@
   import Results from "./components/Results.svelte";
   import Welcome from "./components/Welcome.svelte";
   import { loadDataset } from "./lib/data";
-  import { deriveFxRates, findHelmets } from "./lib/finder";
+  import { findHelmets, fxRates } from "./lib/finder";
   import { app, writeUrl } from "./lib/state.svelte";
   import type { Dataset } from "./lib/types";
 
@@ -20,7 +20,7 @@
     .then((d) => (dataset = d))
     .catch((e: unknown) => (error = e instanceof Error ? e.message : String(e)));
 
-  const fx = $derived(dataset ? deriveFxRates(dataset.helmets) : {});
+  const fx = $derived(dataset ? fxRates(dataset) : {});
   const result = $derived(dataset ? findHelmets(dataset, app.goals, fx) : null);
   const helmetsById = $derived(new Map(dataset?.helmets.map((h) => [h.id, h]) ?? []));
 

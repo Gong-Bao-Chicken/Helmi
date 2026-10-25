@@ -30,7 +30,10 @@ jobs:
         run: uv sync --frozen
 
       - name: Update data
-        run: uv run helmet-data update ${{ inputs.flags }}
+        # Flags go through an env var: pasting ${{ inputs.flags }} into the script would run it as shell.
+        env:
+          FLAGS: ${{ inputs.flags }}
+        run: uv run helmet-data update $FLAGS
 
       - name: Commit changes
         run: |

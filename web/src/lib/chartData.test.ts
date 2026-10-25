@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { brandRows, countryPair, histogram, spearman, trendOf, type Valued } from "./chartData";
+import { brandRows, countryPair, spearman, trendOf, type Valued } from "./chartData";
 import type { Dataset, Helmet } from "./types";
 
 const helmet = (id: string, brand: string) => ({ id, brand }) as Helmet;
@@ -19,13 +19,6 @@ describe("spearman", () => {
       { x: 3, y: 3 },
     ]);
     expect(r).toBeGreaterThan(0.8);
-  });
-});
-
-describe("histogram", () => {
-  it("bins values and clamps the tails into the end bins", () => {
-    const bins = histogram([-500, -15, -5, 5, 999], 10, [-20, 20]);
-    expect(bins.map((b) => b.count)).toEqual([2, 1, 1, 1]);
   });
 });
 
@@ -70,5 +63,10 @@ describe("trendOf", () => {
   it("needs two recent helmets, and two older ones for a direction", () => {
     expect(trendOf([item("2019", 40), item("2026", 80)], 2025)).toBeNull();
     expect(trendOf([item("2025", 70), item("2026", 80)], 2025)).toEqual({ value: 75, n: 2, delta: null });
+  });
+
+  it("leaves undated helmets out of both groups", () => {
+    const undated = [10, 20].map((v) => ({ helmet: { id: `u${v}`, test_year: null } as Helmet, value: v }));
+    expect(trendOf([item("2025", 70), item("2026", 80), ...undated], 2025)).toEqual({ value: 75, n: 2, delta: null });
   });
 });

@@ -70,6 +70,9 @@
   const main = $derived(analysis(subjectPoints));
   const bestIds = $derived(new Set(main.front.map((p) => p.id)));
   const kneePoint = $derived(all.find((q) => q.helmet.id === main.knee));
+  // With fewer than three best-value helmets the "knee" is just the dearest one, so there is no
+  // point where spending more stops paying off.
+  const diminishingFrom = $derived(main.front.length >= 3 ? kneePoint : undefined);
   /** The sweet spot plus the cheapest and the safest best-value helmet: three labels, no more. */
   const bestLabels = $derived.by(() => {
     const knee = main.front.find((p) => p.id === main.knee);
@@ -116,11 +119,15 @@
 {/snippet}
 
 {#snippet mainUnderlay(xs: ScaleLinear<number, number>, ys: ScaleLinear<number, number>)}
-  {#if kneePoint}
+  {#if diminishingFrom}
     <!-- Past the sweet spot extra money buys little extra safety. -->
-    {@const x0 = xs(kneePoint.price.amount)}
-    <rect x={x0} y={ys(100)} width={Math.max(0, xs(xDomain[1]) - x0)} height={ys(0) - ys(100)} fill="var(--text-3)" opacity="0.06" />
-    <text x={xs(xDomain[1]) - 6} y={ys(0) - 8} text-anchor="end" class="fill-ink-3 text-[11px]">Paying more buys little extra safety →</text>
+    {@const x0 = xs(diminishingFrom.price.amount)}
+    {@const width = Math.max(0, xs(xDomain[1]) - x0)}
+    <rect x={x0} y={ys(100)} {width} height={ys(0) - ys(100)} fill="var(--text-3)" opacity="0.06" />
+    <!-- The label sits inside the shaded area; it is left out when the area is too narrow for it. -->
+    {#if width >= 230}
+      <text x={x0 + 6} y={ys(0) - 8} class="fill-ink-3 text-[11px]">Paying more buys little extra safety →</text>
+    {/if}
   {/if}
   {#if showBand && main.band.length > 1}
     {@const d = area<Bin>()

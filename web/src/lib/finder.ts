@@ -103,30 +103,33 @@ export function marketCurrency(market: MarketChoice) {
 export interface Price {
   amount: number;
   currency: string;
-  /** live = current shop price here; estimate = another market's price, converted. */
+  /** live = current shop price here; estimate = another market's price. */
   kind: "live" | "estimate";
-  /** For an estimate: the neighbouring country whose shop price was converted, or null for the US launch price. */
+  /** For an estimate: the neighbouring country whose shop price is shown, or null for the US launch price. */
   from?: MarketKey | null;
+  /** For an estimate: whether the amount was converted from another currency. */
+  converted?: boolean;
   source?: string | null;
   url?: string | null;
   window?: string | null;
 }
 
-/** USD → currency rates, derived from the dataset's own conversions with sane fallbacks. */
-export function deriveFxRates(helmets: readonly Helmet[]): Record<string, number> {
-  const eur = median(
-    helmets
-      .map((h) => h.current_price)
-      .filter((p) => p?.currency === "EUR" && p.usd_equiv > 0)
-      .map((p) => p!.amount / p!.usd_equiv),
-  );
-  const chfPerEur = median(
-    helmets
-      .filter((h) => h.listings.ch?.price && h.listings.de?.price)
-      .map((h) => h.listings.ch!.price! / h.listings.de!.price!),
-  );
-  const eurRate = eur ?? 0.88;
-  return { USD: 1, EUR: eurRate, CHF: eurRate * (chfPerEur ?? 0.95) };
+/** Used only when the data file has no exchange rates (an old file, or prices were skipped). */
+const FALLBACK_RATES = { EUR: 0.92, CHF: 0.88 };
+
+/** USD → currency rates: the ECB reference rates the data pipeline fetches on every update. */
+export function fxRates(dataset: Pick<Dataset, "meta">): Record<string, number> {
+  const rates = dataset.meta.exchange_rates;
+  return {
+    USD: 1,
+    EUR: rates?.EUR || FALLBACK_RATES.EUR,
+    CHF: rates?.CHF || FALLBACK_RATES.CHF,
+  };
+}
+
+/** Converts between currencies; same-currency amounts are returned unchanged. */
+export function convert(amount: number, from: string, to: string, fx: Record<string, number>) {
+  return from === to ? amount : (amount / (fx[from] ?? 1)) * (fx[to] ?? 1);
 }
 
 export function priceFor(helmet: Helmet, market: MarketChoice, fx: Record<string, number>): Price | null {
@@ -145,12 +148,17 @@ export function priceFor(helmet: Helmet, market: MarketChoice, fx: Record<string
   }
   const currency = CURRENCY[market];
   if (market !== "us") {
-    // No shop here: a neighbour's shop price, converted, is closer to reality than the US launch price.
-    for (const other of NEIGHBOURS) {
-      const listing = helmet.listings[other];
-      if (other === market || listing?.price == null) continue;
-      const amount = (listing.price / (fx[listing.currency] ?? 1)) * (fx[currency] ?? 1);
-      return { amount: Math.round(amount), currency, kind: "estimate", from: other, source: listing.source, url: listing.url };
+    // No shop here: a neighbour's shop price is closer to reality than the US launch price.
+    // Prefer a neighbour with the same currency (Germany <-> Austria), whose price needs no conversion.
+    const neighbours = NEIGHBOURS.filter((other) => other !== market && helmet.listings[other]?.price != null).sort(
+      (a, b) => Number(helmet.listings[b]!.currency === currency) - Number(helmet.listings[a]!.currency === currency),
+    );
+    const other = neighbours[0];
+    if (other) {
+      const listing = helmet.listings[other]!;
+      const converted = listing.currency !== currency;
+      const amount = converted ? Math.round(convert(listing.price!, listing.currency, currency, fx)) : listing.price!;
+      return { amount, currency, kind: "estimate", from: other, converted, source: listing.source, url: listing.url };
     }
   }
   if (helmet.price_at_test_usd == null) return null;
@@ -159,6 +167,7 @@ export function priceFor(helmet: Helmet, market: MarketChoice, fx: Record<string
     currency,
     kind: market === "us" ? "live" : "estimate",
     from: null,
+    converted: market !== "us",
     source: market === "us" ? "US retail at test time" : null,
   };
 }
@@ -231,7 +240,7 @@ function weightsFor(priority: PriorityKey) {
 /** Unknown prices rank as slightly worse than the median, not as free. */
 const UNKNOWN_CHEAPNESS = 0.35;
 
-export function findHelmets(dataset: Dataset, goals: Goals, fx = deriveFxRates(dataset.helmets)): FinderResult {
+export function findHelmets(dataset: Dataset, goals: Goals, fx = fxRates(dataset)): FinderResult {
   const ride = RIDES.find((r) => r.key === goals.ride) ?? RIDES[RIDES.length - 1]!;
   const excluded = new Map<string, number>();
   const drop = (reason: string) => excluded.set(reason, (excluded.get(reason) ?? 0) + 1);
@@ -271,7 +280,7 @@ export function findHelmets(dataset: Dataset, goals: Goals, fx = deriveFxRates(d
       drop("below the safety bar");
       continue;
     }
-    const priceUsd = price ? price.amount / (fx[price.currency] ?? 1) : null;
+    const priceUsd = price ? convert(price.amount, price.currency, "USD", fx) : null;
     candidates.push({ helmet, safety, price, priceUsd, aero, labs: labsFor(helmet) });
   }
 
@@ -427,7 +436,7 @@ export function explain(item: Ranked, result: FinderResult, labLabel: (key: Rati
 
   if (item.price?.kind === "estimate") {
     const text = item.price.from
-      ? `No shop price in this country; showing the ${MARKET_NAME[item.price.from]} price, converted`
+      ? `No shop price in this country; showing the ${MARKET_NAME[item.price.from]} price${item.price.converted ? ", converted" : ""}`
       : "No current shop price found; showing the converted US price at test time";
     reasons.push({ tone: "caution", text });
   }

@@ -2,6 +2,7 @@
   import { labsFor, priceFor, safetyFor, type FinderResult } from "../lib/finder";
   import { makeLabLabel, priceLabel, priceSourceLabel } from "../lib/format";
   import { PICK_META } from "../lib/picks";
+  import { styleLabel } from "../lib/styles";
   import { app, toggleCompare } from "../lib/state.svelte";
   import type { Dataset, Helmet } from "../lib/types";
   import LabAgreement from "./charts/LabAgreement.svelte";
@@ -153,7 +154,7 @@
       <tr>
         <th>Style · tested</th>
         {#each rows as { h } (h.id)}
-          <td>{h.style} · {h.test_year ?? "–"}</td>
+          <td>{styleLabel(h.style)} · {h.test_year ?? "–"}</td>
         {/each}
       </tr>
     </tbody>

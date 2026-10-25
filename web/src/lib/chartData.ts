@@ -1,5 +1,5 @@
 /** Pure derivations for the Charts page: each function turns the dataset into one chart's rows. */
-import { priceFor, safetyFor, type MarketChoice, type Price, type SafetySource } from "./finder";
+import { convert, priceFor, safetyFor, type MarketChoice, type Price, type SafetySource } from "./finder";
 import { median } from "./scoring";
 import type { Dataset, Helmet, MarketKey, RatingSourceKey } from "./types";
 
@@ -71,10 +71,14 @@ export function latestTestYear(items: Valued[]) {
   return Math.max(0, ...items.map((i) => testYear(i.helmet) ?? 0)) || null;
 }
 
-/** Recent helmets (tested in `since` or later) against the rest. Null without two recent ones. */
+/** Recent helmets (tested in `since` or later) against older ones; undated helmets are in neither. Null without two recent ones. */
 export function trendOf(items: Valued[], since: number): Trend | null {
-  const recent = items.filter((i) => (testYear(i.helmet) ?? 0) >= since).map((i) => i.value);
-  const older = items.filter((i) => (testYear(i.helmet) ?? 0) < since).map((i) => i.value);
+  const dated = items.flatMap((i) => {
+    const year = testYear(i.helmet);
+    return year == null ? [] : [{ year, value: i.value }];
+  });
+  const recent = dated.filter((d) => d.year >= since).map((d) => d.value);
+  const older = dated.filter((d) => d.year < since).map((d) => d.value);
   if (recent.length < 2) return null;
   const value = median(recent)!;
   return { value, n: recent.length, delta: older.length >= 2 ? value - median(older)! : null };
@@ -253,7 +257,7 @@ export function priceVsLaunch(dataset: Dataset, filters: ChartFilters, fx: Recor
     if (!inScope(helmet, filters) || !helmet.price_at_test_usd) continue;
     const price = priceFor(helmet, filters.market, fx);
     if (!price || price.kind !== "live" || filters.market === "us") continue;
-    const usd = price.amount / (fx[price.currency] ?? 1);
+    const usd = convert(price.amount, price.currency, "USD", fx);
     out.push({ helmet, value: (usd / helmet.price_at_test_usd - 1) * 100 });
   }
   return out;
@@ -279,7 +283,7 @@ export interface PairPoint extends XY {
  * "same price" (x = country a, y = country b). Only helmets with a real shop price in both.
  */
 export function countryPair(dataset: Dataset, a: MarketKey, b: MarketKey, fx: Record<string, number>): PairPoint[] {
-  const toEur = (amount: number, currency: string) => (amount / (fx[currency] ?? 1)) * (fx.EUR ?? 1);
+  const toEur = (amount: number, currency: string) => convert(amount, currency, "EUR", fx);
   const out: PairPoint[] = [];
   for (const helmet of dataset.helmets) {
     const la = helmet.listings[a];
@@ -294,21 +298,4 @@ export function countryPair(dataset: Dataset, a: MarketKey, b: MarketKey, fx: Re
     });
   }
   return out;
-}
-
-export interface HistBin {
-  x0: number;
-  x1: number;
-  count: number;
-}
-
-export function histogram(values: readonly number[], step: number, clamp: [number, number]): HistBin[] {
-  const [lo, hi] = clamp;
-  const bins: HistBin[] = [];
-  for (let x0 = lo; x0 < hi; x0 += step) bins.push({ x0, x1: x0 + step, count: 0 });
-  for (const v of values) {
-    const c = Math.min(hi - 1e-9, Math.max(lo, v));
-    bins[Math.floor((c - lo) / step)]!.count += 1;
-  }
-  return bins;
 }

@@ -16,6 +16,7 @@ from typing import Any, TextIO
 
 import httpx
 
+from ..build import market_listings
 from ..crawlers.price_history import (
     aggregate_price,
     append_history,
@@ -45,26 +46,37 @@ from ..enrich.retailer_protection import (
 )
 from ..paths import HELMETS_JSON_PATH, PRICE_CACHE_PATH
 
-# Placeholder ``source`` of a market listing without a price (matches build.market_listings).
-SHOP_SOURCE_LABEL = {"de": "amazon_de", "at": "geizhals_at", "ch": "galaxus"}
 DEFAULT_INPUT = HELMETS_JSON_PATH
 DEFAULT_CACHE = PRICE_CACHE_PATH
 # Lowest accept_offer threshold used by any shop parser.
 MIN_CACHED_MATCH_SCORE = 0.5
 FRANKFURTER_URL = "https://api.frankfurter.app/latest?from=USD&to=EUR,CHF"
+# Last resort when the rate service is down and no earlier rates are cached.
+DEFAULT_RATES = {"EUR": 0.92, "CHF": 0.88}
 
 
-def fetch_exchange_rates(client: httpx.Client) -> dict[str, float]:
+def fetch_exchange_rates(client: httpx.Client) -> dict[str, Any] | None:
+    """Today's USD -> EUR/CHF rates (ECB reference rates via Frankfurter), or None."""
     try:
         response = client.get(FRANKFURTER_URL, timeout=15.0)
         response.raise_for_status()
-        rates = response.json().get("rates", {})
-        return {
-            "EUR": float(rates.get("EUR", 0.92)),
-            "CHF": float(rates.get("CHF", 0.88)),
-        }
-    except httpx.HTTPError:
-        return {"EUR": 0.92, "CHF": 0.88}
+        body = response.json()
+        rates = body["rates"]
+        return {"EUR": float(rates["EUR"]), "CHF": float(rates["CHF"]), "date": body.get("date")}
+    except (httpx.HTTPError, KeyError, TypeError, ValueError):
+        return None
+
+
+def resolve_exchange_rates(client: httpx.Client, cached: dict[str, Any] | None) -> dict[str, Any]:
+    """Fresh rates if the service answers, else the last cached ones, else DEFAULT_RATES."""
+    fresh = fetch_exchange_rates(client)
+    if fresh:
+        return {**fresh, "source": "frankfurter"}
+    if cached and cached.get("EUR") and cached.get("CHF"):
+        print("  warning: exchange rates unavailable; using the last cached rates", flush=True)
+        return {**cached, "source": "cached"}
+    print("  warning: exchange rates unavailable; using built-in defaults", flush=True)
+    return {**DEFAULT_RATES, "date": None, "source": "default"}
 
 
 def currency_to_usd(amount: float, currency: str, rates: dict[str, float]) -> float:
@@ -164,7 +176,16 @@ def history_from_geizhals_phist(
 
 # Plausibility bounds for shop offers (prices compared in USD after FX).
 TEST_PRICE_RATIO_BOUNDS = (0.3, 2.5)  # offer vs price_at_test_usd
-CH_DE_RATIO_BOUNDS = (0.7, 1.6)  # CHF offer vs EUR offer for the same helmet
+# CHF offer vs EUR offer for the same helmet. Swiss shops often charge up to ~2x the German
+# price; wrong-product matches are typically 2.5x off or more.
+CH_DE_RATIO_BOUNDS = (0.7, 2.0)
+# Two prices within this factor of each other count as agreeing.
+AGREEMENT_RATIO = 1.35
+
+
+def source_company(source: str) -> str:
+    """The company behind a price source: ``idealo_at`` and ``idealo`` are both Idealo."""
+    return source.split("_")[0]
 
 
 def price_outlier_check(
@@ -176,36 +197,54 @@ def price_outlier_check(
     """Return ``reason(offer) -> str | None`` flagging implausible offers.
 
     1. Offers far from the VT test price (< 0.3x or > 2.5x) are wrong-product/bundle matches.
-    2. If the CHF and EUR prices disagree beyond 0.7-1.6x after FX, the side further from
+    2. A price two different companies agree on (within 1.35x) is a real market price; offers
+       in that currency far below it are accessory or wrong-model matches.
+    3. If the CHF and EUR prices disagree beyond 0.7-2.0x after FX, the side further from
        the test price (CHF when there is no test price) is treated as the mismatch -
-       unless two of its sources agree, which makes it a genuine market price.
+       unless two companies agree on it.
     """
     low, high = TEST_PRICE_RATIO_BOUNDS
+
+    def usd(offer: PriceOffer) -> float:
+        return currency_to_usd(offer.price, offer.currency, rates)
 
     def test_reason(offer: PriceOffer) -> str | None:
         if not test_usd:
             return None
-        ratio = currency_to_usd(offer.price, offer.currency, rates) / test_usd
+        ratio = usd(offer) / test_usd
         if ratio < low or ratio > high:
             return f"{ratio:.2f}x test price"
         return None
 
     sane = [offer for offer in offers if test_reason(offer) is None]
+
+    def agreed_price(currency: str) -> float | None:
+        """Lowest USD price in this currency that another company's price is within 1.35x of.
+
+        idealo.de and idealo.at (or geizhals.de and .at) usually return the same product
+        match, so they count as one company: their agreement says nothing about whether it is
+        right. Any pair counts, so one wrong cheap match can't hide two shops that agree.
+        """
+        priced = sorted((usd(o), source_company(o.source)) for o in sane if o.currency == currency)
+        for i, (price, company) in enumerate(priced):
+            for other_price, other_company in priced[i + 1 :]:
+                if other_price / price > AGREEMENT_RATIO:
+                    break
+                if other_company != company:
+                    return price
+        return None
+
+    agreed = {currency: agreed_price(currency) for currency in ("EUR", "CHF")}
+
+    def below_agreed(offer: PriceOffer) -> bool:
+        price = agreed.get(offer.currency)
+        return price is not None and usd(offer) * AGREEMENT_RATIO < price
+
     refs: dict[str, float] = {}
     for currency in ("EUR", "CHF"):
-        prices = [currency_to_usd(o.price, o.currency, rates) for o in sane if o.currency == currency]
+        prices = [usd(o) for o in sane if o.currency == currency and not below_agreed(o)]
         if prices:
-            refs[currency] = min(prices)
-
-    def corroborated(currency: str) -> bool:
-        """At least two different sources in this currency, within 1.35x of each other."""
-        by_source: dict[str, float] = {}
-        for o in sane:
-            if o.currency == currency:
-                usd = currency_to_usd(o.price, o.currency, rates)
-                by_source[o.source] = min(usd, by_source.get(o.source, usd))
-        prices = sorted(by_source.values())
-        return any(b / a <= 1.35 for a, b in zip(prices, prices[1:], strict=False))
+            refs[currency] = agreed[currency] or min(prices)
 
     suspect_currency: str | None = None
     if "EUR" in refs and "CHF" in refs:
@@ -215,7 +254,7 @@ def price_outlier_check(
             if test_usd:
                 dev = {cur: abs(math.log(refs[cur] / test_usd)) for cur in refs}
                 suspect_currency = max(dev, key=dev.get)
-            if corroborated(suspect_currency):
+            if agreed[suspect_currency] is not None:
                 # Two shops agreeing is a real market price (e.g. a German clearance price
                 # far below Swiss list price), not a wrong-product match.
                 suspect_currency = None
@@ -225,10 +264,11 @@ def price_outlier_check(
         found = test_reason(offer)
         if found:
             return found
+        if below_agreed(offer):
+            return "far below the price two shops agree on"
         if suspect_currency and offer.currency == suspect_currency:
             ref = refs[other[suspect_currency]]
-            usd = currency_to_usd(offer.price, offer.currency, rates)
-            ratio = usd / ref if suspect_currency == "CHF" else ref / usd
+            ratio = usd(offer) / ref if suspect_currency == "CHF" else ref / usd(offer)
             if not CH_DE_RATIO_BOUNDS[0] <= ratio <= CH_DE_RATIO_BOUNDS[1]:
                 return f"CH/DE ratio {ratio:.2f}"
         return None
@@ -290,15 +330,7 @@ def apply_market_price(
             listings[market] = listing_from_aggregate(agg, sources=agg["offers"], fetched_at=fetched_at)
             changed = True
         elif listings.get(market, {}).get("price") is not None:
-            listings[market] = {
-                "price": None,
-                "currency": currency,
-                "rating": None,
-                "review_count": None,
-                "url": None,
-                "source": SHOP_SOURCE_LABEL[market],
-                "fetched_at": None,
-            }
+            listings[market] = market_listings()[market]
             changed = True
 
     test_usd = helmet.get("price_at_test_usd")
@@ -509,10 +541,12 @@ def update_helmets(
     cache_path: Path,
     source_errors: dict[str, dict[str, Any]] | None = None,
     outliers: dict[str, list[dict[str, Any]]] | None = None,
+    exchange_rates: dict[str, Any] | None = None,
     workers: int = DEFAULT_WORKERS,
 ) -> dict[str, int]:
-    """Refresh shop prices, ``workers`` helmets at a time. ``source_errors``/``outliers``
-    collect per-shop failures and dropped implausible offers for the output meta."""
+    """Refresh shop prices, ``workers`` helmets at a time. ``source_errors``/``outliers``/
+    ``exchange_rates`` collect per-shop failures, dropped implausible offers and the rates
+    used, for the output meta."""
     run = _Run(
         cache=load_cache(cache_path),
         cache_path=cache_path,
@@ -537,8 +571,10 @@ def update_helmets(
             stats["better"] += 1
 
     with make_price_client() as client:
-        rates = fetch_exchange_rates(client)
+        rates = resolve_exchange_rates(client, run.cache.get("exchange_rates"))
         run.cache["exchange_rates"] = rates
+        if exchange_rates is not None:
+            exchange_rates.update(rates)
 
         due: list[dict[str, Any]] = []
         for helmet in candidates:
@@ -755,6 +791,7 @@ def run_fetch_prices(
 
     source_errors: dict[str, dict[str, Any]] = {}
     outliers: dict[str, list[dict[str, Any]]] = {}
+    rates: dict[str, Any] = {}
     stats = update_helmets(
         helmets,
         european_only=not all_helmets,
@@ -764,11 +801,14 @@ def run_fetch_prices(
         cache_path=cache_path,
         source_errors=source_errors,
         outliers=outliers,
+        exchange_rates=rates,
         workers=workers,
     )
 
     meta = data.setdefault("meta", {})
     meta["market_prices_fetched_at"] = datetime.now(UTC).isoformat()
+    # The site converts between currencies with these (units per USD), refreshed every run.
+    meta["exchange_rates"] = {"base": "USD", **rates}
     meta["market_prices_stats"] = stats
     meta["market_price_note"] = (
         "Prefers Geizhals (curl_cffi Safari TLS), Idealo, and toppreise.ch. "

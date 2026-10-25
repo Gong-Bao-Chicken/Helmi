@@ -22,7 +22,8 @@ export function priceLabel(price: Price | null) {
 export function priceSourceLabel(price: Price | null) {
   if (!price) return "No price data";
   if (price.kind === "estimate") {
-    return price.from ? `${MARKET_NAME[price.from]} shop price, converted` : "US price at test time, converted";
+    if (!price.from) return "US price at test time, converted";
+    return `${MARKET_NAME[price.from]} shop price${price.converted ? ", converted" : ""}`;
   }
   const window = price.window === "14d_median" ? "14-day median" : null;
   return [shopName(price.source), window].filter(Boolean).join(" · ");
@@ -33,11 +34,20 @@ const SHOPS: Record<string, string> = {
   idealo: "Idealo",
   toppreise: "toppreise.ch",
   amazon: "Amazon",
+  galaxus: "Galaxus",
 };
 
+/**
+ * Display name of a price source. Sources carry a country suffix ("idealo_at", "amazon_de"), and a
+ * listing built from several shops joins them ("geizhals, idealo"); each company is named once.
+ */
 export function shopName(source: string | null | undefined) {
   if (!source) return "";
-  return SHOPS[source] ?? source;
+  const names = source.split(",").map((part) => {
+    const company = part.trim().split("_")[0]!;
+    return SHOPS[company] ?? company;
+  });
+  return [...new Set(names)].join(", ");
 }
 
 export function pct(value: number | null | undefined) {

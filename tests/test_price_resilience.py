@@ -44,6 +44,19 @@ def test_ch_de_mismatch_keeps_a_price_two_shops_agree_on():
     assert dropped == []
 
 
+def test_same_company_on_two_domains_does_not_corroborate():
+    # Thousand Heritage 2.0: idealo.de and idealo.at both matched a 32 EUR bike light,
+    # Swiss price 170 CHF, test price 99 USD. One company agreeing with itself proves nothing.
+    offers = [
+        offer("idealo", 31.99, "EUR"),
+        offer("idealo_at", 32.99, "EUR"),
+        offer("toppreise", 170.0, "CHF"),
+    ]
+    kept, _, dropped = prices.drop_price_outliers(offers, [], test_usd=99.0, rates=RATES)
+    assert [o.source for o in kept] == ["toppreise"]
+    assert {d["source"] for d in dropped} == {"idealo", "idealo_at"}
+
+
 def test_ch_de_mismatch_without_test_price_drops_chf():
     offers = [offer("geizhals", 100.0, "EUR"), offer("toppreise", 300.0, "CHF")]
     kept, _, dropped = prices.drop_price_outliers(offers, [], test_usd=None, rates=RATES)
@@ -291,6 +304,29 @@ def test_blocked_geizhals_counts_as_failure(monkeypatch):
     assert "blocked" in failures["geizhals_at"]
 
 
+def test_geizhals_searches_only_the_markets_own_shops():
+    urls = []
+
+    def fetch(url):
+        urls.append(url)
+        return ""
+
+    ctx = build_search_context("POC", "Cytal")
+    for domain in ("geizhals.de", "geizhals.eu", "geizhals.at"):
+        price_sources.search_geizhals(None, ctx, domain=domain, page_fetcher=fetch)
+    assert [url.rsplit("&", 1)[1] for url in urls] == ["hloc=de", "hloc=de", "hloc=at"]
+
+
+def test_exchange_rates_fall_back_to_cached_then_defaults(monkeypatch):
+    monkeypatch.setattr(prices, "fetch_exchange_rates", lambda client: None)
+    cached = {"EUR": 0.89, "CHF": 0.82, "date": "2026-10-01", "source": "frankfurter"}
+    assert prices.resolve_exchange_rates(None, cached) == {**cached, "source": "cached"}
+    assert prices.resolve_exchange_rates(None, None)["source"] == "default"
+
+    monkeypatch.setattr(prices, "fetch_exchange_rates", lambda client: {"EUR": 0.9, "CHF": 0.8, "date": "x"})
+    assert prices.resolve_exchange_rates(None, cached)["source"] == "frankfurter"
+
+
 def test_stealth_get_spaces_requests_per_host_not_globally(monkeypatch):
     import threading
     import time as real_time
@@ -368,3 +404,16 @@ def test_update_helmets_fetches_helmets_in_parallel(monkeypatch, tmp_path, capsy
     for i in range(4):
         block = out.split(f"POC Model {i}…\n", 1)[1].splitlines()
         assert block[:2] == [f"  searching Model {i}", f"  searched Model {i}"]
+
+
+def test_one_wrong_cheap_match_does_not_hide_two_shops_that_agree():
+    # Giro Caden MIPS: idealo and geizhals agree on ~83 EUR, idealo.at matched a 30 EUR light.
+    offers = [
+        offer("idealo", 82.37, "EUR"),
+        offer("idealo_at", 29.79, "EUR"),
+        offer("geizhals", 83.4, "EUR"),
+        offer("toppreise", 129.0, "CHF"),
+    ]
+    kept, _, dropped = prices.drop_price_outliers(offers, [], test_usd=95.0, rates=RATES)
+    assert {o.source for o in kept} == {"idealo", "geizhals", "toppreise"}
+    assert [d["source"] for d in dropped] == ["idealo_at"]

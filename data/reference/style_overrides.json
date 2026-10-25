@@ -1,0 +1,1310 @@
+{
+  "_comment": "Helmet styles checked by hand (lab categories and model-name rules corrected). Keyed by helmet id; applied by enrich.styles.apply_style_overrides. Reviewed 2026-10-25.",
+  "helmets": {
+    "6d-atb-1t-evo": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "6D ATB-1T EVO is a full-face DH/enduro helmet"
+    },
+    "bern-macon-2-0-dvrt": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Bern Macon skate-style bike helmet; Bern lists Urban"
+    },
+    "bern-macon-2-0-mips": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Bern Macon skate-style bike helmet; Bern lists Urban"
+    },
+    "extra-100-status": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "100% Status DH/BMX full-face; NSW full-face"
+    },
+    "extra-99-bikes-flite-speedy-fireman": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "NSW Child helmets category"
+    },
+    "extra-abus-hud-y": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Abus Hud-Y urban helmet with LED"
+    },
+    "extra-abus-moventor-20": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Abus Moventor 2.0 is an MTB helmet"
+    },
+    "extra-abus-moventor-20-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Abus Moventor 2.0 is an MTB helmet"
+    },
+    "extra-abus-scrapper-30": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Abus Scraper 3.0 kids helmet"
+    },
+    "extra-abus-scrapper-30-0": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Abus Scraper 3.0 kids helmet"
+    },
+    "extra-abus-skurb": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Abus Skurb skate-style urban helmet"
+    },
+    "extra-abus-skurb-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Abus Skurb skate-style urban helmet"
+    },
+    "extra-abus-smiley-2-0": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Abus Smiley children's helmet; NSW Child"
+    },
+    "extra-abus-smiley-3-0": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Abus Smiley children's helmet"
+    },
+    "extra-abus-yadd-i": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Abus Yadd-I city/commuter helmet"
+    },
+    "extra-abus-yadd-i-0": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Abus Yadd-I city/commuter helmet"
+    },
+    "extra-abus-youdrop-ff": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "Abus YouDrop FF youth full-face MTB helmet"
+    },
+    "extra-abus-youn-i-20": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Abus Youn-I youth helmet"
+    },
+    "extra-abus-youn-i-mips": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Abus Youn-I youth helmet"
+    },
+    "extra-aero-canyon-stingr": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Canyon Stingr CFR aero helmet (canyon.com)"
+    },
+    "extra-aero-giant-rivet": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Giant Rivet aero road helmet (bikerumor)"
+    },
+    "extra-aero-julbo-sprint": {
+      "style": "Aero",
+      "confidence": "medium",
+      "note": "Julbo Sprint aero road helmet, 6 vents"
+    },
+    "extra-aero-kask-nirvana": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Kask Nirvana aero road/TT helmet"
+    },
+    "extra-aero-kask-utopia-y": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Kask Utopia Y aero road helmet"
+    },
+    "extra-aero-limar-air-atlas": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Limar Air Atlas aero road helmet"
+    },
+    "extra-aero-met-manta": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "MET Manta aero road helmet"
+    },
+    "extra-aero-oakley-aro7": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Oakley ARO7 aero road/TT helmet"
+    },
+    "extra-aero-oakley-velo-mach": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Oakley Velo Mach aero helmet (bike-components)"
+    },
+    "extra-aero-poc-procen-air": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "POC Procen Air TT/aero helmet"
+    },
+    "extra-aero-poc-ventral": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "POC Ventral aero road helmet"
+    },
+    "extra-aero-poc-ventral-tempus": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "POC Ventral Tempus aero road helmet"
+    },
+    "extra-aero-rudy-project-nytron": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Rudy Project Nytron aero road/tri helmet"
+    },
+    "extra-aero-rudy-project-nytron-pro": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Nytron Pro aero, 3 vents"
+    },
+    "extra-aero-smith-ignite": {
+      "style": "Aero",
+      "confidence": "medium",
+      "note": "Smith Ignite aero road helmet"
+    },
+    "extra-aero-sunrimoon-alien": {
+      "style": "Aero",
+      "confidence": "low",
+      "note": "Chinese Sunrimoon aero/TT range; unverified"
+    },
+    "extra-aero-sunrimoon-sariel": {
+      "style": "Aero",
+      "confidence": "low",
+      "note": "Chinese Sunrimoon aero/TT range; unverified"
+    },
+    "extra-aero-sweet-protection-tucker-2vi": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Tucker 2Vi aero road/TT helmet (bike24)"
+    },
+    "extra-aero-van-rysel-rcr-f": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Van Rysel RCR-F aero road helmet"
+    },
+    "extra-aero-van-rysel-xcr-tt": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "Van Rysel XCR TT time-trial helmet"
+    },
+    "extra-alk13-krypton": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "ALK13 Krypton bowl/skate helmet"
+    },
+    "extra-alpina-airtime": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Retailers: Alpina Airtime BMX/commuter skate-style"
+    },
+    "extra-alpina-delft-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Alpina Delft city/commuter helmet"
+    },
+    "extra-alpina-gent-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Alpina Gent urban helmet"
+    },
+    "extra-alpina-haga-led": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Alpina Haga urban helmet with LED"
+    },
+    "extra-alpina-mythos-30-le": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "Alpina Mythos MTB/tour helmet with visor"
+    },
+    "extra-alpina-pico-flash": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Alpina Pico kids helmet"
+    },
+    "extra-alpina-ximo": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Alpina Ximo kids helmet"
+    },
+    "extra-alpina-ximo-flash": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Alpina Ximo kids helmet"
+    },
+    "extra-author-creek-hst": {
+      "style": "Full-Face",
+      "confidence": "low",
+      "note": "Retailer lists Author Creek FF HST full-face; ambiguous"
+    },
+    "extra-azur-performance-l61": {
+      "style": "Multi-sport",
+      "confidence": "low",
+      "note": "Azur budget general helmet; NSW General"
+    },
+    "extra-azur-rx1": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "NSW Road helmets category"
+    },
+    "extra-bbb-aktiv": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "BBB Aktiv all-round road/MTB helmet (99bikes)"
+    },
+    "extra-bbb-bhe-161-grid": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "road.cc: urban/e-bike helmet with rear light"
+    },
+    "extra-bbb-bhe-37-boggy": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "BBB Boggy junior helmet"
+    },
+    "extra-bbb-bhe35-condor": {
+      "style": "Multi-sport",
+      "confidence": "high",
+      "note": "Retailers: all-round road/MTB helmet, removable visor"
+    },
+    "extra-bbb-cycling-hawk": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "BBB Hawk road helmet; NSW Road"
+    },
+    "extra-bbb-dune-2-0-mips": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "BBB Dune MTB helmet, removable visor (mantel.com)"
+    },
+    "extra-bbb-indra-faceshield": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "BBB Indra commuter/e-bike helmet with face shield"
+    },
+    "extra-bell-4-forty-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Bell 4Forty trail MTB helmet"
+    },
+    "extra-bell-falcon-xr-mips": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Bell Falcon XR road helmet"
+    },
+    "extra-bell-local": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Bell Local skate-style urban helmet"
+    },
+    "extra-bell-sanction": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "Bell Sanction BMX/DH full-face"
+    },
+    "extra-bell-sidetrack-b0552": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Bell Sidetrack youth helmet"
+    },
+    "extra-bell-sidetrack-ii-mips": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Bell Sidetrack II youth helmet"
+    },
+    "extra-bell-spark-2-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Bell Spark trail helmet with visor; NSW MTB"
+    },
+    "extra-bell-super-air-r-spherical": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "Bell Super Air R convertible chin bar"
+    },
+    "extra-bell-trace-mips": {
+      "style": "Multi-sport",
+      "confidence": "high",
+      "note": "Bell Trace recreational sport helmet"
+    },
+    "extra-bell-tracker": {
+      "style": "Multi-sport",
+      "confidence": "high",
+      "note": "Bell Tracker recreational sport helmet"
+    },
+    "extra-bell-xr-spherical-mips": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Bell XR road helmet; NSW Road"
+    },
+    "extra-bern-lenox": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Bern Lenox urban helmet"
+    },
+    "extra-bern-melrose": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Bern Melrose urban helmet"
+    },
+    "extra-bern-nino": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Bern Nino kids helmet"
+    },
+    "extra-bilka-csi-cykelhjelm": {
+      "style": "Urban",
+      "confidence": "low",
+      "note": "taenk.dk lists Bilka CSI skater helmet"
+    },
+    "extra-bluey-toddler": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Bluey toddler helmet; NSW Child"
+    },
+    "extra-bobike-baby-helmet-one": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Bobike toddler helmet"
+    },
+    "extra-bobike-helmet-one-plus": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Bobike One Plus kids helmet"
+    },
+    "extra-bold-sikh-helmet": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "NSW Child helmets category"
+    },
+    "extra-briko-sismic": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "Briko: Sismic off-road MTB helmet"
+    },
+    "extra-brooks-foldable": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Brooks foldable city helmet"
+    },
+    "extra-brooks-island": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Brooks Island urban helmet"
+    },
+    "extra-btwin-100": {
+      "style": "Multi-sport",
+      "confidence": "low",
+      "note": "Decathlon basic 100 helmet; model ambiguous"
+    },
+    "extra-btwin-bh500": {
+      "style": "Multi-sport",
+      "confidence": "low",
+      "note": "Decathlon BH500 likely 500 sport bike helmet"
+    },
+    "extra-btwin-cbh100": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "City Bike Helmet 100"
+    },
+    "extra-btwin-kh-300": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "Decathlon Kids Helmet 300"
+    },
+    "extra-btwin-kh500": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "Decathlon Kids Helmet 500"
+    },
+    "extra-cairbull-fender-folding-helmet": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Folding city helmet"
+    },
+    "extra-cairn-prism-xtr-2": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "Cairn Prism XTR MTB helmet"
+    },
+    "extra-cannondale-radius": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Cannondale Radius recreational sport helmet"
+    },
+    "extra-casco-activ-2u": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Casco Activ 2 all-round city/touring/MTB helmet (bikebox-shop.de)"
+    },
+    "extra-casco-cuda2": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Casco Cuda 2 all-round sport helmet"
+    },
+    "extra-casco-emotion-2": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Casco E.Motion e-bike/urban helmet"
+    },
+    "extra-casco-mini-2": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Casco Mini 2 children's helmet"
+    },
+    "extra-casco-mini-generation": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Casco Mini children's helmet"
+    },
+    "extra-casco-roadster": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Casco Roadster is a city/commuter helmet"
+    },
+    "extra-casco-roadster-0": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Casco Roadster is a city/commuter helmet"
+    },
+    "extra-casco-speedairo-2-rs": {
+      "style": "Aero",
+      "confidence": "medium",
+      "note": "Casco Speedairo semi-aero speed helmet with visor"
+    },
+    "extra-ccc-cinettica-velocita": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "NSW Road helmets category"
+    },
+    "extra-closca-fuga": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Closca Fuga foldable city helmet"
+    },
+    "extra-coop-rawlink": {
+      "style": "Urban",
+      "confidence": "low",
+      "note": "Rawlink sells skate-style helmets (ICA listing)"
+    },
+    "extra-crasysafety-tiger": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Crazy Safety animal kids helmet"
+    },
+    "extra-cratoni-allset": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Retailers: Cratoni AllSet trail/enduro MTB helmet"
+    },
+    "extra-cratoni-c-maniac": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "Cratoni C-Maniac convertible full-face"
+    },
+    "extra-cratoni-velo-x": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "bike-magazin: Velo-X city helmet"
+    },
+    "extra-crazysafety-cs6-pink-shark": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Crazy Safety shark kids helmet"
+    },
+    "extra-crivit-kinder": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Kinder = children's helmet"
+    },
+    "extra-cube-fleet": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "cube.eu Fleet all-terrain trail/recreational helmet"
+    },
+    "extra-cube-linok-mips": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "Cube Linok trail MTB helmet with visor"
+    },
+    "extra-diamondback-cobra": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "NSW Road helmets category"
+    },
+    "extra-diamondback-impact": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Budget general helmet; NSW General"
+    },
+    "extra-diamondback-sierra": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "NSW Road helmets category"
+    },
+    "extra-diamondback-summit": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "NSW MTB open-face category"
+    },
+    "extra-egide-ino": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Egide French urban helmet brand"
+    },
+    "extra-endura-fs260-pro-helmet-ii": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Endura FS260-Pro road helmet"
+    },
+    "extra-endura-fs260-pro-mips-helmet-ii": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Endura FS260-Pro road helmet"
+    },
+    "extra-endura-speed-pedelec": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Endura speed-pedelec helmet"
+    },
+    "extra-entity-mh15": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "Entity MTB helmet; NSW MTB open-face"
+    },
+    "extra-etape-pluto-light": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "mtbiker.shop: Etape Pluto Light children's helmet"
+    },
+    "extra-fischer-modell-nr-fz-025": {
+      "style": "Kids",
+      "confidence": "low",
+      "note": "OEAMTC 2020 youth helmet test, hard-shell"
+    },
+    "extra-fluid-peak": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "NSW MTB open-face category"
+    },
+    "extra-fluid-vector": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "NSW Road helmets category"
+    },
+    "extra-fox-proframe-rs-hfb6": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "Fox Proframe RS lightweight enduro full-face"
+    },
+    "extra-giant-hoot-arx": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Giant Hoot kids helmet; NSW Child"
+    },
+    "extra-giro-agilis": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Giro Agilis trail MTB helmet"
+    },
+    "extra-giro-agilis-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Giro Agilis trail MTB helmet"
+    },
+    "extra-giro-caden-ii-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Giro Caden urban commuter helmet"
+    },
+    "extra-giro-cormick-mips": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "Giro Cormick budget visor helmet; NSW MTB"
+    },
+    "extra-giro-elixir": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "Giro Elixir budget MTB helmet, visor (retailers)"
+    },
+    "extra-giro-fixture-mips-ii": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "Giro Fixture recreational trail helmet with visor"
+    },
+    "extra-giro-quarter-fs": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Giro Quarter skate-style helmet"
+    },
+    "extra-giro-radix-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Giro Radix trail MTB helmet"
+    },
+    "extra-giro-scamp": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Giro Scamp kids helmet"
+    },
+    "extra-giro-scamp-mips": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Giro Scamp kids helmet"
+    },
+    "extra-giro-tremor": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Giro Tremor youth helmet"
+    },
+    "extra-giro-tremor-mips": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Giro Tremor youth helmet"
+    },
+    "extra-goldcross-defender-rf15": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "NSW Road helmets category"
+    },
+    "extra-goldcross-mayhem": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "NSW Child helmets category"
+    },
+    "extra-goldcross-pioneer": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "NSW Child helmets category"
+    },
+    "extra-goldcross-voyager": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "NSW Road helmets category"
+    },
+    "extra-hamax-thundercap": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Hamax Thundercap kids helmet"
+    },
+    "extra-hjc-furion-3": {
+      "style": "Aero",
+      "confidence": "high",
+      "note": "HJC Furion aero road helmet"
+    },
+    "extra-ikea-sladda": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Ikea Sladda city bike helmet"
+    },
+    "extra-jet-black-comp-2-0": {
+      "style": "Full-Face",
+      "confidence": "medium",
+      "note": "NSW MTB/BMX full-face category"
+    },
+    "extra-kali-alpine-carbone-pulse": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "Kali Alpine Carbon full-face DH helmet (speedyfeet.co.uk)"
+    },
+    "extra-kali-central": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Kali Central urban commuter helmet"
+    },
+    "extra-kali-maya-20-pixel": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Kali Maya 2.0 enduro MTB helmet"
+    },
+    "extra-kali-saha-luxe": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Kali Saha Luxe urban commuter helmet"
+    },
+    "extra-kask-mojito-16": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Kask Mojito road helmet"
+    },
+    "extra-kask-mojito-3": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Kask Mojito road helmet"
+    },
+    "extra-kask-sintesi": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Kask Sintesi road helmet"
+    },
+    "extra-ked-5forty": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "kedahead.de: skater-look helmet for teens"
+    },
+    "extra-ked-berlin-l": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "KED Berlin urban helmet"
+    },
+    "extra-ked-mitro-ue1": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "KED Mitro urban/e-bike helmet"
+    },
+    "extra-ked-pop-mips": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Retailers: KED Pop children's helmet"
+    },
+    "extra-ked-puky-ph1": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Puky kids helmet"
+    },
+    "extra-kls-zigzag": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "Kellys Zigzag junior helmet"
+    },
+    "extra-lazer-anvez-nta-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Lazer Anverz NTA speed-pedelec helmet"
+    },
+    "extra-lazer-armor-20-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Lazer Armor city helmet"
+    },
+    "extra-lazer-gekko": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Lazer Gekko kids helmet"
+    },
+    "extra-lazer-gekko-mips": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Lazer Gekko kids helmet"
+    },
+    "extra-lazer-maze-jr-kineticore": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Lazer Maze junior helmet"
+    },
+    "extra-lazer-revolution-mips": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Lazer Revolution urban/leisure helmet"
+    },
+    "extra-lazer-sphere-kineticore": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Lazer Sphere road helmet"
+    },
+    "extra-lazer-verde-kineticore": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Lazer Verde city/commuter helmet"
+    },
+    "extra-leatt-all-mtn-4-0": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Leatt All Mtn trail helmet"
+    },
+    "extra-limar-555": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "Limar 555 entry road helmet"
+    },
+    "extra-limar-alben": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Limar Alben MTB helmet (limar.com)"
+    },
+    "extra-limar-berg-em": {
+      "style": "Mountain",
+      "confidence": "medium",
+      "note": "Limar Berg-Em MTB helmet"
+    },
+    "extra-limar-champ": {
+      "style": "Kids",
+      "confidence": "low",
+      "note": "Limar Champ believed junior helmet; not confirmed"
+    },
+    "extra-limar-delta": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "limar.com/products/delta trail/enduro helmet"
+    },
+    "extra-limar-lumiere-e-bike-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Limar Lumiere urban e-bike helmet"
+    },
+    "extra-limar-torino": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Limar Torino urban helmet with light"
+    },
+    "extra-limar-urbe": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Limar Urbe urban helmet"
+    },
+    "extra-lival-evo21-smart-fietshelm": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Livall EVO21 smart all-round helmet"
+    },
+    "extra-livall-bh-60": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Livall BH60 smart all-round helmet"
+    },
+    "extra-lumos-matrix-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Lumos Matrix smart LED commuter helmet"
+    },
+    "extra-mango-free-board": {
+      "style": "Urban",
+      "confidence": "low",
+      "note": "Mango skate-brand helmet; name suggests skate style"
+    },
+    "extra-mango-x-ride": {
+      "style": "Urban",
+      "confidence": "low",
+      "note": "Mango skate-brand helmet; not found online"
+    },
+    "extra-merida-matt-jr": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "JR = junior helmet"
+    },
+    "extra-met-allroad": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "MET Allroad road/gravel all-round helmet"
+    },
+    "extra-met-allroad-mips": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "MET Allroad road/gravel all-round helmet"
+    },
+    "extra-met-crackerjack": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "MET Crackerjack kids helmet"
+    },
+    "extra-met-crossover": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "MET Crossover city/trail hybrid, removable visor"
+    },
+    "extra-met-echo-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "MET Echo trail MTB helmet"
+    },
+    "extra-met-echo-non-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "MET Echo trail MTB helmet"
+    },
+    "extra-met-espresso": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "MET Espresso urban/commuter helmet"
+    },
+    "extra-met-hooray": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "MET Hooray kids helmet"
+    },
+    "extra-met-idolo": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "MET Idolo road helmet"
+    },
+    "extra-met-mobilite": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "MET Mobilite urban helmet"
+    },
+    "extra-met-mobilite-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "MET Mobilite urban helmet"
+    },
+    "extra-met-parachute-mcr": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "MET Parachute MCR convertible chin bar"
+    },
+    "extra-met-urbex-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "MET Urbex urban helmet"
+    },
+    "extra-met-veleno-mips": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "MET Veleno road helmet"
+    },
+    "extra-netti-lightning": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "NSW Road helmets category"
+    },
+    "extra-nutcase-commute-mips-led": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Nutcase commuter helmet with LED"
+    },
+    "extra-nutcase-gen3-cherry-blossom": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Nutcase Street Gen3 urban design"
+    },
+    "extra-nutcase-little-nutty": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Nutcase Little Nutty toddler helmet"
+    },
+    "extra-nutcase-street-gen3": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Nutcase Street skate-style urban"
+    },
+    "extra-nutecase-little-nutty-mips": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Nutcase Little Nutty toddler helmet"
+    },
+    "extra-o-neal-transition": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "O'Neal Transition full-face; NSW full-face"
+    },
+    "extra-oakley-ar05": {
+      "style": "Aero",
+      "confidence": "medium",
+      "note": "Oakley ARO5 aero road helmet"
+    },
+    "extra-oakley-aro7-lite": {
+      "style": "Aero",
+      "confidence": "medium",
+      "note": "Oakley ARO7 Lite aero road helmet"
+    },
+    "extra-oakley-drt5": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Oakley DRT5 trail MTB helmet"
+    },
+    "extra-olpran-hm-10": {
+      "style": "Urban",
+      "confidence": "low",
+      "note": "Olpran is an e-bike brand; helmet not found"
+    },
+    "extra-overade-plixi": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Overade Plixi foldable city helmet"
+    },
+    "extra-overade-plixi-fit": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Overade Plixi Fit foldable city helmet"
+    },
+    "extra-oxford-metro-glo": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Oxford Metro commuter helmet with light"
+    },
+    "extra-oxford-metro-glo-0": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Oxford Metro commuter helmet with light"
+    },
+    "extra-poc-crane-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "POC Crane skate-style commuter helmet"
+    },
+    "extra-poc-kortal-race-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "POC Kortal trail/enduro helmet"
+    },
+    "extra-poc-pocito-crane-mips": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "POCito kids helmet"
+    },
+    "extra-polisport-guppy": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Polisport Guppy kids helmet"
+    },
+    "extra-powerslide-allround-helmet": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Powerslide skate/inline allround helmet"
+    },
+    "extra-pro-tec-full-cut-certified-helmet": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Pro-Tec Full Cut skate helmet"
+    },
+    "extra-prophete-kinder-schutzehelm": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Kinder = children's helmet"
+    },
+    "extra-rekd-ultralite-mold": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "REKD skate/scooter-style helmet"
+    },
+    "extra-rioroller-rio-script-helmet": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Rio Roller skate-style helmet"
+    },
+    "extra-rosebank-axis": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "NSW Child helmets category"
+    },
+    "extra-rosebank-oasis": {
+      "style": "Multi-sport",
+      "confidence": "low",
+      "note": "Budget brand; NSW General; nothing found online"
+    },
+    "extra-rosebank-rio": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "NSW Child helmets category"
+    },
+    "extra-rosebank-v-10b": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "NSW Road helmets category"
+    },
+    "extra-rosebank-vortex": {
+      "style": "Multi-sport",
+      "confidence": "low",
+      "note": "Budget brand; NSW General; nothing found online"
+    },
+    "extra-rudy-project-rocky": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Retailers: Rudy Project Rocky children's helmet"
+    },
+    "extra-rudy-project-venger": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "Rudy Project Venger road helmet"
+    },
+    "extra-salling-group-premium-ebike-hjelm": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "E-bike helmet"
+    },
+    "extra-scoot-ride-safety-helmet": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "Scoot and Ride kids scooter brand"
+    },
+    "extra-scott-spunto": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Scott Spunto is a kids/junior helmet"
+    },
+    "extra-scottil-doppio-plus": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Scott Il Doppio Plus city helmet with rear light (scott-sports.com)"
+    },
+    "extra-seven-idp-m2-boa": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Seven iDP M2 trail helmet; NSW MTB"
+    },
+    "extra-sikh-brave": {
+      "style": "Road",
+      "confidence": "low",
+      "note": "NSW Road helmets category; patka-friendly design"
+    },
+    "extra-smith-engage-2-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Smith Engage MTB helmet"
+    },
+    "extra-smith-hardline-mips": {
+      "style": "Full-Face",
+      "confidence": "high",
+      "note": "Smith Mainline/Hardline full-face; NSW full-face"
+    },
+    "extra-smith-network-mips": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "Smith Network road helmet; NSW Road"
+    },
+    "extra-smith-payroll-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Smith Payroll trail helmet; NSW MTB"
+    },
+    "extra-smith-session-mips": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Smith Session is an open-face trail MTB helmet"
+    },
+    "extra-specialized-shuffle-2-led": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Specialized Shuffle child/youth helmet"
+    },
+    "extra-specialized-shuffleled-sb-mips": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Specialized Shuffle child/youth helmet"
+    },
+    "extra-stromer-smart-helmet": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Stromer speed-pedelec smart helmet"
+    },
+    "extra-sweet-protection-stringer-mips-helmet": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Sweet Protection Stringer MTB helmet (sweetprotection.com)"
+    },
+    "extra-tempish-marilla-helmet": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Tempish Marilla skate helmet"
+    },
+    "extra-torch-t2-helmet": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Torch T2 urban LED helmet"
+    },
+    "extra-trek-starvos-wavecel": {
+      "style": "Multi-sport",
+      "confidence": "high",
+      "note": "Trek Starvos all-round recreational helmet"
+    },
+    "extra-trek-tyro": {
+      "style": "Kids",
+      "confidence": "high",
+      "note": "Trek Tyro youth helmet"
+    },
+    "extra-unit1-aura-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Unit 1 Aura smart commuter helmet"
+    },
+    "extra-unit1-faro-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Unit1 Faro smart commuter helmet"
+    },
+    "extra-urgebike-cab": {
+      "style": "Urban",
+      "confidence": "medium",
+      "note": "Urge Cab urban helmet"
+    },
+    "extra-uvex-finale-visor": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Uvex finale visor all-round touring/e-bike helmet with visor"
+    },
+    "extra-uvex-hlmt-4": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "Uvex hlmt 4 kids helmet"
+    },
+    "extra-uvex-hlmt-4-cc": {
+      "style": "Kids",
+      "confidence": "medium",
+      "note": "Uvex hlmt 4 kids helmet"
+    },
+    "extra-van-rysel-fcr-mips-roubaix": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Van Rysel FCR road helmet"
+    },
+    "extra-zerorh-zy": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "rh+ ZY entry-level road helmet"
+    },
+    "fizik-kudo": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "fizik.com lists Kudo as vented road helmet; Kudo Aero is aero"
+    },
+    "kali-interceptor": {
+      "style": "Mountain",
+      "confidence": "high",
+      "note": "Kali Interceptor is trail/enduro MTB helmet (pinkbike, bikeradar)"
+    },
+    "lumos-ultra-e-bike-mips": {
+      "style": "Urban",
+      "confidence": "high",
+      "note": "Lumos e-bike commuter helmet with lights, NTA 8776"
+    },
+    "met-trenta-3k-carbon-mips-2022": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "MET Trenta is lightweight vented road helmet; VT says Road"
+    },
+    "met-trenta-3k-carbon-mips-2025": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "Trenta is MET vented road all-rounder; NSW Road"
+    },
+    "met-trenta-mips": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "Trenta is MET vented road all-rounder (Manta is aero)"
+    },
+    "scott-centric-plus-mips": {
+      "style": "Road",
+      "confidence": "medium",
+      "note": "Centric Plus vented road helmet; Scott aero is Cadence"
+    },
+    "scott-split-mips": {
+      "style": "Road",
+      "confidence": "high",
+      "note": "Scott Split vented road/all-round helmet, not aero"
+    },
+    "scott-supra-plus-mips": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Scott Supra: budget all-round road/MTB helmet; NSW Road"
+    },
+    "specialized-search": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Specialized Search gravel/adventure helmet"
+    },
+    "zefal-light-up": {
+      "style": "Multi-sport",
+      "confidence": "medium",
+      "note": "Budget Walmart sport helmet with visor and LED"
+    }
+  }
+}

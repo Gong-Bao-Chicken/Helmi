@@ -3,8 +3,10 @@
 import unittest
 
 from helmet_data.enrich.styles import (
+    apply_style_overrides,
     infer_style,
     infer_style_from_text,
+    load_style_overrides,
     refine_helmet_styles,
     styles_compatible,
 )
@@ -56,3 +58,22 @@ class ModelInferenceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_reviewed_style_overrides_win_and_record_the_rule_style():
+    helmets = [
+        {"id": "abus-hyban-2-0", "brand": "ABUS", "model": "Hyban 2.0", "style": "Unclassified"},
+        {"id": "met-parachute-mcr", "brand": "MET", "model": "Parachute MCR", "style": "Full-Face Mountain"},
+    ]
+    refine_helmet_styles(helmets)
+    assert helmets[1]["style"] == "Full-Face"
+    overrides = {"abus-hyban-2-0": {"style": "Urban", "note": "city helmet with rear light"}}
+    assert apply_style_overrides(helmets, overrides) == 1
+    assert helmets[0]["style"] == "Urban"
+    assert helmets[0]["style_meta"]["source"] == "reviewed"
+    assert helmets[0]["style_meta"]["rule_style"] == "Unclassified"
+
+
+def test_style_overrides_file_only_uses_site_styles():
+    allowed = {"Road", "Aero", "Mountain", "Full-Face", "Multi-sport", "Urban", "Kids"}
+    assert {entry["style"] for entry in load_style_overrides().values()} <= allowed

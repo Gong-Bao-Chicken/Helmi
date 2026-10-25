@@ -20,6 +20,8 @@ export interface RatingBlock {
   test_year?: string | number | null;
   url?: string | null;
   // Virginia Tech
+  /** VT's chart of this helmet's impact results (VT has no page per helmet). */
+  result_url?: string | null;
   score_norm?: number | null;
   score_low_impact?: number | null;
   score_high_impact?: number | null;
@@ -131,6 +133,8 @@ export interface Dataset {
     generated_at: string;
     helmet_count_total: number;
     market_prices_fetched_at?: string;
+    /** Units per USD, refreshed on every price update. */
+    exchange_rates?: { base: "USD"; EUR: number; CHF: number; date?: string | null; source?: string };
     [key: string]: unknown;
   };
   filters: {

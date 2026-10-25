@@ -36,7 +36,14 @@ from .enrich.retailer_protection import (
     apply_retailer_protection_crawl,
     load_retailer_protection_cache,
 )
-from .enrich.styles import STYLE_CACHE_PATH, apply_style_verifications, infer_style, refine_helmet_styles
+from .enrich.styles import (
+    STYLE_CACHE_PATH,
+    apply_style_overrides,
+    apply_style_verifications,
+    infer_style,
+    load_style_overrides,
+    refine_helmet_styles,
+)
 from .paths import (
     AERO_RATINGS_PATH,
     BRANDS_PATH,
@@ -49,6 +56,9 @@ from .steps.extra_ratings import run_fetch_extra_ratings
 
 VT_DATA_URL = "https://www.helmet.beam.vt.edu/js/bicycleData.js"
 VT_IMAGE_BASE = "https://www.helmet.beam.vt.edu/images/bicycle/"
+VT_RATINGS_URL = "https://www.helmet.beam.vt.edu/bicycle-helmet-ratings.html"
+# VT has no page per helmet; its ratings page shows each helmet's result as this chart.
+VT_RESULT_PLOT_BASE = "https://www.helmet.beam.vt.edu/images/bicycle-plots/"
 DEFAULT_OUTPUT = HELMETS_JSON_PATH
 
 USER_AGENT = "Helmi/0.1 (+https://github.com/Gong-Bao-Chicken/Helmi; research prototype)"
@@ -278,6 +288,12 @@ def vt_image_url(photo: str | None, slug: str) -> str:
     """VT serves photos at /images/bicycle/<photo> (photo field of bicycleData.js)."""
     filename = (photo or "").strip() or f"{slug}.jpg"
     return f"{VT_IMAGE_BASE}{filename}"
+
+
+def vt_result_url(photo: str | None, slug: str) -> str:
+    """VT's per-helmet test result chart: /images/bicycle-plots/<photo stem>-scorePlot.svg."""
+    filename = (photo or "").strip() or f"{slug}.jpg"
+    return f"{VT_RESULT_PLOT_BASE}{filename.rsplit('.', 1)[0]}-scorePlot.svg"
 
 
 def normalize_brand(brand: str) -> str:
@@ -522,6 +538,8 @@ def enrich_helmet(
         score_low=raw.get("low"),
         score_high=raw.get("high"),
     )
+    vt_block["url"] = VT_RATINGS_URL
+    vt_block["result_url"] = vt_result_url(raw.get("photo"), slugify(brand, model))
     value_ratio = None
 
     return {
@@ -560,7 +578,7 @@ def enrich_helmet(
         },
         "source": {
             "name": "Virginia Tech Helmet Lab",
-            "url": "https://www.helmet.beam.vt.edu/bicycle-helmet-ratings.html",
+            "url": VT_RATINGS_URL,
         },
     }
 
@@ -678,6 +696,7 @@ def build_dataset(
 
     normalize_brand_names(helmets)
     refine_helmet_styles(helmets)
+    styles_reviewed = apply_style_overrides(helmets, load_style_overrides())
 
     style_verify_stats: dict[str, int] = {}
     if verify_styles or verify_styles_cache_only or STYLE_CACHE_PATH.exists():
@@ -692,7 +711,11 @@ def build_dataset(
                 cache_only=verify_styles_cache_only or not verify_styles,
             )
 
-    meta_extra: dict = {"extra_ratings_merged": extra_merged, "extra_only_count": extra_only_added}
+    meta_extra: dict = {
+        "extra_ratings_merged": extra_merged,
+        "extra_only_count": extra_only_added,
+        "styles_reviewed": styles_reviewed,
+    }
     if aero_stats:
         meta_extra["aero_ratings_matched"] = aero_stats.get("matched", 0)
         meta_extra["aero_ratings_total"] = aero_stats.get("total_entries", 0)

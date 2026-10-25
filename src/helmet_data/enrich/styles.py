@@ -8,7 +8,7 @@ from urllib.parse import quote_plus
 
 import httpx
 
-from ..paths import STYLE_CACHE_PATH
+from ..paths import STYLE_CACHE_PATH, STYLE_OVERRIDES_PATH
 
 AERO_MODEL_TOKENS = (
     "aero",
@@ -36,9 +36,11 @@ AERO_MODEL_TOKENS = (
 )
 
 KIDS_TOKENS = ("kid", "child", "youth", "junior", "teen")
-# Assigned when nothing in the name or manufacturer text names a style; kept apart from
-# Urban so the city category isn't padded with helmets of unknown type.
+# Assigned when neither the lab, the reviewed overrides nor the model name tell the style;
+# kept apart from Urban so the city category isn't padded with helmets of unknown type.
 UNCLASSIFIED = "Unclassified"
+# Lab categories folded into the site's styles.
+STYLE_ALIASES = {"Full-Face Mountain": "Full-Face"}
 
 STYLE_PATTERNS: list[tuple[str, tuple[str, ...]]] = [
     # Kids first: a kids' MTB helmet is chosen as a kids' helmet.
@@ -109,6 +111,7 @@ def refine_helmet_styles(helmets: list[dict]) -> None:
     """Reclassify kids' helmets into Kids, and road and misclassified urban helmets into Aero."""
     for helmet in helmets:
         meta = helmet.setdefault("style_meta", {})
+        helmet["style"] = STYLE_ALIASES.get(helmet["style"], helmet["style"])
         meta.setdefault("assigned", helmet.get("style"))
         meta.setdefault("source", meta.get("source") or "unknown")
 
@@ -126,6 +129,31 @@ def refine_helmet_styles(helmets: list[dict]) -> None:
             helmet["style"] = "Aero"
             meta["assigned"] = "Aero"
             meta["source"] = "virginia_tech_refined"
+
+
+def load_style_overrides() -> dict[str, dict[str, str]]:
+    if not STYLE_OVERRIDES_PATH.exists():
+        return {}
+    return json.loads(STYLE_OVERRIDES_PATH.read_text(encoding="utf-8"))["helmets"]
+
+
+def apply_style_overrides(helmets: list[dict], overrides: dict[str, dict[str, str]]) -> int:
+    """Set the style of each helmet whose model was checked by hand (style_overrides.json).
+
+    Run after refine_helmet_styles: a reviewed style beats the lab category and name rules.
+    """
+    applied = 0
+    for helmet in helmets:
+        override = overrides.get(helmet["id"])
+        if not override or override["style"] == helmet["style"]:
+            continue
+        meta = helmet.setdefault("style_meta", {})
+        meta["rule_style"] = helmet["style"]
+        meta["assigned"] = helmet["style"] = override["style"]
+        meta["source"] = "reviewed"
+        meta["review_note"] = override.get("note")
+        applied += 1
+    return applied
 
 
 def _manufacturer_search_url(brand: str, model: str, brands: dict[str, dict]) -> str | None:

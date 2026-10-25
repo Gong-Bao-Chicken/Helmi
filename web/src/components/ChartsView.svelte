@@ -23,7 +23,7 @@
     vtByYear,
     vtImpactPoints,
   } from "../lib/chartData";
-  import { marketCurrency, type MarketChoice, type SafetySource } from "../lib/finder";
+  import { convert, marketCurrency, type MarketChoice, type SafetySource } from "../lib/finder";
   import { makeLabLabel, money } from "../lib/format";
   import { median } from "../lib/scoring";
   import { app } from "../lib/state.svelte";
@@ -71,9 +71,11 @@
   const yearRows = $derived(vtByYear(dataset, filters));
   const latestYear = $derived(latestTestYear(rated));
   const recentSince = $derived((latestYear ?? 0) - 1);
+  /** "2025–26"; null when no rated helmet in view has a test year, which hides the recent comparison. */
+  const recentRange = $derived(latestYear ? `${recentSince}–${String(latestYear).slice(2)}` : null);
   let brandsByRecent = $state(false);
   const brandList = $derived(brandRows(rated, 6, recentSince));
-  const brands = $derived(brandsByRecent ? sortByRecent(brandList) : brandList);
+  const brands = $derived(brandsByRecent && recentRange ? sortByRecent(brandList) : brandList);
   const byDelta = $derived([...brandList].filter((b) => b.recent?.delta != null).sort((a, b) => b.recent!.delta! - a.recent!.delta!));
   const brandsUp = $derived(byDelta.filter((b) => b.recent!.delta! >= 5).map((b) => b.label));
   const brandsDown = $derived(byDelta.filter((b) => b.recent!.delta! <= -5).map((b) => b.label).reverse());
@@ -95,7 +97,7 @@
   const pairPremium = $derived(median(pair.map((p) => (p.y / p.x - 1) * 100)));
   const pairMax = $derived(Math.max(100, ...pair.flatMap((p) => [p.x, p.y])) * 1.05);
   /** Each axis runs in its country's own currency over the same euro range, so the diagonal is "same price". */
-  const fromEur = (market: MarketKey, eur: number) => (eur / (fx.EUR ?? 1)) * (fx[marketCurrency(market)] ?? 1);
+  const fromEur = (market: MarketKey, eur: number) => convert(eur, "EUR", marketCurrency(market), fx);
   function swapPair() {
     [pairA, pairB] = [pairB, pairA];
   }
@@ -257,8 +259,9 @@
         <p class="mb-4 text-sm text-ink-2">Safety score of every rated helmet by style, safest median first. Each dot is a helmet, the bar the median.</p>
         <CategoryStrips rows={styleRows} color={styleColor} ariaLabel="Safety score distribution by helmet style" />
         <p class="mt-3 text-xs text-ink-3">
-          Styles come from Virginia Tech, the manufacturer, or words in the model name.{#if unclassified}{" "}{unclassified} helmets give no
-            clue, so they are listed as Unclassified rather than guessed.{/if}
+          Styles come from Virginia Tech, a check of each model by hand, or words in the model name.{#if unclassified}{" "}{unclassified}
+            {unclassified === 1 ? "helmet gives" : "helmets give"} no clue, so {unclassified === 1 ? "it is" : "they are"} listed as Unclassified
+            rather than guessed.{/if}
         </p>
       </figure>
 
@@ -286,22 +289,26 @@
       <figure class="card p-5">
         <h3 class="mb-1 text-lg font-semibold">Which brands are safest?</h3>
         <p class="mb-3 text-sm text-ink-2">
-          Brands with at least six rated helmets. A brand's old models can drag its median down, so the diamond shows the median of its
-          helmets tested in {recentSince}–{String(latestYear).slice(2)}, and the arrow how far that sits above (▲) or below (▼) its older ones.
+          Brands with at least six rated helmets.{#if recentRange}{" "}A brand's old models can drag its median down, so the diamond shows the
+            median of its helmets tested in {recentRange}, and the arrow how far that sits above (▲) or below (▼) its older ones.{/if}
           {#if brandsUp.length}Improving most: {brandsUp.slice(0, 3).join(", ")}.{/if}
           {#if brandsDown.length}Slipping: {brandsDown.slice(0, 3).join(", ")}.{/if}
         </p>
-        <div class="mb-3 inline-flex rounded-xl border border-line p-0.5 text-sm" role="group" aria-label="Rank brands by">
-          <button class="rounded-[0.6rem] px-3 py-1 transition {!brandsByRecent ? 'bg-accent-soft font-medium text-ink' : 'text-ink-2 hover:text-ink'}" aria-pressed={!brandsByRecent} onclick={() => (brandsByRecent = false)}>All helmets</button>
-          <button class="rounded-[0.6rem] px-3 py-1 transition {brandsByRecent ? 'bg-accent-soft font-medium text-ink' : 'text-ink-2 hover:text-ink'}" aria-pressed={brandsByRecent} onclick={() => (brandsByRecent = true)}>Recent helmets ({recentSince}–{String(latestYear).slice(2)})</button>
-        </div>
+        {#if recentRange}
+          <div class="mb-3 inline-flex rounded-xl border border-line p-0.5 text-sm" role="group" aria-label="Rank brands by">
+            <button class="rounded-[0.6rem] px-3 py-1 transition {!brandsByRecent ? 'bg-accent-soft font-medium text-ink' : 'text-ink-2 hover:text-ink'}" aria-pressed={!brandsByRecent} onclick={() => (brandsByRecent = false)}>All helmets</button>
+            <button class="rounded-[0.6rem] px-3 py-1 transition {brandsByRecent ? 'bg-accent-soft font-medium text-ink' : 'text-ink-2 hover:text-ink'}" aria-pressed={brandsByRecent} onclick={() => (brandsByRecent = true)}>Recent helmets ({recentRange})</button>
+          </div>
+        {/if}
         <CategoryStrips
           rows={brands}
           rowHeight={26}
-          recentLabel="median of {recentSince}–{String(latestYear).slice(2)} helmets"
+          recentLabel="median of {recentRange} helmets"
           ariaLabel="Safety score distribution by brand"
         />
-        <p class="mt-2 text-xs text-ink-3">Test year stands in for release year. Brands with fewer than two recent helmets show no diamond{brandsByRecent ? " and are listed last" : ""}.</p>
+        {#if recentRange}
+          <p class="mt-2 text-xs text-ink-3">Test year stands in for release year. Brands with fewer than two recent helmets show no diamond{brandsByRecent ? " and are listed last" : ""}.</p>
+        {/if}
       </figure>
     </div>
   </div>

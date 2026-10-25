@@ -2,6 +2,7 @@
   import { explain, labsFor, PEER_WINDOW, priceFor, safetyFor, type FinderResult, type Reason } from "../lib/finder";
   import { makeLabLabel, money, pct, shopName } from "../lib/format";
   import { PICK_META } from "../lib/picks";
+  import { styleLabel } from "../lib/styles";
   import { app, MAX_COMPARE, toggleCompare } from "../lib/state.svelte";
   import type { Dataset, Helmet, MarketKey } from "../lib/types";
   import LabAgreement from "./charts/LabAgreement.svelte";
@@ -78,7 +79,7 @@
   class="fixed inset-y-0 right-0 z-50 flex w-full max-w-xl flex-col overflow-y-auto border-l border-line bg-bg shadow-2xl outline-none"
 >
   <div class="sticky top-0 z-10 flex items-center justify-between border-b border-line bg-bg/90 px-5 py-3 backdrop-blur">
-    <span class="text-sm text-ink-3">{helmet.style} · {helmet.test_year ? `tested ${helmet.test_year}` : "test year unknown"}</span>
+    <span class="text-sm text-ink-3">{styleLabel(helmet.style)} · {helmet.test_year ? `tested ${helmet.test_year}` : "test year unknown"}</span>
     <button class="btn size-8 p-0" onclick={close} aria-label="Close">✕</button>
   </div>
 
@@ -183,8 +184,11 @@
         {#if r.virginia_tech}
           <div class="flex items-start justify-between gap-4 p-3">
             <div>
-              <a class="font-medium hover:underline" href={helmet.source?.url ?? "https://www.helmet.beam.vt.edu/"} target="_blank" rel="noopener">Virginia Tech STAR</a>
+              <a class="font-medium hover:underline" href={r.virginia_tech.url ?? helmet.source?.url ?? "https://www.helmet.beam.vt.edu/"} target="_blank" rel="noopener">Virginia Tech STAR {r.virginia_tech.test_year ?? ""}</a>
               <p class="text-xs text-ink-3">Lower STAR score is safer. Low / high impact: {r.virginia_tech.score_low_impact?.toFixed(1) ?? "–"} / {r.virginia_tech.score_high_impact?.toFixed(1) ?? "–"}</p>
+              {#if r.virginia_tech.result_url}
+                <a class="text-xs text-accent hover:underline" href={r.virginia_tech.result_url} target="_blank" rel="noopener">This helmet's test result at Virginia Tech ↗</a>
+              {/if}
             </div>
             <div class="text-right num">
               <div class="font-semibold">{r.virginia_tech.score?.toFixed(2) ?? "–"}</div>

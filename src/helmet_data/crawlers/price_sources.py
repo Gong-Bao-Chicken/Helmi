@@ -422,7 +422,10 @@ def search_geizhals(
     domain: str = "geizhals.de",
     page_fetcher: Callable[[str], str | None] | None = None,
 ) -> list[PriceOffer]:
-    url = f"https://{domain}/?fs={quote_plus(ctx.query)}"
+    # Without ``hloc`` geizhals.de also lists Austrian shops and geizhals.eu every country's;
+    # each market only takes prices from its own shops.
+    region = "at" if domain.endswith(".at") else "de"
+    url = f"https://{domain}/?fs={quote_plus(ctx.query)}&hloc={region}"
     html: str | None
     if page_fetcher is not None:
         html = page_fetcher(url)
@@ -626,8 +629,8 @@ def search_http_sources(
     offers: list[PriceOffer] = []
 
     def geizhals() -> list[PriceOffer]:
-        # geizhals.eu is the same catalogue with more countries' shops: only worth a request
-        # (on the same, busiest site) when geizhals.de has nothing.
+        # geizhals.eu has a larger catalogue (searched for German shops only): only worth a
+        # request (on the same, busiest site) when geizhals.de has nothing.
         found = search_geizhals(client, ctx, domain="geizhals.de")
         if found or geizhals_is_rate_limited():
             return found

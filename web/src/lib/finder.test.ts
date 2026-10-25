@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_GOALS, explain, findHelmets, peersOf, priceFor } from "./finder";
+import { DEFAULT_GOALS, explain, findHelmets, fxRates, peersOf, priceFor } from "./finder";
 import type { Dataset, Helmet } from "./types";
 
 const features = {
@@ -65,6 +65,23 @@ describe("priceFor", () => {
       from: "de",
     });
     expect(priceFor(helmet("e", { safety: 0.5, usd: 100 }), "ch", fx)).toMatchObject({ amount: 85, from: null });
+  });
+
+  it("shows a same-currency neighbour's price unchanged and prefers it over a converted one", () => {
+    const listing = (price: number, currency: string) => ({ price, currency, rating: null, review_count: null, url: null, source: "x" });
+    const h = helmet("f", { safety: 0.5, listings: { de: listing(89.9, "EUR"), ch: listing(150, "CHF") } });
+    expect(priceFor(h, "at", fx)).toMatchObject({ amount: 89.9, currency: "EUR", from: "de", converted: false });
+    const swissOnly = helmet("g", { safety: 0.5, listings: { ch: listing(170, "CHF") } });
+    expect(priceFor(swissOnly, "at", fx)).toMatchObject({ amount: 180, from: "ch", converted: true });
+  });
+});
+
+describe("fxRates", () => {
+  it("uses the data file's exchange rates and falls back without them", () => {
+    const ds = dataset([]);
+    expect(fxRates(ds)).toEqual({ USD: 1, EUR: 0.92, CHF: 0.88 });
+    ds.meta.exchange_rates = { base: "USD", EUR: 0.89, CHF: 0.82 };
+    expect(fxRates(ds)).toEqual({ USD: 1, EUR: 0.89, CHF: 0.82 });
   });
 });
 

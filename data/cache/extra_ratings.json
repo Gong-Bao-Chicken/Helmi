@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-11T13:35:29.286628+00:00",
+    "generated_at": "2026-10-25T16:35:50.925738+00:00",
     "sources": {
       "certimoov": {
         "fetched": 228,
@@ -1630,25 +1630,6 @@
       }
     },
     {
-      "id": "lazer-cityzen-kineticore",
-      "match": {
-        "brand": "Lazer",
-        "model": "CityZen KinetiCore",
-        "confidence": 1.0,
-        "method": "token_overlap"
-      },
-      "ratings": {
-        "nsw_helmet_star": {
-          "stars": 4,
-          "category": "Road helmets",
-          "price_band": "$",
-          "test_year": 2024,
-          "url": "https://www.helmetstar.com.au/helmet/lazer-cityzen",
-          "rank_pct": 0.6
-        }
-      }
-    },
-    {
       "id": "lazer-chiru-mips",
       "match": {
         "brand": "Lazer",
@@ -1663,6 +1644,25 @@
           "price_band": "$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/lazer-chiru",
+          "rank_pct": 0.6
+        }
+      }
+    },
+    {
+      "id": "lazer-cityzen-kineticore",
+      "match": {
+        "brand": "Lazer",
+        "model": "CityZen KinetiCore",
+        "confidence": 1.0,
+        "method": "token_overlap"
+      },
+      "ratings": {
+        "nsw_helmet_star": {
+          "stars": 4,
+          "category": "Road helmets",
+          "price_band": "$",
+          "test_year": 2024,
+          "url": "https://www.helmetstar.com.au/helmet/lazer-cityzen",
           "rank_pct": 0.6
         }
       }
@@ -1740,6 +1740,25 @@
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/lazer-z1-kineticore",
           "rank_pct": 0.24
+        }
+      }
+    },
+    {
+      "id": "specialized-camber",
+      "match": {
+        "brand": "Specialized",
+        "model": "Camber",
+        "confidence": 0.98,
+        "method": "brand_model_exact"
+      },
+      "ratings": {
+        "nsw_helmet_star": {
+          "stars": 1,
+          "category": "Mountain bike open-face helmets",
+          "price_band": "$$",
+          "test_year": 2024,
+          "url": "https://www.helmetstar.com.au/helmet/specialized-camber",
+          "rank_pct": 0.1
         }
       }
     },
@@ -1872,25 +1891,6 @@
           "price_band": "$$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/troy-lee-designs-flowline",
-          "rank_pct": 0.1
-        }
-      }
-    },
-    {
-      "id": "specialized-camber",
-      "match": {
-        "brand": "Specialized",
-        "model": "Camber",
-        "confidence": 0.98,
-        "method": "brand_model_exact"
-      },
-      "ratings": {
-        "nsw_helmet_star": {
-          "stars": 1,
-          "category": "Mountain bike open-face helmets",
-          "price_band": "$$",
-          "test_year": 2024,
-          "url": "https://www.helmetstar.com.au/helmet/specialized-camber",
           "rank_pct": 0.1
         }
       }

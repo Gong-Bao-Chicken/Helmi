@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-11T13:35:29.286628+00:00",
+    "generated_at": "2026-10-25T16:35:50.925738+00:00",
     "sources": {
       "certimoov": {
         "fetched": 228,
@@ -1630,25 +1630,6 @@
       }
     },
     {
-      "id": "lazer-cityzen-kineticore",
-      "match": {
-        "brand": "Lazer",
-        "model": "CityZen KinetiCore",
-        "confidence": 1.0,
-        "method": "token_overlap"
-      },
-      "ratings": {
-        "nsw_helmet_star": {
-          "stars": 4,
-          "category": "Road helmets",
-          "price_band": "$",
-          "test_year": 2024,
-          "url": "https://www.helmetstar.com.au/helmet/lazer-cityzen",
-          "rank_pct": 0.6
-        }
-      }
-    },
-    {
       "id": "lazer-chiru-mips",
       "match": {
         "brand": "Lazer",
@@ -1663,6 +1644,25 @@
           "price_band": "$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/lazer-chiru",
+          "rank_pct": 0.6
+        }
+      }
+    },
+    {
+      "id": "lazer-cityzen-kineticore",
+      "match": {
+        "brand": "Lazer",
+        "model": "CityZen KinetiCore",
+        "confidence": 1.0,
+        "method": "token_overlap"
+      },
+      "ratings": {
+        "nsw_helmet_star": {
+          "stars": 4,
+          "category": "Road helmets",
+          "price_band": "$",
+          "test_year": 2024,
+          "url": "https://www.helmetstar.com.au/helmet/lazer-cityzen",
           "rank_pct": 0.6
         }
       }
@@ -1740,6 +1740,25 @@
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/lazer-z1-kineticore",
           "rank_pct": 0.24
+        }
+      }
+    },
+    {
+      "id": "specialized-camber",
+      "match": {
+        "brand": "Specialized",
+        "model": "Camber",
+        "confidence": 0.98,
+        "method": "brand_model_exact"
+      },
+      "ratings": {
+        "nsw_helmet_star": {
+          "stars": 1,
+          "category": "Mountain bike open-face helmets",
+          "price_band": "$$",
+          "test_year": 2024,
+          "url": "https://www.helmetstar.com.au/helmet/specialized-camber",
+          "rank_pct": 0.1
         }
       }
     },
@@ -1872,25 +1891,6 @@
           "price_band": "$$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/troy-lee-designs-flowline",
-          "rank_pct": 0.1
-        }
-      }
-    },
-    {
-      "id": "specialized-camber",
-      "match": {
-        "brand": "Specialized",
-        "model": "Camber",
-        "confidence": 0.98,
-        "method": "brand_model_exact"
-      },
-      "ratings": {
-        "nsw_helmet_star": {
-          "stars": 1,
-          "category": "Mountain bike open-face helmets",
-          "price_band": "$$",
-          "test_year": 2024,
-          "url": "https://www.helmetstar.com.au/helmet/specialized-camber",
           "rank_pct": 0.1
         }
       }
@@ -6084,6 +6084,26 @@
     },
     {
       "source": "nsw_helmet_star",
+      "model": "BBB Aktiv",
+      "stars": 2,
+      "category": "General helmets",
+      "price_band": "$",
+      "url": "https://www.helmetstar.com.au/helmet/bbb-aktiv",
+      "test_year": 2024,
+      "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-06/61.-BBB-Aktiv-1.webp"
+    },
+    {
+      "source": "nsw_helmet_star",
+      "model": "Giro Elixir",
+      "stars": 2,
+      "category": "Mountain bike open-face helmets",
+      "price_band": "$$",
+      "url": "https://www.helmetstar.com.au/helmet/giro-elixir",
+      "test_year": 2026,
+      "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-06/37-GIRO-Elixir-1.webp"
+    },
+    {
+      "source": "nsw_helmet_star",
       "model": "UVEX Surge Aero MIPS",
       "stars": 2,
       "category": "Road helmets",
@@ -6121,26 +6141,6 @@
       "url": "https://www.helmetstar.com.au/helmet/decathlon-van-rysel-road-r-500",
       "test_year": 2026,
       "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-06/12-DECATHLON-VAN-RYSEL-Road-R-500-1.webp"
-    },
-    {
-      "source": "nsw_helmet_star",
-      "model": "BBB Aktiv",
-      "stars": 2,
-      "category": "General helmets",
-      "price_band": "$",
-      "url": "https://www.helmetstar.com.au/helmet/bbb-aktiv",
-      "test_year": 2024,
-      "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-06/61.-BBB-Aktiv-1.webp"
-    },
-    {
-      "source": "nsw_helmet_star",
-      "model": "Giro Elixir",
-      "stars": 2,
-      "category": "Mountain bike open-face helmets",
-      "price_band": "$$",
-      "url": "https://www.helmetstar.com.au/helmet/giro-elixir",
-      "test_year": 2026,
-      "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-06/37-GIRO-Elixir-1.webp"
     },
     {
       "source": "nsw_helmet_star",
@@ -6204,6 +6204,16 @@
     },
     {
       "source": "nsw_helmet_star",
+      "model": "AZUR RX1",
+      "stars": 1,
+      "category": "Road helmets",
+      "price_band": "$$",
+      "url": "https://www.helmetstar.com.au/helmet/azur-rx1",
+      "test_year": 2025,
+      "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-07/1-Azure-RX1-1_edited.png"
+    },
+    {
+      "source": "nsw_helmet_star",
       "model": "Fluid Peak",
       "stars": 1,
       "category": "Mountain bike open-face helmets",
@@ -6221,16 +6231,6 @@
       "url": "https://www.helmetstar.com.au/helmet/kask-mojito",
       "test_year": 2026,
       "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-06/18-KASK-Mojito-3-1.webp"
-    },
-    {
-      "source": "nsw_helmet_star",
-      "model": "AZUR RX1",
-      "stars": 1,
-      "category": "Road helmets",
-      "price_band": "$$",
-      "url": "https://www.helmetstar.com.au/helmet/azur-rx1",
-      "test_year": 2025,
-      "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-07/1-Azure-RX1-1_edited.png"
     },
     {
       "source": "nsw_helmet_star",
@@ -6374,6 +6374,16 @@
     },
     {
       "source": "nsw_helmet_star",
+      "model": "Bold Sikh helmet",
+      "stars": 1,
+      "category": "Child helmets",
+      "price_band": "$$",
+      "url": "https://www.helmetstar.com.au/helmet/bold-sikh-helmet",
+      "test_year": 2025,
+      "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-07/54.-BOLD-SIKH-HELMETS-1_resized.png"
+    },
+    {
+      "source": "nsw_helmet_star",
       "model": "99 Bikes (FLITE) Speedy Fireman",
       "stars": 1,
       "category": "Child helmets",
@@ -6391,16 +6401,6 @@
       "url": "https://www.helmetstar.com.au/helmet/giant-hoot-arx",
       "test_year": 2025,
       "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-07/50-Giant-Hoot-ARX-1_resized.webp"
-    },
-    {
-      "source": "nsw_helmet_star",
-      "model": "Bold Sikh helmet",
-      "stars": 1,
-      "category": "Child helmets",
-      "price_band": "$$",
-      "url": "https://www.helmetstar.com.au/helmet/bold-sikh-helmet",
-      "test_year": 2025,
-      "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-07/54.-BOLD-SIKH-HELMETS-1_resized.png"
     }
   ]
 }

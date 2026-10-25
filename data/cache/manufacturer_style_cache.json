@@ -3888,5 +3888,25 @@
     "fetched": false,
     "manufacturer_style": null,
     "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Ventral'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "met-parachute-mcr": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Parachute+MCR'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lumos-aero-gt-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-van-rysel-fcr-mips-roubaix": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-van-rysel-road-r-500": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
   }
 }

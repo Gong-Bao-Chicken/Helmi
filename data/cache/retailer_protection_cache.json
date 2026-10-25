@@ -1317,10 +1317,17 @@
     "error": null
   },
   "giant-liv-path-mips": {
-    "fetched": false,
-    "mips_variant": null,
-    "protection_tech": null,
-    "error": "no_product_urls"
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201811105_-liv-path-mips-giant.html",
+    "mips_variant": "standard",
+    "mips_label": "MIPS",
+    "protection_tech": "mips_standard",
+    "snippet": "Giant Liv Path MIPS ab 35,09 € (Oktober 2026) | Preisvergleich bei idealo.de 0\"",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
   },
   "lazer-blade-mips": {
     "fetched": true,
@@ -2848,5 +2855,30 @@
       "geizhals"
     ],
     "error": null
+  },
+  "met-parachute-mcr": {
+    "fetched": true,
+    "product_url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6655971_-parachute-mcr-mips-met.html",
+    "mips_variant": "integra",
+    "mips_label": "MIPS Integra",
+    "protection_tech": "sweet_2vi",
+    "snippet": "MET Parachute MCR Mips ab 234,95 € (Oktober 2026) | Vergleiche 17 Angebote auf ide",
+    "source": "retailer_idealo",
+    "sources_tried": [
+      "idealo"
+    ],
+    "error": null
+  },
+  "bontrager-rally-mips": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
+  },
+  "bontrager-circuit-mips": {
+    "fetched": false,
+    "mips_variant": null,
+    "protection_tech": null,
+    "error": "no_product_urls"
   }
 }

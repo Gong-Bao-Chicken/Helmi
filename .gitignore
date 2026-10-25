@@ -5,8 +5,6 @@ __pycache__/
 .ruff_cache/
 
 # Generated caches (local only)
-data/cache/price_cache.json
-data/cache/manufacturer_style_cache.json
 data/cache/.stealth-cookies.json
 data/cache/.browser-profile/
 

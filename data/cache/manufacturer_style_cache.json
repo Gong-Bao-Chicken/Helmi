@@ -1,0 +1,3892 @@
+{
+  "specialized-tactic-4": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Server error '500 Internal Server Error' for url 'https://www.specialized.com/ch/en/search/Specialized%20Tactic%204'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+  },
+  "sweet-protection-trailblazer-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Trailblazer+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "specialized-mode": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "fox-racing-dropframe-pro-2020-version": {
+    "fetched": true,
+    "title": "Dropframe Helmets - Aggressive Trail Enduro | Fox Racing®",
+    "description": "The Dropframe is a full-coverage open-face mountain bike helmet. Equip for exceptional coverage on the trail while maintaining breathability.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "giant-rev-comp-mips": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-g1-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+G1+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "bontrager-rally-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "specialized-align-ii": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-tonic-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Tonic+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "troy-lee-designs-a2-mips-decoy": {
+    "fetched": true,
+    "title": "Search: 85 results found for &quot;Troy Lee Designs A2 MIPS Decoy&quot;",
+    "description": "Since 1981, Troy Lee Designs has been developing Moto and MTB helmets protective gear and apparel For the World&#39;s Fastest Racers.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "lazer-century-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Century+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "scott-centric-plus-mips": {
+    "fetched": true,
+    "title": null,
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giant-rev-pro-mips-2021": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "liv-rev-pro-mips": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-sphere-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Sphere+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-cyclone-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Cyclone+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "poc-octal-x-spin": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Octal+X+SPIN'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "scott-arx-plus-mips-2020": {
+    "fetched": true,
+    "title": null,
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bontrager-specter-wavecel": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "fox-racing-speedframe-pro-mips-2024": {
+    "fetched": true,
+    "title": "Fox Racing® USA - Official Site - Moto, Mountain Bike, Gear, Helmets | Fox Racing®",
+    "description": "Fox Racing, is the most recognized Motocross &amp; Mountain Bike brand, and the Gear and Helmet choice of Action sports athletes.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "bontrager-ballista-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "lazer-anverz-nta-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Anverz+NTA+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "troy-lee-designs-a3-mips": {
+    "fetched": true,
+    "title": "Search: 190 results found for &quot;Troy Lee Designs A3 MIPS&quot;",
+    "description": "Since 1981, Troy Lee Designs has been developing Moto and MTB helmets protective gear and apparel For the World&#39;s Fastest Racers.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "bontrager-starvos-wavecel-asia-fit": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "bontrager-starvos-wavecel-round-fit": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "giant-rail-sx-mips": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-jackal-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Jackal+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "bontrager-starvos-wavecel": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "giro-tyrant-spherical": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bell-z20-mips": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "specialized-prevail-2-vent-mips": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bontrager-solstice-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "troy-lee-designs-a1-classic-mips": {
+    "fetched": true,
+    "title": "Search: 41 results found for &quot;Troy Lee Designs A1 Classic MIPS&quot;",
+    "description": "Since 1981, Troy Lee Designs has been developing Moto and MTB helmets protective gear and apparel For the World&#39;s Fastest Racers.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "poc-tectal-race-spin": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Tectal+Race+Spin'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "bontrager-circuit-wavecel": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "bontrager-xxx-wavecel": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "bell-formula-mips": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giant-roost-mips": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bontrager-rally-wavecel": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "lazer-z1-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Z1+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "giro-manifest-spherical": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "specialized-echelon-ii-mips": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bontrager-velocis-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "rudy-project-racemaster-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.rudyproject.com/us/en/search?q=Rudy+Project+RaceMaster+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-cruizer-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Cruizer+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-blade-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+BLADE%2B+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "louis-garneau-raid-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "bell-z20-aero-mips": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giant-path-mips": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giant-relay-mips": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "liv-path-mips": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "liv-relay-mips": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giro-aether-spherical": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bern-union-mips": {
+    "fetched": true,
+    "title": "Search: 31 results found for &quot;Bern Union MIPS&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "error": null
+  },
+  "specialized-s-works-prevail-ii-mips": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-cannibal-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Cannibal+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "bell-stratus-mips": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "thousand-chapter-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "lazer-roller-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Roller+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "giro-synthe-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-chiru-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Chiru+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "specialized-chamonix-mips": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bontrager-blaze-wavecel": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "scott-stego-plus-mips": {
+    "fetched": true,
+    "title": "Confirmation | Scott",
+    "description": "Search results for null on SCOTT Global",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giro-syntax-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "fox-racing-mainframe-mips": {
+    "fetched": true,
+    "title": "Fox Racing® USA - Official Site - Moto, Mountain Bike, Gear, Helmets | Fox Racing®",
+    "description": "Fox Racing, is the most recognized Motocross &amp; Mountain Bike brand, and the Gear and Helmet choice of Action sports athletes.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "lazer-urbanize-nta-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Urbanize+NTA+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "nutcase-street-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://nutcasehelmets.com/search?q=Nutcase+Street+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "bontrager-charge-wavecel": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "giro-chronicle-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-impala-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Impala+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "specialized-ambush-mips": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "smith-route-mips": {
+    "fetched": true,
+    "title": "Search: 81 results found for &quot;Smith Route MIPS&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-compact-dlx-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Compact+DLX+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "bontrager-circuit-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "giro-caden-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "scott-arx-plus-mips-2014": {
+    "fetched": true,
+    "title": "Confirmation | Scott",
+    "description": "Search results for null on SCOTT Global",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bontrager-quantum-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "specialized-s-works-evade-ii-mips": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bell-annex-mips": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-cameleon-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Cameleon+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-coyote-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Coyote+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "specialized-centro-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Server error '500 Internal Server Error' for url 'https://www.specialized.com/ch/en/search/Specialized%20Centro%20MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+  },
+  "specialized-s-works-prevail-ii": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "smith-overtake": {
+    "fetched": true,
+    "title": "Search: 5 results found for &quot;Smith Overtake&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": "Aero",
+    "error": null
+  },
+  "scott-vivo-plus-mips": {
+    "fetched": true,
+    "title": "Confirmation | Scott",
+    "description": "Search results for null on SCOTT Global",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "catlike-whisper": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "giro-savant": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bell-sixer-mips": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "cannondale-ryker-am-mips": {
+    "fetched": true,
+    "title": "404",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bell-draft-mips": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "specialized-ambush": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "poc-octal": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Octal'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "poc-omne-air-spin": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Omne+Air+SPIN'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "poc-tectal": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Tectal'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "giro-foray-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "louis-garneau-course": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "schwinn-intercept": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "giro-synthe": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giro-register": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "scott-cadence-plus-mips": {
+    "fetched": true,
+    "title": "Confirmation | Scott",
+    "description": "Search results for null on SCOTT Global",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "6d-atb-1t-evo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "giro-fixture-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "s1-lifer": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "giro-sutton-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "kali-therapy": {
+    "fetched": true,
+    "title": "Search: 10 results found for &quot;Kali Therapy&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "leatt-dbx-3-0-all-mountain-v19-2": {
+    "fetched": true,
+    "title": "Leatt | Moto, MTB &amp; ADV Protective Gear &amp; Apparel",
+    "description": "Explore Leatt MOTO, MTB &amp; ADV gear. Premium helmets, body armor &amp; apparel engineered for performance, comfort &amp; world-class rider protection.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "specialized-s-works-evade-ii": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Server error '500 Internal Server Error' for url 'https://www.specialized.com/ch/en/search/Specialized%20S-Works%20Evade%20II'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+  },
+  "smith-forefront": {
+    "fetched": true,
+    "title": "Search: 11 results found for &quot;Smith Forefront&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "louis-garneau-le-tour-ii": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "bell-adrenaline": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "triple-8-dual-certified-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "louis-garneau-eagle": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "lazer-blade": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Blade'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "troy-lee-designs-a1-drone": {
+    "fetched": true,
+    "title": "Search: 43 results found for &quot;Troy Lee Designs A1 Drone&quot;",
+    "description": "Since 1981, Troy Lee Designs has been developing Moto and MTB helmets protective gear and apparel For the World&#39;s Fastest Racers.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "schwinn-excursion": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "bern-allston": {
+    "fetched": true,
+    "title": "Search: 41 results found for &quot;Bern Allston&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "error": null
+  },
+  "giro-hex": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "kask-valegro": {
+    "fetched": true,
+    "title": "Sites-KASK_EU-Site",
+    "description": "KASK &amp; KOO Official Store",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "kali-interceptor": {
+    "fetched": true,
+    "title": "Search: 12 results found for &quot;Kali Interceptor&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "kali-maya-2-0": {
+    "fetched": true,
+    "title": "Search: 4 results found for &quot;Kali Maya 2.0&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bell-reflex": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bontrager-solstice": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "bern-brentwood": {
+    "fetched": true,
+    "title": "Search: 49 results found for &quot;Bern Brentwood&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "error": null
+  },
+  "bell-division": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "schwinn-thrasher": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "giro-revel": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "schwinn-flash": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "smith-holt": {
+    "fetched": true,
+    "title": "Search: 1 result found for &quot;Smith Holt&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "kali-tava": {
+    "fetched": true,
+    "title": "Search: 1 result found for &quot;Kali Tava&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "kali-city": {
+    "fetched": true,
+    "title": "Search: 12 results found for &quot;Kali City&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": "Urban",
+    "error": null
+  },
+  "nutcase-street": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://nutcasehelmets.com/search?q=Nutcase+Street'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "specialized-centro": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "schwinn-chic": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "electra-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "cannondale-quick": {
+    "fetched": true,
+    "title": "404",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-genesis": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Genesis'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "thousand-heritage": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "specialized-echelon-ii": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bern-watts": {
+    "fetched": true,
+    "title": "Search: 42 results found for &quot;Bern Watts&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "error": null
+  },
+  "6d-atb-2t": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "specialized-ambush-2": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "specialized-camber": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "scott-argo-plus-mips": {
+    "fetched": true,
+    "title": "Confirmation | Scott",
+    "description": "Search results for null on SCOTT Global",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "lazer-vento-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Vento+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-jackal-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Jackal+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-strada-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Strada+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-cityzen-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+CityZen+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "giant-realm-mips": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "airnoggin-head-trauma-protection-system": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "lumos-ultra": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "bern-major-mips": {
+    "fetched": true,
+    "title": "Search: 34 results found for &quot;Bern Major MIPS&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "error": null
+  },
+  "specialized-prevail-3": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "specialized-evade-3": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bern-hudson": {
+    "fetched": true,
+    "title": "Search: 38 results found for &quot;Bern Hudson&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "error": null
+  },
+  "lazer-cage-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Cage+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-coyote-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Coyote+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-tonic-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Tonic+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-tempo-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Tempo+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-codax-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Codax+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "schwinn-insight-ert": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "zefal-pro-24": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "7idp-m2": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "100-percent-altis": {
+    "fetched": true,
+    "title": "Search: 1 result found for &quot;100 Percent ALTIS&quot;",
+    "description": "100% is one of the premier providers of premium quality motocross, mountain bike, and offroad goggles, mountain bike and BMX helmets, and sports sunglasses.",
+    "manufacturer_style": "Full-Face",
+    "error": null
+  },
+  "mongoose-capture": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "razor-v-12": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "kali-chakra-solo": {
+    "fetched": true,
+    "title": "Search: 16 results found for &quot;Kali Chakra Solo&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "smith-signal-mips": {
+    "fetched": true,
+    "title": "Search: 106 results found for &quot;Smith Signal MIPS&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "specialized-tone": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bluegrass-rogue-core-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "met-downtown-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Downtown+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "met-miles-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Miles+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "met-terranova-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Terranova+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "met-vinci-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Vinci+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "met-trenta-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Trenta+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "met-rivale-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Rivale+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "met-trenta-3k-carbon-mips-2022": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Trenta+3K+Carbon+MIPS+%282022%29'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "closca-helmet-loop": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "giro-aries-spherical": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giro-eclipse-spherical": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giro-helios-spherical": {
+    "fetched": true,
+    "title": "Giro US | Giro Sport Design©",
+    "description": "Shop All Giro US at Giro Sport Design",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "serfas-vault": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "base-camp-urban-commuter": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "scott-supra-plus-mips": {
+    "fetched": true,
+    "title": "Confirmation | Scott",
+    "description": "Search results for null on SCOTT Global",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "scott-tago-plus-mips": {
+    "fetched": true,
+    "title": "Confirmation | Scott",
+    "description": "Search results for null on SCOTT Global",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "troy-lee-designs-flowline": {
+    "fetched": true,
+    "title": "Search: 326 results found for &quot;Troy Lee Designs Flowline&quot;",
+    "description": "Since 1981, Troy Lee Designs has been developing Moto and MTB helmets protective gear and apparel For the World&#39;s Fastest Racers.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "troy-lee-designs-flowline-se": {
+    "fetched": true,
+    "title": "Search: 186 results found for &quot;Troy Lee Designs Flowline SE&quot;",
+    "description": "Since 1981, Troy Lee Designs has been developing Moto and MTB helmets protective gear and apparel For the World&#39;s Fastest Racers.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "endura-mt500-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "trek-velocis-mips": {
+    "fetched": true,
+    "title": "SEARCH Trek Velocis MIPS",
+    "description": "Search results for Trek Velocis MIPS on Trekbikes.com",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "sweet-protection-falconer-aero-2vi-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Falconer+Aero+2Vi+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "kask-elemento": {
+    "fetched": true,
+    "title": "Sites-KASK_EU-Site",
+    "description": "KASK &amp; KOO Official Store",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "s1-retro-lifer-e-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "thousand-heritage-2-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "sweet-protection-falconer-2vi-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Falconer+2Vi+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "sweet-protection-bushwhacker-2vi-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Bushwhacker+2Vi+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "sweet-protection-promuter-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Promuter+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-cerro-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Cerro+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-chase-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Chase+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "trek-solstice-mips": {
+    "fetched": true,
+    "title": "SEARCH Trek Solstice MIPS",
+    "description": "Search results for Trek Solstice MIPS on Trekbikes.com",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "trek-solstice-mips-asia-fit": {
+    "fetched": true,
+    "title": "SEARCH Trek Solstice MIPS Asia Fit",
+    "description": "Search results for Trek Solstice MIPS Asia Fit on Trekbikes.com",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "trek-ballista-mips": {
+    "fetched": true,
+    "title": "SEARCH Trek Ballista MIPS",
+    "description": "Search results for Trek Ballista MIPS on Trekbikes.com",
+    "manufacturer_style": "Aero",
+    "error": null
+  },
+  "giant-roost": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giant-rail": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "liv-roost": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "liv-rail": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "trek-ballista-mips-asia-fit": {
+    "fetched": true,
+    "title": "SEARCH Trek Ballista MIPS Asia Fit",
+    "description": "Search results for Trek Ballista MIPS Asia Fit on Trekbikes.com",
+    "manufacturer_style": "Aero",
+    "error": null
+  },
+  "bluegrass-vanguard-core": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "endura-mt500-full-face-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "endura-hummvee-plus-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "mongoose-session": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "abus-pedelec-2-0-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Pedelec+2.0+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "abus-cliffhanger-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Cliffhanger+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "abus-hyban-2-0-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Hyban+2.0+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "abus-motrip": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Motrip'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "abus-powerdome-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Powerdome+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "fox-racing-crossframe-pro": {
+    "fetched": true,
+    "title": "Fox Racing® USA - Official Site - Moto, Mountain Bike, Gear, Helmets | Fox Racing®",
+    "description": "Fox Racing, is the most recognized Motocross &amp; Mountain Bike brand, and the Gear and Helmet choice of Action sports athletes.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "outdoor-master-gem": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "abus-modrop-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+MoDrop+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "fox-racing-dropframe-pro-2023": {
+    "fetched": true,
+    "title": "Dropframe Helmets - Aggressive Trail Enduro | Fox Racing®",
+    "description": "The Dropframe is a full-coverage open-face mountain bike helmet. Equip for exceptional coverage on the trail while maintaining breathability.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "lazer-lupo-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Lupo+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-z1-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Z1+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "lazer-finch-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Finch+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "bikeroo-tt-29": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "specialized-propero-4": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "retrospec-dakota": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "giant-rev-elite-mips": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "kav-nova": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "specialized-search": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "bluegrass-jetro": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "specialized-chamonix-3": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "specialized-loma": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "abus-motrip-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Motrip+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "abus-gamechanger-2-0-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Gamechanger+2.0+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "abus-purl-y": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+PURL-Y'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "scott-cadence-plus": {
+    "fetched": true,
+    "title": "Confirmation | Scott",
+    "description": "Search results for null on SCOTT Global",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "rudy-project-rebel": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.rudyproject.com/us/en/search?q=Rudy+Project+Rebel'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "victgoal-vg-112": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "poc-cytal-carbon": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Cytal+Carbon'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "trek-quantum-wavecel": {
+    "fetched": true,
+    "title": "SEARCH Trek Quantum WaveCel",
+    "description": "Search results for Trek Quantum WaveCel on Trekbikes.com",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "trek-rally-wavecel": {
+    "fetched": true,
+    "title": "SEARCH Trek Rally WaveCel",
+    "description": "Search results for Trek Rally WaveCel on Trekbikes.com",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "trek-blaze-wavecel": {
+    "fetched": true,
+    "title": "SEARCH Trek Blaze WaveCel",
+    "description": "Search results for Trek Blaze WaveCel on Trekbikes.com",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "pmt-kora": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "fend-one": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "base-camp-bc-019": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "mongoose-title": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "pmt-elegant-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "zefal-light-up": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "zefal-ultra-light": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "schwinn-sequel-ert": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "demon-united-fr-link": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "o-neal-sonus": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "giant-rev-comp": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "7idp-m1": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "bell-servo": {
+    "fetched": true,
+    "title": "Bell US | Bell Helmets©",
+    "description": "Shop Bell US at Bell Helmets",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "fox-racing-speedframe-rs": {
+    "fetched": true,
+    "title": "Fox Racing® USA - Official Site - Moto, Mountain Bike, Gear, Helmets | Fox Racing®",
+    "description": "Fox Racing, is the most recognized Motocross &amp; Mountain Bike brand, and the Gear and Helmet choice of Action sports athletes.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "fox-racing-speedframe-pro": {
+    "fetched": true,
+    "title": "Fox Racing® USA - Official Site - Moto, Mountain Bike, Gear, Helmets | Fox Racing®",
+    "description": "Fox Racing, is the most recognized Motocross &amp; Mountain Bike brand, and the Gear and Helmet choice of Action sports athletes.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "fox-racing-speedframe": {
+    "fetched": true,
+    "title": "Fox Racing® USA - Official Site - Moto, Mountain Bike, Gear, Helmets | Fox Racing®",
+    "description": "Fox Racing, is the most recognized Motocross &amp; Mountain Bike brand, and the Gear and Helmet choice of Action sports athletes.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "endura-hummvee-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "demon-united-podium": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "met-revo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Revo'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "6d-alterra": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "poc-cytal": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Cytal'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "poc-cularis": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Cularis'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "unit-1-aura": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "fizik-kassis": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "fizik-kudo-aero": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "fizik-kudo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "kav-rhoan": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "met-shelter": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Shelter'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "bern-macon-2-0-dvrt": {
+    "fetched": true,
+    "title": "Search: 21 results found for &quot;Bern Macon 2.0 DVRT&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "error": null
+  },
+  "bern-macon-2-0-mips": {
+    "fetched": true,
+    "title": "Search: 22 results found for &quot;Bern Macon 2.0 MIPS&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "error": null
+  },
+  "p2r-a20-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "kali-cascade": {
+    "fetched": true,
+    "title": "Search: 11 results found for &quot;Kali Cascade&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "kali-interceptor-2-0": {
+    "fetched": true,
+    "title": "Search: 3 results found for &quot;Kali Interceptor 2.0&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "met-terrae": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Terrae'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "giant-liv-rivet-mips": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "giant-liv-novo-mips": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "pmt-kora-3-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "pmt-elegant-3-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "canyon-deflectr-rls": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "hexr-miden-rls": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "unit-1-neon": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "scott-split-mips": {
+    "fetched": true,
+    "title": "Confirmation | Scott",
+    "description": "Search results for null on SCOTT Global",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "met-trenta-3k-carbon-mips-2025": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Trenta+3K+Carbon+MIPS+%282025%29'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "sweet-protection-fixer-carbon-2vi-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Fixer+Carbon+2Vi+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "sweet-protection-fixer-composite-2vi-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Fixer+Composite+2Vi+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "sweet-protection-fluxer-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Fluxer+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "sweet-protection-primer-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Primer+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "sweet-protection-strayer-2vi-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.sweetprotection.com/eu/en/search?q=Sweet+Protection+Strayer+2Vi+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "giant-rev-pro-mips-2026": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "pikio-si-oblik": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "leatt-gravity-5-0": {
+    "fetched": true,
+    "title": "Leatt | Moto, MTB &amp; ADV Protective Gear &amp; Apparel",
+    "description": "Explore Leatt MOTO, MTB &amp; ADV gear. Premium helmets, body armor &amp; apparel engineered for performance, comfort &amp; world-class rider protection.",
+    "manufacturer_style": "Mountain",
+    "error": null
+  },
+  "specialized-ambush-3": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "kav-silvo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "trek-circuit-wavecel": {
+    "fetched": true,
+    "title": "SEARCH Trek Circuit WaveCel",
+    "description": "Search results for Trek Circuit WaveCel on Trekbikes.com",
+    "manufacturer_style": null,
+    "error": null
+  },
+  "specialized-s-works-evade-4": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "error": null
+  },
+  "p2r-a70-pro": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "ilm-e3-12ls": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "livall-l23": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "xnito-old-school": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "lumos-sonorus": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "outdoor-master-rhino": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "outdoor-master-oryx-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "outdoor-master-pebble-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-abus-moventor-20": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Moventor-2.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-moventor-20-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Moventor-2.0-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-scrapper-30": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+SCRAPPER-3.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-scrapper-30-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Scrapper+3.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-scrapper-30-1": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Scrapper+3.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-skurb": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Skurb'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-skurb-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Skurb-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-urban-i-20": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Urban+I+2.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-urban-i-30": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Urban-I-3.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-urban-i-30-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Urban-I-3.0-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-yadd-i": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+YADD-I'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-yadd-i-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Yadd-I'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-youn-i-20": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Youn-I-2.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-youn-i-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Youn+I+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-alk13-krypton": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-alpina-airtime": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-alpina-delft-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-alpina-haga-led": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-alpina-mythos-30-le": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-alpina-pico-flash": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-alpina-ximo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-alpina-ximo-flash": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-author-creek-hst": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-author-flash": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bbb-bhe-161-grid": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bbb-bhe-37-boggy": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bbb-bhe35-condor": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bbb-indra-faceshield": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bell-local": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-bell-sidetrack-b0552": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-bell-sidetrack-ii-mips": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-bell-trace-mips": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-bell-tracker": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-bern-lenox": {
+    "fetched": true,
+    "title": "Search: 58 results found for &quot;bern lenox&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "product_url": "https://bernhelmets.com/search?q=bern+lenox",
+    "error": null
+  },
+  "extra-bern-melrose": {
+    "fetched": true,
+    "title": "Search: 10 results found for &quot;bern melrose&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "product_url": "https://bernhelmets.com/search?q=bern+melrose",
+    "error": null
+  },
+  "extra-bern-nino": {
+    "fetched": true,
+    "title": "Search: 24 results found for &quot;bern nino&quot;",
+    "description": "Stylish, certified bike, snow, and skate helmets designed for comfort and built for adventure. Trusted by pros and everyday riders since 2004. Ride with Bern.",
+    "manufacturer_style": "Urban",
+    "product_url": "https://bernhelmets.com/search?q=bern+nino",
+    "error": null
+  },
+  "extra-bilka-csi-cykelhjelm": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bobike-baby-helmet-one": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bobike-helmet-one-plus": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-briko-sismic": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-brooks-foldable": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-brooks-island": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-100": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-520-teen": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-bh500": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-cbh-100": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-cbh100": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-city-500-bowl": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-kh-300": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-kh500": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-rockrider-st500": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-teen-500": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-butterfly-kidzamo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cairbull-fender-folding-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cairn-prism-xtr-2": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cannondale-radius": {
+    "fetched": true,
+    "title": "Helmets",
+    "description": "Shop bike helmets for women and men from Cannondale. Choose from quality protective gear that is easy to adjust and comfortable to wear.",
+    "manufacturer_style": null,
+    "product_url": "https://www.cannondale.com/en-us/gear/helmets",
+    "error": null
+  },
+  "extra-casco-activ-2u": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-casco-cuda2": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-casco-mini-2": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-casco-mini-generation": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-casco-roadster": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-casco-roadster-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-casco-speedairo-2-rs": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cigna-cigna": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-closca-fuga": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-coop-rawlink": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-crasysafety-tiger": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cratoni-allset": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cratoni-c-maniac": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cratoni-commuter": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cratoni-velo-x": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-crazysafety-cs6-pink-shark": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-crivit-kids": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-crivit-kinder": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-csi-fcj-201": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cube-linok-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-decathlon-teen-520": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-egide-ino": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-etape-pluto-light": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-fischer-modell-nr-fz-025": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-fischer-urban-plus": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-giro-quarter-fs": {
+    "fetched": true,
+    "title": "Helmets | Giro Sport Design©",
+    "description": "Shop All Helmets at Giro Sport Design",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/cycling/helmets/",
+    "error": null
+  },
+  "extra-giro-scamp-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/mips.html",
+    "error": null
+  },
+  "extra-giro-tremor-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/mips.html",
+    "error": null
+  },
+  "extra-gotham-multi-sport-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-hamax-thundercap": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-hangup-skate-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-harald-nyborg-bornehjelm-121791": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-harald-nyborg-busetto": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-honghui-honghui": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-hovding-30": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-ikea-sladda": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-kali-alpine-carbone-pulse": {
+    "fetched": true,
+    "title": "Search: 0 results found for &quot;kali alpine carbone pulse&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "product_url": "https://www.kaliprotectives.com/search?q=kali+alpine+carbone+pulse",
+    "error": null
+  },
+  "extra-kali-central": {
+    "fetched": true,
+    "title": "Search: 8 results found for &quot;kali central&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "product_url": "https://www.kaliprotectives.com/search?q=kali+central",
+    "error": null
+  },
+  "extra-kali-maya-20-pixel": {
+    "fetched": true,
+    "title": "Search: 2 results found for &quot;kali maya-2.0-pixel&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "product_url": "https://www.kaliprotectives.com/search?q=kali+maya-2.0-pixel",
+    "error": null
+  },
+  "extra-kali-saha-luxe": {
+    "fetched": true,
+    "title": "Search: 1 result found for &quot;kali saha-luxe&quot;",
+    "description": "Kali Protectives is an award-winning, rider owned company with technology driven head and body protection for bike and motorsports.",
+    "manufacturer_style": null,
+    "product_url": "https://www.kaliprotectives.com/search?q=kali+saha-luxe",
+    "error": null
+  },
+  "extra-kask-lifestyle": {
+    "fetched": true,
+    "title": "Sites-KASK_EU-Site",
+    "description": "KASK &amp; KOO Official Store",
+    "manufacturer_style": null,
+    "product_url": "https://www.kask.com/en-it/search?q=Kask%20lifestyle",
+    "error": null
+  },
+  "extra-kask-mojito-16": {
+    "fetched": true,
+    "title": "Sites-KASK_EU-Site",
+    "description": "KASK &amp; KOO Official Store",
+    "manufacturer_style": null,
+    "product_url": "https://www.kask.com/en-it/search?q=Kask%20Mojito%2016",
+    "error": null
+  },
+  "extra-kask-mojito-3": {
+    "fetched": true,
+    "title": "Sites-KASK_EU-Site",
+    "description": "KASK &amp; KOO Official Store",
+    "manufacturer_style": null,
+    "product_url": "https://www.kask.com/en-it/search?q=Kask%20Mojito-3",
+    "error": null
+  },
+  "extra-ked-5forty": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-ked-berlin-l": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-ked-mitro-ue1": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-ked-pop-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-ked-puky-ph1": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-kls-zigzag": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-lazer-anvez-nta-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Anvez+NTA-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-lazer-armor-20-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Armor-2.0-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-lazer-gekko": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+GEKKO'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-lazer-gekko-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+GEKKO-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-lazer-revolution-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Revolution+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-limar-555": {
+    "fetched": true,
+    "title": "Instagram",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": "https://www.instagram.com/limarhelmetsofficial/",
+    "error": null
+  },
+  "extra-limar-berg-em": {
+    "fetched": true,
+    "title": "Instagram",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": "https://www.instagram.com/limarhelmetsofficial/",
+    "error": null
+  },
+  "extra-limar-champ": {
+    "fetched": true,
+    "title": "Instagram",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": "https://www.instagram.com/limarhelmetsofficial/",
+    "error": null
+  },
+  "extra-limar-urbe": {
+    "fetched": true,
+    "title": "Instagram",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": "https://www.instagram.com/limarhelmetsofficial/",
+    "error": null
+  },
+  "extra-livall-bh-60": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-mango-free-board": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-mango-x-ride": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-melon-urban-active": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-merida-matt-jr": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-met-allroad": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Allroad'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-met-allroad-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Allroad-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-met-espresso": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Espresso'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-met-mobilite-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+MOBILITE-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-met-urbex-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Urbex-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-mustang-s-282m": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-nutcase-commute-mips-led": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://nutcasehelmets.com/search?q=Nutcase+Commute-MIPS-LED'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-nutcase-gen3-cherry-blossom": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://nutcasehelmets.com/search?q=Nutcase+Gen3+Cherry+Blossom'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-nutcase-little-nuttyy": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://nutcasehelmets.com/search?q=Nutcase+Little+Nutty'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-nutcase-street-gen3": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://nutcasehelmets.com/search?q=Nutcase+Street+Gen3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-nutecase-little-nutty-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-olpran-hm-10": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-overade-plixi": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-overade-plixi-fit": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-oxford-metro-glo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-oxford-metro-glo-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-poc-pocito-crane-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+POCito-Crane-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-polisport-e-city": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-polisport-guppy": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-powerslide-allround-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-pro-tec-full-cut-certified-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-prophete-artikel-nr0424": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-prophete-kinder-schutzehelm": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-rekd-ultralite-mold": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-rioroller-rio-script-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-rudy-project-rocky": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.rudyproject.com/us/en/search?q=Rudy+Project+Rocky'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-rudy-project-venger": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.rudyproject.com/us/en/search?q=Rudy+Project+VENGER'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-salling-group-premium-ebike-hjelm": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-scoot-ride-safety-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-scott-spunto": {
+    "fetched": true,
+    "title": null,
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "extra-scottil-doppio-plus": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-scrapper-scr-s038": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-scrapper-scr-urban-2": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-smith-session-mips": {
+    "fetched": true,
+    "title": "Search: 129 results found for &quot;smith session-mips&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "product_url": "https://www.smithoptics.com/en-us/search?q=smith+session-mips",
+    "error": null
+  },
+  "extra-specialized-shuffleled-sb-mips": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": "https://www.specialized.com/ch/en/search/Specialized%20Shuffleled-SB-MIPS",
+    "error": null
+  },
+  "extra-spokey-space": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-tempish-marilla-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-torch-t2-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-urgebike-cab": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-uvex-city-i-vo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+City+i-vo'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-uvex-city-i-vo-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+City-i-vo-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-uvex-finale-visor": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+Finale-Visor'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-uvex-hlmt-4": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+hlmt-4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-uvex-hlmt-4-cc": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+hlmt+4cc'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-uvex-kid-2": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+Kid-2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-woom-kids-helm": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-zerorh-zy": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-abus-urban-i-3-0-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Urban-I+3.0+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-lazer-verde-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Verde+KinetiCore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-limar-alben": {
+    "fetched": true,
+    "title": "Instagram",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": "https://www.instagram.com/limarhelmetsofficial/",
+    "error": null
+  },
+  "extra-sweet-protection-stringer-mips-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-abus-smiley-3-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Smiley+3.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-youdrop-ff": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Youdrop+FF'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-lazer-maze-jr-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Maze+JR+Kineticore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-limar-360-teen": {
+    "fetched": true,
+    "title": "Instagram",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": "https://www.instagram.com/limarhelmetsofficial/",
+    "error": null
+  },
+  "extra-limar-kid-pro-m": {
+    "fetched": true,
+    "title": "Limar | The Helmet Specialist",
+    "description": "After creating the world&#39;s lightest helmet, we didn&#39;t stop. We explored the boundaries of aerodynamics, to go even further. Because the most prestigious goal is the next one.",
+    "manufacturer_style": null,
+    "product_url": "https://productreviews.shopifycdn.com",
+    "error": null
+  },
+  "extra-occano-junior-mips-hlm": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-specialized-shuffle-2-led": {
+    "fetched": true,
+    "title": "Specialized.com",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": "https://www.specialized.com/ch/en/search/Specialized%20Shuffle%202%20led",
+    "error": null
+  },
+  "extra-sweet-protection-stringer-mips-helmet-junior": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-woom-kids-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-giro-agilis-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/mips.html",
+    "error": null
+  },
+  "extra-netti-lightning": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-oakley-aro7-lite-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.oakley.com/en-us/search?q=Oakley+ARO7+Lite+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-rosebank-v-10b": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-goldcross-defender-rf15": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-met-crossover": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Crossover'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-giro-hale-youth": {
+    "fetched": true,
+    "title": "Helmets | Giro Sport Design©",
+    "description": "Shop All Helmets at Giro Sport Design",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/cycling/helmets/",
+    "error": null
+  },
+  "extra-goldcross-voyager": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-limar-air-star": {
+    "fetched": true,
+    "title": "Air Atlas UAP",
+    "description": "Limar Air Atlas aerodynamic road cycling helmet is our fastest helmet and offers superior aero performance, while being lightweight and ventilated.",
+    "manufacturer_style": null,
+    "product_url": "https://limar.com/products/air-atlas-uap",
+    "error": null
+  },
+  "extra-met-codatronca": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Codatronca'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-diamondback-cobra": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bbb-cycling-hawk": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-azure-rx1": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-sikh-brave-jh33": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-smith-payroll-mips": {
+    "fetched": true,
+    "title": "Search: 10 results found for &quot;smith payroll mips&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "product_url": "https://www.smithoptics.com/en-us/search?q=smith+payroll+mips",
+    "error": null
+  },
+  "extra-bell-spark-youth-mips": {
+    "fetched": true,
+    "title": "default.start.title",
+    "description": "default.start.description",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-bell-nomad-2-mips": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-oakley-drt5-maven": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.oakley.com/en-us/search?q=Oakley+DRT5+Maven'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-giro-radix-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/mips.html",
+    "error": null
+  },
+  "extra-met-echo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Echo'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-met-echo-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Echo+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-goldcross-mountain-bike-edrk1-y": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-leatt-mtb-allmtn-1-0": {
+    "fetched": true,
+    "title": "Moto Helmets",
+    "description": "Explore Leatt MOTO, MTB &amp; ADV gear. Premium helmets, body armor &amp; apparel engineered for performance, comfort &amp; world-class rider protection.",
+    "manufacturer_style": null,
+    "product_url": "https://int.leatt.com/collections/moto-helmets",
+    "error": null
+  },
+  "extra-entity-mh15": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-fluid-peak": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-giro-cormick-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/mips.html",
+    "error": null
+  },
+  "extra-seven-idp-m2-boa": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-tld-flowline": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-fox-proframe-rs-hfb6": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-100-status": {
+    "fetched": true,
+    "title": "Search: 24 results found for &quot;100% status&quot;",
+    "description": "100% is one of the premier providers of premium quality motocross, mountain bike, and offroad goggles, mountain bike and BMX helmets, and sports sunglasses.",
+    "manufacturer_style": "Full-Face",
+    "product_url": "https://www.100percent.com/search?q=100%25+status",
+    "error": null
+  },
+  "extra-met-parachute-mcr": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Parachute+MCR'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-jetblack-comp-2-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bell-sanction": {
+    "fetched": true,
+    "title": "default.start.title",
+    "description": "default.start.description",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-bell-super-air-r-spherical": {
+    "fetched": true,
+    "title": "default.start.title",
+    "description": "default.start.description",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-poc-ventral-air-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Ventral+Air+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-met-veleno-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Veleno+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-diamondback-impact": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-pit-urban-ml-009m-15": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bbb-dune-2-0-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-poc-crane-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Crane+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-giro-caden-ii-mips": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/mips.html",
+    "error": null
+  },
+  "extra-met-crackerjack": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Crackerjack'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-anko-enduro": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-rosebank-vortex": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bbb-aktiv": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-azur-performance-l61": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-triple-8-the-certified-skate-2-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-fluid-cloud": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-giro-quarter": {
+    "fetched": true,
+    "title": "Helmets | Giro Sport Design©",
+    "description": "Shop All Helmets at Giro Sport Design",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/cycling/helmets/",
+    "error": null
+  },
+  "extra-micro-scootersaurus-3d": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-family-bmx-t36": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-pro-tec-junior-classic": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-rosebank-shakedown-sk-501-abs": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-anko-action-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bluegrass-super-bold": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-s1-mega-lifer": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-diamondback-kaos": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-fox-flight-sport-f-6m": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-drs-bmx-t30": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-pro-tec-classic-certified": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-tsg-evolution": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-fox-rampage-youth-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bluey-toddler": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-globber-kids-led": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-giro-scamp": {
+    "fetched": true,
+    "title": "Helmets | Giro Sport Design©",
+    "description": "Shop All Helmets at Giro Sport Design",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/cycling/helmets/",
+    "error": null
+  },
+  "extra-kmart-unicorn": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-goldcross-mayhem": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-rosebank-rio": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-anko-junior-skate": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-goldcross-pioneer": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-giro-tremor": {
+    "fetched": true,
+    "title": "Helmets | Giro Sport Design©",
+    "description": "Shop All Helmets at Giro Sport Design",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/cycling/helmets/",
+    "error": null
+  },
+  "extra-hornit-kids": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-99-bikes-flite-speedy-fireman": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-banwood-classic": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bell-lil-ripper": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-giant-hoot-arx": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "extra-bold-sikh-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-van-rysel-xcr-tt": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-giro-aerohead": {
+    "fetched": true,
+    "title": "Helmets | Giro Sport Design©",
+    "description": "Shop All Helmets at Giro Sport Design",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/cycling/helmets/",
+    "error": null
+  },
+  "extra-aero-oakley-velo-mach": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.oakley.com/en-us/search?q=Oakley+Velo+Mach'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-aero-canyon-stingr": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-smith-ignite": {
+    "fetched": true,
+    "title": "Search: 3 results found for &quot;smith ignite&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "product_url": "https://www.smithoptics.com/en-us/search?q=smith+ignite",
+    "error": null
+  },
+  "extra-aero-kask-utopia-y": {
+    "fetched": true,
+    "title": "Sites-KASK_EU-Site",
+    "description": "KASK &amp; KOO Official Store",
+    "manufacturer_style": null,
+    "product_url": "https://www.kask.com/en-it/search?q=Kask%20Utopia%20Y",
+    "error": null
+  },
+  "extra-aero-kask-nirvana": {
+    "fetched": true,
+    "title": "Sites-KASK_EU-Site",
+    "description": "KASK &amp; KOO Official Store",
+    "manufacturer_style": null,
+    "product_url": "https://www.kask.com/en-it/search?q=Kask%20Nirvana",
+    "error": null
+  },
+  "extra-aero-van-rysel-rcr-f": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-poc-procen-air": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Procen+Air'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-aero-rudy-project-nytron-pro": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.rudyproject.com/us/en/search?q=Rudy+Project+Nytron+Pro'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-aero-met-manta": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Manta'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-aero-kask-protone-icon": {
+    "fetched": true,
+    "title": null,
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": "https://www.kask.com/on/demandware.static/-/Library-Sites-kask-shared/default/dw4579a888/images/favicons/favicon-kask-196x196.png",
+    "error": null
+  },
+  "extra-aero-hjc-ibex-3": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-hjc-furion-3": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-abus-stormchaser": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Stormchaser'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-aero-abus-airbreaker": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Airbreaker'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-aero-bell-xr-spherical": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-aero-bell-falcon-xr": {
+    "fetched": true,
+    "title": "default.start.title",
+    "description": "default.start.description",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-aero-sunrimoon-sariel": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-uvex-surge": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+Surge'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-aero-sunrimoon-alien": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-smith-network": {
+    "fetched": true,
+    "title": "Search: 566 results found for &quot;smith network&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "product_url": "https://www.smithoptics.com/en-us/search?q=smith+network",
+    "error": null
+  },
+  "extra-aero-smith-trace": {
+    "fetched": true,
+    "title": "Search: 7 results found for &quot;smith trace&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "product_url": "https://www.smithoptics.com/en-us/search?q=smith+trace",
+    "error": null
+  },
+  "extra-aero-van-rysel-fcr": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-julbo-sprint": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-limar-air-atlas": {
+    "fetched": true,
+    "title": "Air Atlas UAP",
+    "description": "Limar Air Atlas aerodynamic road cycling helmet is our fastest helmet and offers superior aero performance, while being lightweight and ventilated.",
+    "manufacturer_style": "Aero",
+    "product_url": "https://limar.com/products/air-atlas-uap",
+    "error": null
+  },
+  "extra-aero-carnac-evo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-uvex-rise-pro": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+Rise+Pro'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-aero-poc-ventral-tempus": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Ventral+Tempus'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-bell-falcon-xr-mips": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-bell-xr-spherical-mips": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-kask-protone": {
+    "fetched": true,
+    "title": "Sites-KASK_EU-Site",
+    "description": "KASK &amp; KOO Official Store",
+    "manufacturer_style": null,
+    "product_url": "https://www.kask.com/en-it/search?q=Kask%20Protone",
+    "error": null
+  },
+  "extra-aero-oakley-aro7": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.oakley.com/en-us/search?q=Oakley+ARO7'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "giant-liv-rev-pro-mips-2021": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "giant-liv-path-mips": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "giant-liv-relay-mips": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "giant-liv-roost": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "giant-liv-rail": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "giant-liv-rev-pro-mips-2026": {
+    "fetched": true,
+    "title": "Search | Liv Cycling",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "sena-u1": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "bell-nomad-2-mips": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "scott-arx-mips-2026": {
+    "fetched": true,
+    "title": null,
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "trek-charge-wavecel": {
+    "fetched": true,
+    "title": "SEARCH Trek Charge WaveCel",
+    "description": "Search results for Trek Charge WaveCel on Trekbikes.com",
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "ilm-zl-b068": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "ozark-trail-3-4-shell": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "schwinn-avion": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "lumos-ultra-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "lumos-ultra-e-bike-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "lumos-nyxel-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "fly-racing-rayce": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "kplus-nova-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-abus-hud-y": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+HUD+Y'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-abus-montrailer-quin-mtb-velvet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+MONTRAILER+QUIN+MTB+VELVET'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-alpina-gent-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-btwin-city-540-bowl": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-casco-emotion-2": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-cube-fleet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-endura-fs260-pro-helmet-ii": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-endura-fs260-pro-mips-helmet-ii": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-endura-speed-pedelec": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-giro-agilis": {
+    "fetched": true,
+    "title": "Helmets | Giro Sport Design©",
+    "description": "Shop All Helmets at Giro Sport Design",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/cycling/helmets/",
+    "error": null
+  },
+  "extra-giro-fixture-mips-ii": {
+    "fetched": true,
+    "title": "MIPS® for Giro Sports Design",
+    "description": "MIPS, or multi-directional impact protection system, uses a slip plane designed to manage energy from rotational and angular impacts.",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/mips.html",
+    "error": null
+  },
+  "extra-limar-249": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '429 Too Many Requests' for url 'https://www.limar.com/?s=Limar+249'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+  },
+  "extra-limar-delta": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '429 Too Many Requests' for url 'https://www.limar.com/?s=Limar+DELTA'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+  },
+  "extra-limar-lumiere-e-bike-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '429 Too Many Requests' for url 'https://www.limar.com/?s=Limar+LUMIERE+E+BIKE+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+  },
+  "extra-limar-torino": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '429 Too Many Requests' for url 'https://www.limar.com/?s=Limar+TORINO'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+  },
+  "extra-lival-evo21-smart-fietshelm": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-lumos-matrix-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-met-mobilite": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+-+MOBILITE'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-nutcase-little-nutty": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '429 Too Many Requests' for url 'https://www.nutcasehelmets.com/search?q=Nutcase+LITTLE-NUTTY'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+  },
+  "extra-prophete-eco-urban": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-stromer-smart-helmet": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-unit1-aura-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-unit1-faro-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-uvex-urban-planet-led": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+URBAN+PLANET+LED'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-trek-starvos-wavecel": {
+    "fetched": true,
+    "title": "SEARCH Trek Starvos WaveCel",
+    "description": "Search results for Trek Starvos WaveCel on Trekbikes.com",
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "extra-poc-kortal-race-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Kortal+Race+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-o-neal-transition": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-fluid-vector": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-smith-network-mips": {
+    "fetched": true,
+    "title": "Search: 175 results found for &quot;smith network mips&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "product_url": "https://www.smithoptics.com/en-us/search?q=smith+network+mips",
+    "error": null
+  },
+  "extra-oakley-drt5": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.oakley.com/en-us/search?q=OAKLEY+DRT5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-decathlon-van-rysel-fcr-mips-roubaix": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-smith-hardline-mips": {
+    "fetched": true,
+    "title": "Search: 146 results found for &quot;smith hardline mips&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "product_url": "https://www.smithoptics.com/en-us/search?q=smith+hardline+mips",
+    "error": null
+  },
+  "extra-bell-spark-2-mips": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-oakley-aro7-lite": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.oakley.com/en-us/search?q=OAKLEY+ARO7+Lite'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-pit-urban": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-bell-4-forty-mips": {
+    "fetched": true,
+    "title": "Explore Bell | Bell Helmets",
+    "description": "Discover the latest news and explore everything Bell Helmets-related in our Official blog.",
+    "manufacturer_style": null,
+    "product_url": "https://www.bellhelmets.com/content-hub",
+    "error": null
+  },
+  "extra-smith-engage-2-mips": {
+    "fetched": true,
+    "title": "Search: 91 results found for &quot;smith engage 2 mips&quot;",
+    "description": "Smith Optics sets the standard for high-performance sunglasses, goggles and helmets. Shop on the official Smith Optics online store for free shipping and easy returns.",
+    "manufacturer_style": null,
+    "product_url": "https://www.smithoptics.com/en-us/search?q=smith+engage+2+mips",
+    "error": null
+  },
+  "extra-oakley-ar05": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.oakley.com/en-us/search?q=OAKLEY+AR05'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-met-idolo": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Idolo'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-hjc-furion-3": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-leatt-all-mtn-4-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '429 Too Many Requests' for url 'https://int.leatt.com/'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+  },
+  "extra-met-echo-non-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Echo+Non+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-jet-black-comp-2-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-goldcross-mtb-edrk1-y": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-rosebank-oasis": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-lazer-sphere-kineticore": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '429 Too Many Requests' for url 'https://www.lazersport.com/en/search?q=Lazer+Sphere+Kineticore'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+  },
+  "extra-diamondback-sierra": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-kask-sintesi": {
+    "fetched": true,
+    "title": "Sites-KASK_EU-Site",
+    "description": "KASK &amp; KOO Official Store",
+    "manufacturer_style": null,
+    "product_url": "https://www.kask.com/en-it/search?q=Kask%20Sintesi",
+    "error": null
+  },
+  "extra-uvex-surge-aero-mips": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+Surge+Aero+MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-ccc-cinettica-velocita": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-decathlon-van-rysel-road-r-500": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-giro-elixir": {
+    "fetched": true,
+    "title": "Helmets | Giro Sport Design©",
+    "description": "Shop All Helmets at Giro Sport Design",
+    "manufacturer_style": null,
+    "product_url": "https://www.giro.com/cycling/helmets/",
+    "error": null
+  },
+  "extra-diamondback-summit": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-sikh-brave": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-azur-rx1": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-trek-tyro": {
+    "fetched": true,
+    "title": "SEARCH Trek Tyro",
+    "description": "Search results for Trek Tyro on Trekbikes.com",
+    "manufacturer_style": null,
+    "product_url": "https://www.trekbikes.com/us/en_US/search?q=Trek+Tyro%3Arelevance&amp;page=1&amp;pageSize=72",
+    "error": null
+  },
+  "extra-met-hooray": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Hooray'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-abus-smiley-2-0": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Smiley+2.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "extra-rosebank-axis": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "no_search_url"
+  },
+  "extra-aero-giant-rivet": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "extra-aero-sweet-protection-tucker-2vi": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1082)"
+  },
+  "extra-aero-rudy-project-nytron": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://www.rudyproject.com/us/en/search?q=Rudy+Project+Nytron'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  },
+  "extra-aero-giant-rev": {
+    "fetched": true,
+    "title": "Search | Giant Bicycles Official site",
+    "description": null,
+    "manufacturer_style": null,
+    "product_url": null,
+    "error": null
+  },
+  "extra-aero-poc-ventral": {
+    "fetched": false,
+    "manufacturer_style": null,
+    "error": "Client error '404 Not Found' for url 'https://poc.com/eu/en/search?q=POC+Ventral'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  }
+}

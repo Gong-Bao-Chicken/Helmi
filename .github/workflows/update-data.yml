@@ -1,0 +1,46 @@
+name: Update helmet data
+
+on:
+  schedule:
+    - cron: "0 4 * * 1" # Mondays 04:00 UTC
+  workflow_dispatch:
+    inputs:
+      flags:
+        description: "Extra flags for `helmet-data update` (e.g. --quick, --skip-prices, --force-prices)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Update data
+        run: uv run helmet-data update ${{ inputs.flags }}
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/public/data data
+          if git diff --cached --quiet; then
+            echo "No data changes."
+            exit 0
+          fi
+          git commit -m "Update helmet data ($(date -u +%Y-%m-%d))"
+          git pull --rebase
+          git push

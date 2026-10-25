@@ -33,6 +33,8 @@ npm --prefix web install
 
 `update` flags: `--quick`, `--fetch-manufacturer`, `--skip-prices`, `--force-prices`.
 
+A GitHub Actions workflow (`.github/workflows/update-data.yml`) runs `helmet-data update` every Monday at 04:00 UTC and commits the refreshed data. Start it by hand from the Actions tab ("Run workflow", with optional flags). The price and style caches are committed so price history and fallback prices carry over between runs.
+
 Individual steps (run `uv run helmet-data <command> --help` for all flags):
 
 | Command | Replaces | Purpose |

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { AERO_CLASSES, marketCurrency, priceFor, PRIORITIES, RIDES, SAFETY_SOURCES, type FinderResult } from "../lib/finder";
+  import { AERO_CLASSES, marketCurrency, priceFor, PRIORITIES, RIDES, type FinderResult } from "../lib/finder";
   import { money } from "../lib/format";
   import { app } from "../lib/state.svelte";
   import type { Dataset } from "../lib/types";
@@ -135,9 +135,5 @@
       </fieldset>
     {/if}
 
-    <p class="text-xs text-ink-3">
-      Safety score: {SAFETY_SOURCES.find((s) => s.key === app.goals.safetySource)?.label.toLowerCase()} ({result.ratedTotal} helmets rated).
-      Change it in the top bar.
-    </p>
   </div>
 </aside>

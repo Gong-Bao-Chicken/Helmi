@@ -67,6 +67,8 @@ Other frontend commands (run in `web/`):
 | `npm test` | Unit tests for the ranking logic (Vitest) |
 | `npm run check` | Type-check Svelte + TypeScript |
 
+The live site is at https://gong-bao-chicken.github.io/Helmi/. `.github/workflows/deploy-pages.yml` rebuilds and deploys it when `web/` changes on `main` and after each successful data update.
+
 The app keeps all state in the URL (`?ride=road&priority=value&budget=150&helmet=…&compare=…`), so any result can be bookmarked or shared.
 
 ### How the ranking works (`web/src/lib/finder.ts`)

@@ -27,7 +27,8 @@ export const LAB_EXPLAINERS: Record<string, string> = {
     "US university lab. Concussion risk from 4 impact points at 2 speeds, rotation included.",
   folksam: "Swedish insurer. Straight and angled impacts; the result is shown against the best helmet in that year's test.",
   certimoov: "French lab. Angled impacts at 6 points, faster than the EN 1078 standard requires; rated 0–5.",
-  nsw_helmet_star: "Australian state government. Impact, rotation, strap retention and coverage; rated 0–5 stars.",
+  nsw_helmet_star:
+    "Run by the New South Wales government (Australia). Impact, rotation, strap strength and coverage, scored out of 100; the stars are bands of that score.",
 };
 
 /** The certification string ("CPSC, EN 1078") split into its standards. */

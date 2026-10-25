@@ -1,22 +1,28 @@
 {
   "meta": {
-    "generated_at": "2026-10-25T16:35:50.925738+00:00",
+    "generated_at": "2026-10-25T18:42:21.780642+00:00",
     "sources": {
       "certimoov": {
         "fetched": 228,
-        "matched": 43
+        "matched": 35,
+        "error": null,
+        "stale": false,
+        "stale_since": "2026-10-25T16:35:50.925738+00:00"
       },
       "folksam": {
         "fetched": 20,
-        "matched": 7
+        "matched": 7,
+        "error": null,
+        "stale": false,
+        "stale_since": "2026-10-25T16:35:50.925738+00:00"
       },
       "nsw_helmet_star": {
         "fetched": 139,
-        "matched": 53
+        "matched": 54
       }
     },
-    "match_count": 80,
-    "unmatched_count": 284
+    "match_count": 81,
+    "unmatched_count": 283
   },
   "matches": [
     {
@@ -44,12 +50,65 @@
           "rank_pct": 0.9117647058823529
         },
         "nsw_helmet_star": {
+          "score": 56.8,
           "stars": 3,
           "category": "Road helmets",
           "price_band": "$$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/abus-gamechanger-20",
-          "rank_pct": 0.33
+          "metrics": {
+            "Helmet coverage": {
+              "score": 2.69,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.15,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 11.06,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 12.3,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 5.92,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.8,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 9.88,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "ABUS Gamechanger 2.0",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.29411764705882354
         }
       }
     },
@@ -78,12 +137,65 @@
           "rank_pct": 0.5882352941176471
         },
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "General helmets",
           "price_band": "$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/abus-hyban-20",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.99,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.19,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 7.17,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 21.44,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 1.42,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.19,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 4.54,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 29% or one star as the male part of the retention system buckle is not permanently attached.",
+          "match": {
+            "test_name": "ABUS Hyban 2.0",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     },
@@ -398,12 +510,65 @@
           "rank_pct": 0.5882352941176471
         },
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "Mountain bike open-face helmets",
           "price_band": "$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/giro-fixture",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.33,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.81,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 14.59,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 7.75,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 9.33,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.48,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.91,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 6.51,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.89,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 29% or one star as the male part of the retention system buckle is not permanently attached.",
+          "match": {
+            "test_name": "Giro Fixture",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     },
@@ -432,12 +597,65 @@
           "rank_pct": 0.23529411764705882
         },
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "General helmets",
           "price_band": "$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/giro-register",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.64,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 1.5,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 11.73,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 20.81,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 7.92,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.49,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.26,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 1.25,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 29% or one star as the male part of the retention system buckle is not permanently attached.",
+          "match": {
+            "test_name": "Giro Register",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     },
@@ -466,12 +684,65 @@
           "rank_pct": 0.23529411764705882
         },
         "nsw_helmet_star": {
+          "score": 68.0,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/giro-syntax-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.14,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.3,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 8.48,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 26.36,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 3.32,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.86,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Giro Syntax MIPS",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.43137254901960786
         }
       }
     },
@@ -613,12 +884,65 @@
           "rank_pct": 0.23529411764705882
         },
         "nsw_helmet_star": {
+          "score": 70.0,
           "stars": 4,
           "category": "General helmets",
           "price_band": "$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/lazer-compact",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.02,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 9.33,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 16.67,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 7.94,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.12,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 6.89,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Compact",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.5
         }
       }
     },
@@ -647,12 +971,65 @@
           "rank_pct": 0.5882352941176471
         },
         "nsw_helmet_star": {
+          "score": 75.0,
           "stars": 4,
           "category": "General helmets",
           "price_band": "$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/lazer-strada-kineticore",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.83,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.81,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 18.22,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.8,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.34,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 9.53,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.5,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Strada Kineticore",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.5882352941176471
         }
       }
     },
@@ -785,12 +1162,65 @@
           "rank_pct": 0.9117647058823529
         },
         "nsw_helmet_star": {
+          "score": 64.9,
           "stars": 3,
           "category": "General helmets",
           "price_band": "$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/met-miles",
-          "rank_pct": 0.33
+          "metrics": {
+            "Helmet coverage": {
+              "score": 2.83,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.04,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 10.65,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 31.68,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.09,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 4.78,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.68,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 3 stars or 64% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 30mm but still under 35mm.",
+          "match": {
+            "test_name": "MET Miles",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.35294117647058826
         }
       }
     },
@@ -819,12 +1249,65 @@
           "rank_pct": 0.9117647058823529
         },
         "nsw_helmet_star": {
+          "score": 47.0,
           "stars": 2,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/poc-omne-air-spin",
-          "rank_pct": 0.24
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.15,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.77,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 10.73,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 13.21,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 7.4,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.13,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.93,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.37,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 2 stars or 47% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 30mm but still under 35mm",
+          "match": {
+            "test_name": "POC Omne Air Spin",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.24509803921568626
         }
       }
     },
@@ -905,12 +1388,65 @@
           "rank_pct": 0.5882352941176471
         },
         "nsw_helmet_star": {
+          "score": 82.0,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/specialized-align-ii-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 2.69,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.64,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 9.75,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.99,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.36,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 4.02,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 6.58,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Specialized Align II MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.7647058823529411
         }
       }
     },
@@ -991,12 +1527,65 @@
           "rank_pct": 0.23529411764705882
         },
         "nsw_helmet_star": {
+          "score": 82.4,
           "stars": 4,
           "category": "General helmets",
           "price_band": "$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/thousand-chapter-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.42,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 2.4,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 8.9,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 30.53,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 9.79,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.95,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.85,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.57,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Thousand Chapter MIPS",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.7941176470588236
         }
       }
     },
@@ -1025,12 +1614,65 @@
           "rank_pct": 0.05882352941176471
         },
         "nsw_helmet_star": {
+          "score": 43.0,
           "stars": 2,
           "category": "General helmets",
           "price_band": "$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/thousand-heritage-20",
-          "rank_pct": 0.24
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.84,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.9,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 6.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 4.79,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 9.32,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.57,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.56,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Thousand Heritage 2.0",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.21568627450980393
         }
       }
     },
@@ -1164,12 +1806,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 88.6,
           "stars": 5,
           "category": "Road helmets",
           "price_band": "$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/lazer-tempo-kineticore",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.74,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 30.6,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.39,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.76,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 8.08,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Tempo Kineticore",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 1.0
         }
       }
     },
@@ -1183,12 +1878,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 88.5,
           "stars": 5,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/poc-tectal-race-mips",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.81,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.6,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.28,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.59,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 4.54,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.43,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.27,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "POC Tectal Race MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.9803921568627451
         }
       }
     },
@@ -1202,12 +1950,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 88.1,
           "stars": 5,
           "category": "Road helmets",
           "price_band": "$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/giant-rev-comp-mips",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.48,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 5.1,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.93,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.66,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 6.89,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Giant REV Comp MIPS",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.9607843137254902
         }
       }
     },
@@ -1221,12 +2022,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 87.7,
           "stars": 5,
           "category": "Mountain bike/BMX full-face helmets",
           "price_band": "$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/lazer-chase-kineticore",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.45,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 11.6,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.14,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 9.66,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.85,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Chase Kineticore",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.9411764705882353
         }
       }
     },
@@ -1240,12 +2094,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 87.1,
           "stars": 5,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/lazer-lupo-kineticore",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.2,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 5.55,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.87,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 8.47,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Lupo Kineticore",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.9215686274509803
         }
       }
     },
@@ -1259,12 +2166,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 85.9,
           "stars": 5,
           "category": "Road helmets",
           "price_band": "$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/poc-octal-mips",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.43,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.26,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.53,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.99,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 9.71,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "POC Octal MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.9019607843137255
         }
       }
     },
@@ -1278,12 +2238,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 85.0,
           "stars": 5,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/fox-speedframe-pro",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.88,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.26,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.33,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.76,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 8.72,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Fox Speedframe Pro",
+            "confidence": 1.0,
+            "method": "model_token_overlap"
+          },
+          "rank_pct": 0.8823529411764706
         }
       }
     },
@@ -1297,12 +2310,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 84.7,
           "stars": 5,
           "category": "Road helmets",
           "price_band": "$$$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/specialized-evade-3",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 2.7,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 4.59,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.52,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 5.32,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 9.5,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Specialized Evade 3",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.8627450980392157
         }
       }
     },
@@ -1316,12 +2382,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 83.3,
           "stars": 5,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/bell-nomad-2-mips",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.63,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 10.22,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 6.0,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.85,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.71,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 5.9,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.01,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Bell Nomad 2 MIPS",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.8431372549019608
         }
       }
     },
@@ -1335,12 +2454,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 83.1,
           "stars": 5,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/fox-mainframe",
-          "rank_pct": 0.9099999999999999
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.25,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 2.78,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.65,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.6,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 0.68,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 8.81,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Fox Mainframe",
+            "confidence": 1.0,
+            "method": "model_token_overlap"
+          },
+          "rank_pct": 0.8235294117647058
         }
       }
     },
@@ -1354,12 +2526,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 82.4,
           "stars": 4,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/troy-lee-designs-a3-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.42,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 6.29,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.67,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Troy Lee Designs A3 MIPS",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.7941176470588236
         }
       }
     },
@@ -1373,12 +2598,137 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 80.7,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/met-vinci-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.86,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 4.76,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 9.27,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 9.03,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.16,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.5,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 5.06,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 8.06,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.03,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "MET Vinci MIPS",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.7450980392156863
+        }
+      }
+    },
+    {
+      "id": "met-parachute-mcr",
+      "match": {
+        "brand": "MET",
+        "model": "Parachute MCR",
+        "confidence": 0.98,
+        "method": "brand_model_exact"
+      },
+      "ratings": {
+        "nsw_helmet_star": {
+          "score": 80.2,
+          "stars": 4,
+          "category": "Mountain bike/BMX full-face helmets",
+          "price_band": "$$$$",
+          "test_year": 2025,
+          "url": "https://www.helmetstar.com.au/helmet/met-parachute-mcr",
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.89,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.53,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 10.62,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.75,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.48,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 4.06,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.88,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "MET Parachute MCR",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.7254901960784313
         }
       }
     },
@@ -1392,12 +2742,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 79.9,
           "stars": 4,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/giro-chronicle-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.66,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 6.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 9.97,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.1,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 4.2,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 1.01,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Giro Chronicle MIPS",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.7058823529411765
         }
       }
     },
@@ -1411,12 +2814,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 78.9,
           "stars": 4,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/lazer-coyote-kineticore",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.02,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.41,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.22,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.83,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.51,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Coyote Kineticore",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.6862745098039216
         }
       }
     },
@@ -1430,12 +2886,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 64.9,
           "stars": 3,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/specialized-tactic-4-mips",
-          "rank_pct": 0.33
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.42,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 11.09,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 28.05,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.63,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.39,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 4.16,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.53,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Specialized Tactic 4 MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.35294117647058826
         }
       }
     },
@@ -1449,12 +2958,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 76.6,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$$$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/giro-eclipse-pherical-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.48,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 2.25,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 4.89,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 5.79,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.51,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 5.8,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.91,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Giro Eclipse Spherical MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.6666666666666666
         }
       }
     },
@@ -1468,12 +3030,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 76.5,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/lazer-sphere-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.75,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 7.05,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 30.23,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 9.87,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.02,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.11,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.74,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 4.64,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.12,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Sphere MIPS",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.6470588235294118
         }
       }
     },
@@ -1487,12 +3102,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 75.9,
           "stars": 4,
           "category": "General helmets",
           "price_band": "$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/lazer-tonic-kineticore",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.56,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 2.03,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 21.88,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 7.56,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.34,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.27,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 8.33,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.91,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Tonic Kineticore",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.6274509803921569
         }
       }
     },
@@ -1506,12 +3174,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 75.7,
           "stars": 4,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/lazer-finch-kineticore",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.08,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 26.38,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.68,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.26,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.47,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 4.5,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.39,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Finch Kineticore",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.6078431372549019
         }
       }
     },
@@ -1525,12 +3246,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 74.8,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/scott-supra",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.18,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 4.33,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 10.98,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 21.19,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 7.87,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.03,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.92,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.28,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.38,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.59,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Scott Supra",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.5686274509803921
         }
       }
     },
@@ -1544,12 +3318,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 74.4,
           "stars": 4,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/smith-forefront-2-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.23,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.23,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 6.8,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 31.53,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 6.36,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.39,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.89,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Smith Forefront 2 MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.5490196078431373
         }
       }
     },
@@ -1563,12 +3390,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 72.1,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/specialized-s-works-evade-3",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 2.9,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 4.01,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 9.35,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 30.24,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 6.0,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.49,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 8.1,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Specialized S-Works Evade 3",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.5294117647058824
         }
       }
     },
@@ -1582,12 +3462,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 70.0,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$$$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/met-trenta-3k-carbon",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.91,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.64,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 0.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 1.77,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 9.66,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "MET Trenta 3K Carbon",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.5
         }
       }
     },
@@ -1601,12 +3534,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 68.7,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/trek-velocis-mips",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 2.22,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 0.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 0.0,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.71,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 9.82,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Trek Velocis MIPS",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.47058823529411764
         }
       }
     },
@@ -1620,31 +3606,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 68.3,
           "stars": 4,
           "category": "General helmets",
           "price_band": "$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/fend-one",
-          "rank_pct": 0.6
-        }
-      }
-    },
-    {
-      "id": "lazer-chiru-mips",
-      "match": {
-        "brand": "Lazer",
-        "model": "Chiru MIPS",
-        "confidence": 1.0,
-        "method": "token_overlap"
-      },
-      "ratings": {
-        "nsw_helmet_star": {
-          "stars": 4,
-          "category": "Mountain bike open-face helmets",
-          "price_band": "$",
-          "test_year": 2024,
-          "url": "https://www.helmetstar.com.au/helmet/lazer-chiru",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.08,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 1.05,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 11.15,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 0.68,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.51,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.84,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Fend One",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.45098039215686275
         }
       }
     },
@@ -1658,12 +3678,137 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 66.6,
           "stars": 4,
           "category": "Road helmets",
           "price_band": "$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/lazer-cityzen",
-          "rank_pct": 0.6
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.05,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 5.19,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 11.75,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 7.66,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 5.76,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 8.14,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Cityzen",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.4019607843137255
+        }
+      }
+    },
+    {
+      "id": "lazer-chiru-mips",
+      "match": {
+        "brand": "Lazer",
+        "model": "Chiru MIPS",
+        "confidence": 1.0,
+        "method": "token_overlap"
+      },
+      "ratings": {
+        "nsw_helmet_star": {
+          "score": 66.6,
+          "stars": 4,
+          "category": "Mountain bike open-face helmets",
+          "price_band": "$",
+          "test_year": 2024,
+          "url": "https://www.helmetstar.com.au/helmet/lazer-chiru",
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.36,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 3.34,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 8.88,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 22.01,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.51,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.48,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Lazer Chiru",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.4019607843137255
         }
       }
     },
@@ -1677,12 +3822,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 64.9,
           "stars": 3,
           "category": "Road helmets",
           "price_band": "$$",
           "test_year": 2024,
           "url": "https://www.helmetstar.com.au/helmet/specialized-centro-led",
-          "rank_pct": 0.33
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.36,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.51,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 7.58,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 25.61,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.01,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.76,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 5.44,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.54,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.37,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 3 stars or 64% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 30mm but still under 35mm.",
+          "match": {
+            "test_name": "Specialized Centro LED",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.35294117647058826
         }
       }
     },
@@ -1696,12 +3894,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 58.9,
           "stars": 3,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/leatt-all-mountain-10",
-          "rank_pct": 0.33
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.22,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 1.54,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 8.53,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 3.74,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.39,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.07,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.4,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "LEATT All Mountain 1.0",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.3137254901960784
         }
       }
     },
@@ -1715,12 +3966,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 55.0,
           "stars": 3,
           "category": "Road helmets",
           "price_band": "$$$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/kask-valegro",
-          "rank_pct": 0.33
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.48,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 20.38,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 3.9,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.27,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": null,
+          "match": {
+            "test_name": "Kask Valegro",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.27450980392156865
         }
       }
     },
@@ -1734,31 +4038,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 47.0,
           "stars": 2,
           "category": "Road helmets",
           "price_band": "$$$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/lazer-z1-kineticore",
-          "rank_pct": 0.24
-        }
-      }
-    },
-    {
-      "id": "specialized-camber",
-      "match": {
-        "brand": "Specialized",
-        "model": "Camber",
-        "confidence": 0.98,
-        "method": "brand_model_exact"
-      },
-      "ratings": {
-        "nsw_helmet_star": {
-          "stars": 1,
-          "category": "Mountain bike open-face helmets",
-          "price_band": "$$",
-          "test_year": 2024,
-          "url": "https://www.helmetstar.com.au/helmet/specialized-camber",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 2.8,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 14.05,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 7.81,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 8.3,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.48,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 1.8,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 8.84,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 2 stars or 47% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 30mm but still under 35mm",
+          "match": {
+            "test_name": "Lazer Z1 Kineticore",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.24509803921568626
         }
       }
     },
@@ -1772,12 +4110,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/100-altis",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.65,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 9.51,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 10.76,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 7.94,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 9.39,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 5.4,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 2.16,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 1 star or 29% as the headform acceleration, when tested using AS/NZS 2063 energy attenuation test, exceeds 260g.",
+          "match": {
+            "test_name": "100% Altis",
+            "confidence": 1.0,
+            "method": "model_token_overlap"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     },
@@ -1791,12 +4182,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "Road helmets",
           "price_band": "$$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/giro-aries-mips-spherical",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.88,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 2.81,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 10.82,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 0.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 9.21,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 6.86,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.74,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 29% or one star as the male part of the retention system buckle is not permanently attached.",
+          "match": {
+            "test_name": "Giro Aries MIPS Spherical",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     },
@@ -1810,12 +4254,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "General helmets",
           "price_band": "$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/kali-chakra-youth",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 3.05,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 11.99,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 20.47,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 2.15,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.14,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 4.58,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.15,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 1 star or 29% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 35mm.",
+          "match": {
+            "test_name": "Kali Chakra Youth",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     },
@@ -1829,12 +4326,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "General helmets",
           "price_band": "$$$",
           "test_year": 2026,
           "url": "https://www.helmetstar.com.au/helmet/unit-1-neon-non-mips",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.7,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 10.35,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 28.33,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 9.11,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.04,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.77,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 5.72,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.31,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 1 star or 29% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 35mm.",
+          "match": {
+            "test_name": "Unit 1 Neon",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     },
@@ -1848,12 +4398,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "General helmets",
           "price_band": "$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/specialised-mode-mips",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.08,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 11.97,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 28.73,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 4.24,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 7.61,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.01,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 1 star or 29% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 35mm.",
+          "match": {
+            "test_name": "Specialized Mode MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     },
@@ -1867,12 +4470,65 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "General helmets",
           "price_band": "$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/giant-relay-mips",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 4.11,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 4.8,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 7.23,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 11.11,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 2.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 5.97,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.05,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 29% or one star as the male part of the retention system buckle is not permanently attached.",
+          "match": {
+            "test_name": "Giant Relay MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     },
@@ -1886,12 +4542,137 @@
       },
       "ratings": {
         "nsw_helmet_star": {
+          "score": 29.0,
           "stars": 1,
           "category": "Mountain bike open-face helmets",
           "price_band": "$$$",
           "test_year": 2025,
           "url": "https://www.helmetstar.com.au/helmet/troy-lee-designs-flowline",
-          "rank_pct": 0.1
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.45,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 32.0,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 12.0,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 0.34,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 6.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 9.15,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 29% or one star as the male part of the retention system buckle is not permanently attached.",
+          "match": {
+            "test_name": "Troy Lee Designs Flowline",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.09803921568627451
+        }
+      }
+    },
+    {
+      "id": "specialized-camber",
+      "match": {
+        "brand": "Specialized",
+        "model": "Camber",
+        "confidence": 0.98,
+        "method": "brand_model_exact"
+      },
+      "ratings": {
+        "nsw_helmet_star": {
+          "score": 29.0,
+          "stars": 1,
+          "category": "Mountain bike open-face helmets",
+          "price_band": "$$",
+          "test_year": 2024,
+          "url": "https://www.helmetstar.com.au/helmet/specialized-camber",
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.42,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 10.2,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 28.95,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.91,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 6.82,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.69,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 1 star or 29% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 35mm.",
+          "match": {
+            "test_name": "Specialized Camber",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.09803921568627451
         }
       }
     }

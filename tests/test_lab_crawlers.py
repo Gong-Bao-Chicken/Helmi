@@ -71,6 +71,25 @@ NSW_DETAIL = """
 """
 
 
+NSW_DETAIL_SCORED = """
+<div><span>Tested in 2026</span><span>Adult</span><span>Road</span></div>
+<div role="meter" aria-label="Helmet coverage: 3.88 out of 6"></div>
+<div role="meter" aria-label="Angular head impact protection: 32 out of 32"></div>
+<div><p><span class="font-bold">Modifier</span>: The total score is truncated to 29% or one star.</p></div>
+<div class="flex"><span class="text-h4">Total</span><div><span>29.0</span><span>/ 100</span></div></div>
+"""
+
+
+def test_nsw_detail_parses_total_score_parts_and_modifier():
+    info = nsw_helmet_star.parse_detail_html(NSW_DETAIL_SCORED)
+    assert info["score"] == 29.0
+    assert info["metrics"] == {
+        "Helmet coverage": {"score": 3.88, "max": 6.0},
+        "Angular head impact protection": {"score": 32.0, "max": 32.0},
+    }
+    assert info["modifier"] == "The total score is truncated to 29% or one star."
+
+
 def test_nsw_listing_parsing():
     ratings = nsw_helmet_star.parse_listing_html(NSW_LISTING)
     assert [(r.model, r.stars, r.price_band) for r in ratings] == [

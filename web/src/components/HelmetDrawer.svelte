@@ -7,7 +7,7 @@
   import { focusTrap } from "../lib/focusTrap";
   import { styleLabel } from "../lib/styles";
   import { app, MAX_COMPARE, toggleCompare } from "../lib/state.svelte";
-  import type { Dataset, Helmet, MarketKey } from "../lib/types";
+  import type { Dataset, Helmet, MarketKey, RatingSourceKey } from "../lib/types";
   import LabAgreement from "./charts/LabAgreement.svelte";
   import PositionChart from "./charts/PositionChart.svelte";
   import StripPlot from "./charts/StripPlot.svelte";
@@ -50,6 +50,12 @@
   ];
 
   const certs = $derived(certifications(helmet.certifications));
+  /** How many helmets each lab's percentile is computed over. */
+  const labCounts = $derived.by(() => {
+    const counts: Partial<Record<RatingSourceKey, number>> = {};
+    for (const h of dataset.helmets) for (const key of labsFor(h)) counts[key] = (counts[key] ?? 0) + 1;
+    return counts;
+  });
   const CERT_HINTS: Record<string, string> = {
     "EN 1078": "European bicycle standard",
     CPSC: "US bicycle standard",
@@ -67,7 +73,7 @@
   const preset = $derived(RACE_PRESETS.find((p) => p.key === race)!);
 
   /** The lab's own name for the helmet, when it differs from how it's listed here. */
-  function testedAs(key: keyof typeof r) {
+  function testedAs(key: RatingSourceKey) {
     const name = (r[key] as { match?: { test_name: string | null } } | undefined)?.match?.test_name;
     return name && name.toLowerCase() !== `${helmet.brand} ${helmet.model}`.toLowerCase() ? name : null;
   }
@@ -76,6 +82,23 @@
     app.selected = null;
   }
 </script>
+
+{#snippet labFooter(key: RatingSourceKey, url: string | null | undefined, name: string)}
+  {#if testedAs(key)}<p class="text-xs text-ink-3">Listed by the lab as “{testedAs(key)}”</p>{/if}
+  {#if url}
+    <a class="mt-0.5 inline-block text-xs text-accent hover:underline" href={url} target="_blank" rel="noopener">View this result at {name} ↗</a>
+  {/if}
+{/snippet}
+
+{#snippet labScore(key: RatingSourceKey, value: string, unit: string)}
+  <div class="shrink-0 text-right num">
+    <div class="font-semibold">{value} {#if unit}<span class="text-xs font-normal text-ink-3">{unit}</span>{/if}</div>
+    {#if r[key]?.rank_pct != null}
+      <div class="text-xs text-ink-3">better than {pct(r[key]!.rank_pct)}%</div>
+      <div class="text-[11px] text-ink-3">of {labCounts[key]} tested</div>
+    {/if}
+  </div>
+{/snippet}
 
 {#snippet claims(list: Reason[])}
   <ul class="mb-3 space-y-1 text-sm">
@@ -214,60 +237,63 @@
         {#if r.virginia_tech}
           <div class="flex items-start justify-between gap-4 p-3">
             <div>
-              <a class="font-medium hover:underline" href={r.virginia_tech.url ?? helmet.source?.url ?? "https://www.helmet.beam.vt.edu/"} target="_blank" rel="noopener">Virginia Tech STAR {r.virginia_tech.test_year ?? ""}</a>
+              <p class="font-medium">Virginia Tech STAR {r.virginia_tech.test_year ?? ""}</p>
               <p class="text-xs text-ink-3">Lower STAR score is safer. Low / high impact: {r.virginia_tech.score_low_impact?.toFixed(1) ?? "–"} / {r.virginia_tech.score_high_impact?.toFixed(1) ?? "–"}</p>
               <p class="text-xs text-ink-3">{LAB_EXPLAINERS.virginia_tech}</p>
-              {#if testedAs("virginia_tech")}<p class="text-xs text-ink-3">Listed by the lab as “{testedAs("virginia_tech")}”</p>{/if}
-              {#if r.virginia_tech.result_url}
-                <a class="text-xs text-accent hover:underline" href={r.virginia_tech.result_url} target="_blank" rel="noopener">This helmet's test result at Virginia Tech ↗</a>
-              {/if}
+              {@render labFooter("virginia_tech", r.virginia_tech.result_url ?? r.virginia_tech.url, "Virginia Tech")}
             </div>
-            <div class="text-right num">
-              <div class="font-semibold">{r.virginia_tech.score?.toFixed(2) ?? "–"}</div>
-              <div class="text-xs text-ink-3">{pct(r.virginia_tech.rank_pct)} pct</div>
-            </div>
+            {@render labScore("virginia_tech", r.virginia_tech.score?.toFixed(2) ?? "–", "")}
           </div>
         {/if}
         {#if r.folksam}
           <div class="flex items-start justify-between gap-4 p-3">
             <div>
-              <a class="font-medium hover:underline" href={r.folksam.url ?? "#"} target="_blank" rel="noopener">Folksam {r.folksam.test_year ?? ""}</a>
+              <p class="font-medium">Folksam {r.folksam.test_year ?? ""}</p>
               <p class="text-xs text-ink-3">{r.folksam.recommended ? "Recommended by Folksam" : "Overall result vs best in test"}</p>
               <p class="text-xs text-ink-3">{LAB_EXPLAINERS.folksam}</p>
-              {#if testedAs("folksam")}<p class="text-xs text-ink-3">Listed by the lab as “{testedAs("folksam")}”</p>{/if}
+              {@render labFooter("folksam", r.folksam.url, "Folksam")}
             </div>
-            <div class="text-right num">
-              <div class="font-semibold">{r.folksam.overall_result_pct != null ? `${r.folksam.overall_result_pct}%` : "–"}</div>
-              <div class="text-xs text-ink-3">{pct(r.folksam.rank_pct)} pct</div>
-            </div>
+            {@render labScore("folksam", r.folksam.overall_result_pct != null ? `${r.folksam.overall_result_pct}%` : "–", "")}
           </div>
         {/if}
         {#if r.certimoov}
           <div class="flex items-start justify-between gap-4 p-3">
             <div>
-              <a class="font-medium hover:underline" href={r.certimoov.url ?? "#"} target="_blank" rel="noopener">CERTIMOOV {r.certimoov.test_year ?? ""}</a>
-              <p class="text-xs text-ink-3">Score out of 5</p>
+              <p class="font-medium">CERTIMOOV {r.certimoov.test_year ?? ""}</p>
               <p class="text-xs text-ink-3">{LAB_EXPLAINERS.certimoov}</p>
-              {#if testedAs("certimoov")}<p class="text-xs text-ink-3">Listed by the lab as “{testedAs("certimoov")}”</p>{/if}
+              {@render labFooter("certimoov", r.certimoov.url, "CERTIMOOV")}
             </div>
-            <div class="text-right num">
-              <div class="font-semibold">{r.certimoov.score ?? "–"} <span class="text-xs font-normal text-ink-3">/ 5</span></div>
-              <div class="text-xs text-ink-3">{pct(r.certimoov.rank_pct)} pct</div>
-            </div>
+            {@render labScore("certimoov", String(r.certimoov.score ?? "–"), "/ 5")}
           </div>
         {/if}
         {#if r.nsw_helmet_star}
+          {@const nsw = r.nsw_helmet_star}
+          {@const partsTotal = nsw.metrics ? Object.values(nsw.metrics).reduce((sum, m) => sum + m.score, 0) : null}
           <div class="flex items-start justify-between gap-4 p-3">
-            <div>
-              <a class="font-medium hover:underline" href={r.nsw_helmet_star.url ?? "#"} target="_blank" rel="noopener">NSW Helmet STAR {r.nsw_helmet_star.test_year ?? ""}</a>
-              <p class="text-xs text-ink-3">{r.nsw_helmet_star.category ?? "Australian government rating"}</p>
+            <div class="min-w-0">
+              <p class="font-medium">NSW Helmet STAR {nsw.test_year ?? ""}</p>
+              <p class="text-xs text-ink-3">{nsw.category ?? ""}{nsw.category ? " · " : ""}{"★".repeat(nsw.stars ?? 0)}<span class="opacity-40">{"★".repeat(5 - (nsw.stars ?? 0))}</span></p>
               <p class="text-xs text-ink-3">{LAB_EXPLAINERS.nsw_helmet_star}</p>
-              {#if testedAs("nsw_helmet_star")}<p class="text-xs text-ink-3">Listed by the lab as “{testedAs("nsw_helmet_star")}”</p>{/if}
+              {#if nsw.modifier}
+                <p class="mt-1 text-xs text-caution">
+                  Penalty: {nsw.modifier}{partsTotal != null && nsw.score != null && partsTotal - nsw.score > 1
+                    ? ` Without it the parts add up to ${partsTotal.toFixed(1)}.`
+                    : ""}
+                </p>
+              {/if}
+              {#if nsw.metrics}
+                <details class="mt-1 text-xs text-ink-3">
+                  <summary class="cursor-pointer hover:text-ink">Score breakdown</summary>
+                  <ul class="mt-1 space-y-0.5 num">
+                    {#each Object.entries(nsw.metrics) as [name, m] (name)}
+                      <li class="flex justify-between gap-3"><span>{name}</span><span>{m.score.toFixed(1)} / {m.max}</span></li>
+                    {/each}
+                  </ul>
+                </details>
+              {/if}
+              {@render labFooter("nsw_helmet_star", nsw.url, "NSW Helmet STAR")}
             </div>
-            <div class="text-right num">
-              <div class="font-semibold">{"★".repeat(r.nsw_helmet_star.stars ?? 0)}<span class="text-ink-3">{"★".repeat(5 - (r.nsw_helmet_star.stars ?? 0))}</span></div>
-              <div class="text-xs text-ink-3">{pct(r.nsw_helmet_star.rank_pct)} pct</div>
-            </div>
+            {@render labScore("nsw_helmet_star", nsw.score != null ? nsw.score.toFixed(1) : "★".repeat(nsw.stars ?? 0), nsw.score != null ? "/ 100" : "")}
           </div>
         {/if}
         {#if !labsFor(helmet).length}

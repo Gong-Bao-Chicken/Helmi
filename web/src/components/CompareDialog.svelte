@@ -133,7 +133,7 @@
           <td class="space-y-0.5 text-xs">
             {#if h.ratings.folksam}<div>Folksam: {h.ratings.folksam.overall_result_pct ?? "–"}%{h.ratings.folksam.recommended ? " · recommended" : ""}</div>{/if}
             {#if h.ratings.certimoov}<div>CERTIMOOV: {h.ratings.certimoov.score ?? "–"}/5</div>{/if}
-            {#if h.ratings.nsw_helmet_star}<div>NSW: {h.ratings.nsw_helmet_star.stars ?? "–"}★</div>{/if}
+            {#if h.ratings.nsw_helmet_star}<div>NSW: {h.ratings.nsw_helmet_star.score != null ? `${h.ratings.nsw_helmet_star.score.toFixed(1)}/100` : `${h.ratings.nsw_helmet_star.stars ?? "–"}★`}</div>{/if}
             {#if !h.ratings.folksam && !h.ratings.certimoov && !h.ratings.nsw_helmet_star}<span class="text-ink-3">–</span>{/if}
           </td>
         {/each}

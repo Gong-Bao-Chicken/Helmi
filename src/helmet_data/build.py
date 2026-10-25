@@ -342,6 +342,9 @@ def rating_block_from_unmatched(entry: dict) -> dict[str, Any]:
         }
     if source == "nsw_helmet_star":
         return {
+            "score": entry.get("score"),
+            "metrics": entry.get("metrics"),
+            "modifier": entry.get("modifier"),
             "stars": entry.get("stars"),
             "category": entry.get("category"),
             "price_band": entry.get("price_band"),

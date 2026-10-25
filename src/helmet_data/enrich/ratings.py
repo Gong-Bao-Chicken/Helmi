@@ -35,8 +35,10 @@ RATING_SOURCES: dict[str, dict[str, Any]] = {
         "short": "NSW",
         "confidence": 0.85,
         "lower_score_is_better": False,
+        # Ranked by the total out of 100; the stars are bands of it and tie dozens of helmets.
+        "score_key": "score",
         "stars_key": "stars",
-        "url": "https://www.transport.nsw.gov.au/roadsafety/bicycle-riders/helmet-star",
+        "url": "https://www.helmetstar.com.au/",
     },
     "hiper": {
         "label": "Hiper",

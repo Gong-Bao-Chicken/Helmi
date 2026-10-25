@@ -3,7 +3,8 @@
 The programme moved from transport.nsw.gov.au (one big table) to its own site,
 helmetstar.com.au (2026): listing pages with one card per helmet
 (``/adult-helmets``, ``/childrens-helmets``) and a detail page per helmet
-(``/helmet/<slug>``) that carries the test year and helmet type.
+(``/helmet/<slug>``) that carries the test year, helmet type and the score: a total out of
+100 (the stars are bands of it), its parts, and any penalty ("modifier") applied.
 """
 
 import re
@@ -41,6 +42,9 @@ class NswHelmetStarRating:
     helmet_type: str | None = None
     age_group: str | None = None
     image_url: str | None = None
+    score: float | None = None
+    metrics: dict[str, dict[str, float]] | None = None
+    modifier: str | None = None
 
 
 def _text(el) -> str:
@@ -94,10 +98,29 @@ def parse_listing_html(html: str) -> list[NswHelmetStarRating]:
     return ratings
 
 
+METRIC_RE = re.compile(r"^(.+?):\s*([\d.]+) out of ([\d.]+)$")
+
+
 def parse_detail_html(html: str) -> dict:
-    """Return test_year / age_group / helmet_type from a /helmet/<slug> page."""
+    """Return test_year / age_group / helmet_type and score / metrics / modifier from a helmet page."""
     soup = BeautifulSoup(html, "html.parser")
     info: dict = {}
+    # "Total 29.0 / 100": the final score, after any modifier.
+    total = soup.find(string=re.compile(r"^\s*Total\s*$"))
+    row = total.find_parent("div") if total else None
+    if row:
+        number = re.search(r"(\d+(?:\.\d+)?)\s*/\s*100", _text(row))
+        if number:
+            info["score"] = float(number.group(1))
+    metrics = {}
+    for el in soup.find_all(attrs={"aria-label": METRIC_RE}):
+        name, value, maximum = METRIC_RE.match(el["aria-label"]).groups()
+        metrics[name.strip()] = {"score": float(value), "max": float(maximum)}
+    if metrics:
+        info["metrics"] = metrics
+    modifier = soup.find("span", string=re.compile(r"^\s*Modifier\s*$"))
+    if modifier and modifier.parent:
+        info["modifier"] = _text(modifier.parent).split(":", 1)[-1].strip() or None
     tested = soup.find(string=re.compile(r"Tested in\s+\d{4}"))
     if tested:
         info["test_year"] = int(re.search(r"\d{4}", tested).group(0))
@@ -161,6 +184,9 @@ def fetch_nsw_helmet_star_ratings(
                     helmet_type=helmet_type,
                     age_group=age_group,
                     category=_category(age_group, helmet_type) or item.category,
+                    score=info.get("score"),
+                    metrics=info.get("metrics"),
+                    modifier=info.get("modifier"),
                 )
             )
             polite_sleep(delay)
@@ -176,4 +202,7 @@ def nsw_to_dict(rating: NswHelmetStarRating) -> dict:
         "url": rating.source_url,
         "test_year": rating.test_year,
         "image_url": rating.image_url,
+        "score": rating.score,
+        "metrics": rating.metrics,
+        "modifier": rating.modifier,
     }

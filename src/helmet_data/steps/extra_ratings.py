@@ -183,11 +183,14 @@ def build_matches(
         for item in items:
             payload = nsw_to_dict(item)
             block = {
+                "score": payload.get("score"),
                 "stars": payload["stars"],
                 "category": payload["category"],
                 "price_band": payload["price_band"],
                 "test_year": payload.get("test_year") or nsw_year,
                 "url": payload["url"],
+                "metrics": payload.get("metrics"),
+                "modifier": payload.get("modifier"),
             }
             rows.append((payload, match_nsw(payload, helmets), block))
         return rows
@@ -200,6 +203,9 @@ def build_matches(
 
     for source in ALL_SOURCES:
         if source not in sources:
+            # Not crawled this time: keep its last results rather than dropping them.
+            reused = _fallback_to_previous(source, None, previous, ensure_entry, unmatched)
+            stats[source] = {**reused, "stale": False}
             continue
         try:
             rows = fetchers[source]()
@@ -235,18 +241,20 @@ def build_matches(
     attach_folksam_percentiles(folksam_entries)
 
     nsw_entries = [entry for entry in matches if "nsw_helmet_star" in entry["ratings"]]
-    attach_star_percentiles(nsw_entries, "nsw_helmet_star")
+    attach_rank_percentiles(nsw_entries, "nsw_helmet_star", lower_is_better=False, score_key="score")
 
     return matches, unmatched, stats
 
 
 def _fallback_to_previous(source, exc, previous, ensure_entry, unmatched) -> dict:
-    error = f"{type(exc).__name__}: {exc}"
-    print(
-        f"\n  WARNING: {source} fetch failed ({error}).\n"
-        f"  Falling back to previously cached {source} ratings.\n",
-        flush=True,
-    )
+    """Reuse ``source``'s previous results: after a failed fetch (``exc``), or when it was skipped (None)."""
+    error = f"{type(exc).__name__}: {exc}" if exc else None
+    if exc:
+        print(
+            f"\n  WARNING: {source} fetch failed ({error}).\n"
+            f"  Falling back to previously cached {source} ratings.\n",
+            flush=True,
+        )
     reused = 0
     for entry in previous.get("matches", []):
         block = entry.get("ratings", {}).get(source)

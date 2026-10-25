@@ -34,6 +34,10 @@ export interface RatingBlock {
   impact_scores?: Record<string, number>;
   // NSW
   category?: string | null;
+  /** Parts of the NSW 100-point score. */
+  metrics?: Record<string, { score: number; max: number }> | null;
+  /** NSW penalty applied to the total, e.g. for a detachable buckle. */
+  modifier?: string | null;
 }
 
 export interface FusedRating {

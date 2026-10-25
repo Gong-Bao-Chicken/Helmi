@@ -28,7 +28,8 @@
   import { median } from "../lib/scoring";
   import { app } from "../lib/state.svelte";
   import { orderedStyles, styleColor } from "../lib/styles";
-  import type { Dataset, MarketKey } from "../lib/types";
+  import StyleLegend from "./charts/StyleLegend.svelte";
+  import type { Dataset, Helmet, MarketKey } from "../lib/types";
   import CategoryStrips from "./charts/CategoryStrips.svelte";
   import PriceSafetyExplorer from "./charts/PriceSafetyExplorer.svelte";
   import Scatter from "./charts/Scatter.svelte";
@@ -89,6 +90,10 @@
       .map((r) => `${r.label} ${signed(r.med)}`)
       .join(", "),
   );
+
+  // Every helmet dot on this page wears its riding style's color, as in the price/safety explorer.
+  const byStyle = (h: Helmet) => styleColor(h.style);
+  const styled = <T extends { helmet: Helmet }>(p: T) => ({ ...p, emphasis: "highlight" as const, color: byStyle(p.helmet) });
 
   const COUNTRIES = Object.entries(MARKET_LABEL) as [MarketKey, string][];
   let pairA = $state<MarketKey>("de");
@@ -203,7 +208,9 @@
             format={(v) => signed(v)}
             axisLabel="Price change since launch →"
             ariaLabel="Price change since launch by country"
+            dotColor={byStyle}
           />
+          <StyleLegend helmets={launchRows.flatMap((r) => r.items.map((i) => i.helmet))} />
         {:else}
           <p class="text-sm text-ink-3">Needs live shop prices. Run the price fetch.</p>
         {/if}
@@ -227,7 +234,7 @@
             {#if pair.length < 20}Few helmets, so read this as a hint.{/if}
           </p>
           <Scatter
-            points={pair.map((p) => ({ helmet: p.helmet, x: p.a.amount, y: p.b.amount, emphasis: "highlight" as const }))}
+            points={pair.map((p) => styled({ helmet: p.helmet, x: p.a.amount, y: p.b.amount }))}
             xDomain={[0, fromEur(pairA, pairMax)]}
             yDomain={[0, fromEur(pairB, pairMax)]}
             xLabel="{MARKET_LABEL[pairA]}, {marketCurrency(pairA)} →"
@@ -243,6 +250,7 @@
             diagonal
             ariaLabel="{MARKET_LABEL[pairB]} against {MARKET_LABEL[pairA]} price for {pair.length} helmets"
           />
+          <StyleLegend helmets={pair.map((p) => p.helmet)} />
         {:else}
           <p class="text-sm text-ink-3">No helmets with a real shop price in both {MARKET_LABEL[pairA]} and {MARKET_LABEL[pairB]} yet.</p>
         {/if}
@@ -275,7 +283,8 @@
             Safety score by rotational-protection system.
           {/if}
         </p>
-        <CategoryStrips rows={protectionRows} ariaLabel="Safety score distribution by rotational protection system" />
+        <CategoryStrips rows={protectionRows} dotColor={byStyle} ariaLabel="Safety score distribution by rotational protection system" />
+        <StyleLegend helmets={protectionRows.flatMap((r) => r.items.map((i) => i.helmet))} />
       </figure>
 
       <figure class="card p-5">
@@ -283,7 +292,8 @@
         <p class="mb-4 text-sm text-ink-2">
           Virginia Tech percentile by the year VT tested the helmet. If later years sit further right, newer designs are scoring better.
         </p>
-        <CategoryStrips rows={yearRows} rowHeight={30} axisLabel="Virginia Tech percentile →" ariaLabel="Virginia Tech percentile by test year" />
+        <CategoryStrips rows={yearRows} rowHeight={30} dotColor={byStyle} axisLabel="Virginia Tech percentile →" ariaLabel="Virginia Tech percentile by test year" />
+        <StyleLegend helmets={yearRows.flatMap((r) => r.items.map((i) => i.helmet))} />
       </figure>
 
       <figure class="card p-5">
@@ -305,7 +315,9 @@
           rowHeight={26}
           recentLabel="median of {recentRange} helmets"
           ariaLabel="Safety score distribution by brand"
+          dotColor={byStyle}
         />
+        <StyleLegend helmets={brands.flatMap((r) => r.items.map((i) => i.helmet))} />
         {#if recentRange}
           <p class="mt-2 text-xs text-ink-3">Test year stands in for release year. Brands with fewer than two recent helmets show no diamond{brandsByRecent ? " and are listed last" : ""}.</p>
         {/if}
@@ -329,7 +341,7 @@
             <div class="mb-1 text-xs font-semibold text-ink">{labLabel(pair.a)} vs {labLabel(pair.b)}</div>
             <div class="mb-2 text-xs text-ink-3">{pair.points.length} helmets · the labs {agreement(pair.rho)}</div>
             <Scatter
-              points={pair.points.map((p) => ({ ...p, emphasis: "highlight" as const }))}
+              points={pair.points.map(styled)}
               xDomain={[0, 100]}
               yDomain={[0, 100]}
               xLabel="{labLabel(pair.a)} percentile"
@@ -342,6 +354,7 @@
           </div>
         {/each}
       </div>
+      <StyleLegend helmets={pairs.flatMap((p) => p.points.map((q) => q.helmet))} />
     </figure>
 
     <div class="grid gap-6 lg:grid-cols-2">
@@ -354,7 +367,7 @@
             : ": a helmet good at one is not automatically good at the other."}
         </p>
         <Scatter
-          points={vtImpacts.map((p) => ({ ...p, emphasis: "highlight" as const }))}
+          points={vtImpacts.map(styled)}
           xDomain={vtLowDomain}
           yDomain={vtHighDomain}
           xLabel="Low-speed risk score, safer →"
@@ -367,6 +380,7 @@
           ]}
           ariaLabel="Virginia Tech low-speed against high-speed impact score for {vtImpacts.length} helmets"
         />
+        <StyleLegend helmets={vtImpacts.map((p) => p.helmet)} />
       </figure>
 
       <figure class="card p-5">
@@ -381,7 +395,9 @@
           axisLabel="CERTIMOOV impact score →"
           format={(v) => (Number.isInteger(v) ? String(v) : v.toFixed(1))}
           ariaLabel="CERTIMOOV score by impact location"
+          dotColor={byStyle}
         />
+        <StyleLegend helmets={impactRows.flatMap((r) => r.items.map((i) => i.helmet))} />
       </figure>
 
       <figure class="card p-5 lg:col-span-2">
@@ -414,7 +430,7 @@
           : "."}
       </p>
       <Scatter
-        points={aero.map((p) => ({ ...p, emphasis: "highlight" as const }))}
+        points={aero.map(styled)}
         xDomain={[0, 100]}
         yDomain={[0, 100]}
         xLabel="Aero percentile, faster →"
@@ -428,6 +444,7 @@
         ]}
         ariaLabel="Aero percentile against safety for {aero.length} helmets"
       />
+      <StyleLegend helmets={aero.map((p) => p.helmet)} />
     </figure>
   </div>
 

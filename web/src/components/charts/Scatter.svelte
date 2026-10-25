@@ -24,6 +24,7 @@
   import { scaleLinear, type ScaleLinear } from "d3-scale";
   import type { Snippet } from "svelte";
   import { app } from "../../lib/state.svelte";
+  import { styleLabel } from "../../lib/styles";
   import HelmetImage from "../HelmetImage.svelte";
 
   interface Props {
@@ -240,6 +241,7 @@
       <div class="min-w-0 flex-1">
         <div class="truncate text-ink-3">{hovered.helmet.brand}</div>
         <div class="font-semibold text-ink">{hovered.helmet.model}</div>
+        <div class="text-ink-3">{styleLabel(hovered.helmet.style)}</div>
         <div class="mt-1.5 grid grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 num">
           {#each details ? details(hovered) : [[xLabel.replace(/\s*[→↑]$/, ""), xFormat(hovered.x)], [yLabel.replace(/\s*[→↑]$/, ""), yFormat(hovered.y)]] as [k, v] (k)}
             <span class="text-ink-3">{k}</span><span class="text-right font-medium">{v}</span>

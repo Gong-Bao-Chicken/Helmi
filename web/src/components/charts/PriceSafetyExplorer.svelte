@@ -54,7 +54,8 @@
         y: p.safety,
         hollow: p.price.kind === "estimate",
         emphasis: subject == null ? "normal" : groupOf(p.helmet) === subject ? "highlight" : "context",
-        color: isBest ? "var(--frontier)" : colorOf(subject),
+        // With no group picked each helmet wears its own style's hue; the style chips above are the legend.
+        color: isBest ? "var(--frontier)" : colorOf(subject ?? groupOf(p.helmet)),
         key: isBest,
       };
     });

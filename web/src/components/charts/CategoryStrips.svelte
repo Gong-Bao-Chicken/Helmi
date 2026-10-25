@@ -6,6 +6,7 @@
   import { scaleLinear } from "d3-scale";
   import { median } from "../../lib/scoring";
   import { app } from "../../lib/state.svelte";
+  import { styleLabel } from "../../lib/styles";
   import type { Helmet } from "../../lib/types";
   import HelmetImage from "../HelmetImage.svelte";
 
@@ -26,6 +27,8 @@
     rowHeight?: number;
     /** Dot color per row (e.g. the riding style's hue); default grey. */
     color?: (key: string) => string;
+    /** Dot color per helmet (e.g. its riding style), used when rows aren't styles themselves. */
+    dotColor?: (helmet: Helmet) => string;
     /** Legend text for the recent-median marker, e.g. "median of 2025–26 helmets". */
     recentLabel?: string;
   }
@@ -38,6 +41,7 @@
     format = (v) => String(Math.round(v)),
     rowHeight = 40,
     color,
+    dotColor,
     recentLabel = "recent median",
   }: Props = $props();
 
@@ -92,8 +96,8 @@
           cx={at(item.value)}
           cy={cy + jitter(item.helmet.id)}
           r={active ? 6 : rowHeight < 32 ? 3 : 3.5}
-          fill={active ? "var(--selected)" : (color?.(row.key) ?? "var(--dot)")}
-          fill-opacity={active || !color ? 1 : 0.75}
+          fill={active ? "var(--selected)" : (dotColor?.(item.helmet) ?? color?.(row.key) ?? "var(--dot)")}
+          fill-opacity={active || !(color || dotColor) ? 1 : 0.75}
           stroke="var(--chart-surface)"
           stroke-width={active ? 2 : 1}
           class="cursor-pointer"
@@ -143,6 +147,7 @@
       <div class="min-w-0">
         <div class="truncate text-ink-3">{tip.helmet.brand}</div>
         <div class="font-semibold text-ink">{tip.helmet.model}</div>
+        <div class="text-ink-3">{styleLabel(tip.helmet.style)}</div>
         <div class="mt-1 num">{axisLabel.replace(/\s*→$/, "")} <span class="font-semibold">{format(tip.value)}</span></div>
       </div>
     </div>

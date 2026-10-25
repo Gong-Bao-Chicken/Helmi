@@ -1,15 +1,16 @@
 {
   "meta": {
-    "generated_at": "2026-10-25T17:28:42.934049+00:00",
+    "generated_at": "2026-10-25T18:01:19.755279+00:00",
     "source_url": "https://www.helmet.beam.vt.edu/js/bicycleData.js",
-    "helmet_count_total": 624,
-    "helmet_count_european_market": 406,
-    "helmet_count_vt_catalog": 344,
+    "helmet_count_total": 620,
+    "helmet_count_european_market": 403,
+    "helmet_count_vt_catalog": 340,
     "manufacturer_fetch_enabled": false,
     "note": "price_at_test_usd is the US retail price at the time of VT testing, not a current market price.",
     "extra_ratings_merged": 93,
     "extra_only_count": 280,
-    "styles_reviewed": 261,
+    "styles_reviewed": 259,
+    "helmets_merged": 4,
     "aero_ratings_matched": 70,
     "aero_ratings_total": 70,
     "helmets_with_aero": 54,
@@ -42,33 +43,33 @@
     },
     "extra_ratings_match_count": 80,
     "style_verification": {
-      "cached": 624,
+      "cached": 620,
       "fetched": 0,
       "skipped": 0,
       "matched": 34,
       "mismatch": 0,
-      "unknown": 590
+      "unknown": 586
     },
     "manufacturer_protection": {
       "cached": 2,
       "fetched": 0,
-      "skipped": 622,
+      "skipped": 618,
       "detected": 1,
       "errors": 0
     },
     "retailer_protection": {
       "cached": 221,
       "fetched": 0,
-      "skipped": 403,
+      "skipped": 399,
       "detected": 178,
       "errors": 0
     },
     "mips_detection": {
-      "mips_detected": 274,
+      "mips_detected": 273,
       "from_lookup": 58,
-      "from_text": 216
+      "from_text": 215
     },
-    "market_prices_fetched_at": "2026-10-25T17:28:43.168654+00:00",
+    "market_prices_fetched_at": "2026-10-25T18:01:19.988999+00:00",
     "exchange_rates": {
       "base": "USD",
       "EUR": 0.89342,
@@ -81,7 +82,7 @@
       "priced": 218,
       "better": 200,
       "cached": 258,
-      "skipped": 0
+      "skipped": 145
     },
     "market_price_note": "Prefers Geizhals (curl_cffi Safari TLS), Idealo, and toppreise.ch. Uses median daily price over 14 days when enough snapshots exist. Amazon is fallback when comparison portals are blocked.",
     "market_prices_source_errors": {},
@@ -1617,7 +1618,7 @@
         "label": "MIPS",
         "group": "rotational",
         "hint": "MIPS variant: MIPS",
-        "count": 249,
+        "count": 248,
         "group_label": "Slip-plane"
       },
       {
@@ -1657,7 +1658,7 @@
         "label": "None",
         "group": "none",
         "hint": "No detected protection technology",
-        "count": 333,
+        "count": 330,
         "group_label": "None"
       }
     ],
@@ -1757,7 +1758,7 @@
     {
       "id": "extra-abus-yadd-i",
       "brand": "ABUS",
-      "model": "YADD-I",
+      "model": "Yadd-I",
       "search_text": "abus yadd-i",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -2505,133 +2506,6 @@
       "brand_key": "rioroller"
     },
     {
-      "id": "extra-abus-skurb-mips",
-      "brand": "ABUS",
-      "model": "- Skurb-MIPS",
-      "search_text": "abus - skurb-mips",
-      "catalog": "extra_only",
-      "primary_rating_source": "certimoov",
-      "score": 2.5,
-      "stars": 2,
-      "ratings": {
-        "certimoov": {
-          "score": 2.5,
-          "stars": 2,
-          "test_year": 2024,
-          "url": "https://www.certimoov.com/en/les-tests/bike/abus-skurb-mips",
-          "impact_scores": {
-            "choc-frontal": 3.0,
-            "choc-lateral": 0.5,
-            "choc-arriere": 3.5,
-            "choc-frontal-oblique": 3.5,
-            "choc-lateral-oblique-1": 4.0,
-            "choc-lateral-oblique-2-": 2.0
-          },
-          "rank_pct": 0.1096
-        },
-        "fused": {
-          "rank_pct": 0.1096,
-          "sources": [
-            "certimoov"
-          ],
-          "weights": {
-            "certimoov": 0.85
-          }
-        }
-      },
-      "style": "Urban",
-      "style_meta": {
-        "assigned": "Urban",
-        "source": "reviewed",
-        "rule_style": "Unclassified",
-        "review_note": "Abus Skurb skate-style urban helmet",
-        "manufacturer_verified": false,
-        "manufacturer_style": null,
-        "manufacturer_match": null,
-        "manufacturer_title": null,
-        "manufacturer_error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Skurb-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
-      },
-      "test_year": 2024,
-      "certifications": "",
-      "score_low_impact": null,
-      "score_high_impact": null,
-      "price_at_test_usd": null,
-      "price_at_test_label": null,
-      "value_ratio": null,
-      "image_url": "https://www.certimoov.com/sites/default/files/styles/product_slider/public/BH3-2024-08_Abus_Skurb-MIPS_front_3.jpg?itok=WqohAtbu",
-      "features": {
-        "mips_standard": true,
-        "mips_spherical": false,
-        "wavecel": false,
-        "spin": false,
-        "sweet_2vi": false,
-        "koroyd": false,
-        "rotational_protection": true,
-        "nta8776": false,
-        "asia_fit": false,
-        "round_fit": false
-      },
-      "feature_labels": [
-        "MIPS"
-      ],
-      "eu_brand": true,
-      "eu_version": true,
-      "european_market": true,
-      "listings": {
-        "de": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "amazon_de",
-          "fetched_at": null
-        },
-        "at": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "geizhals_at",
-          "fetched_at": null
-        },
-        "ch": {
-          "price": null,
-          "currency": "CHF",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "galaxus",
-          "fetched_at": null
-        }
-      },
-      "manufacturer": {
-        "website": null,
-        "search_url": null,
-        "fetched": false,
-        "title": null,
-        "description": null,
-        "image": null,
-        "error": "extra_only"
-      },
-      "source": {
-        "name": "CERTIMOOV",
-        "url": "https://www.certimoov.com/en/les-tests/bike/abus-skurb-mips"
-      },
-      "protection": {
-        "has_mips": true,
-        "mips_variant": "standard",
-        "mips_label": "MIPS",
-        "rotational_tech": "mips",
-        "rotational_label": "MIPS",
-        "source": "text"
-      },
-      "protection_tech": "mips_standard",
-      "protection_group": "rotational",
-      "brand_key": "abus"
-    },
-    {
       "id": "extra-abus-scrapper-30-0",
       "brand": "ABUS",
       "model": "Scrapper 3.0",
@@ -2754,6 +2628,133 @@
       },
       "protection_tech": "none",
       "protection_group": "none",
+      "brand_key": "abus"
+    },
+    {
+      "id": "extra-abus-skurb-mips",
+      "brand": "ABUS",
+      "model": "Skurb-MIPS",
+      "search_text": "abus skurb-mips",
+      "catalog": "extra_only",
+      "primary_rating_source": "certimoov",
+      "score": 2.5,
+      "stars": 2,
+      "ratings": {
+        "certimoov": {
+          "score": 2.5,
+          "stars": 2,
+          "test_year": 2024,
+          "url": "https://www.certimoov.com/en/les-tests/bike/abus-skurb-mips",
+          "impact_scores": {
+            "choc-frontal": 3.0,
+            "choc-lateral": 0.5,
+            "choc-arriere": 3.5,
+            "choc-frontal-oblique": 3.5,
+            "choc-lateral-oblique-1": 4.0,
+            "choc-lateral-oblique-2-": 2.0
+          },
+          "rank_pct": 0.1096
+        },
+        "fused": {
+          "rank_pct": 0.1096,
+          "sources": [
+            "certimoov"
+          ],
+          "weights": {
+            "certimoov": 0.85
+          }
+        }
+      },
+      "style": "Urban",
+      "style_meta": {
+        "assigned": "Urban",
+        "source": "reviewed",
+        "rule_style": "Unclassified",
+        "review_note": "Abus Skurb skate-style urban helmet",
+        "manufacturer_verified": false,
+        "manufacturer_style": null,
+        "manufacturer_match": null,
+        "manufacturer_title": null,
+        "manufacturer_error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Skurb-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+      },
+      "test_year": 2024,
+      "certifications": "",
+      "score_low_impact": null,
+      "score_high_impact": null,
+      "price_at_test_usd": null,
+      "price_at_test_label": null,
+      "value_ratio": null,
+      "image_url": "https://www.certimoov.com/sites/default/files/styles/product_slider/public/BH3-2024-08_Abus_Skurb-MIPS_front_3.jpg?itok=WqohAtbu",
+      "features": {
+        "mips_standard": true,
+        "mips_spherical": false,
+        "wavecel": false,
+        "spin": false,
+        "sweet_2vi": false,
+        "koroyd": false,
+        "rotational_protection": true,
+        "nta8776": false,
+        "asia_fit": false,
+        "round_fit": false
+      },
+      "feature_labels": [
+        "MIPS"
+      ],
+      "eu_brand": true,
+      "eu_version": true,
+      "european_market": true,
+      "listings": {
+        "de": {
+          "price": null,
+          "currency": "EUR",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "amazon_de",
+          "fetched_at": null
+        },
+        "at": {
+          "price": null,
+          "currency": "EUR",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "geizhals_at",
+          "fetched_at": null
+        },
+        "ch": {
+          "price": null,
+          "currency": "CHF",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "galaxus",
+          "fetched_at": null
+        }
+      },
+      "manufacturer": {
+        "website": null,
+        "search_url": null,
+        "fetched": false,
+        "title": null,
+        "description": null,
+        "image": null,
+        "error": "extra_only"
+      },
+      "source": {
+        "name": "CERTIMOOV",
+        "url": "https://www.certimoov.com/en/les-tests/bike/abus-skurb-mips"
+      },
+      "protection": {
+        "has_mips": true,
+        "mips_variant": "standard",
+        "mips_label": "MIPS",
+        "rotational_tech": "mips",
+        "rotational_label": "MIPS",
+        "source": "text"
+      },
+      "protection_tech": "mips_standard",
+      "protection_group": "rotational",
       "brand_key": "abus"
     },
     {
@@ -2884,7 +2885,7 @@
     {
       "id": "extra-author-flash",
       "brand": "Author",
-      "model": "FLASH",
+      "model": "Flash",
       "search_text": "author flash",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -3505,7 +3506,7 @@
     {
       "id": "extra-bern-nino",
       "brand": "Bern",
-      "model": "NINO",
+      "model": "Nino",
       "search_text": "bern nino",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -4250,8 +4251,8 @@
     {
       "id": "extra-egide-ino",
       "brand": "EGIDE",
-      "model": "- INO",
-      "search_text": "egide - ino",
+      "model": "INO",
+      "search_text": "egide ino",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
       "score": 2.5,
@@ -4994,7 +4995,7 @@
     {
       "id": "extra-lazer-gekko",
       "brand": "Lazer",
-      "model": "GEKKO",
+      "model": "Gekko",
       "search_text": "lazer gekko",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -5119,7 +5120,7 @@
     {
       "id": "extra-lazer-gekko-mips",
       "brand": "Lazer",
-      "model": "GEKKO-MIPS",
+      "model": "Gekko-MIPS",
       "search_text": "lazer gekko-mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -5246,7 +5247,7 @@
     {
       "id": "extra-limar-delta",
       "brand": "Limar",
-      "model": "DELTA",
+      "model": "Delta",
       "search_text": "limar delta",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -5621,7 +5622,7 @@
     {
       "id": "extra-nutcase-little-nutty",
       "brand": "Nutcase",
-      "model": "LITTLE-NUTTY",
+      "model": "Little-Nutty",
       "search_text": "nutcase little-nutty",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -5998,7 +5999,7 @@
     {
       "id": "extra-stromer-smart-helmet",
       "brand": "STROMER",
-      "model": "SMART HELMET",
+      "model": "Smart Helmet",
       "search_text": "stromer smart helmet",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -6249,7 +6250,7 @@
     {
       "id": "extra-unit1-faro-mips",
       "brand": "UNIT1",
-      "model": "FARO MIPS",
+      "model": "Faro MIPS",
       "search_text": "unit1 faro mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -6376,8 +6377,8 @@
     {
       "id": "extra-urgebike-cab",
       "brand": "URGEBIKE",
-      "model": "- CAB",
-      "search_text": "urgebike - cab",
+      "model": "CAB",
+      "search_text": "urgebike cab",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
       "score": 2.5,
@@ -6497,254 +6498,6 @@
       "protection_tech": "none",
       "protection_group": "none",
       "brand_key": "urgebike"
-    },
-    {
-      "id": "extra-abus-skurb",
-      "brand": "ABUS",
-      "model": "- Skurb",
-      "search_text": "abus - skurb",
-      "catalog": "extra_only",
-      "primary_rating_source": "certimoov",
-      "score": 3.0,
-      "stars": 3,
-      "ratings": {
-        "certimoov": {
-          "score": 3.0,
-          "stars": 3,
-          "test_year": 2024,
-          "url": "https://www.certimoov.com/en/les-tests/bike/abus-skurb",
-          "impact_scores": {
-            "choc-frontal": 3.5,
-            "choc-lateral": 1.5,
-            "choc-arriere": 4.0,
-            "choc-frontal-oblique": 3.0,
-            "choc-lateral-oblique-1": 4.0,
-            "choc-lateral-oblique-2-": 2.0
-          },
-          "rank_pct": 0.363
-        },
-        "fused": {
-          "rank_pct": 0.363,
-          "sources": [
-            "certimoov"
-          ],
-          "weights": {
-            "certimoov": 0.85
-          }
-        }
-      },
-      "style": "Urban",
-      "style_meta": {
-        "assigned": "Urban",
-        "source": "reviewed",
-        "rule_style": "Unclassified",
-        "review_note": "Abus Skurb skate-style urban helmet",
-        "manufacturer_verified": false,
-        "manufacturer_style": null,
-        "manufacturer_match": null,
-        "manufacturer_title": null,
-        "manufacturer_error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Skurb'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
-      },
-      "test_year": 2024,
-      "certifications": "",
-      "score_low_impact": null,
-      "score_high_impact": null,
-      "price_at_test_usd": null,
-      "price_at_test_label": null,
-      "value_ratio": null,
-      "image_url": "https://www.certimoov.com/sites/default/files/styles/product_slider/public/BH3-2024-07_Abus_Skurb_front_0_3.jpg?itok=19eACxVz",
-      "features": {
-        "mips_standard": false,
-        "mips_spherical": false,
-        "wavecel": false,
-        "spin": false,
-        "sweet_2vi": false,
-        "koroyd": false,
-        "rotational_protection": false,
-        "nta8776": false,
-        "asia_fit": false,
-        "round_fit": false
-      },
-      "feature_labels": [],
-      "eu_brand": true,
-      "eu_version": true,
-      "european_market": true,
-      "listings": {
-        "de": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "amazon_de",
-          "fetched_at": null
-        },
-        "at": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "geizhals_at",
-          "fetched_at": null
-        },
-        "ch": {
-          "price": null,
-          "currency": "CHF",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "galaxus",
-          "fetched_at": null
-        }
-      },
-      "manufacturer": {
-        "website": null,
-        "search_url": null,
-        "fetched": false,
-        "title": null,
-        "description": null,
-        "image": null,
-        "error": "extra_only"
-      },
-      "source": {
-        "name": "CERTIMOOV",
-        "url": "https://www.certimoov.com/en/les-tests/bike/abus-skurb"
-      },
-      "protection": {
-        "has_mips": false,
-        "mips_variant": null,
-        "mips_label": null,
-        "rotational_tech": null,
-        "rotational_label": null,
-        "source": null
-      },
-      "protection_tech": "none",
-      "protection_group": "none",
-      "brand_key": "abus"
-    },
-    {
-      "id": "extra-abus-urban-i-30",
-      "brand": "ABUS",
-      "model": "- Urban-I-3.0",
-      "search_text": "abus - urban-i-3.0",
-      "catalog": "extra_only",
-      "primary_rating_source": "certimoov",
-      "score": 3.0,
-      "stars": 3,
-      "ratings": {
-        "certimoov": {
-          "score": 3.0,
-          "stars": 3,
-          "test_year": 2024,
-          "url": "https://www.certimoov.com/en/les-tests/bike/abus-urban-i-30",
-          "impact_scores": {
-            "choc-frontal": 3.0,
-            "choc-lateral": 2.5,
-            "choc-arriere": 4.0,
-            "choc-frontal-oblique": 3.0,
-            "choc-lateral-oblique-1": 3.5,
-            "choc-lateral-oblique-2-": 2.0
-          },
-          "rank_pct": 0.363
-        },
-        "fused": {
-          "rank_pct": 0.363,
-          "sources": [
-            "certimoov"
-          ],
-          "weights": {
-            "certimoov": 0.85
-          }
-        }
-      },
-      "style": "Urban",
-      "style_meta": {
-        "assigned": "Urban",
-        "source": "inferred",
-        "manufacturer_verified": false,
-        "manufacturer_style": null,
-        "manufacturer_match": null,
-        "manufacturer_title": null,
-        "manufacturer_error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Urban-I-3.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
-      },
-      "test_year": 2024,
-      "certifications": "",
-      "score_low_impact": null,
-      "score_high_impact": null,
-      "price_at_test_usd": null,
-      "price_at_test_label": null,
-      "value_ratio": null,
-      "image_url": "https://www.certimoov.com/sites/default/files/styles/product_slider/public/BH3-2024-10_Abus_Urban-I-3.0_front_3.jpg?itok=tlJ5eWos",
-      "features": {
-        "mips_standard": false,
-        "mips_spherical": false,
-        "wavecel": false,
-        "spin": false,
-        "sweet_2vi": false,
-        "koroyd": false,
-        "rotational_protection": false,
-        "nta8776": false,
-        "asia_fit": false,
-        "round_fit": false
-      },
-      "feature_labels": [],
-      "eu_brand": true,
-      "eu_version": true,
-      "european_market": true,
-      "listings": {
-        "de": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "amazon_de",
-          "fetched_at": null
-        },
-        "at": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "geizhals_at",
-          "fetched_at": null
-        },
-        "ch": {
-          "price": null,
-          "currency": "CHF",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "galaxus",
-          "fetched_at": null
-        }
-      },
-      "manufacturer": {
-        "website": null,
-        "search_url": null,
-        "fetched": false,
-        "title": null,
-        "description": null,
-        "image": null,
-        "error": "extra_only"
-      },
-      "source": {
-        "name": "CERTIMOOV",
-        "url": "https://www.certimoov.com/en/les-tests/bike/abus-urban-i-30"
-      },
-      "protection": {
-        "has_mips": false,
-        "mips_variant": null,
-        "mips_label": null,
-        "rotational_tech": null,
-        "rotational_label": null,
-        "source": null
-      },
-      "protection_tech": "none",
-      "protection_group": "none",
-      "brand_key": "abus"
     },
     {
       "id": "extra-abus-hud-y",
@@ -6874,7 +6627,7 @@
     {
       "id": "extra-abus-montrailer-quin-mtb-velvet",
       "brand": "ABUS",
-      "model": "MONTRAILER QUIN MTB VELVET",
+      "model": "Montrailer Quin MTB Velvet",
       "search_text": "abus montrailer quin mtb velvet",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -6997,7 +6750,7 @@
     {
       "id": "extra-abus-scrapper-30",
       "brand": "ABUS",
-      "model": "SCRAPPER-3.0",
+      "model": "Scrapper-3.0",
       "search_text": "abus scrapper-3.0",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -7106,6 +6859,131 @@
       "source": {
         "name": "CERTIMOOV",
         "url": "https://www.certimoov.com/en/les-tests/bike/abus-scrapper-30"
+      },
+      "protection": {
+        "has_mips": false,
+        "mips_variant": null,
+        "mips_label": null,
+        "rotational_tech": null,
+        "rotational_label": null,
+        "source": null
+      },
+      "protection_tech": "none",
+      "protection_group": "none",
+      "brand_key": "abus"
+    },
+    {
+      "id": "extra-abus-skurb",
+      "brand": "ABUS",
+      "model": "Skurb",
+      "search_text": "abus skurb",
+      "catalog": "extra_only",
+      "primary_rating_source": "certimoov",
+      "score": 3.0,
+      "stars": 3,
+      "ratings": {
+        "certimoov": {
+          "score": 3.0,
+          "stars": 3,
+          "test_year": 2024,
+          "url": "https://www.certimoov.com/en/les-tests/bike/abus-skurb",
+          "impact_scores": {
+            "choc-frontal": 3.5,
+            "choc-lateral": 1.5,
+            "choc-arriere": 4.0,
+            "choc-frontal-oblique": 3.0,
+            "choc-lateral-oblique-1": 4.0,
+            "choc-lateral-oblique-2-": 2.0
+          },
+          "rank_pct": 0.363
+        },
+        "fused": {
+          "rank_pct": 0.363,
+          "sources": [
+            "certimoov"
+          ],
+          "weights": {
+            "certimoov": 0.85
+          }
+        }
+      },
+      "style": "Urban",
+      "style_meta": {
+        "assigned": "Urban",
+        "source": "reviewed",
+        "rule_style": "Unclassified",
+        "review_note": "Abus Skurb skate-style urban helmet",
+        "manufacturer_verified": false,
+        "manufacturer_style": null,
+        "manufacturer_match": null,
+        "manufacturer_title": null,
+        "manufacturer_error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Skurb'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+      },
+      "test_year": 2024,
+      "certifications": "",
+      "score_low_impact": null,
+      "score_high_impact": null,
+      "price_at_test_usd": null,
+      "price_at_test_label": null,
+      "value_ratio": null,
+      "image_url": "https://www.certimoov.com/sites/default/files/styles/product_slider/public/BH3-2024-07_Abus_Skurb_front_0_3.jpg?itok=19eACxVz",
+      "features": {
+        "mips_standard": false,
+        "mips_spherical": false,
+        "wavecel": false,
+        "spin": false,
+        "sweet_2vi": false,
+        "koroyd": false,
+        "rotational_protection": false,
+        "nta8776": false,
+        "asia_fit": false,
+        "round_fit": false
+      },
+      "feature_labels": [],
+      "eu_brand": true,
+      "eu_version": true,
+      "european_market": true,
+      "listings": {
+        "de": {
+          "price": null,
+          "currency": "EUR",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "amazon_de",
+          "fetched_at": null
+        },
+        "at": {
+          "price": null,
+          "currency": "EUR",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "geizhals_at",
+          "fetched_at": null
+        },
+        "ch": {
+          "price": null,
+          "currency": "CHF",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "galaxus",
+          "fetched_at": null
+        }
+      },
+      "manufacturer": {
+        "website": null,
+        "search_url": null,
+        "fetched": false,
+        "title": null,
+        "description": null,
+        "image": null,
+        "error": "extra_only"
+      },
+      "source": {
+        "name": "CERTIMOOV",
+        "url": "https://www.certimoov.com/en/les-tests/bike/abus-skurb"
       },
       "protection": {
         "has_mips": false,
@@ -7229,6 +7107,129 @@
       "source": {
         "name": "CERTIMOOV",
         "url": "https://www.certimoov.com/en/les-tests/bike/abus-urban-i-20"
+      },
+      "protection": {
+        "has_mips": false,
+        "mips_variant": null,
+        "mips_label": null,
+        "rotational_tech": null,
+        "rotational_label": null,
+        "source": null
+      },
+      "protection_tech": "none",
+      "protection_group": "none",
+      "brand_key": "abus"
+    },
+    {
+      "id": "extra-abus-urban-i-30",
+      "brand": "ABUS",
+      "model": "Urban-I-3.0",
+      "search_text": "abus urban-i-3.0",
+      "catalog": "extra_only",
+      "primary_rating_source": "certimoov",
+      "score": 3.0,
+      "stars": 3,
+      "ratings": {
+        "certimoov": {
+          "score": 3.0,
+          "stars": 3,
+          "test_year": 2024,
+          "url": "https://www.certimoov.com/en/les-tests/bike/abus-urban-i-30",
+          "impact_scores": {
+            "choc-frontal": 3.0,
+            "choc-lateral": 2.5,
+            "choc-arriere": 4.0,
+            "choc-frontal-oblique": 3.0,
+            "choc-lateral-oblique-1": 3.5,
+            "choc-lateral-oblique-2-": 2.0
+          },
+          "rank_pct": 0.363
+        },
+        "fused": {
+          "rank_pct": 0.363,
+          "sources": [
+            "certimoov"
+          ],
+          "weights": {
+            "certimoov": 0.85
+          }
+        }
+      },
+      "style": "Urban",
+      "style_meta": {
+        "assigned": "Urban",
+        "source": "inferred",
+        "manufacturer_verified": false,
+        "manufacturer_style": null,
+        "manufacturer_match": null,
+        "manufacturer_title": null,
+        "manufacturer_error": "Client error '403 Forbidden' for url 'https://www.abus.com/usa/Search?q=ABUS+Urban-I-3.0'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+      },
+      "test_year": 2024,
+      "certifications": "",
+      "score_low_impact": null,
+      "score_high_impact": null,
+      "price_at_test_usd": null,
+      "price_at_test_label": null,
+      "value_ratio": null,
+      "image_url": "https://www.certimoov.com/sites/default/files/styles/product_slider/public/BH3-2024-10_Abus_Urban-I-3.0_front_3.jpg?itok=tlJ5eWos",
+      "features": {
+        "mips_standard": false,
+        "mips_spherical": false,
+        "wavecel": false,
+        "spin": false,
+        "sweet_2vi": false,
+        "koroyd": false,
+        "rotational_protection": false,
+        "nta8776": false,
+        "asia_fit": false,
+        "round_fit": false
+      },
+      "feature_labels": [],
+      "eu_brand": true,
+      "eu_version": true,
+      "european_market": true,
+      "listings": {
+        "de": {
+          "price": null,
+          "currency": "EUR",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "amazon_de",
+          "fetched_at": null
+        },
+        "at": {
+          "price": null,
+          "currency": "EUR",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "geizhals_at",
+          "fetched_at": null
+        },
+        "ch": {
+          "price": null,
+          "currency": "CHF",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "galaxus",
+          "fetched_at": null
+        }
+      },
+      "manufacturer": {
+        "website": null,
+        "search_url": null,
+        "fetched": false,
+        "title": null,
+        "description": null,
+        "image": null,
+        "error": "extra_only"
+      },
+      "source": {
+        "name": "CERTIMOOV",
+        "url": "https://www.certimoov.com/en/les-tests/bike/abus-urban-i-30"
       },
       "protection": {
         "has_mips": false,
@@ -8868,7 +8869,7 @@
     {
       "id": "extra-btwin-city-540-bowl",
       "brand": "Btwin",
-      "model": "CITY 540 BOWL",
+      "model": "City 540 Bowl",
       "search_text": "btwin city 540 bowl",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -9362,7 +9363,7 @@
     {
       "id": "extra-btwin-teen-500",
       "brand": "Btwin",
-      "model": "TEEN-500",
+      "model": "Teen-500",
       "search_text": "btwin teen-500",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -9485,7 +9486,7 @@
     {
       "id": "extra-crasysafety-tiger",
       "brand": "CRASYSAFETY",
-      "model": "TIGER",
+      "model": "Tiger",
       "search_text": "crasysafety tiger",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -9610,7 +9611,7 @@
     {
       "id": "extra-crivit-kids",
       "brand": "CRIVIT",
-      "model": "KIDS",
+      "model": "Kids",
       "search_text": "crivit kids",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -9858,7 +9859,7 @@
     {
       "id": "extra-cube-fleet",
       "brand": "CUBE",
-      "model": "FLEET",
+      "model": "Fleet",
       "search_text": "cube fleet",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -10607,7 +10608,7 @@
     {
       "id": "extra-cratoni-c-maniac",
       "brand": "Cratoni",
-      "model": "C-MANIAC",
+      "model": "C-Maniac",
       "search_text": "cratoni c-maniac",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -10857,7 +10858,7 @@
     {
       "id": "extra-endura-fs260-pro-helmet-ii",
       "brand": "Endura",
-      "model": "FS260 PRO HELMET II",
+      "model": "FS260 PRO Helmet II",
       "search_text": "endura fs260 pro helmet ii",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -10982,7 +10983,7 @@
     {
       "id": "extra-endura-speed-pedelec",
       "brand": "Endura",
-      "model": "SPEED PEDELEC",
+      "model": "Speed Pedelec",
       "search_text": "endura speed pedelec",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -11107,7 +11108,7 @@
     {
       "id": "extra-giro-agilis",
       "brand": "Giro",
-      "model": "AGILIS",
+      "model": "Agilis",
       "search_text": "giro agilis",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -11976,7 +11977,7 @@
     {
       "id": "extra-limar-berg-em",
       "brand": "Limar",
-      "model": "BERG-EM",
+      "model": "Berg-EM",
       "search_text": "limar berg-em",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -12100,7 +12101,7 @@
     {
       "id": "extra-limar-champ",
       "brand": "Limar",
-      "model": "CHAMP",
+      "model": "Champ",
       "search_text": "limar champ",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -12224,7 +12225,7 @@
     {
       "id": "extra-merida-matt-jr",
       "brand": "MERIDA",
-      "model": "MATT-JR",
+      "model": "Matt-JR",
       "search_text": "merida matt-jr",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -13347,7 +13348,7 @@
     {
       "id": "extra-prophete-eco-urban",
       "brand": "Prophete",
-      "model": "ECO URBAN",
+      "model": "ECO Urban",
       "search_text": "prophete eco urban",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -14741,13 +14742,24 @@
           "rank_pct": 0.363
         },
         "fused": {
-          "rank_pct": 0.363,
+          "rank_pct": 0.3929,
           "sources": [
+            "folksam",
             "certimoov"
           ],
           "weights": {
+            "folksam": 0.9,
             "certimoov": 0.85
           }
+        },
+        "folksam": {
+          "recommended": false,
+          "overall_result_pct": -7.0,
+          "grade": 2,
+          "segment": "children",
+          "test_year": 2025,
+          "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-barn-eng_tcm5-84884.pdf",
+          "rank_pct": 0.4211
         }
       },
       "style": "Kids",
@@ -14826,6 +14838,12 @@
         "name": "CERTIMOOV",
         "url": "https://www.certimoov.com/en/les-tests/bike/woom-kids-helm"
       },
+      "merged_from": [
+        {
+          "id": "extra-woom-kids-helmet",
+          "name": "Kids´Helmet"
+        }
+      ],
       "protection": {
         "has_mips": false,
         "mips_variant": null,
@@ -14841,8 +14859,8 @@
     {
       "id": "extra-abus-moventor-20",
       "brand": "ABUS",
-      "model": "- Moventor-2.0",
-      "search_text": "abus - moventor-2.0",
+      "model": "Moventor-2.0",
+      "search_text": "abus moventor-2.0",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
       "score": 3.5,
@@ -14966,8 +14984,8 @@
     {
       "id": "extra-abus-moventor-20-mips",
       "brand": "ABUS",
-      "model": "- Moventor-2.0-MIPS",
-      "search_text": "abus - moventor-2.0-mips",
+      "model": "Moventor-2.0-MIPS",
+      "search_text": "abus moventor-2.0-mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
       "score": 3.5,
@@ -15093,7 +15111,7 @@
     {
       "id": "extra-alpina-gent-mips",
       "brand": "Alpina",
-      "model": "GENT MIPS",
+      "model": "Gent MIPS",
       "search_text": "alpina gent mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -15470,7 +15488,7 @@
     {
       "id": "extra-alpina-ximo",
       "brand": "Alpina",
-      "model": "XIMO",
+      "model": "Ximo",
       "search_text": "alpina ximo",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -15970,7 +15988,7 @@
     {
       "id": "extra-butterfly-kidzamo",
       "brand": "BUTTERFLY",
-      "model": "KIDZAMO",
+      "model": "Kidzamo",
       "search_text": "butterfly kidzamo",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -16469,7 +16487,7 @@
     {
       "id": "extra-briko-sismic",
       "brand": "Briko",
-      "model": "SISMIC",
+      "model": "Sismic",
       "search_text": "briko sismic",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -16844,7 +16862,7 @@
     {
       "id": "extra-cairn-prism-xtr-2",
       "brand": "CAIRN",
-      "model": "PRISM-XTR-2",
+      "model": "Prism-XTR-2",
       "search_text": "cairn prism-xtr-2",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -16969,7 +16987,7 @@
     {
       "id": "extra-casco-emotion-2",
       "brand": "Casco",
-      "model": "E.MOTION 2",
+      "model": "E.Motion 2",
       "search_text": "casco e.motion 2",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -17842,7 +17860,7 @@
     {
       "id": "extra-endura-fs260-pro-mips-helmet-ii",
       "brand": "Endura",
-      "model": "FS260 PRO MIPS HELMET II",
+      "model": "FS260 PRO MIPS Helmet II",
       "search_text": "endura fs260 pro mips helmet ii",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -17969,7 +17987,7 @@
     {
       "id": "extra-giro-agilis-mips",
       "brand": "Giro",
-      "model": "AGILIS MIPS",
+      "model": "Agilis MIPS",
       "search_text": "giro agilis mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -18095,7 +18113,7 @@
     {
       "id": "extra-giro-fixture-mips-ii",
       "brand": "Giro",
-      "model": "FIXTURE MIPS II",
+      "model": "Fixture MIPS II",
       "search_text": "giro fixture mips ii",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -18974,7 +18992,7 @@
     {
       "id": "extra-kls-zigzag",
       "brand": "KLS",
-      "model": "ZIGZAG",
+      "model": "Zigzag",
       "search_text": "kls zigzag",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -19471,7 +19489,7 @@
     {
       "id": "extra-lival-evo21-smart-fietshelm",
       "brand": "LIVAL",
-      "model": "EVO21 SMART FIETSHELM",
+      "model": "EVO21 Smart Fietshelm",
       "search_text": "lival evo21 smart fietshelm",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -19723,7 +19741,7 @@
     {
       "id": "extra-limar-lumiere-e-bike-mips",
       "brand": "Limar",
-      "model": "LUMIERE E BIKE MIPS",
+      "model": "Lumiere E Bike MIPS",
       "search_text": "limar lumiere e bike mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -19850,7 +19868,7 @@
     {
       "id": "extra-limar-torino",
       "brand": "Limar",
-      "model": "TORINO",
+      "model": "Torino",
       "search_text": "limar torino",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -20224,8 +20242,8 @@
     {
       "id": "extra-met-allroad",
       "brand": "MET",
-      "model": "- Allroad",
-      "search_text": "met - allroad",
+      "model": "Allroad",
+      "search_text": "met allroad",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
       "score": 3.5,
@@ -20349,8 +20367,8 @@
     {
       "id": "extra-met-allroad-mips",
       "brand": "MET",
-      "model": "- Allroad-MIPS",
-      "search_text": "met - allroad-mips",
+      "model": "Allroad-MIPS",
+      "search_text": "met allroad-mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
       "score": 3.5,
@@ -20476,8 +20494,8 @@
     {
       "id": "extra-met-urbex-mips",
       "brand": "MET",
-      "model": "- Urbex-MIPS",
-      "search_text": "met - urbex-mips",
+      "model": "Urbex-MIPS",
+      "search_text": "met urbex-mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
       "score": 3.5,
@@ -20853,7 +20871,7 @@
     {
       "id": "extra-oxford-metro-glo",
       "brand": "OXFORD",
-      "model": "METRO-GLO",
+      "model": "Metro-GLO",
       "search_text": "oxford metro-glo",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -21101,7 +21119,7 @@
     {
       "id": "extra-rudy-project-venger",
       "brand": "Rudy",
-      "model": "PROJECT VENGER",
+      "model": "Project Venger",
       "search_text": "rudy project venger",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -22220,7 +22238,7 @@
     {
       "id": "extra-alpina-delft-mips",
       "brand": "Alpina",
-      "model": "DELFT-MIPS",
+      "model": "Delft-MIPS",
       "search_text": "alpina delft-mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -22472,7 +22490,7 @@
     {
       "id": "extra-cigna-cigna",
       "brand": "CIGNA",
-      "model": "CIGNA",
+      "model": "Cigna",
       "search_text": "cigna cigna",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -23095,7 +23113,7 @@
     {
       "id": "extra-honghui-honghui",
       "brand": "HONGHUI",
-      "model": "HONGHUI",
+      "model": "Honghui",
       "search_text": "honghui honghui",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -23463,134 +23481,6 @@
       "brand_key": "kali"
     },
     {
-      "id": "extra-lazer-anvez-nta-mips",
-      "brand": "Lazer",
-      "model": "Anvez NTA-MIPS",
-      "search_text": "lazer anvez nta-mips",
-      "catalog": "extra_only",
-      "primary_rating_source": "certimoov",
-      "score": 4.0,
-      "stars": 4,
-      "ratings": {
-        "certimoov": {
-          "score": 4.0,
-          "stars": 4,
-          "test_year": 2022,
-          "url": "https://www.certimoov.com/en/les-tests/bike/lazer-anvez-nta-mips",
-          "impact_scores": {
-            "choc-frontal": 4.0,
-            "choc-lateral": 2.0,
-            "choc-arriere": 4.5,
-            "choc-frontal-oblique": 4.0,
-            "choc-lateral-oblique-1": 4.5,
-            "choc-lateral-oblique-2-": 4.5
-          },
-          "rank_pct": 0.9384
-        },
-        "fused": {
-          "rank_pct": 0.9384,
-          "sources": [
-            "certimoov"
-          ],
-          "weights": {
-            "certimoov": 0.85
-          }
-        }
-      },
-      "style": "Urban",
-      "style_meta": {
-        "assigned": "Urban",
-        "source": "reviewed",
-        "rule_style": "Unclassified",
-        "review_note": "Lazer Anverz NTA speed-pedelec helmet",
-        "manufacturer_verified": false,
-        "manufacturer_style": null,
-        "manufacturer_match": null,
-        "manufacturer_title": null,
-        "manufacturer_error": "Client error '404 Not Found' for url 'https://lazersport.com/en/search?q=Lazer+Anvez+NTA-MIPS'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
-      },
-      "test_year": 2022,
-      "certifications": "",
-      "score_low_impact": null,
-      "score_high_impact": null,
-      "price_at_test_usd": null,
-      "price_at_test_label": null,
-      "value_ratio": null,
-      "image_url": "https://www.certimoov.com/sites/default/files/styles/product_slider/public/BH3-2022-06_LAZER_Anvez-NTA-MIPS_front_0_1.jpg?itok=i42BhH0P",
-      "features": {
-        "mips_standard": true,
-        "mips_spherical": false,
-        "wavecel": false,
-        "spin": false,
-        "sweet_2vi": false,
-        "koroyd": false,
-        "rotational_protection": true,
-        "nta8776": true,
-        "asia_fit": false,
-        "round_fit": false
-      },
-      "feature_labels": [
-        "MIPS",
-        "NTA 8776"
-      ],
-      "eu_brand": true,
-      "eu_version": true,
-      "european_market": true,
-      "listings": {
-        "de": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "amazon_de",
-          "fetched_at": null
-        },
-        "at": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "geizhals_at",
-          "fetched_at": null
-        },
-        "ch": {
-          "price": null,
-          "currency": "CHF",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "galaxus",
-          "fetched_at": null
-        }
-      },
-      "manufacturer": {
-        "website": null,
-        "search_url": null,
-        "fetched": false,
-        "title": null,
-        "description": null,
-        "image": null,
-        "error": "extra_only"
-      },
-      "source": {
-        "name": "CERTIMOOV",
-        "url": "https://www.certimoov.com/en/les-tests/bike/lazer-anvez-nta-mips"
-      },
-      "protection": {
-        "has_mips": true,
-        "mips_variant": "standard",
-        "mips_label": "MIPS",
-        "rotational_tech": "mips",
-        "rotational_label": "MIPS",
-        "source": "text"
-      },
-      "protection_tech": "mips_standard",
-      "protection_group": "rotational",
-      "brand_key": "lazer"
-    },
-    {
       "id": "extra-lazer-revolution-mips",
       "brand": "Lazer",
       "model": "Revolution MIPS",
@@ -23844,7 +23734,7 @@
     {
       "id": "extra-lumos-matrix-mips",
       "brand": "Lumos",
-      "model": "MATRIX MIPS",
+      "model": "Matrix MIPS",
       "search_text": "lumos matrix mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -23969,10 +23859,135 @@
       "brand_key": "lumos"
     },
     {
+      "id": "extra-met-espresso",
+      "brand": "MET",
+      "model": "Espresso",
+      "search_text": "met espresso",
+      "catalog": "extra_only",
+      "primary_rating_source": "certimoov",
+      "score": 4.0,
+      "stars": 4,
+      "ratings": {
+        "certimoov": {
+          "score": 4.0,
+          "stars": 4,
+          "test_year": 2018,
+          "url": "https://www.certimoov.com/en/les-tests/bike/met-espresso",
+          "impact_scores": {
+            "choc-frontal": 4.0,
+            "choc-lateral": 3.0,
+            "choc-arriere": 4.0,
+            "choc-frontal-oblique": 4.0,
+            "choc-lateral-oblique-1": 4.0,
+            "choc-lateral-oblique-2-": 3.0
+          },
+          "rank_pct": 0.9384
+        },
+        "fused": {
+          "rank_pct": 0.9384,
+          "sources": [
+            "certimoov"
+          ],
+          "weights": {
+            "certimoov": 0.85
+          }
+        }
+      },
+      "style": "Urban",
+      "style_meta": {
+        "assigned": "Urban",
+        "source": "reviewed",
+        "rule_style": "Unclassified",
+        "review_note": "MET Espresso urban/commuter helmet",
+        "manufacturer_verified": false,
+        "manufacturer_style": null,
+        "manufacturer_match": null,
+        "manufacturer_title": null,
+        "manufacturer_error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Espresso'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+      },
+      "test_year": 2018,
+      "certifications": "",
+      "score_low_impact": null,
+      "score_high_impact": null,
+      "price_at_test_usd": null,
+      "price_at_test_label": null,
+      "value_ratio": null,
+      "image_url": "https://www.certimoov.com/sites/default/files/styles/product_slider/public/Fr14_MET_ESPRESSO_ML_front.jpg?itok=B6w_sLHk",
+      "features": {
+        "mips_standard": false,
+        "mips_spherical": false,
+        "wavecel": false,
+        "spin": false,
+        "sweet_2vi": false,
+        "koroyd": false,
+        "rotational_protection": false,
+        "nta8776": false,
+        "asia_fit": false,
+        "round_fit": false
+      },
+      "feature_labels": [],
+      "eu_brand": true,
+      "eu_version": true,
+      "european_market": true,
+      "listings": {
+        "de": {
+          "price": null,
+          "currency": "EUR",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "amazon_de",
+          "fetched_at": null
+        },
+        "at": {
+          "price": null,
+          "currency": "EUR",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "geizhals_at",
+          "fetched_at": null
+        },
+        "ch": {
+          "price": null,
+          "currency": "CHF",
+          "rating": null,
+          "review_count": null,
+          "url": null,
+          "source": "galaxus",
+          "fetched_at": null
+        }
+      },
+      "manufacturer": {
+        "website": null,
+        "search_url": null,
+        "fetched": false,
+        "title": null,
+        "description": null,
+        "image": null,
+        "error": "extra_only"
+      },
+      "source": {
+        "name": "CERTIMOOV",
+        "url": "https://www.certimoov.com/en/les-tests/bike/met-espresso"
+      },
+      "protection": {
+        "has_mips": false,
+        "mips_variant": null,
+        "mips_label": null,
+        "rotational_tech": null,
+        "rotational_label": null,
+        "source": null
+      },
+      "protection_tech": "none",
+      "protection_group": "none",
+      "brand_key": "met"
+    },
+    {
       "id": "extra-met-mobilite",
       "brand": "MET",
-      "model": "- MOBILITE",
-      "search_text": "met - mobilite",
+      "model": "Mobilite",
+      "search_text": "met mobilite",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
       "score": 4.0,
@@ -24096,8 +24111,8 @@
     {
       "id": "extra-met-mobilite-mips",
       "brand": "MET",
-      "model": "- MOBILITE-MIPS",
-      "search_text": "met - mobilite-mips",
+      "model": "Mobilite-MIPS",
+      "search_text": "met mobilite-mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
       "score": 4.0,
@@ -24218,131 +24233,6 @@
       },
       "protection_tech": "mips_standard",
       "protection_group": "rotational",
-      "brand_key": "met"
-    },
-    {
-      "id": "extra-met-espresso",
-      "brand": "MET",
-      "model": "Espresso",
-      "search_text": "met espresso",
-      "catalog": "extra_only",
-      "primary_rating_source": "certimoov",
-      "score": 4.0,
-      "stars": 4,
-      "ratings": {
-        "certimoov": {
-          "score": 4.0,
-          "stars": 4,
-          "test_year": 2018,
-          "url": "https://www.certimoov.com/en/les-tests/bike/met-espresso",
-          "impact_scores": {
-            "choc-frontal": 4.0,
-            "choc-lateral": 3.0,
-            "choc-arriere": 4.0,
-            "choc-frontal-oblique": 4.0,
-            "choc-lateral-oblique-1": 4.0,
-            "choc-lateral-oblique-2-": 3.0
-          },
-          "rank_pct": 0.9384
-        },
-        "fused": {
-          "rank_pct": 0.9384,
-          "sources": [
-            "certimoov"
-          ],
-          "weights": {
-            "certimoov": 0.85
-          }
-        }
-      },
-      "style": "Urban",
-      "style_meta": {
-        "assigned": "Urban",
-        "source": "reviewed",
-        "rule_style": "Unclassified",
-        "review_note": "MET Espresso urban/commuter helmet",
-        "manufacturer_verified": false,
-        "manufacturer_style": null,
-        "manufacturer_match": null,
-        "manufacturer_title": null,
-        "manufacturer_error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Espresso'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
-      },
-      "test_year": 2018,
-      "certifications": "",
-      "score_low_impact": null,
-      "score_high_impact": null,
-      "price_at_test_usd": null,
-      "price_at_test_label": null,
-      "value_ratio": null,
-      "image_url": "https://www.certimoov.com/sites/default/files/styles/product_slider/public/Fr14_MET_ESPRESSO_ML_front.jpg?itok=B6w_sLHk",
-      "features": {
-        "mips_standard": false,
-        "mips_spherical": false,
-        "wavecel": false,
-        "spin": false,
-        "sweet_2vi": false,
-        "koroyd": false,
-        "rotational_protection": false,
-        "nta8776": false,
-        "asia_fit": false,
-        "round_fit": false
-      },
-      "feature_labels": [],
-      "eu_brand": true,
-      "eu_version": true,
-      "european_market": true,
-      "listings": {
-        "de": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "amazon_de",
-          "fetched_at": null
-        },
-        "at": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "geizhals_at",
-          "fetched_at": null
-        },
-        "ch": {
-          "price": null,
-          "currency": "CHF",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "galaxus",
-          "fetched_at": null
-        }
-      },
-      "manufacturer": {
-        "website": null,
-        "search_url": null,
-        "fetched": false,
-        "title": null,
-        "description": null,
-        "image": null,
-        "error": "extra_only"
-      },
-      "source": {
-        "name": "CERTIMOOV",
-        "url": "https://www.certimoov.com/en/les-tests/bike/met-espresso"
-      },
-      "protection": {
-        "has_mips": false,
-        "mips_variant": null,
-        "mips_label": null,
-        "rotational_tech": null,
-        "rotational_label": null,
-        "source": null
-      },
-      "protection_tech": "none",
-      "protection_group": "none",
       "brand_key": "met"
     },
     {
@@ -24471,7 +24361,7 @@
     {
       "id": "extra-unit1-aura-mips",
       "brand": "UNIT1",
-      "model": "AURA MIPS",
+      "model": "Aura MIPS",
       "search_text": "unit1 aura mips",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -24723,7 +24613,7 @@
     {
       "id": "extra-uvex-urban-planet-led",
       "brand": "Uvex",
-      "model": "URBAN PLANET LED",
+      "model": "Urban Planet LED",
       "search_text": "uvex urban planet led",
       "catalog": "extra_only",
       "primary_rating_source": "certimoov",
@@ -26205,13 +26095,23 @@
           "result_url": "https://www.helmet.beam.vt.edu/images/bicycle-plots/met-parachute-mcr-scorePlot.svg"
         },
         "fused": {
-          "rank_pct": 0.9744,
+          "rank_pct": 0.8174,
           "sources": [
-            "virginia_tech"
+            "virginia_tech",
+            "nsw_helmet_star"
           ],
           "weights": {
-            "virginia_tech": 1.0
+            "virginia_tech": 1.0,
+            "nsw_helmet_star": 0.85
           }
+        },
+        "nsw_helmet_star": {
+          "stars": 4,
+          "category": "Mountain bike/BMX full-face helmets",
+          "price_band": "$$$$",
+          "test_year": 2025,
+          "url": "https://www.helmetstar.com.au/helmet/met-parachute-mcr",
+          "rank_pct": 0.6326
         }
       },
       "style": "Full-Face",
@@ -26335,6 +26235,12 @@
         "name": "Virginia Tech Helmet Lab",
         "url": "https://www.helmet.beam.vt.edu/bicycle-helmet-ratings.html"
       },
+      "merged_from": [
+        {
+          "id": "extra-met-parachute-mcr",
+          "name": "Parachute MCR"
+        }
+      ],
       "protection": {
         "has_mips": true,
         "mips_variant": "standard",
@@ -26760,13 +26666,12 @@
         "sweet_2vi": false,
         "koroyd": false,
         "rotational_protection": true,
-        "nta8776": true,
+        "nta8776": false,
         "asia_fit": false,
         "round_fit": false
       },
       "feature_labels": [
-        "MIPS",
-        "NTA 8776"
+        "MIPS"
       ],
       "eu_brand": true,
       "eu_version": true,
@@ -39590,13 +39495,30 @@
           "result_url": "https://www.helmet.beam.vt.edu/images/bicycle-plots/lazer-anverz-nta-mips-scorePlot.svg"
         },
         "fused": {
-          "rank_pct": 0.7276,
+          "rank_pct": 0.8245,
           "sources": [
-            "virginia_tech"
+            "virginia_tech",
+            "certimoov"
           ],
           "weights": {
-            "virginia_tech": 1.0
+            "virginia_tech": 1.0,
+            "certimoov": 0.85
           }
+        },
+        "certimoov": {
+          "score": 4.0,
+          "stars": 4,
+          "test_year": 2022,
+          "url": "https://www.certimoov.com/en/les-tests/bike/lazer-anvez-nta-mips",
+          "impact_scores": {
+            "choc-frontal": 4.0,
+            "choc-lateral": 2.0,
+            "choc-arriere": 4.5,
+            "choc-frontal-oblique": 4.0,
+            "choc-lateral-oblique-1": 4.5,
+            "choc-lateral-oblique-2-": 4.5
+          },
+          "rank_pct": 0.9384
         }
       },
       "style": "Urban",
@@ -39694,6 +39616,12 @@
         "name": "Virginia Tech Helmet Lab",
         "url": "https://www.helmet.beam.vt.edu/bicycle-helmet-ratings.html"
       },
+      "merged_from": [
+        {
+          "id": "extra-lazer-anvez-nta-mips",
+          "name": "Anvez NTA-MIPS"
+        }
+      ],
       "protection": {
         "has_mips": true,
         "mips_variant": "standard",
@@ -42139,13 +42067,12 @@
         "sweet_2vi": false,
         "koroyd": false,
         "rotational_protection": true,
-        "nta8776": true,
+        "nta8776": false,
         "asia_fit": false,
         "round_fit": false
       },
       "feature_labels": [
-        "MIPS",
-        "NTA 8776"
+        "MIPS"
       ],
       "eu_brand": true,
       "eu_version": true,
@@ -55400,13 +55327,12 @@
         "sweet_2vi": false,
         "koroyd": false,
         "rotational_protection": true,
-        "nta8776": true,
+        "nta8776": false,
         "asia_fit": false,
         "round_fit": false
       },
       "feature_labels": [
-        "MIPS",
-        "NTA 8776"
+        "MIPS"
       ],
       "eu_brand": true,
       "eu_version": true,
@@ -59791,13 +59717,12 @@
         "sweet_2vi": false,
         "koroyd": false,
         "rotational_protection": true,
-        "nta8776": true,
+        "nta8776": false,
         "asia_fit": false,
         "round_fit": false
       },
       "feature_labels": [
-        "MIPS",
-        "NTA 8776"
+        "MIPS"
       ],
       "eu_brand": true,
       "eu_version": true,
@@ -71303,13 +71228,12 @@
         "sweet_2vi": false,
         "koroyd": false,
         "rotational_protection": true,
-        "nta8776": true,
+        "nta8776": false,
         "asia_fit": false,
         "round_fit": false
       },
       "feature_labels": [
-        "MIPS",
-        "NTA 8776"
+        "MIPS"
       ],
       "eu_brand": true,
       "eu_version": true,
@@ -79310,7 +79234,7 @@
     {
       "id": "extra-100-status",
       "brand": "100%",
-      "model": "STATUS",
+      "model": "Status",
       "search_text": "100% status",
       "catalog": "extra_only",
       "primary_rating_source": "nsw_helmet_star",
@@ -85107,7 +85031,7 @@
     {
       "id": "extra-goldcross-mtb-edrk1-y",
       "brand": "Goldcross",
-      "model": "MTB (EDRK1-Y)",
+      "model": "MTB (Edrk1-Y)",
       "search_text": "goldcross mtb (edrk1-y)",
       "catalog": "extra_only",
       "primary_rating_source": "nsw_helmet_star",
@@ -88885,124 +88809,6 @@
       },
       "protection_tech": "mips_standard",
       "protection_group": "rotational"
-    },
-    {
-      "id": "extra-met-parachute-mcr",
-      "brand": "MET",
-      "model": "Parachute MCR",
-      "search_text": "met parachute mcr",
-      "catalog": "extra_only",
-      "primary_rating_source": "nsw_helmet_star",
-      "score": null,
-      "stars": 4,
-      "ratings": {
-        "nsw_helmet_star": {
-          "stars": 4,
-          "category": "Mountain bike/BMX full-face helmets",
-          "price_band": "$$$$",
-          "test_year": 2025,
-          "url": "https://www.helmetstar.com.au/helmet/met-parachute-mcr",
-          "rank_pct": 0.6326
-        },
-        "fused": {
-          "rank_pct": 0.6326,
-          "sources": [
-            "nsw_helmet_star"
-          ],
-          "weights": {
-            "nsw_helmet_star": 0.85
-          }
-        }
-      },
-      "style": "Full-Face",
-      "style_meta": {
-        "assigned": "Full-Face",
-        "source": "reviewed",
-        "rule_style": "Unclassified",
-        "review_note": "MET Parachute MCR convertible chin bar",
-        "manufacturer_verified": false,
-        "manufacturer_style": null,
-        "manufacturer_match": null,
-        "manufacturer_title": null,
-        "manufacturer_error": "Client error '404 Not Found' for url 'https://www.met-helmets.com/en/search?q=MET+Parachute+MCR'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
-      },
-      "test_year": 2025,
-      "certifications": "",
-      "score_low_impact": null,
-      "score_high_impact": null,
-      "price_at_test_usd": null,
-      "price_at_test_label": null,
-      "value_ratio": null,
-      "image_url": "https://www.helmetstar.com.au/sites/default/files/2026-07/49-Met-Parachute-MCR-1_resized.webp",
-      "features": {
-        "mips_standard": false,
-        "mips_spherical": false,
-        "wavecel": false,
-        "spin": false,
-        "sweet_2vi": false,
-        "koroyd": false,
-        "rotational_protection": false,
-        "nta8776": false,
-        "asia_fit": false,
-        "round_fit": false
-      },
-      "feature_labels": [],
-      "eu_brand": true,
-      "eu_version": true,
-      "european_market": true,
-      "listings": {
-        "de": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "amazon_de",
-          "fetched_at": null
-        },
-        "at": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "geizhals_at",
-          "fetched_at": null
-        },
-        "ch": {
-          "price": null,
-          "currency": "CHF",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "galaxus",
-          "fetched_at": null
-        }
-      },
-      "manufacturer": {
-        "website": null,
-        "search_url": null,
-        "fetched": false,
-        "title": null,
-        "description": null,
-        "image": null,
-        "error": "extra_only"
-      },
-      "source": {
-        "name": "NSW Helmet STAR",
-        "url": "https://www.helmetstar.com.au/helmet/met-parachute-mcr"
-      },
-      "protection": {
-        "has_mips": false,
-        "mips_variant": null,
-        "mips_label": null,
-        "rotational_tech": null,
-        "rotational_label": null,
-        "source": null
-      },
-      "protection_tech": "none",
-      "protection_group": "none",
-      "brand_key": "met"
     },
     {
       "id": "extra-met-veleno-mips",
@@ -94181,148 +93987,6 @@
       "protection_group": "none"
     },
     {
-      "id": "extra-aero-uvex-surge",
-      "brand": "Uvex",
-      "brand_key": "uvex",
-      "model": "Surge",
-      "search_text": "uvex surge",
-      "catalog": "extra_only",
-      "primary_rating_source": null,
-      "score": null,
-      "ratings": {},
-      "style": "Road",
-      "style_meta": {
-        "assigned": "Road",
-        "source": "inferred",
-        "aero_catalog": true,
-        "manufacturer_verified": false,
-        "manufacturer_style": null,
-        "manufacturer_match": null,
-        "manufacturer_title": null,
-        "manufacturer_error": "Client error '404 Not Found' for url 'https://www.uvex-sports.com/en/search?q=Uvex+Surge'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
-      },
-      "test_year": null,
-      "certifications": "",
-      "score_low_impact": null,
-      "score_high_impact": null,
-      "price_at_test_usd": null,
-      "price_at_test_label": null,
-      "value_ratio": null,
-      "image_url": null,
-      "features": {
-        "mips_standard": false,
-        "mips_spherical": false,
-        "wavecel": false,
-        "spin": false,
-        "sweet_2vi": false,
-        "koroyd": false,
-        "rotational_protection": false,
-        "nta8776": false,
-        "asia_fit": false,
-        "round_fit": false
-      },
-      "feature_labels": [],
-      "eu_brand": false,
-      "eu_version": false,
-      "european_market": true,
-      "listings": {
-        "de": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "amazon_de",
-          "fetched_at": null
-        },
-        "at": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "geizhals_at",
-          "fetched_at": null
-        },
-        "ch": {
-          "price": null,
-          "currency": "CHF",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "galaxus",
-          "fetched_at": null
-        }
-      },
-      "manufacturer": {
-        "website": null,
-        "search_url": null,
-        "fetched": false,
-        "title": null,
-        "description": null,
-        "image": null,
-        "error": "aero_catalog"
-      },
-      "source": {
-        "name": "Cyclingnews SSEH 2025",
-        "url": "https://www.cyclingnews.com/features/wind-tunnel-tested-the-worlds-biggest-aero-helmet-grouptest/"
-      },
-      "aero": {
-        "sources": {
-          "cyclingnews_sseh_2025": {
-            "source": "cyclingnews_sseh_2025",
-            "source_url": "https://www.cyclingnews.com/features/wind-tunnel-tested-the-worlds-biggest-aero-helmet-grouptest/",
-            "test_year": "2025",
-            "speed_kph": 40,
-            "helmet_class": "vented",
-            "rank_pct": 0.1522,
-            "score": 15,
-            "baseline_helmet": "Abus Powerdome",
-            "error_margin_w": 0.74,
-            "watts_saved": 0.41,
-            "weighted_cda_m2": 0.3013,
-            "drag_watts_40kph": 247.97,
-            "test_rank": 48,
-            "variant": "without aero cover",
-            "match": {
-              "confidence": 1.0,
-              "method": "aero_stub",
-              "test_name": "Uvex Surge"
-            }
-          }
-        },
-        "fused": {
-          "rank_pct": 0.1522,
-          "score": 15,
-          "sources": [
-            "cyclingnews_sseh_2025"
-          ],
-          "weights": {
-            "cyclingnews_sseh_2025": 1.0
-          }
-        },
-        "rank_pct": 0.1522,
-        "score": 15,
-        "tier": "draggy",
-        "watts_saved": 0.41,
-        "drag_watts": 247.97,
-        "source": "cyclingnews_sseh_2025",
-        "source_keys": [
-          "cyclingnews_sseh_2025"
-        ]
-      },
-      "protection": {
-        "has_mips": false,
-        "mips_variant": null,
-        "mips_label": null,
-        "rotational_tech": null,
-        "rotational_label": null,
-        "source": null
-      },
-      "protection_tech": "none",
-      "protection_group": "none"
-    },
-    {
       "id": "extra-uvex-surge-aero-mips",
       "brand": "Uvex",
       "model": "Surge Aero MIPS",
@@ -94428,6 +94092,56 @@
         "name": "NSW Helmet STAR",
         "url": "https://www.helmetstar.com.au/helmet/uvex-surge-aero-mips"
       },
+      "aero": {
+        "sources": {
+          "cyclingnews_sseh_2025": {
+            "source": "cyclingnews_sseh_2025",
+            "source_url": "https://www.cyclingnews.com/features/wind-tunnel-tested-the-worlds-biggest-aero-helmet-grouptest/",
+            "test_year": "2025",
+            "speed_kph": 40,
+            "helmet_class": "vented",
+            "rank_pct": 0.1522,
+            "score": 15,
+            "baseline_helmet": "Abus Powerdome",
+            "error_margin_w": 0.74,
+            "watts_saved": 0.41,
+            "weighted_cda_m2": 0.3013,
+            "drag_watts_40kph": 247.97,
+            "test_rank": 48,
+            "variant": "without aero cover",
+            "match": {
+              "confidence": 1.0,
+              "method": "aero_stub",
+              "test_name": "Uvex Surge"
+            }
+          }
+        },
+        "fused": {
+          "rank_pct": 0.1522,
+          "score": 15,
+          "sources": [
+            "cyclingnews_sseh_2025"
+          ],
+          "weights": {
+            "cyclingnews_sseh_2025": 1.0
+          }
+        },
+        "rank_pct": 0.1522,
+        "score": 15,
+        "tier": "draggy",
+        "watts_saved": 0.41,
+        "drag_watts": 247.97,
+        "source": "cyclingnews_sseh_2025",
+        "source_keys": [
+          "cyclingnews_sseh_2025"
+        ]
+      },
+      "merged_from": [
+        {
+          "id": "extra-aero-uvex-surge",
+          "name": "Surge"
+        }
+      ],
       "protection": {
         "has_mips": true,
         "mips_variant": "standard",
@@ -95103,123 +94817,6 @@
       },
       "protection_tech": "none",
       "protection_group": "none"
-    },
-    {
-      "id": "extra-woom-kids-helmet",
-      "brand": "Woom",
-      "model": "Kids´Helmet",
-      "search_text": "woom kids´helmet",
-      "catalog": "extra_only",
-      "primary_rating_source": "folksam",
-      "score": null,
-      "stars": 0,
-      "ratings": {
-        "folksam": {
-          "recommended": false,
-          "overall_result_pct": -7.0,
-          "grade": 2,
-          "segment": "children",
-          "test_year": 2025,
-          "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-barn-eng_tcm5-84884.pdf",
-          "rank_pct": 0.4211
-        },
-        "fused": {
-          "rank_pct": 0.4211,
-          "sources": [
-            "folksam"
-          ],
-          "weights": {
-            "folksam": 0.9
-          }
-        }
-      },
-      "style": "Kids",
-      "style_meta": {
-        "assigned": "Kids",
-        "source": "inferred",
-        "manufacturer_verified": false,
-        "manufacturer_style": null,
-        "manufacturer_match": null,
-        "manufacturer_title": null,
-        "manufacturer_error": "no_search_url"
-      },
-      "test_year": 2025,
-      "certifications": "",
-      "score_low_impact": null,
-      "score_high_impact": null,
-      "price_at_test_usd": null,
-      "price_at_test_label": null,
-      "value_ratio": null,
-      "image_url": null,
-      "features": {
-        "mips_standard": false,
-        "mips_spherical": false,
-        "wavecel": false,
-        "spin": false,
-        "sweet_2vi": false,
-        "koroyd": false,
-        "rotational_protection": false,
-        "nta8776": false,
-        "asia_fit": false,
-        "round_fit": false
-      },
-      "feature_labels": [],
-      "eu_brand": false,
-      "eu_version": true,
-      "european_market": false,
-      "listings": {
-        "de": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "amazon_de",
-          "fetched_at": null
-        },
-        "at": {
-          "price": null,
-          "currency": "EUR",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "geizhals_at",
-          "fetched_at": null
-        },
-        "ch": {
-          "price": null,
-          "currency": "CHF",
-          "rating": null,
-          "review_count": null,
-          "url": null,
-          "source": "galaxus",
-          "fetched_at": null
-        }
-      },
-      "manufacturer": {
-        "website": null,
-        "search_url": null,
-        "fetched": false,
-        "title": null,
-        "description": null,
-        "image": null,
-        "error": "extra_only"
-      },
-      "source": {
-        "name": "Folksam",
-        "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-barn-eng_tcm5-84884.pdf"
-      },
-      "protection": {
-        "has_mips": false,
-        "mips_variant": null,
-        "mips_label": null,
-        "rotational_tech": null,
-        "rotational_label": null,
-        "source": null
-      },
-      "protection_tech": "none",
-      "protection_group": "none",
-      "brand_key": "woom"
     }
   ]
 }

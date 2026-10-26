@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-25T18:45:00.521006+00:00",
+    "generated_at": "2026-10-26T09:33:43.698025+00:00",
     "source_url": "https://www.helmet.beam.vt.edu/js/bicycleData.js",
     "helmet_count_total": 620,
     "helmet_count_european_market": 403,
@@ -30,17 +30,11 @@
     "extra_ratings_sources": {
       "certimoov": {
         "fetched": 228,
-        "matched": 35,
-        "error": null,
-        "stale": false,
-        "stale_since": "2026-10-25T16:35:50.925738+00:00"
+        "matched": 43
       },
       "folksam": {
         "fetched": 20,
-        "matched": 7,
-        "error": null,
-        "stale": false,
-        "stale_since": "2026-10-25T16:35:50.925738+00:00"
+        "matched": 7
       },
       "nsw_helmet_star": {
         "fetched": 139,
@@ -75,7 +69,7 @@
       "from_lookup": 98,
       "from_text": 233
     },
-    "market_prices_fetched_at": "2026-10-25T18:45:00.824087+00:00",
+    "market_prices_fetched_at": "2026-10-26T09:48:37.560871+00:00",
     "exchange_rates": {
       "base": "USD",
       "EUR": 0.89342,
@@ -87,11 +81,20 @@
       "checked": 403,
       "priced": 218,
       "better": 202,
-      "cached": 403,
-      "skipped": 0
+      "cached": 327,
+      "skipped": 71
     },
     "market_price_note": "Each country only takes prices from its own shops: Geizhals and Idealo (DE, AT), toppreise.ch (CH); Amazon when comparison sites have none. Median daily price over 14 days (30 when there are too few); implausible offers are dropped (market_prices_outliers).",
-    "market_prices_source_errors": {},
+    "market_prices_source_errors": {
+      "geizhals": {
+        "count": 72,
+        "last_error": "blocked or rate-limited (429/403 bot challenge)"
+      },
+      "geizhals_at": {
+        "count": 72,
+        "last_error": "blocked or rate-limited (429/403 bot challenge)"
+      }
+    },
     "market_prices_outliers": {
       "helmets": 97,
       "offers": 136,
@@ -27193,6 +27196,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 0.3684
         },
         "fused": {
@@ -27587,6 +27595,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 0.9474
         },
         "fused": {
@@ -29772,6 +29785,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.8947
         },
         "fused": {
@@ -30639,6 +30657,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
+          },
+          "match": {
+            "test_name": "Scott ARX",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.9384
         },
@@ -34308,6 +34331,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "Specialized Align-II",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.7055
         },
         "nsw_helmet_star": {
@@ -34599,6 +34627,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
+          },
+          "match": {
+            "test_name": "Specialized Chamonix",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.7055
         },
@@ -36479,6 +36512,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "MET - MILES-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.9384
         },
         "nsw_helmet_star": {
@@ -38061,6 +38099,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
+          },
+          "match": {
+            "test_name": "LUMOS ultra-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.7055
         },
@@ -41256,6 +41299,11 @@
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 4.0
           },
+          "match": {
+            "test_name": "SCOTT ARX-Plus",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.9384
         },
         "fused": {
@@ -43151,6 +43199,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 0.5526
         },
         "fused": {
@@ -44175,6 +44228,11 @@
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "Bontrager Starvos MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.9384
         },
         "fused": {
@@ -44429,6 +44487,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
+          },
+          "match": {
+            "test_name": "ABUS Pedelec-2.0-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.7055
         },
@@ -45522,6 +45585,11 @@
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "Bontrager Starvos-Wavecel",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.9384
         },
         "fused": {
@@ -46533,6 +46601,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
+          },
+          "match": {
+            "test_name": "Specialized Propero 3",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.7055
         },
@@ -47941,6 +48014,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.4737
         },
         "fused": {
@@ -48704,6 +48782,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 2.5
+          },
+          "match": {
+            "test_name": "BONTRAGER CIRCUIT WAVECEL",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.7055
         },
@@ -52286,6 +52369,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "BERN - MACON-2.0-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.363
         },
         "fused": {
@@ -54030,6 +54118,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 3.0
+          },
+          "match": {
+            "test_name": "ABUS GAMECHANGER MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.9384
         },
@@ -57256,6 +57349,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.0
           },
+          "match": {
+            "test_name": "Bell Stratus MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.7055
         },
         "fused": {
@@ -57484,6 +57582,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
+          },
+          "match": {
+            "test_name": "THOUSAND CHAPTER",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.363
         },
@@ -57995,6 +58098,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 4.0
           },
+          "match": {
+            "test_name": "Giro Synthe MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.7055
         },
         "fused": {
@@ -58480,6 +58588,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 4.0
+          },
+          "match": {
+            "test_name": "BERN - Hudson-MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.7055
         },
@@ -59003,6 +59116,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.0
+          },
+          "match": {
+            "test_name": "Abus Hyban 2.0",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.7055
         },
@@ -60513,6 +60631,11 @@
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 2.5
           },
+          "match": {
+            "test_name": "GIRO SYNTAX MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.363
         },
         "nsw_helmet_star": {
@@ -61792,6 +61915,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "LAZER URBANIZE NTA MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.7055
         },
         "fused": {
@@ -62886,6 +63014,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
           },
+          "match": {
+            "test_name": "LAZER STRADA",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.7055
         },
         "nsw_helmet_star": {
@@ -63179,6 +63312,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.0
           },
+          "match": {
+            "test_name": "Bontrager Charge-Wavecel",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.7055
         },
         "fused": {
@@ -63409,6 +63547,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 1.5
+          },
+          "match": {
+            "test_name": "LUMOS ULTRA E BIKE MIPS",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.363
         },
@@ -65892,6 +66035,11 @@
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 2.0
           },
+          "match": {
+            "test_name": "Lazer Compact-DLX",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.363
         },
         "nsw_helmet_star": {
@@ -67592,6 +67740,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.0
           },
+          "match": {
+            "test_name": "Bell Annex MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.1096
         },
         "fused": {
@@ -67821,6 +67974,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.0
           },
+          "match": {
+            "test_name": "LAZER CODAX KINETICORE",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.7055
         },
         "folksam": {
@@ -67830,6 +67988,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 0.2632
         },
         "fused": {
@@ -68380,7 +68543,7 @@
           "sources": [],
           "price_window": "30d_latest",
           "price_sample_days": 1,
-          "fetched_at": "2026-10-25T18:28:12.451994+00:00"
+          "fetched_at": "2026-10-26T09:43:26.126419+00:00"
         },
         "at": {
           "price": null,
@@ -68435,7 +68598,7 @@
         "sample_prices": [
           177.02
         ],
-        "fetched_at": "2026-10-25T18:28:12.451994+00:00",
+        "fetched_at": "2026-10-26T09:43:26.126419+00:00",
         "better_than_test": true
       },
       "price_comparison_usd": 198.14,
@@ -71940,6 +72103,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 0.0263
         },
         "fused": {
@@ -73540,6 +73708,11 @@
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 3.0
           },
+          "match": {
+            "test_name": "POC Ventral-Air-Spin",
+            "confidence": 0.75,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.9384
         },
         "nsw_helmet_star": {
@@ -74847,6 +75020,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
           },
+          "match": {
+            "test_name": "Giro Register-MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.363
         },
         "nsw_helmet_star": {
@@ -75341,6 +75519,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.0
+          },
+          "match": {
+            "test_name": "LUMOS ULTRA",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.363
         },
@@ -75990,26 +76173,14 @@
         "de": {
           "price": 98.28,
           "currency": "EUR",
-          "rating": 4.4,
+          "rating": null,
           "review_count": null,
-          "url": "https://www.amazon.de/dp/B09F9QQQMN",
-          "source": "amazon_de",
-          "sources": [
-            {
-              "source": "amazon_de",
-              "title": "7iDP M1 Helmet Full Face Mountain Biking Helmet",
-              "price": 64.66,
-              "currency": "EUR",
-              "url": "https://www.amazon.de/dp/B09F9QQQMN",
-              "rating": 4.4,
-              "review_count": null,
-              "available": true,
-              "match_score": 1.0
-            }
-          ],
+          "url": null,
+          "source": "",
+          "sources": [],
           "price_window": "30d_median",
           "price_sample_days": 2,
-          "fetched_at": "2026-10-25T18:31:39.313508+00:00"
+          "fetched_at": "2026-10-26T09:44:43.293422+00:00"
         },
         "at": {
           "price": null,
@@ -76057,33 +76228,19 @@
         "amount": 98.28,
         "currency": "EUR",
         "usd_equiv": 110.0,
-        "sources": [
-          "amazon_de"
-        ],
-        "source_details": [
-          {
-            "source": "amazon_de",
-            "title": "7iDP M1 Helmet Full Face Mountain Biking Helmet",
-            "price": 64.66,
-            "currency": "EUR",
-            "url": "https://www.amazon.de/dp/B09F9QQQMN",
-            "rating": 4.4,
-            "review_count": null,
-            "available": true,
-            "match_score": 1.0
-          }
-        ],
+        "sources": [],
+        "source_details": [],
         "price_window": "30d_median",
         "price_sample_days": 2,
         "sample_prices": [
           64.66,
           131.9
         ],
-        "fetched_at": "2026-10-25T18:31:39.313508+00:00",
+        "fetched_at": "2026-10-26T09:44:43.293422+00:00",
         "better_than_test": false
       },
       "price_comparison_usd": 110.0,
-      "price_comparison_label": "98.28 EUR (30d median; amazon_de)"
+      "price_comparison_label": "98.28 EUR (30d median; )"
     },
     {
       "id": "6d-atb-1t-evo",
@@ -76351,6 +76508,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
+          },
+          "match": {
+            "test_name": "GIRO Fixture-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.7055
         },
@@ -79744,6 +79906,11 @@
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 2.0
           },
+          "match": {
+            "test_name": "LAZER Blade+",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.363
         },
         "fused": {
@@ -80600,7 +80767,7 @@
           "sources": [],
           "price_window": "30d_latest",
           "price_sample_days": 1,
-          "fetched_at": "2026-10-25T18:34:17.634899+00:00"
+          "fetched_at": "2026-10-26T09:46:34.809959+00:00"
         },
         "at": {
           "price": null,
@@ -80655,7 +80822,7 @@
         "sample_prices": [
           83.88
         ],
-        "fetched_at": "2026-10-25T18:34:17.634899+00:00",
+        "fetched_at": "2026-10-26T09:46:34.809959+00:00",
         "better_than_test": false
       },
       "price_comparison_usd": 93.89,
@@ -81015,7 +81182,7 @@
           "sources": [],
           "price_window": "30d_latest",
           "price_sample_days": 1,
-          "fetched_at": "2026-10-25T18:34:30.104716+00:00"
+          "fetched_at": "2026-10-26T09:46:41.074992+00:00"
         },
         "at": {
           "price": null,
@@ -81070,7 +81237,7 @@
         "sample_prices": [
           177.02
         ],
-        "fetched_at": "2026-10-25T18:34:30.104716+00:00",
+        "fetched_at": "2026-10-26T09:46:41.074992+00:00",
         "better_than_test": false
       },
       "price_comparison_usd": 198.14,
@@ -81841,6 +82008,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 2.5
+          },
+          "match": {
+            "test_name": "Bern Brentwood 2.0",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.363
         },
@@ -83273,7 +83445,7 @@
           "sources": [],
           "price_window": "30d_latest",
           "price_sample_days": 1,
-          "fetched_at": "2026-10-25T18:35:22.915031+00:00"
+          "fetched_at": "2026-10-26T09:46:52.823930+00:00"
         },
         "at": {
           "price": null,
@@ -83328,7 +83500,7 @@
         "sample_prices": [
           126.87
         ],
-        "fetched_at": "2026-10-25T18:35:22.915031+00:00",
+        "fetched_at": "2026-10-26T09:46:52.823930+00:00",
         "better_than_test": true
       },
       "price_comparison_usd": 142.0,
@@ -83482,6 +83654,11 @@
             "choc-frontal-oblique": 3.0,
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 1.5
+          },
+          "match": {
+            "test_name": "Kali City",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.0137
         },
@@ -84079,6 +84256,11 @@
             "choc-frontal-oblique": 3.0,
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 1.0
+          },
+          "match": {
+            "test_name": "THOUSAND HERITAGE 2.0",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.1096
         },
@@ -85644,6 +85826,11 @@
             "choc-frontal-oblique": 2.5,
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 1.5
+          },
+          "match": {
+            "test_name": "Bern Watts",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.1096
         },

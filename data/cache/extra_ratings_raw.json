@@ -1,20 +1,14 @@
 {
   "meta": {
-    "generated_at": "2026-10-25T18:42:21.780642+00:00",
+    "generated_at": "2026-10-26T09:33:43.472324+00:00",
     "sources": {
       "certimoov": {
         "fetched": 228,
-        "matched": 35,
-        "error": null,
-        "stale": false,
-        "stale_since": "2026-10-25T16:35:50.925738+00:00"
+        "matched": 43
       },
       "folksam": {
         "fetched": 20,
-        "matched": 7,
-        "error": null,
-        "stale": false,
-        "stale_since": "2026-10-25T16:35:50.925738+00:00"
+        "matched": 7
       },
       "nsw_helmet_star": {
         "fetched": 139,
@@ -46,6 +40,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 3.0
+          },
+          "match": {
+            "test_name": "ABUS GAMECHANGER MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.9117647058823529
         },
@@ -134,6 +133,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.0
           },
+          "match": {
+            "test_name": "Abus Hyban 2.0",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.5882352941176471
         },
         "nsw_helmet_star": {
@@ -221,6 +225,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "ABUS Pedelec-2.0-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.5882352941176471
         }
       }
@@ -246,6 +255,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.0
+          },
+          "match": {
+            "test_name": "Bell Annex MIPS",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.05882352941176471
         }
@@ -273,6 +287,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.0
           },
+          "match": {
+            "test_name": "Bell Stratus MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.5882352941176471
         }
       }
@@ -298,6 +317,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 2.5
+          },
+          "match": {
+            "test_name": "Bern Brentwood 2.0",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.23529411764705882
         }
@@ -325,6 +349,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 4.0
           },
+          "match": {
+            "test_name": "BERN - Hudson-MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.5882352941176471
         }
       }
@@ -350,6 +379,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
+          },
+          "match": {
+            "test_name": "BERN - MACON-2.0-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.23529411764705882
         }
@@ -377,6 +411,11 @@
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 1.5
           },
+          "match": {
+            "test_name": "Bern Watts",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.05882352941176471
         }
       }
@@ -402,6 +441,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.0
+          },
+          "match": {
+            "test_name": "Bontrager Charge-Wavecel",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.5882352941176471
         }
@@ -429,6 +473,11 @@
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 2.5
           },
+          "match": {
+            "test_name": "BONTRAGER CIRCUIT WAVECEL",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.5882352941176471
         }
       }
@@ -454,6 +503,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 3.5
+          },
+          "match": {
+            "test_name": "Bontrager Starvos MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.9117647058823529
         }
@@ -481,6 +535,11 @@
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "Bontrager Starvos-Wavecel",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.9117647058823529
         }
       }
@@ -506,6 +565,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
+          },
+          "match": {
+            "test_name": "GIRO Fixture-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.5882352941176471
         },
@@ -594,6 +658,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
           },
+          "match": {
+            "test_name": "Giro Register-MIPS",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.23529411764705882
         },
         "nsw_helmet_star": {
@@ -680,6 +749,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 2.5
+          },
+          "match": {
+            "test_name": "GIRO SYNTAX MIPS",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.23529411764705882
         },
@@ -768,6 +842,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 4.0
           },
+          "match": {
+            "test_name": "Giro Synthe MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.5882352941176471
         }
       }
@@ -793,6 +872,11 @@
             "choc-frontal-oblique": 3.0,
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 1.5
+          },
+          "match": {
+            "test_name": "Kali City",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.0
         }
@@ -820,6 +904,11 @@
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 2.0
           },
+          "match": {
+            "test_name": "LAZER Blade+",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.23529411764705882
         }
       }
@@ -846,6 +935,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.0
           },
+          "match": {
+            "test_name": "LAZER CODAX KINETICORE",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.5882352941176471
         },
         "folksam": {
@@ -855,6 +949,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 0.16666666666666666
         }
       }
@@ -880,6 +979,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 2.0
+          },
+          "match": {
+            "test_name": "Lazer Compact-DLX",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.23529411764705882
         },
@@ -968,6 +1072,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
           },
+          "match": {
+            "test_name": "LAZER STRADA",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.5882352941176471
         },
         "nsw_helmet_star": {
@@ -1055,6 +1164,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "LAZER URBANIZE NTA MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.5882352941176471
         }
       }
@@ -1080,6 +1194,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.0
+          },
+          "match": {
+            "test_name": "LUMOS ULTRA",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.23529411764705882
         }
@@ -1107,6 +1226,11 @@
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 1.5
           },
+          "match": {
+            "test_name": "LUMOS ULTRA E BIKE MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.23529411764705882
         }
       }
@@ -1133,6 +1257,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
           },
+          "match": {
+            "test_name": "LUMOS ultra-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.5882352941176471
         }
       }
@@ -1158,6 +1287,11 @@
             "choc-frontal-oblique": 4.0,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
+          },
+          "match": {
+            "test_name": "MET - MILES-MIPS",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.9117647058823529
         },
@@ -1246,6 +1380,11 @@
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 3.0
           },
+          "match": {
+            "test_name": "POC Ventral-Air-Spin",
+            "confidence": 0.75,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.9117647058823529
         },
         "nsw_helmet_star": {
@@ -1333,6 +1472,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
           },
+          "match": {
+            "test_name": "Scott ARX",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.9117647058823529
         }
       }
@@ -1359,6 +1503,11 @@
             "choc-lateral-oblique-1": 4.5,
             "choc-lateral-oblique-2-": 4.0
           },
+          "match": {
+            "test_name": "SCOTT ARX-Plus",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.9117647058823529
         }
       }
@@ -1384,6 +1533,11 @@
             "choc-frontal-oblique": 4.5,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 3.5
+          },
+          "match": {
+            "test_name": "Specialized Align-II",
+            "confidence": 1.0,
+            "method": "slug"
           },
           "rank_pct": 0.5882352941176471
         },
@@ -1472,6 +1626,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
           },
+          "match": {
+            "test_name": "Specialized Chamonix",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.5882352941176471
         }
       }
@@ -1498,6 +1657,11 @@
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
           },
+          "match": {
+            "test_name": "Specialized Propero 3",
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.5882352941176471
         }
       }
@@ -1523,6 +1687,11 @@
             "choc-frontal-oblique": 3.5,
             "choc-lateral-oblique-1": 4.0,
             "choc-lateral-oblique-2-": 2.5
+          },
+          "match": {
+            "test_name": "THOUSAND CHAPTER",
+            "confidence": 1.0,
+            "method": "token_overlap"
           },
           "rank_pct": 0.23529411764705882
         },
@@ -1611,6 +1780,11 @@
             "choc-lateral-oblique-1": 3.5,
             "choc-lateral-oblique-2-": 1.0
           },
+          "match": {
+            "test_name": "THOUSAND HERITAGE 2.0",
+            "confidence": 1.0,
+            "method": "slug"
+          },
           "rank_pct": 0.05882352941176471
         },
         "nsw_helmet_star": {
@@ -1692,6 +1866,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 0.0
         }
       }
@@ -1712,6 +1891,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 0.3333333333333333
         }
       }
@@ -1732,6 +1916,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 1.0
         }
       }
@@ -1752,6 +1941,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.5
         }
       }
@@ -1772,6 +1966,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
           "rank_pct": 0.6666666666666666
         }
       }
@@ -1792,6 +1991,11 @@
           "segment": "adults",
           "test_year": 2025,
           "url": "https://www.folksam.se/media/S41586-cykelhjalmstest-2025-vuxen-eng_tcm5-84883.pdf",
+          "match": {
+            "test_name": null,
+            "confidence": 1.0,
+            "method": "token_overlap"
+          },
           "rank_pct": 0.8333333333333334
         }
       }
@@ -4101,6 +4305,78 @@
       }
     },
     {
+      "id": "specialized-camber",
+      "match": {
+        "brand": "Specialized",
+        "model": "Camber",
+        "confidence": 0.98,
+        "method": "brand_model_exact"
+      },
+      "ratings": {
+        "nsw_helmet_star": {
+          "score": 29.0,
+          "stars": 1,
+          "category": "Mountain bike open-face helmets",
+          "price_band": "$$",
+          "test_year": 2024,
+          "url": "https://www.helmetstar.com.au/helmet/specialized-camber",
+          "metrics": {
+            "Helmet coverage": {
+              "score": 5.42,
+              "max": 6.0
+            },
+            "Retention system strength": {
+              "score": 0.0,
+              "max": 6.0
+            },
+            "Head protection in low-speed impact": {
+              "score": 10.2,
+              "max": 12.0
+            },
+            "Angular head impact protection": {
+              "score": 28.95,
+              "max": 32.0
+            },
+            "Head protection from concentrated impact": {
+              "score": 8.0,
+              "max": 8.0
+            },
+            "Head protection in higher-speed impact": {
+              "score": 10.91,
+              "max": 12.0
+            },
+            "Head protection variability in higher-speed impact": {
+              "score": 0.0,
+              "max": 2.0
+            },
+            "Head protection variability in low-speed impact": {
+              "score": 1.0,
+              "max": 2.0
+            },
+            "Helmet stability in a crash": {
+              "score": 3.0,
+              "max": 6.0
+            },
+            "Head protection in standard-speed impact": {
+              "score": 6.82,
+              "max": 12.0
+            },
+            "Head protection variability in standard-speed impact": {
+              "score": 0.69,
+              "max": 2.0
+            }
+          },
+          "modifier": "The total score is truncated to 1 star or 29% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 35mm.",
+          "match": {
+            "test_name": "Specialized Camber",
+            "confidence": 0.98,
+            "method": "brand_model_exact"
+          },
+          "rank_pct": 0.09803921568627451
+        }
+      }
+    },
+    {
       "id": "100-percent-altis",
       "match": {
         "brand": "100 Percent",
@@ -4597,78 +4873,6 @@
           "modifier": "The total score is truncated to 29% or one star as the male part of the retention system buckle is not permanently attached.",
           "match": {
             "test_name": "Troy Lee Designs Flowline",
-            "confidence": 0.98,
-            "method": "brand_model_exact"
-          },
-          "rank_pct": 0.09803921568627451
-        }
-      }
-    },
-    {
-      "id": "specialized-camber",
-      "match": {
-        "brand": "Specialized",
-        "model": "Camber",
-        "confidence": 0.98,
-        "method": "brand_model_exact"
-      },
-      "ratings": {
-        "nsw_helmet_star": {
-          "score": 29.0,
-          "stars": 1,
-          "category": "Mountain bike open-face helmets",
-          "price_band": "$$",
-          "test_year": 2024,
-          "url": "https://www.helmetstar.com.au/helmet/specialized-camber",
-          "metrics": {
-            "Helmet coverage": {
-              "score": 5.42,
-              "max": 6.0
-            },
-            "Retention system strength": {
-              "score": 0.0,
-              "max": 6.0
-            },
-            "Head protection in low-speed impact": {
-              "score": 10.2,
-              "max": 12.0
-            },
-            "Angular head impact protection": {
-              "score": 28.95,
-              "max": 32.0
-            },
-            "Head protection from concentrated impact": {
-              "score": 8.0,
-              "max": 8.0
-            },
-            "Head protection in higher-speed impact": {
-              "score": 10.91,
-              "max": 12.0
-            },
-            "Head protection variability in higher-speed impact": {
-              "score": 0.0,
-              "max": 2.0
-            },
-            "Head protection variability in low-speed impact": {
-              "score": 1.0,
-              "max": 2.0
-            },
-            "Helmet stability in a crash": {
-              "score": 3.0,
-              "max": 6.0
-            },
-            "Head protection in standard-speed impact": {
-              "score": 6.82,
-              "max": 12.0
-            },
-            "Head protection variability in standard-speed impact": {
-              "score": 0.69,
-              "max": 2.0
-            }
-          },
-          "modifier": "The total score is truncated to 1 star or 29% as the dynamic displacement of the helmet, when tested in the dynamic strength of the retention system, exceeded the maximum limit of 35mm.",
-          "match": {
-            "test_name": "Specialized Camber",
             "confidence": 0.98,
             "method": "brand_model_exact"
           },
